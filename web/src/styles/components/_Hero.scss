@@ -1,0 +1,13 @@
+.Hero {
+  position: relative;
+
+  &__content {
+    position: absolute;
+    @include spacing(md, (bottom));
+    z-index: 1;
+  }
+
+  &__logo {
+    @include font-body;
+  }
+}

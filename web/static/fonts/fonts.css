@@ -1,0 +1,25 @@
+@font-face {
+  font-family: "SuisseIntl";
+  src: url("SuisseIntl-Regular-WebM.eot?#iefix");
+  src: url("SuisseIntl-Regular-WebM.eot?#iefix") format("embedded-opentype"),
+    url("SuisseIntl-Regular-WebM.woff2") format("woff2"),
+    url("SuisseIntl-Regular-WebM.woff") format("woff"),
+    url("SuisseIntl-Regular-WebM.ttf") format("truetype"),
+    url("SuisseIntl-Regular-WebM.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Suisse Works";
+  src: url("SuisseWorks-Regular-WebS.eot?#iefix");
+  src: url("SuisseWorks-Regular-WebS.eot?#iefix") format("embedded-opentype"),
+    url("SuisseWorks-Regular-WebS.woff2") format("woff2"),
+    url("SuisseWorks-Regular-WebS.woff") format("woff"),
+    url("SuisseWorks-Regular-WebS.ttf") format("truetype"),
+    url("SuisseWorks-Regular-WebS.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

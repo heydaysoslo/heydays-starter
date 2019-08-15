@@ -1,0 +1,93 @@
+// Fonts
+$f-sans: 'SuisseIntl', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+  Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+
+$f-serif: 'Suisse Works', times, serif;
+
+// Colors
+
+$c-primary: black;
+$c-secondary: tomato;
+$c-text: white;
+$c-border: black;
+
+$breakpoints: (
+  sm: 0,
+  md: 550,
+  lg: 870,
+  xl: 1200,
+  xxl: 1600
+);
+
+$content-width: (
+  sm: (
+    text: 0,
+    image: 0
+  ),
+  md: (
+    text: 968,
+    // image: 1170,
+      image: 1600
+  )
+);
+
+// Spacing
+$spacing: (
+  sm: (
+    xxs: 10,
+    xs: 10,
+    sm: 10,
+    md: 10,
+    lg: 10,
+    section: 10
+  ),
+  md: (
+    xxs: 30,
+    xs: 30,
+    sm: 30,
+    md: 30,
+    lg: 30,
+    section: 30
+  )
+);
+
+// Typography
+$typography: (
+  sm: (
+    h1: 30,
+    h2: 30,
+    h3: 30,
+    body: 30,
+    small: 30
+  ),
+  lg: (
+    h1: 50,
+    h2: 50,
+    h3: 50,
+    body: 50,
+    small: 50
+  ),
+  xl: (
+    h1: 70,
+    h2: 70,
+    h3: 70,
+    body: 70,
+    small: 70
+  )
+);
+
+// Border
+$s-border__width: 1px;
+$border: $s-border__width solid $c-border;
+
+$s-border__width--large: 6px;
+$border--large: $s-border__width--large solid $c-border;
+
+// Radius
+$radius: 1rem;
+$radius--large: 1.4rem;
+
+// Trans
+$trans: 0.3s ease;
+$trans--fast: 0.12s ease;
+$trans--slow: 5s ease;

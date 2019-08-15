@@ -1,0 +1,54 @@
+.FadeIn {
+  position: relative;
+  // z-index: 9999999;
+  // z-index: 500;
+  display: none;
+}
+
+.FadeIn-enter {
+  display: block;
+  opacity: 0;
+  z-index: 9999;
+  .Modal__content {
+    transform: scale(0.8) translateY(-50px);
+  }
+}
+
+.FadeIn-enter-active {
+  display: block;
+  opacity: 1;
+  transition: 500ms;
+  .Modal__content {
+    transform: scale(1) translateY(0px);
+    transition: 0.3s ease;
+  }
+}
+
+.FadeIn-enter-done {
+  display: block;
+  opacity: 1;
+}
+
+.FadeIn-exit {
+  display: block;
+  opacity: 1;
+  z-index: 9999;
+  .Modal__content {
+    transform: scale(1);
+    transition: 1s ease;
+  }
+}
+
+.FadeIn-exit-active {
+  display: block;
+  opacity: 0;
+  transition: 1000ms;
+
+  .Modal__content {
+    transform: scale(0.8);
+  }
+}
+
+.FadeIn-exit-done {
+  opacity: 0;
+}

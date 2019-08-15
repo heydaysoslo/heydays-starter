@@ -1,0 +1,62 @@
+{
+  "name": "web",
+  "version": "0.0.3",
+  "private": true,
+  "main": "index.js",
+  "repository": "git@github.com:heydaysoslo/gatsby-utils.git",
+  "author": "@heydays",
+  "license": "MIT",
+  "scripts": {
+    "develop": "yarn clear-cache && gatsby develop -H $HOSTNAME --port 3000 --open",
+    "start": "run-p start:**",
+    "start:app": "yarn develop",
+    "start:lambda": "netlify-lambda serve src/netlify-functions",
+    "build": "run-p build:**",
+    "build:app": "gatsby build",
+    "build:lambda": "netlify-lambda build src/netlify-functions",
+    "clean": "gatsby clean",
+    "clear-cache": "rimraf .cache"
+  },
+  "browserslist": [
+    ">1%",
+    "last 4 versions",
+    "Firefox ESR",
+    "ie >= 10",
+    "iOS >= 8"
+  ],
+  "stylelint": {
+    "plugins": [
+      "stylelint-scss"
+    ],
+    "rules": {
+      "scss/dollar-variable-pattern": "^foo",
+      "scss/selector-no-redundant-nesting-selector": true
+    }
+  },
+  "dependencies": {
+    "dotenv": "^8.0.0",
+    "gatsby": "^2.13.52",
+    "gatsby-image": "^2.1.2",
+    "gatsby-plugin-compile-es6-packages": "^1.1.0",
+    "gatsby-plugin-manifest": "^2.2.5",
+    "gatsby-plugin-netlify-functions": "^0.0.3",
+    "gatsby-plugin-robots-txt": "^1.4.0",
+    "gatsby-plugin-sass": "^2.0.11",
+    "gatsby-plugin-web-font-loader": "^1.0.4",
+    "gatsby-source-sanity": "^5.0.2",
+    "gatsby-theme-heydays": "^0.0.3",
+    "node-sass": "^4.12.0",
+    "node-sass-glob-importer": "^5.3.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-transition-group": "^4.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-optional-chaining": "^7.2.0",
+    "http-proxy-middleware": "^0.19.1",
+    "netlify-lambda": "^1.5.1",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^2.6.3"
+  }
+}

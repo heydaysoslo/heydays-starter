@@ -1,0 +1,26 @@
+$breakpoints: (
+  xs: 0,
+  sm: 550,
+  md: 870,
+  lg: 1200,
+  xl: 1600,
+  xxl: 1800
+) !default;
+
+@mixin bp($size, $max-size: false) {
+  $bp: map-get($breakpoints, $size);
+  @if $size == sm and $max-size == false {
+    @content;
+  } @else {
+    @if $max-size {
+      $bp2: map-get($breakpoints, $max-size);
+      @media screen and (min-width: #{em-calc($bp)}) and (max-width: #{em-calc($bp2)}) {
+        @content;
+      }
+    } @else {
+      @media screen and (min-width: #{em-calc($bp)}) {
+        @content;
+      }
+    }
+  }
+}

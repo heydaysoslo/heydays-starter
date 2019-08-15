@@ -1,0 +1,22 @@
+@import 'settings/variables.scss';
+@import 'settings/functions.scss';
+@import 'settings/breakpoints.scss';
+@import 'settings/spacing.scss';
+@import 'settings/font-size.scss';
+@import 'settings/mixins.scss';
+@import 'settings/animation.scss';
+
+@import 'base/reset';
+@import 'base/elements';
+@import 'base/typography';
+
+@import 'plugins/swiper';
+
+@import 'gatsby-theme-heydays/src/components/Modal.scss';
+@import 'gatsby-theme-heydays/src/components/AspectContainer.scss';
+@import 'gatsby-theme-heydays/src/components/Grid.scss';
+
+@import 'components/*';
+
+@import 'utils/helpers';
+@import 'utils/ie';

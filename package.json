@@ -1,0 +1,25 @@
+{
+  "name": "gatsby-starter-heydays",
+  "version": "0.0.4",
+  "private": true,
+  "scripts": {
+    "empty-cache": "rimraf web/.cache",
+    "graphql-deploy": "lerna run graphql-deploy",
+    "build": "lerna run build --parallel",
+    "start": "yarn empty-cache && lerna run start --parallel",
+    "netlify-build": "cd web && yarn build",
+    "bootstrap": "lerna bootstrap",
+    "sanity-deploy": "lerna run sanity-deploy",
+    "postinstall": "lerna bootstrap"
+  },
+  "workspaces": [
+    "cms",
+    "web",
+    "gatsby-theme-heydays"
+  ],
+  "devDependencies": {
+    "lerna": "^3.13.1",
+    "rimraf": "^2.6.3"
+  },
+  "dependencies": {}
+}
