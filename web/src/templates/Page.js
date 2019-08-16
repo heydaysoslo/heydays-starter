@@ -11,33 +11,7 @@ import Page from '../components/pages/Page'
  *
  * The ID comes from gatsby-config where the context.id is passed in
  *
- * _rawBody
- * https://github.com/sanity-io/gatsby-source-sanity#raw-fields
- *
- * See <Image /> for more docs on querying images
  */
-
-export const query = graphql`
-  query PageQuery($id: String!) {
-    page: sanityPage(id: { eq: $id }) {
-      _key
-      title
-      template
-      seo {
-        description
-        title
-        image {
-          asset {
-            _key
-          }
-        }
-      }
-      pagebuilder {
-        ...PageBuilder
-      }
-    }
-  }
-`
 
 const templates = {
   frontpage: Page,
@@ -66,3 +40,27 @@ const PageTemplate = props => {
 }
 
 export default PageTemplate
+
+export const query = graphql`
+  query PageQuery($id: String!) {
+    page: sanityPage(id: { eq: $id }) {
+      _key
+      title
+      template
+      seo {
+        description
+        title
+        image {
+          asset {
+            _key
+          }
+        }
+      }
+      _rawEditor(resolveReferences: { maxDepth: 10 })
+      _rawPagebuilder(resolveReferences: { maxDepth: 10 })
+      # pagebuilder {
+      #   ...PageBuilder
+      # }
+    }
+  }
+`

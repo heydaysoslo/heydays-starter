@@ -5,7 +5,6 @@ import { Grid, GridItem } from 'gatsby-theme-heydays'
 import Card from '../Card'
 
 const CardSection = ({ cardsList = [], ...props }) => {
-  console.log(props, cardsList)
   return (
     <div className="CardSection">
       <Grid>

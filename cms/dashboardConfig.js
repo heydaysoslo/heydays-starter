@@ -6,10 +6,10 @@ export default {
       options: {
         sites: [
           {
-            buildHookId: '5d4d6b66141e0a4a7f574738',
-            title: 'Website',
-            name: 'sanity-gatsby-portfolio-web-u6otn9gs',
-            apiId: 'dbb73654-662d-4942-a143-f13cbe0eca8d'
+            buildHookId: '5d55445bc3cf83a1559a0a02', // Create this under Build & deploy look for Build hooks
+            title: 'Website', // Title that appears in the dashboard
+            name: 'heydays-starter', // Find on netlify under General>Site details look for Site name
+            apiId: '2beb0e18-90df-4575-b7af-b8b6a74d8ab5' // Find on netlify under General>Site details look for APP ID
           }
         ]
       }

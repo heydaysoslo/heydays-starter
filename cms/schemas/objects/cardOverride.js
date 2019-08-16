@@ -23,7 +23,7 @@ export default {
     {
       name: 'content',
       title: 'Content',
-      type: 'blockContentMinimal'
+      type: 'editorMinimal'
     },
     {
       name: 'link',

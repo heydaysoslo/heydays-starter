@@ -2,9 +2,11 @@ import React from 'react'
 import { graphql } from 'gatsby'
 
 import CardSection from './CardSection'
+import TextSection from './TextSection'
 
 const sectionTypes = {
-  cardSection: CardSection
+  cardSection: CardSection,
+  textSection: TextSection
 }
 
 const PageBuilder = ({ sections }) => {
@@ -19,7 +21,9 @@ const PageBuilder = ({ sections }) => {
             prevComp={sections[index - 1] ? sections[index - 1] : null}
           />
         ) : (
-          <p key={section._key}>Component {section._type} not found</p>
+          <p key={section._key} style={{ background: 'yellow' }}>
+            Component {section._type} not found
+          </p>
         )
       })}
     </div>
@@ -37,6 +41,18 @@ export const query = graphql`
       ... on SanityTextSection {
         _key
         _type
+        body {
+          sanityChildren {
+            _key
+            _type
+            marks
+            text
+          }
+          _key
+          _type
+          list
+          style
+        }
       }
     }
   }

@@ -1,3 +1,5 @@
+import MdImage from 'react-icons/lib/md/image'
+
 export default {
   name: 'figure',
   title: 'Image',
@@ -5,6 +7,7 @@ export default {
   options: {
     hotspot: true
   },
+  icon: MdImage,
   fields: [
     {
       title: 'Caption',
@@ -18,7 +21,8 @@ export default {
       name: 'alt',
       type: 'string',
       title: 'Alternative text',
-      validation: Rule => Rule.error('You have to fill out the alternative text.').required(),
+      validation: Rule =>
+        Rule.error('You have to fill out the alternative text.').required(),
       description: 'Important for SEO and accessiblity.',
       options: {
         isHighlighted: true

@@ -51,7 +51,7 @@ export default {
     {
       name: 'bio',
       title: 'Bio',
-      type: 'blockContent'
+      type: 'editor'
     }
   ],
   preview: {

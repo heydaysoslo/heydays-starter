@@ -16,10 +16,11 @@ import siteSettings from './documents/siteSettings'
 
 // Object types
 import link from './objects/link'
+import linkExternal from './objects/linkExternal'
 import seo from './objects/seo'
 import mainImage from './objects/mainImage'
-import blockContent from './objects/blockContent'
-import blockContentMinimal from './objects/blockContentMinimal'
+import editor from './objects/editor'
+import editorMinimal from './objects/editorMinimal'
 import social from './objects/social'
 import office from './objects/office'
 import content from './objects/content'
@@ -31,6 +32,8 @@ import cardOverride from './objects/cardOverride'
 import cardSection from './objects/cardSection'
 import textSection from './objects/textSection'
 import figure from './objects/figure'
+import button from './objects/button'
+import quote from './objects/quote'
 
 // const personOrder = createOrderDoc('person')
 // const newsOrder = createOrderDoc('news')
@@ -45,10 +48,11 @@ export default createSchema({
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     link,
+    linkExternal,
     seo,
     mainImage,
-    blockContent,
-    blockContentMinimal,
+    editor,
+    editorMinimal,
     social,
     office,
     content,
@@ -60,6 +64,8 @@ export default createSchema({
     cardSection,
     textSection,
     figure,
+    button,
+    quote,
 
     // The following are document types which will appear
     // in the studio.

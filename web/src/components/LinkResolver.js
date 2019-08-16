@@ -21,7 +21,12 @@ const LinkResolver = ({ data, children, ...props }) => {
   }
 
   return (
-    <Link to={`${routes[data._type]}${data.slug.current}`}>{children}</Link>
+    <Link
+      to={`${routes[data._type]}${data.slug.current}`}
+      className={props.className}
+    >
+      {children}
+    </Link>
   )
 }
 

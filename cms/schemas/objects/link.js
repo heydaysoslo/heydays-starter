@@ -3,12 +3,6 @@ export default {
   name: 'link',
   title: 'Link',
   type: 'object',
-  fieldsets: [
-    {
-      name: 'link',
-      title: 'Link'
-    }
-  ],
   fields: [
     {
       name: 'title',
@@ -16,10 +10,10 @@ export default {
       type: 'string'
     },
     {
-      name: 'url',
-      title: 'Url',
-      type: 'url',
-      description: 'Paste the full url to the page ex. https://ably.med/contact'
+      name: 'link',
+      title: 'Link',
+      type: 'reference',
+      to: [{ type: 'news' }, { type: 'page' }]
     }
   ],
   preview: {

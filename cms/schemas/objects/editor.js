@@ -1,8 +1,16 @@
-import External from 'react-icons/lib/fa/external-link'
-
+/**
+ * This is the schema definition for the rich text fields used for
+ * for this blog studio. When you import it in schemas.js it can be
+ * reused in other parts of the studio with:
+ *  {
+ *    name: 'someName',
+ *    title: 'Some title',
+ *    type: 'editor'
+ *  }
+ */
 export default {
-  title: 'Block Content',
-  name: 'blockContentMinimal',
+  title: 'Editor',
+  name: 'editor',
   type: 'array',
   of: [
     {
@@ -14,13 +22,16 @@ export default {
       // use your content.
       styles: [
         { title: 'Normal', value: 'normal' },
-        { title: 'Large text', value: 'large' }
+        { title: 'H2', value: 'h2' },
+        { title: 'H3', value: 'h3' },
+        { title: 'Large text', value: 'large' },
+        { title: 'Small text', value: 'small' }
         // { title: 'Quote', value: 'blockquote' }
       ],
-      // lists: [
-      //   { title: 'Bullet', value: 'bullet' },
-      //   { title: 'Numbered', value: 'number' }
-      // ],
+      lists: [
+        { title: 'Bullet', value: 'bullet' },
+        { title: 'Numbered', value: 'number' }
+      ],
       // Marks let you mark up inline text in the block editor.
       marks: {
         // Decorators usually describe a single property – e.g. a typographic
@@ -33,44 +44,26 @@ export default {
         annotations: [
           {
             title: 'External Link',
-            name: 'link',
-            type: 'object',
-            blockEditor: {
-              icon: External
-            },
-            fields: [
-              {
-                title: 'URL',
-                name: 'href',
-                type: 'url',
-                validation: Rule =>
-                  Rule.uri({
-                    allowRelative: true,
-                    scheme: ['https', 'http', 'mailto', 'tel']
-                  })
-              },
-              {
-                title: 'Open in new tab',
-                name: 'blank',
-                description: 'Read https://css-tricks.com/use-target_blank/',
-                type: 'boolean'
-              }
-            ]
+            name: 'linkExternal',
+            type: 'linkExternal'
           }
         ]
       }
-    }
+    },
     // You can add additional types here. Note that you can't use
     // primitive types such as 'string' and 'number' in the same array
     // as a block type.
-    // {
-    //   type: 'articleImage'
-    // },
-    // {
-    //   type: 'quote'
-    // },
-    // {
-    //   type: 'button'
-    // },
+    {
+      type: 'videoEmbed'
+    },
+    {
+      type: 'figure'
+    },
+    {
+      type: 'button'
+    },
+    {
+      type: 'quote'
+    }
   ]
 }

@@ -12,7 +12,7 @@ export default {
     },
     {
       name: 'text',
-      type: 'blockContent'
+      type: 'editor'
     },
     {
       name: 'videoEmbed',

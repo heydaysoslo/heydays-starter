@@ -2,7 +2,7 @@ import S from '@sanity/desk-tool/structure-builder'
 import config, {
   createMenuDeskStructure,
   createCustomTypeDeskStructure
-} from './config'
+} from './heydays-config'
 
 import MdSettings from 'react-icons/lib/md/settings'
 import MdBusiness from 'react-icons/lib/md/business'

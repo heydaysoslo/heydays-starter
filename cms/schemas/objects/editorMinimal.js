@@ -1,18 +1,8 @@
 import External from 'react-icons/lib/fa/external-link'
 
-/**
- * This is the schema definition for the rich text fields used for
- * for this blog studio. When you import it in schemas.js it can be
- * reused in other parts of the studio with:
- *  {
- *    name: 'someName',
- *    title: 'Some title',
- *    type: 'blockContent'
- *  }
- */
 export default {
-  title: 'Block Content',
-  name: 'blockContent',
+  title: 'Editor Minimal',
+  name: 'editorMinimal',
   type: 'array',
   of: [
     {
@@ -24,15 +14,11 @@ export default {
       // use your content.
       styles: [
         { title: 'Normal', value: 'normal' },
-        { title: 'H2', value: 'h2' },
-        { title: 'H3', value: 'h3' },
-        { title: 'Large text', value: 'large' }
+        { title: 'Large text', value: 'large' },
+        { title: 'Small text', value: 'small' }
         // { title: 'Quote', value: 'blockquote' }
       ],
-      lists: [
-        { title: 'Bullet', value: 'bullet' },
-        { title: 'Numbered', value: 'number' }
-      ],
+      lists: [],
       // Marks let you mark up inline text in the block editor.
       marks: {
         // Decorators usually describe a single property – e.g. a typographic
@@ -75,12 +61,6 @@ export default {
     // You can add additional types here. Note that you can't use
     // primitive types such as 'string' and 'number' in the same array
     // as a block type.
-    // {
-    //   type: 'videoEmbed'
-    // }
-    // {
-    //   type: 'figure'
-    // }
     // {
     //   type: 'articleImage'
     // },

@@ -31,8 +31,16 @@ h3,
 }
 
 small,
-.small {
+.text-small {
   @include font-small;
+}
+
+.text-large {
+  font-size: 2em;
+}
+
+strong {
+  font-weight: bold;
 }
 
 *:focus {

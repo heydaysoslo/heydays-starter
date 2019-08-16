@@ -11,7 +11,8 @@ export default class Logo extends Component {
   render() {
     return (
       <div>
-        <svg
+        PLACE LOGO HERE
+        {/* <svg
           version="1.1"
           viewBox="0 0 252.5 112.7"
           xmlSpace="preserve"
@@ -27,7 +28,7 @@ export default class Logo extends Component {
 	C11.9,22.7,0,37.2,0,54.1 M170.2,74.4V0h-11.6v67.9c0,11.5,6.7,17.1,17.1,17.1h9.2V74.4H170.2z M115.4,22.7
 	c-9.1,0-16.3,3.2-20.8,8.3V0H83v54.1c0,22.9,14.4,32,30.3,32c18.2,0,31.2-14.9,31.2-31.7C144.5,37.2,131.7,22.7,115.4,22.7"
           />
-        </svg>
+        </svg> */}
       </div>
     )
   }

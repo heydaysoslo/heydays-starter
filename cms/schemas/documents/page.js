@@ -8,6 +8,16 @@ export default {
   icon: FaFileO,
   fields: [
     {
+      name: 'editor',
+      title: 'Editor',
+      type: 'editor'
+    },
+    {
+      name: 'editorMinimal',
+      title: 'Editor Minimal',
+      type: 'editorMinimal'
+    },
+    {
       name: 'title',
       title: 'Title',
       type: 'string',

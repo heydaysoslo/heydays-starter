@@ -89,10 +89,10 @@ const Index = () => {
             I'm the wolf
           </AspectContainer>
         </div>
-        <Image
+        {/* <Image
           aspect={{ sm: 'portrait', md: 'portrait', lg: 'landscape' }}
           data={data.allFile.edges[1].node.childImageSharp}
-        />
+        /> */}
         <Modal
           buttonText="Open modal"
           buttonType="primary"

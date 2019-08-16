@@ -4,9 +4,10 @@ export default {
   type: 'image',
   description:
     'This is the image that will be associated with this page/post/article. Usage is usually in cards and heros',
-  options: {
-    hotspot: true
-  },
+  // Gatsby doesn't support hotspot yey
+  // options: {
+  //   hotspot: true
+  // },
   fields: [
     {
       name: 'alt',
