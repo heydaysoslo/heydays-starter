@@ -16,17 +16,15 @@ export default {
       content: 'body'
     },
     prepare({ content }) {
+      const text =
+        content.filter(block => block._type === 'block')[0].children[0].text ||
+        'Text'
       return {
-        title:
-          content[0].children.length > 0
-            ? content.filter(block => block._type === 'block')[0].children[0]
-                .text
-            : 'No content',
+        title: text,
         subtitle: 'Text section',
         media:
-          content[0].children.length > 0 &&
-          content.filter(block => block._type === 'articleImage').length > 0
-            ? content.filter(block => block._type === 'articleImage')[0].asset
+          content.filter(block => block._type === 'mainImage').length > 0
+            ? content.filter(block => block._type === 'mainImage')[0].asset
             : FaFileText
       }
     }

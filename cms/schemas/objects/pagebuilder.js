@@ -17,8 +17,14 @@ export default {
         // Text section
         {
           name: 'textSection',
-          title: 'Text section',
+          title: 'Text Section',
           type: 'textSection'
+        },
+        // Full Image
+        {
+          name: 'imageSection',
+          title: 'Full Image Section',
+          type: 'imageSection'
         }
       ]
     }

@@ -20,7 +20,11 @@ const SanityImage = ({ node, maxWidth = 1440, aspectRatio }) => {
 
   // Add aspect ratio to non responsive aspects
   let newFluidProps = fluidProps
-  if (aspectRatio && typeof aspectRatio === 'string') {
+  if (
+    aspectRatio &&
+    typeof aspectRatio === 'string' &&
+    aspectRatio !== 'original'
+  ) {
     newFluidProps = Object.assign(
       {},
       {

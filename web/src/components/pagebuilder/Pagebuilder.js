@@ -3,10 +3,12 @@ import { graphql } from 'gatsby'
 
 import CardSection from './CardSection'
 import TextSection from './TextSection'
+import FullImageSection from './FullImageSection'
 
 const sectionTypes = {
   cardSection: CardSection,
-  textSection: TextSection
+  textSection: TextSection,
+  imageSection: FullImageSection
 }
 
 const PageBuilder = ({ sections }) => {

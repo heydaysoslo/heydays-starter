@@ -34,6 +34,8 @@ import textSection from './objects/textSection'
 import figure from './objects/figure'
 import button from './objects/button'
 import quote from './objects/quote'
+import imageSection from './objects/imageSection'
+import aspect from './objects/aspect'
 
 // const personOrder = createOrderDoc('person')
 // const newsOrder = createOrderDoc('news')
@@ -66,6 +68,8 @@ export default createSchema({
     figure,
     button,
     quote,
+    imageSection,
+    aspect,
 
     // The following are document types which will appear
     // in the studio.
