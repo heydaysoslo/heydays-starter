@@ -75,7 +75,6 @@ const serializers = {
 }
 
 const Editor = ({ blocks }) => {
-  console.log(blocks)
   return (
     <div className="Editor">
       <BaseBlockContent blocks={blocks} serializers={serializers} />

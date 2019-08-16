@@ -2,7 +2,6 @@
 
 // Components
 export { default as Button } from './src/components/Button'
-export { default as Editor } from './src/components/Editor'
 export { default as Container } from './src/components/Container'
 export { default as Modal } from './src/components/Modal'
 export { default as AspectContainer } from './src/components/AspectContainer'
