@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
 import Page from '../components/pages/Page'
+import ContactPage from '../components/pages/ContactPage'
 
 /**
  * Passing variables into query
@@ -15,6 +16,7 @@ import Page from '../components/pages/Page'
 
 const templates = {
   frontpage: Page,
+  contact: ContactPage,
   default: Page
 }
 
@@ -28,12 +30,11 @@ const PageTemplate = props => {
   //   )
   // }
 
-  // let Component = page.template ? templates[page.template] : templates.default
+  let Component = page.template ? templates[page.template] : templates.default
   return (
     page && (
       <Layout {...page}>
-        {/* <Component {...page} /> */}
-        <Page {...page} />
+        <Component {...page} />
       </Layout>
     )
   )
@@ -56,11 +57,7 @@ export const query = graphql`
           }
         }
       }
-      _rawEditor(resolveReferences: { maxDepth: 10 })
-      _rawPagebuilder(resolveReferences: { maxDepth: 10 })
-      # pagebuilder {
-      #   ...PageBuilder
-      # }
+      _rawPagebuilder(resolveReferences: { maxDepth: 20 })
     }
   }
 `

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Editor } from 'gatsby-theme-heydays'
+import Editor from '../editor/Editor'
 
 const TextSection = props => {
   return (
@@ -10,9 +10,3 @@ const TextSection = props => {
 }
 
 export default TextSection
-
-// export const query = graphql`
-//   fragment TextSection on SanityTextSection {
-//     _rawBody
-//   }
-// `
