@@ -23,5 +23,16 @@ export default {
       title: 'Call to Action',
       type: 'link'
     }
-  ]
+  ],
+  preview: {
+    select: {
+      title: 'title'
+    },
+    prepare({ title }) {
+      return {
+        title,
+        subtitle: 'Section'
+      }
+    }
+  }
 }
