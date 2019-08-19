@@ -6,7 +6,7 @@ export default {
     {
       name: 'image',
       title: 'Image',
-      type: 'mainImage'
+      type: 'figure'
     },
     {
       name: 'aspect',

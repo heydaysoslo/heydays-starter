@@ -1,10 +1,10 @@
 import React from 'react'
-import SanityImage from '../editor/SanityImage'
+import Figure from '../editor/Figure'
 
 const FullImageSection = ({ image, aspect }) => {
   return (
     <div className="FullImageSection">
-      <SanityImage node={image} aspectRatio={aspect} />
+      <Figure node={image} aspectRatio={aspect} />
     </div>
   )
 }
