@@ -8,22 +8,21 @@ const useScroll = ({ delay = 50 }) => {
     isTop: true
   })
 
-  const updateScroll = throttle(e => {
-    setScroll({
-      x: window.pageXOffset,
-      y: window.pageYOffset,
-      isTop: window.pageYOffset <= 0
-    })
-  }, delay)
-
   useEffect(() => {
+    const updateScroll = throttle(e => {
+      setScroll({
+        x: window.pageXOffset,
+        y: window.pageYOffset,
+        isTop: window.pageYOffset <= 0
+      })
+    }, delay)
     updateScroll()
     window.addEventListener('scroll', updateScroll)
 
     return () => {
       window.removeEventListener('scroll', updateScroll)
     }
-  }, [])
+  }, [delay])
 
   return scroll
 }

@@ -3,14 +3,13 @@ import {
   Button,
   Helmet,
   Container,
-  Editor,
   useWindowSize,
   useMediaQuery,
   useScroll,
   Modal,
   AspectContainer,
-  Image
-  // mapEdgesToNode
+  // Image
+  mapEdgesToNode
 } from 'gatsby-theme-heydays'
 import { useStaticQuery, graphql } from 'gatsby'
 // import Img from 'gatsby-image'
@@ -63,7 +62,7 @@ const Index = () => {
 
   const { state, actions } = useContext(AppContext)
 
-  // console.log(mapEdgesToNode(data.allSanityPage))
+  console.log(mapEdgesToNode(data.allSanityPage))
 
   return (
     <Layout>
@@ -89,10 +88,11 @@ const Index = () => {
             I'm the wolf
           </AspectContainer>
         </div>
-        {/* <Image
+        {/* 
+        <Image
           aspect={{ sm: 'portrait', md: 'portrait', lg: 'landscape' }}
           data={data.allFile.edges[1].node.childImageSharp}
-        /> */}
+        />*/}
         <Modal
           buttonText="Open modal"
           buttonType="primary"
@@ -128,10 +128,6 @@ const Index = () => {
           <Img fluid={data.allFile.edges[1].node.childImageSharp.fluid} />
         </div> */}
         <Button variant="secondary">I'm button</Button>
-        <Editor>
-          <p>I'm p inside editor</p>
-          <p>I'm another p inside editor</p>
-        </Editor>
         <pre>{JSON.stringify(media, null, 2)}</pre>
         <pre>{JSON.stringify(windowSize, null, 2)}</pre>
         <pre>{JSON.stringify(scroll, null, 2)}</pre>
