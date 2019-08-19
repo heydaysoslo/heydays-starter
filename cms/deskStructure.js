@@ -60,11 +60,12 @@ export default () =>
             .title('Settings')
             .items([
               S.listItem()
-                .title('Site settings')
+                .title('Site Settings')
                 .icon(MdSettings)
                 .child(
                   S.editor()
                     .id('siteSettings')
+                    .title('Site Settings')
                     .schemaType('siteSettings')
                     .documentId('siteSettings')
                 )
