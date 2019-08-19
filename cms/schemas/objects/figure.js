@@ -10,20 +10,20 @@ export default {
   icon: MdImage,
   fields: [
     {
-      title: 'Caption',
-      name: 'caption',
-      type: 'string',
-      options: {
-        isHighlighted: true
-      }
-    },
-    {
       name: 'alt',
       type: 'string',
       title: 'Alternative text',
       validation: Rule =>
         Rule.error('You have to fill out the alternative text.').required(),
-      description: 'Important for SEO and accessiblity.',
+      description: `Describe what's in the image. Important for accesibility and SEO. Read more here https://blog.hubspot.com/marketing/image-alt-text`,
+      options: {
+        isHighlighted: true
+      }
+    },
+    {
+      title: 'Caption',
+      name: 'caption',
+      type: 'string',
       options: {
         isHighlighted: true
       }
