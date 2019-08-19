@@ -31,18 +31,27 @@ async function createPages(graphql, actions, reporter) {
           }
         }
       }
+      sanitySiteSettings(id: { eq: "0f217bb5-f7f6-5420-b7c6-58db2c12b8c7" }) {
+        frontpage {
+          id
+        }
+      }
     }
   `)
 
   if (result.errors) throw result.errors
 
   const pages = (result.data.allSanityPage || {}).edges || []
+  const siteSettings = result.data.sanitySiteSettings || {}
+
+  console.log('siteSettings', siteSettings)
 
   pages
     .filter(
       page =>
         page.node.slug.current !== 'placeholder' &&
-        page.node.slug.current !== '/'
+        page.node.slug.current !== '/' &&
+        page.node.id !== siteSettings.frontpage.id
     )
     .forEach(page => {
       const { id, slug } = page.node
