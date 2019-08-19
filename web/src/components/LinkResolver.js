@@ -24,6 +24,7 @@ const LinkResolver = ({ data, children, ...props }) => {
     <Link
       to={`${routes[data._type]}${data.slug.current}`}
       className={props.className}
+      onClick={props.onClick}
     >
       {children}
     </Link>
@@ -35,16 +36,18 @@ export default LinkResolver
 export const query = graphql`
   fragment Link on SanityNewsOrPage {
     ... on SanityPage {
+      _type
+      title
       slug {
         current
       }
-      _type
     }
     ... on SanityNews {
+      _type
+      title
       slug {
         current
       }
-      _type
     }
   }
 `

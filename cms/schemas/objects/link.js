@@ -5,24 +5,27 @@ export default {
   type: 'object',
   fields: [
     {
-      name: 'title',
-      title: 'Title',
-      type: 'string'
-    },
-    {
       name: 'link',
       title: 'Link',
       type: 'reference',
       to: [{ type: 'news' }, { type: 'page' }]
+    },
+    {
+      name: 'title',
+      title: 'Override Title',
+      description:
+        'Use this field to override the default title of the document your referencing.',
+      type: 'string'
     }
   ],
   preview: {
     select: {
-      title: 'title'
+      title: 'title',
+      linkTitle: 'link.title'
     },
-    prepare({ title }) {
+    prepare({ title, linkTitle }) {
       return {
-        title: title || 'No title',
+        title: title || linkTitle || 'No title',
         media: Link
       }
     }
