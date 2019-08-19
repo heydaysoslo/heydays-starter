@@ -12,8 +12,6 @@ const Menu = () => {
   const menu = data.sanityMenu?.item
   const { state, actions } = useContext(AppContext)
 
-  console.log('rendered')
-
   return (
     <nav className="Menu">
       <div className="Menu__desktop">
