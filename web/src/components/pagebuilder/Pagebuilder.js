@@ -4,8 +4,10 @@ import { graphql } from 'gatsby'
 import CardSection from './CardSection'
 import TextSection from './TextSection'
 import FullImageSection from './FullImageSection'
+import Section from './Section'
 
 const sectionTypes = {
+  section: Section,
   cardSection: CardSection,
   textSection: TextSection,
   imageSection: FullImageSection

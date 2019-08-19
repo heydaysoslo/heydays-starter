@@ -8,6 +8,12 @@ export default {
       title: 'Sections',
       type: 'array',
       of: [
+        // Section
+        {
+          name: 'section',
+          title: 'Section',
+          type: 'section'
+        },
         // Cards
         {
           name: 'cardSection',
