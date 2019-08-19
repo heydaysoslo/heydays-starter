@@ -45,8 +45,6 @@ async function createPages(graphql, actions, reporter) {
   const pages = (result.data.allSanityPage || {}).edges || []
   const siteSettings = result.data.sanitySiteSettings || {}
 
-  console.log('siteSettings', siteSettings)
-
   pages
     .filter(
       page =>
