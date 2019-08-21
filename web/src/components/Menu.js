@@ -18,32 +18,28 @@ const Menu = () => {
         <MenuItems menu={menu} />
       </div>
       <div className="Menu__mobile">
-        {state?.showMenu && (
-          <button onClick={() => actions.toggleMenu()}>
-            {state.showMenu ? 'Close' : 'Menu'}
-          </button>
-        )}
+        <button onClick={() => actions.toggleMenu()}>
+          {state?.showMenu ? 'Close' : 'Menu'}
+        </button>
         <Portal>
-          {state?.showMenu && (
-            <FadeIn trigger={state.showMenu}>
-              <div className="Menu__cover">
-                <Container>
-                  <button
-                    className="Menu__close"
-                    onClick={() => actions.toggleMenu()}
-                  >
-                    {state.showMenu ? 'Close' : 'Menu'}
-                  </button>
-                  <div className="Menu__wrapper">
-                    <MenuItems
-                      menu={menu}
-                      closeMenu={() => actions.toggleMenu(false)}
-                    />
-                  </div>
-                </Container>
-              </div>
-            </FadeIn>
-          )}
+          <FadeIn trigger={state?.showMenu}>
+            <div className="Menu__cover">
+              <Container>
+                <button
+                  className="Menu__close"
+                  onClick={() => actions.toggleMenu()}
+                >
+                  {state?.showMenu ? 'Close' : 'Menu'}
+                </button>
+                <div className="Menu__wrapper">
+                  <MenuItems
+                    menu={menu}
+                    closeMenu={() => actions.toggleMenu(false)}
+                  />
+                </div>
+              </Container>
+            </div>
+          </FadeIn>
         </Portal>
       </div>
     </nav>
