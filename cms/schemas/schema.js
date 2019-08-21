@@ -37,6 +37,8 @@ import quote from './objects/quote'
 import imageSection from './objects/imageSection'
 import aspect from './objects/aspect'
 import section from './objects/section'
+import textImageSplit from './objects/textImageSplit'
+import cta from './objects/cta'
 
 // const personOrder = createOrderDoc('person')
 // const newsOrder = createOrderDoc('news')
@@ -72,6 +74,8 @@ export default createSchema({
     imageSection,
     aspect,
     section,
+    textImageSplit,
+    cta,
 
     // The following are document types which will appear
     // in the studio.

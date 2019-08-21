@@ -5,12 +5,14 @@ import CardSection from './CardSection'
 import TextSection from './TextSection'
 import FullImageSection from './FullImageSection'
 import Section from './Section'
+import TextImageSplit from './TextImageSplit'
 
 const sectionTypes = {
   section: Section,
   cardSection: CardSection,
   textSection: TextSection,
-  imageSection: FullImageSection
+  imageSection: FullImageSection,
+  textImageSplit: TextImageSplit
 }
 
 const PageBuilder = ({ sections }) => {

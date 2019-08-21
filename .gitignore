@@ -11,5 +11,8 @@ node_modules/
 .cache
 /web/public
 
+# Env files
+.env
+
 # Theme
 # /gatsby-theme-heydays

@@ -31,6 +31,12 @@ export default {
           name: 'imageSection',
           title: 'Full Image Section',
           type: 'imageSection'
+        },
+        // Text Image Split
+        {
+          name: 'textImageSplit',
+          title: 'Text Image Split',
+          type: 'textImageSplit'
         }
       ]
     }

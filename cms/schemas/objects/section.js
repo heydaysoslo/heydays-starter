@@ -19,9 +19,9 @@ export default {
       type: 'editorMinimal'
     },
     {
-      name: 'link',
+      name: 'cta',
       title: 'Call to Action',
-      type: 'link'
+      type: 'cta'
     }
   ],
   preview: {

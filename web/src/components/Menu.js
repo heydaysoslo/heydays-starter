@@ -18,9 +18,11 @@ const Menu = () => {
         <MenuItems menu={menu} />
       </div>
       <div className="Menu__mobile">
-        <button onClick={() => actions.toggleMenu()}>
-          {state.showMenu ? 'Close' : 'Menu'}
-        </button>
+        {state?.showMenu && (
+          <button onClick={() => actions.toggleMenu()}>
+            {state.showMenu ? 'Close' : 'Menu'}
+          </button>
+        )}
         <Portal>
           <FadeIn trigger={state.showMenu}>
             <div className="Menu__cover">
