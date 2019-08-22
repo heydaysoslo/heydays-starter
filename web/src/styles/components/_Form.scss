@@ -1,0 +1,31 @@
+.Form {
+  &__block {
+    @include spacing(md, margin-bottom);
+  }
+  &__label {
+    display: block;
+  }
+  &__input {
+    border: $border;
+    @include font-size(body);
+    @include spacing(xs, (padding-left, padding-right));
+    @include spacing(xxs, (padding-top, padding-bottom));
+
+    &[type='checkbox'] {
+      border: $border;
+
+      &[value='true'] {
+        background: red;
+      }
+    }
+
+    &--error {
+      border: 1px solid $c-error;
+      color: $c-error;
+    }
+  }
+  &__feedback {
+    @include font-size(small);
+    color: $c-error;
+  }
+}
