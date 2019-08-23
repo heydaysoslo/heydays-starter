@@ -52,7 +52,7 @@ const Newsletter = props => {
           >
             Reset
           </button>
-          <button submit type="submit" disabled={isSubmitting}>
+          <button type="submit" disabled={isSubmitting}>
             {isSubmitting ? 'Submitting…' : 'Submit'}
           </button>
         </>
