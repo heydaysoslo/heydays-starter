@@ -12,11 +12,6 @@ export default {
   },
   fields: [
     {
-      name: 'social',
-      title: 'Social',
-      type: 'social'
-    },
-    {
       name: 'name',
       title: 'Company name',
       type: 'string'
@@ -25,6 +20,11 @@ export default {
       name: 'email',
       title: 'Email',
       type: 'email'
+    },
+    {
+      name: 'social',
+      title: 'Social',
+      type: 'social'
     },
     {
       name: 'offices',

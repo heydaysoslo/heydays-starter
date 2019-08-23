@@ -9,6 +9,10 @@ export const routes = {
   page: '/'
 }
 
+export const getUrl = (type, slug) => {
+  return routes[type] ? `${routes[type]}${slug}` : `${slug}`
+}
+
 export const sanity = {
   projectId: process.env.GATSBY_SANITY_PROJECT_ID || '6ptaspv6',
   dataset: process.env.GATSBY_SANITY_DATASET || 'production'

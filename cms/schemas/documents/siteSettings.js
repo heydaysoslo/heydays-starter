@@ -5,10 +5,46 @@ export default {
   title: 'Site Settings',
   type: 'document',
   // liveEdit: false,
-  // __experimental_actions: ['update', 'publish', /*'create', 'delete'*/],
+  __experimental_actions: ['update', 'publish' /*'create', 'delete'*/],
   icon: MdSettings,
-  fieldsets: [{ name: 'important', title: 'Important pages' }],
+  fieldsets: [
+    { name: 'important', title: 'Important pages' },
+    { name: 'seo', title: 'SEO' }
+  ],
   fields: [
+    {
+      name: 'siteUrl',
+      title: 'Site url',
+      type: 'url',
+      validation: Rule => Rule.required(),
+      fieldset: 'seo'
+    },
+    {
+      name: 'locale',
+      title: 'Locale for site',
+      type: 'string',
+      options: {
+        // List of locales: https://lh.2xlibre.net/locales/
+        list: [
+          { title: 'Bokmål', value: 'nb_NO' },
+          { title: 'Nynorsk', value: 'nn_NO' },
+          { title: 'English', value: 'en_US' }
+        ]
+      },
+      fieldset: 'seo'
+    },
+    {
+      name: 'seo',
+      title: 'Default SEO',
+      type: 'seo',
+      fieldset: 'seo'
+    },
+    {
+      title: 'Facebook App ID',
+      name: 'facebookAppId',
+      type: 'string',
+      fieldset: 'seo'
+    },
     {
       name: 'frontpage',
       title: 'Front page',
@@ -27,7 +63,8 @@ export default {
     },
     {
       name: 'staticPages',
-      description: "Pages added to this array can't be deleted",
+      description:
+        "Pages added to this array can't be deleted. Ex: About or Contact page",
       title: 'Static pages',
       type: 'array',
       of: [
@@ -37,12 +74,8 @@ export default {
           type: 'reference',
           to: [{ type: 'page' }, { type: 'menu' }, { type: 'person' }]
         }
-      ]
-    },
-    {
-      name: 'seo',
-      title: 'Default SEO',
-      type: 'seo'
+      ],
+      fieldset: 'important'
     }
   ]
 }

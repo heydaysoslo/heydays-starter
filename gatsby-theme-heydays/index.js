@@ -9,6 +9,7 @@ export { default as Image } from './src/components/Image'
 export { default as Helmet } from 'react-helmet'
 export { default as Grid } from './src/components/Grid'
 export { default as GridItem } from './src/components/GridItem'
+export { default as SEO } from './src/components/SEO'
 
 // Hooks
 export { default as useMediaQuery } from './src/components/useMediaQuery'

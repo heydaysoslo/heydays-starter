@@ -1,20 +1,17 @@
 import React from 'react'
 
-// import GraphQLErrorList from './GraphQLErrorList'
-
 import Header from './Header'
 import Footer from './Footer'
-import SEO from 'gatsby-theme-heydays/src/components/SEO'
+import { SEO } from 'gatsby-theme-heydays'
+import { getUrl } from '../../../web/heydays-config'
 
 const Layout = props => {
-  // if (props.errors) {
-  //   return <GraphQLErrorList errors={props.errors} />
-  // }
   return (
     <>
       <SEO
+        getUrl={getUrl}
         type={props._type}
-        slug={(props.slug && props.slug.current) || ''}
+        slug={props._rawSlug?.current || ''}
         seo={props.seo}
         title={props.title}
       />

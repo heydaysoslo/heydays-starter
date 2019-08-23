@@ -21,10 +21,7 @@ export const query = graphql`
   {
     sanitySiteSettings(id: { eq: "0f217bb5-f7f6-5420-b7c6-58db2c12b8c7" }) {
       frontpage {
-        id
-        title
-        _rawPagebuilder(resolveReferences: { maxDepth: 10 })
-        _rawSeo(resolveReferences: { maxDepth: 10 })
+        ...Page
       }
     }
   }

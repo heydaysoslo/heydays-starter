@@ -45,19 +45,25 @@ export default PageTemplate
 export const query = graphql`
   query PageQuery($id: String!) {
     page: sanityPage(id: { eq: $id }) {
-      _key
+      ...Page
+    }
+  }
+  fragment Page on SanityPage {
+    _key
+    title
+    template
+    _rawSlug(resolveReferences: { maxDepth: 20 })
+    _rawPagebuilder(resolveReferences: { maxDepth: 20 })
+    seo {
       title
-      template
-      seo {
-        description
-        title
-        image {
-          asset {
-            _key
+      description
+      image {
+        asset {
+          fixed(width: 1200, height: 630) {
+            ...GatsbySanityImageFixed
           }
         }
       }
-      _rawPagebuilder(resolveReferences: { maxDepth: 20 })
     }
   }
 `
