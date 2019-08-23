@@ -1,8 +1,8 @@
 import FaNewspaper from 'react-icons/lib/fa/newspaper-o'
 
 export default {
-  name: 'news',
-  title: 'News',
+  name: 'article',
+  title: 'Article',
   type: 'document',
   icon: FaNewspaper,
   fields: [
@@ -25,8 +25,14 @@ export default {
       }
     },
     {
+      name: 'isFeatured',
+      title: 'Feature Article',
+      type: 'boolean',
+      description: 'The articles checked with this will always appear first.'
+    },
+    {
       name: 'mainImage',
-      title: 'Main image',
+      title: 'Featured image',
       type: 'mainImage'
     },
     // {

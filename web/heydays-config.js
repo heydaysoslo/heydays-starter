@@ -5,7 +5,7 @@ import { createAspectRatios } from './src/utils/aspect'
  * key === sanity _type
  */
 export const routes = {
-  news: '/news/',
+  article: '/news/',
   page: '/'
 }
 

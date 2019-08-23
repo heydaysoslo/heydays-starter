@@ -77,7 +77,7 @@ export default {
       return {
         title,
         media: image,
-        subtitle: `Template: ${template}`
+        subtitle: `Template: ${template || 'default'}`
       }
     }
   }

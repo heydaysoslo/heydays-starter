@@ -31,7 +31,7 @@ const SEO = props => {
 
   const titleTemplate = `%s » ${sanityCompanyInfo.name}`
   const locale = sanitySiteSettings.locale || 'en_US'
-  const ogType = type === 'news' ? 'article' : 'website'
+  const ogType = type === 'article' ? 'article' : 'website'
   const canonicalUrl = `${sanitySiteSettings.siteUrl}${getUrl(type, slug)}`
 
   /**

@@ -7,7 +7,7 @@ export default {
       name: 'content',
       title: 'Content',
       type: 'reference',
-      to: [{ type: 'news' }, { type: 'page' }]
+      to: [{ type: 'article' }, { type: 'page' }]
     },
     {
       name: 'cardOverride',

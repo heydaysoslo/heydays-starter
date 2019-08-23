@@ -41,7 +41,7 @@ const LinkResolver = ({ data, children, ...props }) => {
 export default LinkResolver
 
 export const query = graphql`
-  fragment Link on SanityNewsOrPage {
+  fragment Link on SanityArticleOrPage {
     ... on SanityPage {
       id
       _type
@@ -50,7 +50,7 @@ export const query = graphql`
         current
       }
     }
-    ... on SanityNews {
+    ... on SanityArticle {
       id
       _type
       title

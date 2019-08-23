@@ -23,10 +23,10 @@ export default {
    */
   customTypes: [
     {
-      title: 'News Order',
-      typeId: 'news',
-      typeTitle: 'News',
-      orderTypeId: 'newsOrder',
+      title: 'Article Order',
+      typeId: 'article',
+      typeTitle: 'Article',
+      orderTypeId: 'articleOrder',
       icon: FaNewspaper
     },
     {

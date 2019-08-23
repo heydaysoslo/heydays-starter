@@ -9,12 +9,12 @@ const env = require('dotenv').config({
 }).parsed
 
 module.exports = {
-  siteMetadata: {
-    title: `Ably`,
-    siteUrl: `https://ablymed.com`,
-    fbAppId: false,
-    locale: `en_US`
-  },
+  // siteMetadata: {
+  //   title: `Ably`,
+  //   siteUrl: `https://ablymed.com`,
+  //   fbAppId: false,
+  //   locale: `en_US`
+  // },
   plugins: [
     {
       resolve: 'gatsby-theme-heydays',

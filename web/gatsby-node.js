@@ -69,47 +69,47 @@ async function createPages(graphql, actions, reporter) {
     })
 }
 
-// async function createNewsPages(graphql, actions, reporter) {
-//   const { createPage, createPageDependency } = actions
+async function createArticles(graphql, actions, reporter) {
+  const { createPage, createPageDependency } = actions
 
-//   const result = await graphql(`
-//     {
-//       allSanityNews(filter: { slug: { current: { ne: null } } }) {
-//         edges {
-//           node {
-//             id
-//             slug {
-//               _type
-//               current
-//               _key
-//             }
-//           }
-//         }
-//       }
-//     }
-//   `)
+  const result = await graphql(`
+    {
+      allSanityArticle(filter: { slug: { current: { ne: null } } }) {
+        edges {
+          node {
+            id
+            slug {
+              _type
+              current
+              _key
+            }
+          }
+        }
+      }
+    }
+  `)
 
-//   if (result.errors) throw result.errors
+  if (result.errors) throw result.errors
 
-//   const newsPages = (result.data.allSanityNews || {}).edges || []
+  const articles = (result.data.allSanityArticle || {}).edges || []
 
-//   newsPages
-//     .filter(page => page.node.slug.current !== 'placeholder')
-//     .forEach(page => {
-//       const { id, slug } = page.node
-//       const path = `/news/${slug.current}`
+  articles
+    .filter(page => page.node.slug.current !== 'placeholder')
+    .forEach(page => {
+      const { id, slug } = page.node
+      const path = `/news/${slug.current}`
 
-//       reporter.info(`Creating news page: ${path}`)
+      reporter.info(`Creating article: ${path}`)
 
-//       createPage({
-//         path,
-//         component: require.resolve('./src/templates/NewsPage.js'),
-//         context: { id }
-//       })
+      createPage({
+        path,
+        component: require.resolve('./src/templates/Article.js'),
+        context: { id }
+      })
 
-//       createPageDependency({ path, nodeId: id })
-//     })
-// }
+      createPageDependency({ path, nodeId: id })
+    })
+}
 
 // Workaround for newer react
 // https://github.com/gatsbyjs/gatsby/issues/11934
@@ -125,5 +125,5 @@ async function createPages(graphql, actions, reporter) {
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   await createPages(graphql, actions, reporter)
-  // await createNewsPages(graphql, actions, reporter)
+  await createArticles(graphql, actions, reporter)
 }

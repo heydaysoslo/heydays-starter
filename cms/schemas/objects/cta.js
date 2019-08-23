@@ -8,7 +8,7 @@ export default {
       name: 'link',
       title: 'Link',
       type: 'reference',
-      to: [{ type: 'news' }, { type: 'page' }]
+      to: [{ type: 'article' }, { type: 'page' }]
     },
     {
       name: 'title',

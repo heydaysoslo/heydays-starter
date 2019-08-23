@@ -10,8 +10,8 @@ import menu from './documents/menu'
 import page from './documents/page'
 import person from './documents/person'
 import personOrder from './documents/personOrder'
-import news from './documents/news'
-import newsOrder from './documents/newsOrder'
+import article from './documents/article'
+import articleOrder from './documents/articleOrder'
 import siteSettings from './documents/siteSettings'
 
 // Object types
@@ -41,7 +41,7 @@ import textImageSplit from './objects/textImageSplit'
 import cta from './objects/cta'
 
 // const personOrder = createOrderDoc('person')
-// const newsOrder = createOrderDoc('news')
+// const articleOrder = createOrderDoc('article')
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -85,7 +85,7 @@ export default createSchema({
     page,
     person,
     personOrder,
-    news,
-    newsOrder
+    article,
+    articleOrder
   ])
 })

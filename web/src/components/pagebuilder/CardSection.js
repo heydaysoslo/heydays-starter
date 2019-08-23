@@ -27,7 +27,7 @@ export const query = graphql`
     cardsList {
       _key
       content {
-        ... on SanityNews {
+        ... on SanityArticle {
           id
           ...Link
           mainImage {

@@ -1,21 +1,21 @@
 import Sort from 'react-icons/lib/fa/sort-amount-asc'
 
 export default {
-  name: 'newsOrder',
-  title: 'News Order',
+  name: 'articleOrder',
+  title: 'Article Order',
   type: 'document',
   icon: Sort,
   fields: [
     {
       name: 'articles',
-      title: 'News order',
+      title: 'Article order',
       type: 'array',
       of: [
         {
-          name: 'news',
-          title: 'News',
+          name: 'article',
+          title: 'Article',
           type: 'reference',
-          to: [{ type: 'news' }]
+          to: [{ type: 'article' }]
         }
       ]
     }
