@@ -42,8 +42,6 @@ const SEO = props => {
   const description = getLastValidOverride(sources, 'description')
   const image = getLastValidOverride(sources, 'image')
 
-  console.log(image)
-
   const tabTitle =
     slug === sanitySiteSettings._rawFrontpage.slug.current
       ? title
