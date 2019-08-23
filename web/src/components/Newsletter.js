@@ -11,12 +11,12 @@ const Newsletter = props => {
     touched,
     errors,
     dirty,
-    setSubmitting,
-    isValid,
+    // setSubmitting,
+    // isValid,
     isSubmitting,
-    isValidating,
-    handleChange,
-    handleBlur,
+    // isValidating,
+    // handleChange,
+    // handleBlur,
     handleSubmit,
     handleReset
   } = props
