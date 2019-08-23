@@ -53,25 +53,25 @@ const SEO = props => {
       <title>{tabTitle}</title>
       <link rel="canonical" href={canonicalUrl} />
       {description && <meta name="description" content={description} />}
-      {sanitySiteSettings.facebookAppId && (
+      {sanitySiteSettings?.facebookAppId && (
         <meta name="fb:app_id" content={sanitySiteSettings.facebookAppId} />
       )}
       {description && <meta property="og:description" content={description} />}
       {description && <meta name="twitter:description" content={description} />}
-      {image && image.asset && image.asset.fixed && (
+      {image?.asset?.fixed && (
         <meta name="image" content={image.asset.fixed.src} />
       )}
-      {image && image.asset && image.asset.fixed && (
+      {image?.asset?.fixed && (
         <meta itemprop="image" content={image.asset.fixed.src} />
       )}
-      {image && image.asset && image.asset.fixed && (
+      {image?.asset?.fixed && (
         <meta property="og:image" content={image.asset.fixed.src} />
       )}
-      {image && image.asset && image.asset.fixed && (
+      {image?.asset?.fixed && (
         <meta property="og:image:width" content={image.asset.fixed.width} />
       )}
-      {image && image.fixed && (
-        <meta property="og:image:height" content={image.fixed.height} />
+      {image?.asset?.fixed && (
+        <meta property="og:image:height" content={image.asset.fixed.height} />
       )}
       <meta property="og:locale" content={locale} />
       <meta property="og:url" content={canonicalUrl} />
