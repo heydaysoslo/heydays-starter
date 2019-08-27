@@ -18,12 +18,14 @@ module.exports = new Promise((resolve, reject) => {
   })
 
   const query = `
-      *[_id == 'siteSettings']{
+    *[_id == 'siteSettings']{
+        _id,
         siteUrl,
+        siteName,
         locale,
-        facebookAppId
-      }
-    `
+        facebookAppId,
+    }
+  `
   const params = {}
 
   const res = client.fetch(query, params).then(res => {
@@ -31,7 +33,7 @@ module.exports = new Promise((resolve, reject) => {
 
     resolve({
       siteMetadata: {
-        siteUrl: siteSettings.siteUrl
+        ...siteSettings
       },
       plugins: [
         {
@@ -49,12 +51,12 @@ module.exports = new Promise((resolve, reject) => {
         {
           resolve: `gatsby-plugin-manifest`,
           options: {
-            name: `[SITE NAME]`,
-            short_name: `[SITE NAME]`,
+            name: siteSettings.siteName,
+            short_name: siteSettings.siteName,
             start_url: `/`,
             background_color: `#000`,
             theme_color: `#fff`,
-            display: `[SITE NAME?]`
+            display: siteSettings.siteName
           }
         },
         {

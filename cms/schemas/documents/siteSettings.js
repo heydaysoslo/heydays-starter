@@ -20,6 +20,13 @@ export default {
       fieldset: 'seo'
     },
     {
+      name: 'siteName',
+      title: 'Site Name',
+      type: 'string',
+      validation: Rule => Rule.required(),
+      fieldset: 'seo'
+    },
+    {
       name: 'locale',
       title: 'Locale for site',
       type: 'string',
