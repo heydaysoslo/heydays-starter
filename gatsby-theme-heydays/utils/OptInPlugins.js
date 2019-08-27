@@ -1,6 +1,5 @@
 const fs = require('fs-extra')
 const mkdirp = require('mkdirp')
-const { getEnv } = require('./helpers')
 
 const checkDependencies = (themeOptions, plugin, env) => {
   let canAddPlugin = true
@@ -18,9 +17,7 @@ const checkDependencies = (themeOptions, plugin, env) => {
     plugin.envKeys.forEach(key => {
       if (!env[key]) {
         console.warn(
-          `Missing env variable for ${key}. We will not add the ${
-            plugin.resolve.resolve
-          } plugin`
+          `Missing env variable for ${key}. We will not add the ${plugin.resolve.resolve} plugin`
         )
         canAddPlugin = false
       }
@@ -41,7 +38,7 @@ const checkDependencies = (themeOptions, plugin, env) => {
 }
 
 module.exports = themeOptions => {
-  const env = getEnv(themeOptions)
+  const { env } = themeOptions
 
   const plugins = [
     {
