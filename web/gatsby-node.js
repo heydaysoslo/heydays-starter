@@ -1,5 +1,5 @@
 const createPageDependency = require('gatsby/dist/redux/actions/add-page-dependency')
-const optionalChaining = require('@babel/plugin-proposal-optional-chaining')
+// const isPast = require('date-fns/is_past')
 
 /**
  * Implement Gatsby's Node APIs in this file.
@@ -78,6 +78,7 @@ async function createArticles(graphql, actions, reporter) {
         edges {
           node {
             id
+            #publishDate
             slug {
               _type
               current
@@ -94,9 +95,9 @@ async function createArticles(graphql, actions, reporter) {
   const articles = (result.data.allSanityArticle || {}).edges || []
 
   articles
-    .filter(page => page.node.slug.current !== 'placeholder')
-    .forEach(page => {
-      const { id, slug } = page.node
+    // .filter(article => isPast(article.node.publishDate))
+    .forEach(article => {
+      const { id, slug } = article.node
       const path = `/news/${slug.current}`
 
       reporter.info(`Creating article: ${path}`)

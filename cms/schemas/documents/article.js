@@ -35,35 +35,39 @@ export default {
       title: 'Featured image',
       type: 'mainImage'
     },
-    // {
-    //   name: 'excerpt',
-    //   title: 'Excerpt',
-    //   description:
-    //     'An excerpt is a summary for the article. It is good to spend a little time on this to give users, google and social media a overview of what this post is about. Example usage is in cards and seo.',
-    //   type: 'blockText',
-    // },
-
-    // {
-    //   name: 'template',
-    //   title: 'Template',
-    //   type: 'string',
-    //   options: {
-    //     list: [
-    //       { title: 'Main article', value: 'main' },
-    //       { title: 'News Article', value: 'news' }
-    //     ]
-    //   },
-    // },
     {
-      name: 'publishedAt',
-      title: 'Published at',
-      type: 'date'
+      name: 'excerpt',
+      title: 'Excerpt',
+      description:
+        'An excerpt is a summary for the article. It is good to spend a little time on this to give users, google and social media a overview of what this post is about. Example usage is in cards and seo.',
+      type: 'editorMinimal'
     },
-    // {
-    //   name: 'menuTheme',
-    //   title: 'Menu Theme',
-    //   type: 'menuTheme',
-    // },
+    {
+      name: 'publishDate',
+      title: 'Publish date',
+      description: 'Use this for scheduled articles.',
+      type: 'datetime'
+    },
+    {
+      name: 'body',
+      title: 'Body',
+      type: 'editor'
+    },
+    {
+      name: 'authors',
+      title: 'Authors',
+      type: 'array',
+      of: [
+        {
+          type: 'personReference'
+        }
+      ]
+    },
+    {
+      name: 'pagebuilder',
+      title: 'Page builder',
+      type: 'pagebuilder'
+    },
     {
       name: 'seo',
       title: 'SEO',
@@ -72,29 +76,7 @@ export default {
         collapsible: true,
         collapsed: true
       }
-    },
-    {
-      name: 'body',
-      title: 'Body',
-      type: 'editor'
     }
-    // {
-    //   name: 'authors',
-    //   title: 'Authors',
-    //   type: 'array',
-    //   of: [
-    //     {
-    //       name: 'author',
-    //       title: 'author',
-    //       type: 'author'
-    //     }
-    //   ]
-    // },
-    // {
-    //   name: 'pageBuilder',
-    //   title: 'Page builder',
-    //   type: 'pageBuilder'
-    // }
   ],
   preview: {
     select: {

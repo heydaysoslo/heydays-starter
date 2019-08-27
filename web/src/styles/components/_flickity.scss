@@ -1,0 +1,216 @@
+/*! Flickity v2.1.2
+https://flickity.metafizzy.co
+---------------------------------------------- */
+
+.flickity-enabled {
+  position: relative;
+}
+
+.flickity-enabled:focus {
+  outline: none;
+}
+
+.flickity-viewport {
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+}
+
+.flickity-slider {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/* draggable */
+
+.flickity-enabled.is-draggable {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.flickity-enabled.is-draggable .flickity-viewport {
+  cursor: move;
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+.flickity-enabled.is-draggable .flickity-viewport.is-pointer-down {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+
+/* ---- flickity-button ---- */
+
+.flickity-button {
+  // display: none;
+  position: absolute;
+  z-index: 2;
+  background: $c-secondary;
+  border: none;
+  color: $c-text;
+  @include spacing('md', 'padding');
+
+  svg {
+    display: none;
+  }
+
+  @include bp(md) {
+    display: block;
+  }
+}
+
+.flickity-button:hover {
+  // background: white;
+  cursor: pointer;
+}
+
+.flickity-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 5px #19f;
+}
+
+.flickity-button:active {
+  margin-left: rem-calc(10);
+}
+
+.flickity-button:disabled {
+  opacity: 0;
+  cursor: auto;
+  /* prevent disabled button from capturing pointer up event. #716 */
+  pointer-events: none;
+}
+
+.flickity-button-icon {
+  fill: black;
+}
+
+/* ---- previous/next buttons ---- */
+
+.flickity-prev-next-button {
+  top: 50%;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  /* vertically center */
+  transform: translateY(-50%);
+  transition: $trans--fast;
+  // font-family: $f-display;
+  color: $c-text;
+
+  &:after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: $c-primary;
+  }
+}
+
+.flickity-prev-next-button.previous {
+  @include spacing('md', 'left');
+
+  &:after {
+    content: '\2190';
+    display: block;
+  }
+
+  &:active {
+    transform: translateY(-50%) translateX(-20px);
+  }
+}
+.flickity-prev-next-button.next {
+  @include spacing('md', 'right');
+
+  &:after {
+    content: '\2192';
+    display: block;
+  }
+
+  &:active {
+    transform: translateY(-50%) translateX(10px);
+  }
+}
+/* right to left */
+.flickity-rtl .flickity-prev-next-button.previous {
+  left: auto;
+  right: 10px;
+}
+.flickity-rtl .flickity-prev-next-button.next {
+  right: auto;
+  left: 10px;
+}
+
+.flickity-prev-next-button .flickity-button-icon {
+  position: absolute;
+  left: 30%;
+  top: 30%;
+  width: 40%;
+  height: 40%;
+}
+
+/* ---- page dots ---- */
+
+.flickity-page-dots {
+  // display: none;
+}
+
+.flickity-rtl .flickity-page-dots {
+  direction: rtl;
+}
+
+.flickity-page-dots {
+  display: flex;
+  justify-content: center;
+}
+
+.flickity-page-dots .dot {
+  cursor: pointer;
+  @include spacing(md, (padding-top, padding-bottom));
+  width: rem-calc(50);
+
+  &:before {
+    content: '';
+    width: 100%;
+    height: $s-border__width;
+    background: $c-primary;
+    transition: $trans--fast;
+  }
+
+  &:hover {
+    &:before {
+      background: darken($c-primary, 20);
+    }
+  }
+
+  &.is-selected {
+    &:before {
+      background: black;
+    }
+  }
+}
+
+.flickity-page-dots .dot.is-selected {
+  opacity: 1;
+}
+
+.flickity-viewport {
+  // figure {
+  //   opacity: 0;
+  //   transition: 1s ease;
+  // }
+  // .is-selected {
+  //   opacity: 1;
+  // }
+}
+
+// .flickity-slider .gatsby-image-wrapper {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+// }

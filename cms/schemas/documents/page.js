@@ -53,7 +53,8 @@ export default {
       options: {
         list: [
           { title: 'Default', value: 'default' },
-          { title: 'Contact', value: 'contact' }
+          { title: 'Contact', value: 'contact' },
+          { title: 'News', value: 'news' }
         ]
       }
     },

@@ -20,4 +20,6 @@ export { default as useTraceUpdate } from './src/components/useTraceUpdate'
 // Helpers
 export { setOverflowHidden } from './src/utils/helpers'
 export { mapEdgesToNode } from './src/utils/sanityHelpers'
+export { getReadTime } from './src/utils/sanityHelpers'
+export { blocksToText } from './src/utils/sanityHelpers'
 export const isBrowser = typeof window !== 'undefined'

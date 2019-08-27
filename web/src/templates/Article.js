@@ -27,10 +27,17 @@ export const query = graphql`
   }
   fragment Article on SanityArticle {
     _key
+    _type
+    slug {
+      current
+    }
     title
+    publishDate(formatString: "dddd.MMMM-YY", locale: "nb_NO")
     _rawSlug(resolveReferences: { maxDepth: 20 })
+    _rawExcerpt(resolveReferences: { maxDepth: 20 })
     _rawBody(resolveReferences: { maxDepth: 20 })
-    _rawMainImage(resolveReferences: { maxDepth: 10 })
+    _rawMainImage(resolveReferences: { maxDepth: 20 })
+    _rawAuthors(resolveReferences: { maxDepth: 20 })
     mainImage {
       asset {
         fluid(maxWidth: 1400) {

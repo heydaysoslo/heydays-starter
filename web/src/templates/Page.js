@@ -4,6 +4,7 @@ import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import Page from '../components/pages/Page'
 import ContactPage from '../components/pages/ContactPage'
+import NewsPage from '../components/pages/NewsPage'
 
 /**
  * Passing variables into query
@@ -17,6 +18,7 @@ import ContactPage from '../components/pages/ContactPage'
 const templates = {
   frontpage: Page,
   contact: ContactPage,
+  news: NewsPage,
   default: Page
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 
 import Header from './Header'
 import Footer from './Footer'
-import { SEO } from 'gatsby-theme-heydays'
+import { SEO, blocksToText } from 'gatsby-theme-heydays'
 import { getUrl } from '../../../web/heydays-config'
 
 const Layout = props => {
@@ -14,6 +14,8 @@ const Layout = props => {
         slug={props._rawSlug?.current || ''}
         seo={props.seo}
         title={props.title}
+        image={props._rawMainImage}
+        description={props._rawExcerpt && blocksToText(props._rawExcerpt)}
       />
       <div className="Page">
         <Header />

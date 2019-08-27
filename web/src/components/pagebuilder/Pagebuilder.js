@@ -6,13 +6,15 @@ import TextSection from './TextSection'
 import FullImageSection from './FullImageSection'
 import Section from './Section'
 import TextImageSplit from './TextImageSplit'
+import CarouselSection from './CarouselSection'
 
 const sectionTypes = {
   section: Section,
   cardSection: CardSection,
   textSection: TextSection,
   imageSection: FullImageSection,
-  textImageSplit: TextImageSplit
+  textImageSplit: TextImageSplit,
+  carousel: CarouselSection
 }
 
 const PageBuilder = ({ sections }) => {
@@ -38,28 +40,28 @@ const PageBuilder = ({ sections }) => {
 
 export default PageBuilder
 
-export const query = graphql`
-  fragment PageBuilder on SanityPagebuilder {
-    sections {
-      ... on SanityCardSection {
-        ...CardSection
-      }
-      ... on SanityTextSection {
-        _key
-        _type
-        body {
-          sanityChildren {
-            _key
-            _type
-            marks
-            text
-          }
-          _key
-          _type
-          list
-          style
-        }
-      }
-    }
-  }
-`
+// export const query = graphql`
+//   fragment PageBuilder on SanityPagebuilder {
+//     sections {
+//       ... on SanityCardSection {
+//         ...CardSection
+//       }
+//       ... on SanityTextSection {
+//         _key
+//         _type
+//         body {
+//           sanityChildren {
+//             _key
+//             _type
+//             marks
+//             text
+//           }
+//           _key
+//           _type
+//           list
+//           style
+//         }
+//       }
+//     }
+//   }
+// `

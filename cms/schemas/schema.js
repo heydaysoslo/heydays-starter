@@ -39,6 +39,8 @@ import aspect from './objects/aspect'
 import section from './objects/section'
 import textImageSplit from './objects/textImageSplit'
 import cta from './objects/cta'
+import personReference from './objects/personReference'
+import carousel from './objects/carousel'
 
 // const personOrder = createOrderDoc('person')
 // const articleOrder = createOrderDoc('article')
@@ -76,6 +78,8 @@ export default createSchema({
     section,
     textImageSplit,
     cta,
+    personReference,
+    carousel,
 
     // The following are document types which will appear
     // in the studio.

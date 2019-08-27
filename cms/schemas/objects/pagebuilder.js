@@ -37,6 +37,12 @@ export default {
           name: 'textImageSplit',
           title: 'Text Image Split',
           type: 'textImageSplit'
+        },
+        // Carousel
+        {
+          name: 'carousel',
+          title: 'Carousel',
+          type: 'carousel'
         }
       ]
     }
