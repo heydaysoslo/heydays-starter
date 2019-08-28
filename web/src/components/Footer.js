@@ -16,8 +16,8 @@ const Footer = () => {
       <ul className="Footer__menu">
         {menu &&
           menu.map(item => (
-            <li className="Footer__menu-item">
-              <LinkResolver key={item._key} data={item.link}>
+            <li className="Footer__menu-item" key={item._key}>
+              <LinkResolver data={item.link}>
                 {item.title || item.link.title}
               </LinkResolver>
             </li>
