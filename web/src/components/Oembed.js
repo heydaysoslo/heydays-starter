@@ -6,7 +6,7 @@ import { isProviderAllowed } from '../../heydays-config'
 const Oembed = ({ url }) => {
   const [embed, setEmbed] = useState({})
   useEffect(() => {
-    fetch('/.netlify/functions/oembed.js', {
+    fetch('/.netlify/functions/oembed', {
       method: 'POST',
       body: JSON.stringify({ url })
     })

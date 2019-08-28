@@ -86,7 +86,7 @@ const NewsletterWrapper = () => {
         initialValues={defaultValues}
         onSubmit={async (values, { setSubmitting, setStatus }) => {
           setSubmitting(true)
-          await fetch('/.netlify/functions/newsletter.js', {
+          await fetch('/.netlify/functions/newsletter', {
             method: 'POST',
             body: JSON.stringify(values)
           })
