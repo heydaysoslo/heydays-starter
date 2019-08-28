@@ -1,7 +1,7 @@
 import React from 'react'
 import Carousel from '../Carousel'
 import SanityImage from '../editor/SanityImage'
-import CarouselItem from '../CarouselItem'
+// import CarouselItem from '../CarouselItem'
 
 const CarouselSection = ({ images }) => {
   if (!images) return null
@@ -12,7 +12,7 @@ const CarouselSection = ({ images }) => {
           // <CarouselItem>
           //   <SanityImage node={image} aspectRatio="landscape" />
           // </CarouselItem>
-          <div className="Carousel__item">
+          <div className="Carousel__item" key={image._key}>
             <SanityImage node={image} aspectRatio="landscape" />
           </div>
         ))}

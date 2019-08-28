@@ -1,7 +1,6 @@
 import React from 'react'
 import Pagebuilder from '../pagebuilder/Pagebuilder'
 import { graphql, useStaticQuery } from 'gatsby'
-import CardSection from '../pagebuilder/CardSection'
 import { Grid, GridItem } from 'gatsby-theme-heydays'
 import Card from '../Card'
 
@@ -16,7 +15,7 @@ const NewsPage = ({ title, content, _rawPagebuilder, ...props }) => {
           {articles.map(
             article =>
               article && (
-                <GridItem key={article._key}>
+                <GridItem key={article.id}>
                   <Card
                     title={article.title}
                     image={article._rawMainImage}

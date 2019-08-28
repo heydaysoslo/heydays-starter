@@ -5,6 +5,7 @@ import cc from 'classcat'
 import LinkResolver from '../LinkResolver'
 import Quote from './Quote'
 import Figure from './Figure'
+import Oembed from '../Oembed'
 
 const serializers = {
   types: {
@@ -57,6 +58,9 @@ const serializers = {
     videoEmbed(props) {
       if (!props.node.url) return null
       return <p>I'm video</p>
+    },
+    oembed(props) {
+      return <Oembed url={props.node.url} />
     }
   },
   marks: {

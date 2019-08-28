@@ -34,3 +34,17 @@ export const aspectRatios = createAspectRatios({
   widescreen: '16:9',
   panorama: '16:11'
 })
+
+/**
+ * Used by Oembed.js
+ *
+ * Certain services add js which we need to run in our frontend.
+ * Therefore we only allow certain, and only those we are sure of.
+ * Inititially none of the providers add js as script tags
+ *
+ * You can check provider name here: https://oembed.com/providers.json
+ * (Make sure it's in lowercase)
+ */
+export const allowedEmbedProviders = ['vimeo', 'youtube', 'soundcloud']
+export const isProviderAllowed = provider =>
+  allowedEmbedProviders.indexOf(provider) >= 0

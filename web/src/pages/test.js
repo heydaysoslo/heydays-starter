@@ -51,15 +51,6 @@ const Index = () => {
   const windowSize = useWindowSize({ debounce: 100 })
   const scroll = useScroll({ delay: 100 })
 
-  useEffect(() => {
-    fetch('/.netlify/functions/helloworld.js')
-      .then(res => res.json())
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => console.error(err))
-  }, [])
-
   const { state, actions } = useContext(AppContext)
 
   console.log(mapEdgesToNode(data.allSanityPage))

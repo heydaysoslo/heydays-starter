@@ -1,5 +1,4 @@
 import React from 'react'
-import { graphql } from 'gatsby'
 import { Grid, GridItem } from 'gatsby-theme-heydays'
 
 import Card from '../Card'

@@ -12,7 +12,7 @@ const AspectContainer = ({
 }) => {
   const windowSize = useWindowSize({ debounce: 250 })
   const activeMediaQuery = useMediaQuery()
-  const [aspectClass, setAspectClass] = useState('portrait')
+  const [aspectClass, setAspectClass] = useState('')
 
   const wrapper = useRef(null)
   const content = useRef(null)
@@ -21,6 +21,9 @@ const AspectContainer = ({
     if (content.current && wrapper.current) {
       const height = content.current.getBoundingClientRect().height
       wrapper.current.style.cssText = 'min-height:' + height + 'px'
+    }
+    if (typeof aspect === 'number') {
+      wrapper.current.style.cssText = `padding-top: calc(${aspect} * 100%);`
     }
   }
 
@@ -31,8 +34,10 @@ const AspectContainer = ({
   }
 
   const handleMediaQuery = () => {
-    const key = getAspectClass(activeMediaQuery)
-    setAspectClass(key)
+    if (typeof aspect !== 'number') {
+      const key = getAspectClass(activeMediaQuery)
+      setAspectClass(key)
+    }
   }
 
   useEffect(handleResize, [windowSize])

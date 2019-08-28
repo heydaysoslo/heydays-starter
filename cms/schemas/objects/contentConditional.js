@@ -15,8 +15,8 @@ export default {
       type: 'editor'
     },
     {
-      name: 'videoEmbed',
-      type: 'videoEmbed'
+      name: 'oembed',
+      type: 'oembed'
     }
   ]
 }

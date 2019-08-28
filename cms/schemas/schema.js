@@ -25,7 +25,6 @@ import social from './objects/social'
 import office from './objects/office'
 import content from './objects/content'
 import contentConditional from './objects/contentConditional'
-import videoEmbed from './objects/videoEmbed'
 import pagebuilder from './objects/pagebuilder'
 import card from './objects/card'
 import cardOverride from './objects/cardOverride'
@@ -41,6 +40,7 @@ import textImageSplit from './objects/textImageSplit'
 import cta from './objects/cta'
 import personReference from './objects/personReference'
 import carousel from './objects/carousel'
+import oembed from './objects/oembed'
 
 // const personOrder = createOrderDoc('person')
 // const articleOrder = createOrderDoc('article')
@@ -64,7 +64,6 @@ export default createSchema({
     office,
     content,
     contentConditional,
-    videoEmbed,
     pagebuilder,
     card,
     cardOverride,
@@ -80,6 +79,7 @@ export default createSchema({
     cta,
     personReference,
     carousel,
+    oembed,
 
     // The following are document types which will appear
     // in the studio.
