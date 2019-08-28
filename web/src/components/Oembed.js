@@ -19,7 +19,7 @@ const Oembed = ({ url }) => {
           console.info(`${provider} embed is not allowed`)
         }
       })
-  }, [])
+  }, [url])
   return (
     <div className="Oembed">
       {embed?.result?.type === 'video' && embed?.result?.html && (
