@@ -70,7 +70,7 @@ async function createPages(graphql, actions, reporter) {
 }
 
 async function createArticles(graphql, actions, reporter) {
-  const { createPage, createPageDependency } = actions
+  const { createPage } = actions
 
   const result = await graphql(`
     {
