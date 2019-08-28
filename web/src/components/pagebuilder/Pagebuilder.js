@@ -1,12 +1,12 @@
 import React from 'react'
-import { graphql } from 'gatsby'
+import loadable from '@loadable/component'
 
 import CardSection from './CardSection'
 import TextSection from './TextSection'
 import FullImageSection from './FullImageSection'
 import Section from './Section'
 import TextImageSplit from './TextImageSplit'
-import CarouselSection from './CarouselSection'
+const CarouselSection = loadable(() => import('./CarouselSection'))
 
 const sectionTypes = {
   section: Section,
@@ -39,29 +39,3 @@ const PageBuilder = ({ sections }) => {
 }
 
 export default PageBuilder
-
-// export const query = graphql`
-//   fragment PageBuilder on SanityPagebuilder {
-//     sections {
-//       ... on SanityCardSection {
-//         ...CardSection
-//       }
-//       ... on SanityTextSection {
-//         _key
-//         _type
-//         body {
-//           sanityChildren {
-//             _key
-//             _type
-//             marks
-//             text
-//           }
-//           _key
-//           _type
-//           list
-//           style
-//         }
-//       }
-//     }
-//   }
-// `
