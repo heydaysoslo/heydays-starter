@@ -16,6 +16,3 @@ node_modules/
 
 # Theme
 # /gatsby-theme-heydays
-
-# Netlify
-/web/netlify-functions
