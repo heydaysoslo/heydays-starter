@@ -1,13 +1,14 @@
 import React from 'react'
-
 import { graphql, useStaticQuery } from 'gatsby'
 
 import Newsletter from './Newsletter'
 import LinkResolver from './LinkResolver'
+import Social from './Social'
 
 const Footer = () => {
   const data = useStaticQuery(query)
   const menu = data?.sanityMenu?._rawItem
+  const privacyPage = data?.sanitySiteSettings?._rawPrivacypage
   return (
     <div className="Footer">
       <div className="Footer__newsletter">
@@ -23,6 +24,14 @@ const Footer = () => {
             </li>
           ))}
       </ul>
+      <div className="Footer__social">
+        <Social />
+      </div>
+      {privacyPage && (
+        <div className="Footer__privacy">
+          <LinkResolver data={privacyPage}>{privacyPage.title}</LinkResolver>
+        </div>
+      )}
     </div>
   )
 }
@@ -33,6 +42,9 @@ export const query = graphql`
   {
     sanityMenu(_id: { eq: "menu-footerMenu" }) {
       _rawItem(resolveReferences: { maxDepth: 10 })
+    }
+    sanitySiteSettings(_id: { eq: "siteSettings" }) {
+      _rawPrivacypage(resolveReferences: { maxDepth: 10 })
     }
   }
 `
