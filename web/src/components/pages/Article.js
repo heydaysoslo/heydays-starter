@@ -65,7 +65,6 @@ const Article = ({
             <Grid>
               {currentArticles.map(article => (
                 <GridItem key={article?._key}>
-                  {console.log(article)}
                   <Card
                     title={article.title}
                     image={article._rawMainImage}
