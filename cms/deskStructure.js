@@ -26,11 +26,15 @@ const hiddenDocTypes = listItem =>
     'companyInfo',
     'siteSettings',
     'page',
+    'article',
     ...hiddenCustomTypes
   ].includes(listItem.getId())
 
 const pages =
-  S && S.documentTypeListItems().filter(listItem => listItem.getId() === 'page')
+  S &&
+  S.documentTypeListItems().filter(
+    listItem => listItem.getId() === 'page' || listItem.getId() === 'article'
+  )
 
 export default () =>
   S.list()

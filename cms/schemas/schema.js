@@ -11,7 +11,7 @@ import page from './documents/page'
 import person from './documents/person'
 import personOrder from './documents/personOrder'
 import article from './documents/article'
-import articleOrder from './documents/articleOrder'
+// import articleOrder from './documents/articleOrder'
 import siteSettings from './documents/siteSettings'
 
 // Object types
@@ -91,7 +91,7 @@ export default createSchema({
     page,
     person,
     personOrder,
-    article,
-    articleOrder
+    article
+    // articleOrder
   ])
 })
