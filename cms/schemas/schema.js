@@ -37,10 +37,11 @@ import imageSection from './objects/imageSection'
 import aspect from './objects/aspect'
 import section from './objects/section'
 import textImageSplit from './objects/textImageSplit'
-import cta from './objects/cta'
 import personReference from './objects/personReference'
 import carousel from './objects/carousel'
 import oembed from './objects/oembed'
+import accordion from './objects/accordion'
+import accordionItem from './objects/accordionItem'
 
 // const personOrder = createOrderDoc('person')
 // const articleOrder = createOrderDoc('article')
@@ -76,10 +77,11 @@ export default createSchema({
     aspect,
     section,
     textImageSplit,
-    cta,
     personReference,
     carousel,
     oembed,
+    accordion,
+    accordionItem,
 
     // The following are document types which will appear
     // in the studio.

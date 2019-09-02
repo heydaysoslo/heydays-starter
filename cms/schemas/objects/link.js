@@ -5,23 +5,29 @@ export default {
   type: 'object',
   fields: [
     {
-      name: 'link',
-      title: 'Link',
+      name: 'reference',
+      title: 'Internal Link',
       type: 'reference',
       to: [{ type: 'article' }, { type: 'page' }]
     },
     {
       name: 'title',
-      title: 'Override Title',
+      title: 'Title',
       description:
-        'Use this field to override the default title of the document your referencing.',
+        'If you have an internal link this will override the original title that is referenced',
       type: 'string'
+    },
+    {
+      name: 'externalLink',
+      title: 'External link',
+      description: 'This will override the referenced document.',
+      type: 'linkExternal'
     }
   ],
   preview: {
     select: {
       title: 'title',
-      linkTitle: 'link.title'
+      linkTitle: 'reference.title'
     },
     prepare({ title, linkTitle }) {
       return {

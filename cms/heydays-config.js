@@ -23,13 +23,6 @@ export default {
    */
   customTypes: [
     {
-      title: 'Article Order',
-      typeId: 'article',
-      typeTitle: 'Article',
-      orderTypeId: 'articleOrder',
-      icon: FaNewspaper
-    },
-    {
       title: 'Person Order',
       typeId: 'person',
       typeTitle: 'Person',

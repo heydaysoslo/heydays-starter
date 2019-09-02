@@ -9,7 +9,7 @@ import { Container } from 'gatsby-theme-heydays'
 
 const Menu = () => {
   const data = useStaticQuery(query)
-  const menu = data.sanityMenu?.item
+  const menu = data.sanityMenu?._rawItem
   const { state, actions } = useContext(AppContext)
 
   return (
@@ -54,13 +54,7 @@ export const query = graphql`
       _id
       _key
       _type
-      item {
-        _key
-        title
-        link {
-          ...Link
-        }
-      }
+      _rawItem(resolveReferences: { maxDepth: 10 })
     }
   }
 `

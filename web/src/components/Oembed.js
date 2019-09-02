@@ -22,14 +22,14 @@ const Oembed = ({ url }) => {
   }, [url])
   return (
     <div className="Oembed">
-      {embed?.result?.type === 'video' && embed?.result?.html && (
+      {embed?.result?.html && embed?.result?.type === 'video' && (
         <AspectContainer
           aspect={parseInt(embed.result.height) / parseInt(embed.result.width)}
         >
           <div dangerouslySetInnerHTML={{ __html: embed.result.html }}></div>
         </AspectContainer>
       )}
-      {embed?.result?.type === 'rich' && embed?.result?.html && (
+      {embed?.result?.html && embed?.result?.type === 'rich' && (
         <div
           style={{ height: embed.result.height, width: embed.result.width }}
           dangerouslySetInnerHTML={{ __html: embed.result.html }}

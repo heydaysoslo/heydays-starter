@@ -1,18 +1,14 @@
 import React from 'react'
 import Editor from '../editor/Editor'
-import LinkResolver from '../LinkResolver'
+import ButtonResolver from '../ButtonResolver'
 
-const Section = ({ label, title, content, cta }) => {
+const Section = ({ label, title, content, button }) => {
   return (
     <div className="Section">
       {label && <p className="Section__label">{label}</p>}
       {title && <h3 className="Section__title">{title}</h3>}
       {content && <Editor className="Section__content" blocks={content} />}
-      {(cta?.title || cta?.link?.title) && (cta?.url || cta?.link) && (
-        <LinkResolver className="button" data={cta.url || cta.link}>
-          {cta.title || cta.link.title}
-        </LinkResolver>
-      )}
+      {button && <ButtonResolver button={button} />}
     </div>
   )
 }

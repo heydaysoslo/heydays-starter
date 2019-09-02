@@ -1,0 +1,34 @@
+.Accordion {
+  &__item {
+    &--is-active {
+      .Accordion {
+        &__trigger {
+          background: rgba($c-secondary, 0.5);
+        }
+        &__content {
+          display: block;
+        }
+        &__icon {
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+  &__trigger {
+    width: 100%;
+    text-align: left;
+    background: $c-secondary;
+    display: flex;
+    justify-content: space-between;
+    @include spacing(sm, (padding-left, padding-right));
+
+    &:focus {
+      outline: none;
+      background: rgba($c-secondary, 0.5);
+    }
+  }
+  &__content {
+    display: none;
+    @include spacing(sm, (padding-left, padding-right));
+  }
+}

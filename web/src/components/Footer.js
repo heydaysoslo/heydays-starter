@@ -18,8 +18,11 @@ const Footer = () => {
         {menu &&
           menu.map(item => (
             <li className="Footer__menu-item" key={item._key}>
-              <LinkResolver data={item.link}>
-                {item.title || item.link.title}
+              <LinkResolver
+                data={item?.externalLink?.url || item?.reference}
+                openInNewTab={item?.externalLink?.blank}
+              >
+                {item?.title || item?.reference?.title}
               </LinkResolver>
             </li>
           ))}

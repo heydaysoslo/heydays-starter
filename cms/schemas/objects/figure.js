@@ -4,9 +4,9 @@ export default {
   name: 'figure',
   title: 'Image',
   type: 'image',
-  options: {
-    hotspot: true
-  },
+  // options: {
+  //   hotspot: true
+  // },
   icon: MdImage,
   fields: [
     {

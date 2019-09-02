@@ -27,6 +27,7 @@ const PageBuilder = ({ sections }) => {
             key={section._key}
             {...section}
             prevComp={sections[index - 1] ? sections[index - 1] : null}
+            nextComp={sections[index + 1] ? sections[index + 1] : null}
           />
         ) : (
           <p key={section._key} style={{ background: 'yellow' }}>

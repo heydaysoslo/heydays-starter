@@ -26,6 +26,7 @@ export const query = graphql`
     }
   }
   fragment Article on SanityArticle {
+    _id
     _key
     _type
     slug {
@@ -38,17 +39,17 @@ export const query = graphql`
     _rawBody(resolveReferences: { maxDepth: 20 })
     _rawMainImage(resolveReferences: { maxDepth: 20 })
     _rawAuthors(resolveReferences: { maxDepth: 20 })
-    mainImage {
-      asset {
-        fluid(maxWidth: 1400) {
-          ...GatsbySanityImageFluid
-        }
-      }
-    }
-    # _rawPagebuilder(resolveReferences: { maxDepth: 20 })
+    _rawPagebuilder(resolveReferences: { maxDepth: 20 })
     seo {
       title
       description
+      image {
+        asset {
+          fixed(width: 1200, height: 630) {
+            ...GatsbySanityImageFixed
+          }
+        }
+      }
     }
   }
 `

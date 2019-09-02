@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Editor from '../editor/Editor'
 import SanityImage from '../editor/SanityImage'
 import { getReadTime, GridItem, Grid, Container } from 'gatsby-theme-heydays'
 import Share from '../Share'
+import { graphql, useStaticQuery } from 'gatsby'
+import Card from '../Card'
 
 const Article = ({
+  _id,
   title,
   _rawBody,
   _rawMainImage,
@@ -14,6 +17,16 @@ const Article = ({
   slug,
   ...props
 }) => {
+  const data = useStaticQuery(query)
+  const latestArticles = data?.allSanityArticle?.nodes
+  const [currentArticles, setCurrentArticles] = useState([])
+
+  useEffect(() => {
+    if (latestArticles) {
+      setCurrentArticles(latestArticles.filter(article => article._id !== _id))
+    }
+  }, [latestArticles, setCurrentArticles])
+
   return (
     <Container>
       <article className="Article">
@@ -47,9 +60,41 @@ const Article = ({
             {_rawBody && <Editor blocks={_rawBody} />}
           </GridItem>
         </Grid>
+        {currentArticles && (
+          <section className="Article__latest">
+            <Grid>
+              {currentArticles.map(article => (
+                <GridItem key={article?._key}>
+                  {console.log(article)}
+                  <Card
+                    title={article.title}
+                    image={article._rawMainImage}
+                    excerpt={article._rawExcerpt}
+                    link={article}
+                  />
+                </GridItem>
+              ))}
+            </Grid>
+          </section>
+        )}
       </article>
     </Container>
   )
 }
 
 export default Article
+
+export const query = graphql`
+  {
+    allSanityArticle(limit: 4) {
+      nodes {
+        _id
+        _key
+        title
+        _rawMainImage(resolveReferences: { maxDepth: 10 })
+        _rawExcerpt(resolveReferences: { maxDepth: 10 })
+        ...Link
+      }
+    }
+  }
+`

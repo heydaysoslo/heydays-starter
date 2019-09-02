@@ -2,23 +2,18 @@ import React from 'react'
 import { Grid, GridItem } from 'gatsby-theme-heydays'
 
 import SanityImage from '../editor/SanityImage'
-import LinkResolver from '../LinkResolver'
 import Editor from '../editor/Editor'
+import ButtonResolver from '../ButtonResolver'
 
-const Content = ({ title, content, cta }) => {
+const Content = ({ title, content, button }) => {
   return (
     <>
       {title && <h3 className="TextImageSplit__title">{title}</h3>}
       {content && (
         <Editor className="TextImageSplit__content" blocks={content} />
       )}
-      {(cta?.title || cta?.link?.title) && (cta?.url || cta?.link) && (
-        <LinkResolver
-          className="TextImageSplit__cta button"
-          data={cta.url || cta.link}
-        >
-          {cta?.title || cta?.link?.title}
-        </LinkResolver>
+      {button?.link && (
+        <ButtonResolver className="TextImageSplit__button" button={button} />
       )}
     </>
   )

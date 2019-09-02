@@ -3,21 +3,26 @@ export default {
   title: 'Card Section',
   type: 'object',
   fields: [
+    // {
+    //   name: 'label',
+    //   title: 'Label',
+    //   type: 'string'
+    // },
     {
       name: 'title',
       title: 'Title',
       type: 'string'
     },
-    {
-      name: 'columnAmount',
-      title: 'Column amount',
-      description: 'Desired amount of columns.',
-      type: 'number'
-    },
     // {
-    //   name: 'seeAllLink',
-    //   title: 'See all link',
-    //   type: 'pageLink'
+    //   name: 'intro',
+    //   title: 'Intro',
+    //   type: 'editorMinimal'
+    // },
+    // {
+    //   name: 'columnAmount',
+    //   title: 'Column amount',
+    //   description: 'Desired amount of columns.',
+    //   type: 'number'
     // },
     {
       name: 'cardsList',
@@ -30,6 +35,11 @@ export default {
           type: 'card'
         }
       ]
+    },
+    {
+      name: 'seeAllLink',
+      title: 'See all link',
+      type: 'link'
     }
   ],
   preview: {

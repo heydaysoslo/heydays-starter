@@ -7,7 +7,6 @@ import Page from '../components/pages/Page'
 const FrontPage = props => {
   const { data } = props
   const page = data?.sanitySiteSettings?.frontpage
-
   return (
     <Layout {...page}>
       <Page {...page} />

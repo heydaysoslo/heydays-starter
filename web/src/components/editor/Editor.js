@@ -6,8 +6,9 @@ import LinkResolver from '../LinkResolver'
 import Quote from './Quote'
 import Figure from './Figure'
 import Oembed from '../Oembed'
+import Accordion from '../Accordion'
 
-const serializers = {
+export const serializers = {
   types: {
     block(props) {
       if (props.node.children.text && props.node.children.text.length === 0)
@@ -43,7 +44,7 @@ const serializers = {
               [`Button--${props.node.type}`]: props.node.type
             })}
           >
-            {props.node.link.title}
+            {props.node.link.title} hello
           </LinkResolver>
         </p>
       )
@@ -55,25 +56,27 @@ const serializers = {
     figure(props) {
       return <Figure node={props.node} />
     },
-    videoEmbed(props) {
-      if (!props.node.url) return null
-      return <p>I'm video</p>
-    },
     oembed(props) {
       return <Oembed url={props.node.url} />
+    },
+    accordion(props) {
+      return <Accordion items={props.node.items} exclusive defaultActive={2} />
     }
   },
   marks: {
-    linkExternal(props) {
-      if (props.mark && props.mark.blank && props.mark.href) {
-        return (
-          <a href={props.mark.href} target="_blank" rel="noopener noreferrer">
-            {props.children}
-          </a>
-        )
-      } else {
-        return <a href={props.mark.href}>{props.children}</a>
-      }
+    link(props) {
+      const link = props?.mark?.externalLink?.url || props?.mark?.reference
+      if (!link) return props.children
+      return (
+        <LinkResolver
+          openInNewTab={props?.mark?.externalLink?.blank}
+          data={link}
+        >
+          {props.children ||
+            props?.mark?.title ||
+            props?.mark?.reference?.title}
+        </LinkResolver>
+      )
     }
   }
 }

@@ -25,19 +25,17 @@ const Social = () => {
   return (
     <div className="Social">
       {social &&
-        Object.keys(social)
-          .filter(key => key !== '_type')
-          .map(key => {
-            const Icon = icons[key]
-            const link = social[key]
-            return (
-              <div className="Social__item" key={`social-${link}`}>
-                <LinkResolver data={link}>
-                  {Icon ? <Icon {...IconProps} /> : key}
-                </LinkResolver>
-              </div>
-            )
-          })}
+        Object.keys(social).map(key => {
+          const Icon = icons[key]
+          const link = social[key]
+          return (
+            <div className="Social__item" key={`social-${link}`}>
+              <LinkResolver data={link}>
+                {Icon ? <Icon {...IconProps} /> : key}
+              </LinkResolver>
+            </div>
+          )
+        })}
     </div>
   )
 }

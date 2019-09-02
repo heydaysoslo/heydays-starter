@@ -15,7 +15,8 @@ export default {
     {
       name: 'title',
       title: 'Title',
-      type: 'string'
+      type: 'string',
+      fieldset: 'content'
     },
     {
       name: 'content',
@@ -24,10 +25,9 @@ export default {
       fieldset: 'content'
     },
     {
-      name: 'cta',
-      title: 'Call to Action',
-      type: 'cta',
-      fieldset: 'content'
+      name: 'button',
+      title: 'Button',
+      type: 'button'
     },
     {
       name: 'image',

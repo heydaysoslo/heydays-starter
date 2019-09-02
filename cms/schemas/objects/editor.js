@@ -43,9 +43,9 @@ export default {
         // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [
           {
-            title: 'External Link',
-            name: 'linkExternal',
-            type: 'linkExternal'
+            name: 'link',
+            title: 'Link',
+            type: 'link'
           }
         ]
       }
@@ -64,6 +64,9 @@ export default {
     },
     {
       type: 'quote'
+    },
+    {
+      type: 'accordion'
     }
   ]
 }

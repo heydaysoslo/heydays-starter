@@ -3,9 +3,10 @@ import { AspectContainer } from 'gatsby-theme-heydays'
 import LinkResolver from './LinkResolver'
 import SanityImage from './editor/SanityImage'
 import Editor from './editor/Editor'
+import InView from './InView'
 
 const Card = ({ title, image, excerpt, link }) => (
-  <div className="Card">
+  <InView className="Card" activeClassName="Card--is-visible">
     <LinkResolver data={link}>
       {image ? (
         <SanityImage node={image} aspectRatio="portrait" />
@@ -22,7 +23,7 @@ const Card = ({ title, image, excerpt, link }) => (
       {title && <h3 className="Card__title">{title}</h3>}
       {excerpt && <Editor blocks={excerpt} />}
     </LinkResolver>
-  </div>
+  </InView>
 )
 
 export default Card

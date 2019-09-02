@@ -1,0 +1,10 @@
+.Button {
+  @include spacing(sm, padding);
+  color: red;
+  &--primary {
+    background: $c-primary;
+  }
+  &--secondary {
+    background: $c-secondary;
+  }
+}

@@ -9,14 +9,15 @@ const MenuItems = ({ menu, closeMenu, className }) => {
     menu.map(item => (
       <LinkResolver
         key={item._key}
-        data={item.link}
+        data={item?.externalLink?.url || item?.reference}
         className={cc({
           Menu__item: true,
           [className]: className
         })}
         onClick={closeMenu}
+        openInNewTab={item?.externalLink?.blank}
       >
-        {item?.title || item?.link?.title}
+        {item?.title || item?.reference?.title}
       </LinkResolver>
     ))
   )

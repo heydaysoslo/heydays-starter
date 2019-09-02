@@ -31,7 +31,6 @@ const PageTemplate = props => {
   //     `No template component found in Page.js for ${page.title} ${page.id}`
   //   )
   // }
-
   let Component = page.template ? templates[page.template] : templates.default
   return (
     page && (

@@ -19,18 +19,11 @@ export default {
   ],
   preview: {
     select: {
-      items: 'items'
+      items: 'item'
     },
     prepare({ items }) {
-      let subtitle = 'No items'
-      if (typeof items === 'object') {
-        subtitle = Object.keys(items)
-          .map(key => items[key].name)
-          .join(', ')
-      }
       return {
-        title: 'Menu',
-        subtitle
+        title: 'Menu'
       }
     }
   }

@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql, Link, useStaticQuery } from 'gatsby'
 import { routes } from '../../heydays-config'
 
-const LinkResolver = ({ data, children, ...props }) => {
+const LinkResolver = ({ data, children, openInNewTab, ...props }) => {
   const { sanitySiteSettings } = useStaticQuery(StaticQuery)
   const frontpageId = sanitySiteSettings?.frontpage?.id
 
@@ -11,8 +11,15 @@ const LinkResolver = ({ data, children, ...props }) => {
 
   // If external link
   if (typeof data === 'string') {
+    const targetProps =
+      openInNewTab !== false
+        ? {
+            target: '_blank',
+            rel: 'noopener noreferrer'
+          }
+        : {}
     return (
-      <a {...props} href={data} target="_blank" rel="noopener noreferrer">
+      <a {...props} href={data} {...targetProps}>
         {children}
       </a>
     )

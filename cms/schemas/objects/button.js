@@ -16,6 +16,7 @@ export default {
       name: 'type',
       title: 'Type',
       type: 'string',
+      description: 'This determines the button style.',
       options: {
         list: [
           { value: 'primary', title: 'Primary' },
@@ -26,7 +27,14 @@ export default {
   ],
   preview: {
     select: {
-      title: 'link.title'
+      title: 'title',
+      linkTitle: 'link.title'
+    },
+    prepare({ title, linkTitle }) {
+      return {
+        title: title || linkTitle || 'No title',
+        media: Link
+      }
     }
   }
 }

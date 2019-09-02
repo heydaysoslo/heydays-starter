@@ -38,18 +38,33 @@ export default NewsPage
 
 export const query = graphql`
   {
-    allSanityArticleOrder {
+    allSanityArticle {
       nodes {
-        articles {
-          title
-          isFeatured
-          _updatedAt
-          _rawMainImage(resolveReferences: { maxDepth: 10 })
-          _rawExcerpt(resolveReferences: { maxDepth: 10 })
-          _rawBody(resolveReferences: { maxDepth: 10 })
-          ...Link
-        }
+        title
+        isFeatured
+        _updatedAt
+        _rawMainImage(resolveReferences: { maxDepth: 10 })
+        _rawExcerpt(resolveReferences: { maxDepth: 10 })
+        _rawBody(resolveReferences: { maxDepth: 10 })
+        ...Link
       }
     }
   }
 `
+// export const query = graphql`
+//   {
+//     allSanityArticleOrder {
+//       nodes {
+//         articles {
+//           title
+//           isFeatured
+//           _updatedAt
+//           _rawMainImage(resolveReferences: { maxDepth: 10 })
+//           _rawExcerpt(resolveReferences: { maxDepth: 10 })
+//           _rawBody(resolveReferences: { maxDepth: 10 })
+//           ...Link
+//         }
+//       }
+//     }
+//   }
+// `

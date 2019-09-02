@@ -30,30 +30,9 @@ export default {
         // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [
           {
-            title: 'External Link',
             name: 'link',
-            type: 'object',
-            blockEditor: {
-              icon: External
-            },
-            fields: [
-              {
-                title: 'URL',
-                name: 'href',
-                type: 'url',
-                validation: Rule =>
-                  Rule.uri({
-                    allowRelative: true,
-                    scheme: ['https', 'http', 'mailto', 'tel']
-                  })
-              },
-              {
-                title: 'Open in new tab',
-                name: 'blank',
-                description: 'Read https://css-tricks.com/use-target_blank/',
-                type: 'boolean'
-              }
-            ]
+            title: 'Link',
+            type: 'link'
           }
         ]
       }
