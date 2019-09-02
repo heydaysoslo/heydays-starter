@@ -25,7 +25,7 @@ const Article = ({
     if (latestArticles) {
       setCurrentArticles(latestArticles.filter(article => article._id !== _id))
     }
-  }, [latestArticles, setCurrentArticles])
+  }, [latestArticles, setCurrentArticles, _id])
 
   return (
     <Container>
