@@ -81,9 +81,14 @@ export const serializers = {
   }
 }
 
-const Editor = ({ blocks }) => {
+const Editor = ({ blocks, className }) => {
   return (
-    <div className="Editor">
+    <div
+      className={cc({
+        Editor: true,
+        [className]: className
+      })}
+    >
       <BaseBlockContent
         className="Editor__blocks"
         blocks={blocks}

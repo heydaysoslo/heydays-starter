@@ -5,7 +5,9 @@ const Figure = ({ node, aspectRatio }) => {
   return (
     <figure className="Figure">
       <SanityImage key={node.asset?.id} node={node} aspectRatio={aspectRatio} />
-      {node.caption && <figcaption>{node.caption}</figcaption>}
+      {node.caption && (
+        <figcaption className="Figure__caption">{node.caption}</figcaption>
+      )}
     </figure>
   )
 }

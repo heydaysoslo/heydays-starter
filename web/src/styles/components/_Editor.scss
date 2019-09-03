@@ -1,8 +1,10 @@
 .Editor {
   &__blocks {
+    
     p, ul, ol, .Oembed {
-      @include spacing(sm, (margin-top, margin-bottom));
+      @include spacing(xs, (margin-top, margin-bottom));
     }
+    
     a {
       text-decoration: underline;
   
@@ -10,9 +12,18 @@
         text-decoration: none;
       }
     }
+    
     > h1, > h2, > h3, > h4, > h5, > h6 {
       @include spacing(lg, margin-top);
       @include spacing(sm, margin-bottom);
     }
+
+    > *:first-child {
+      margin-top: 0;
+    }
+    > *:last-child {
+      margin-bottom: 0;
+    }
+
   }
 }
