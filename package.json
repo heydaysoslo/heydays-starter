@@ -14,8 +14,7 @@
   },
   "workspaces": [
     "cms",
-    "web",
-    "gatsby-theme-heydays"
+    "web"
   ],
   "devDependencies": {
     "lerna": "^3.13.1",

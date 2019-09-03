@@ -1,9 +1,11 @@
 import React from 'react'
 
+import { getUrl } from '../../../web/heydays-config'
+import { blocksToText } from '../utils/sanityHelpers'
+
 import Header from './Header'
 import Footer from './Footer'
-import { SEO, blocksToText } from 'gatsby-theme-heydays'
-import { getUrl } from '../../../web/heydays-config'
+import SEO from './SEO'
 
 const Layout = props => {
   return (

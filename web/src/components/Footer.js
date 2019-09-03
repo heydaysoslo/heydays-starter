@@ -1,7 +1,8 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
-import { Container, Grid } from 'gatsby-theme-heydays'
 
+import Container from './Container'
+import Grid from './Grid'
 import Newsletter from './Newsletter'
 import LinkResolver from './LinkResolver'
 import Social from './Social'

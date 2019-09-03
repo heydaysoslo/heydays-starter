@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid } from 'gatsby-theme-heydays'
+import Grid from '../Grid'
 
 import Card from '../Card'
 

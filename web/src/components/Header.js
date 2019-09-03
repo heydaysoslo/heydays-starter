@@ -1,7 +1,8 @@
 import React from 'react'
-import Menu from './Menu'
 import { Link } from 'gatsby'
-import { Container } from 'gatsby-theme-heydays'
+
+import Menu from './Menu'
+import Container from './Container'
 
 const Header = () => {
   return (

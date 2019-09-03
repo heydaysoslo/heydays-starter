@@ -1,8 +1,58 @@
 .Modal {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+  backface-visibility: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  z-index: 2000;
+
+  &__container {
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+
+    // Vertical alignment fix
+    &:before {
+      content: '';
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+    }
+  }
+
   &__content {
-    // background: white;
-    // border-radius: $radius;
-    // color: black;
-    // @include spacing(section, padding);
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 auto;
+    z-index: 10;
+    text-align: left;
+  }
+
+  &__backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba($c-primary, 0.95);
+    z-index: 0;
+  }
+
+  &__close {
+    position: absolute;
+    top: 2rem;
+    right: 1.5rem;
+    z-index: 20;
+    @include bp(md) {
+      top: 3rem;
+      right: 2rem;
+    }
   }
 }

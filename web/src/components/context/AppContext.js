@@ -3,7 +3,7 @@
  */
 
 import React, { useState } from 'react'
-import { setOverflowHidden } from 'gatsby-theme-heydays'
+import { setOverflowHidden } from '../../utils/helpers'
 
 import AppContext from './Context'
 

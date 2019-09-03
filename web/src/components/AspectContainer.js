@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import cc from 'classcat'
-import useMediaQuery from './useMediaQuery'
-import useWindowSize from './useWindowSize'
+import useMediaQuery from './hooks/useMediaQuery'
+import useWindowSize from './hooks/useWindowSize'
 
 const AspectContainer = ({
   aspect,

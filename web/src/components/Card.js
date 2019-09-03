@@ -1,5 +1,6 @@
 import React from 'react'
-import { AspectContainer } from 'gatsby-theme-heydays'
+
+import AspectContainer from './AspectContainer'
 import LinkResolver from './LinkResolver'
 import SanityImage from './editor/SanityImage'
 import Editor from './editor/Editor'
