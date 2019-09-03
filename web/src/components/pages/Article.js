@@ -30,8 +30,8 @@ const Article = ({
   return (
     <Container>
       <article className="Article">
-        <Grid>
-          <GridItem sm={3} md={3} lg={3} xl={3} xxl={3}>
+        <Grid reverse={{ md: true }}>
+          <GridItem span={{ md: 3 }}>
             {_rawBody && `Read time: ${getReadTime(_rawBody)}min`}
             {publishDate && <p className="Article__date">{publishDate}</p>}
             {_rawAuthors &&
@@ -52,26 +52,33 @@ const Article = ({
               ))}
             <Share type={_type} slug={slug.current} />
           </GridItem>
-          <GridItem sm={9} md={9} lg={9} xl={9} xxl={9}>
+          <GridItem span={{ sm: 12, md: 9 }}>
             <header className="Article__header">
               {title && <h1 className="Article__title">{title}</h1>}
-              {_rawMainImage && <SanityImage node={_rawMainImage} />}
+              {_rawMainImage && (
+                <div className="Article__image">
+                  <SanityImage node={_rawMainImage} />
+                </div>
+              )}
             </header>
-            {_rawBody && <Editor blocks={_rawBody} />}
+            {_rawBody && (
+              <div className="Article__content">
+                <Editor blocks={_rawBody} />
+              </div>
+            )}
           </GridItem>
         </Grid>
         {currentArticles && (
           <section className="Article__latest">
-            <Grid>
+            <Grid columns={{ sm: 2 }}>
               {currentArticles.map(article => (
-                <GridItem key={article?._key}>
-                  <Card
-                    title={article.title}
-                    image={article._rawMainImage}
-                    excerpt={article._rawExcerpt}
-                    link={article}
-                  />
-                </GridItem>
+                <Card
+                  key={article?._key}
+                  title={article.title}
+                  image={article._rawMainImage}
+                  excerpt={article._rawExcerpt}
+                  link={article}
+                />
               ))}
             </Grid>
           </section>

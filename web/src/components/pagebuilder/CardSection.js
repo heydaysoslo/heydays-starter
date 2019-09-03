@@ -1,23 +1,22 @@
 import React from 'react'
-import { Grid, GridItem } from 'gatsby-theme-heydays'
+import { Grid } from 'gatsby-theme-heydays'
 
 import Card from '../Card'
 
 const CardSection = ({ cardsList = [], ...props }) => {
   return (
     <div className="CardSection">
-      <Grid>
+      <Grid columns={{ sm: 1, md: 3 }} margin="y">
         {cardsList.map(card => {
           const { content, cardOverride } = card
           return (
-            <GridItem key={card?._key}>
-              <Card
-                title={cardOverride?.title || content?.title}
-                image={cardOverride?.image || content?.mainImage}
-                excerpt={cardOverride?.content || content?.excerpt}
-                link={cardOverride?.link || content}
-              />
-            </GridItem>
+            <Card
+              key={card?._key}
+              title={cardOverride?.title || content?.title}
+              image={cardOverride?.image || content?.mainImage}
+              excerpt={cardOverride?.content || content?.excerpt}
+              link={cardOverride?.link || content}
+            />
           )
         })}
       </Grid>

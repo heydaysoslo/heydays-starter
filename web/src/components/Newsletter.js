@@ -3,6 +3,7 @@ import { Formik } from 'formik'
 
 import { newsletterSchema, createDefaultValues } from '../utils/validation'
 import Input from './Input'
+import { Button } from 'gatsby-theme-heydays'
 
 const Newsletter = props => {
   const {
@@ -44,17 +45,16 @@ const Newsletter = props => {
             errors={errors}
             touched={touched}
           />
-          <button
-            type="button"
-            className="Button__secondary"
+          <Button
             onClick={handleReset}
             disabled={!dirty || isSubmitting}
+            variant="secondary"
           >
             Reset
-          </button>
-          <button type="submit" disabled={isSubmitting}>
+          </Button>
+          <Button type="submit" disabled={isSubmitting} variant="primary">
             {isSubmitting ? 'Submitting…' : 'Submit'}
-          </button>
+          </Button>
         </>
       )}
       {status === 'error' && (

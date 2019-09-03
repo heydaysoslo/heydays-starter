@@ -7,4 +7,10 @@
     opacity: 1;
     transform: translateY(0);
   }
+  &__media {
+    background: #f1f1f1;
+  }
+  &__title, &__excerpt {
+    @include spacing(sm,margin-top);
+  }
 }

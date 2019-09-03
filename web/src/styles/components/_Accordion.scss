@@ -1,4 +1,5 @@
 .Accordion {
+
   &__item {
     &--is-active {
       .Accordion {
@@ -14,21 +15,24 @@
       }
     }
   }
+
   &__trigger {
     width: 100%;
     text-align: left;
     background: $c-secondary;
     display: flex;
     justify-content: space-between;
-    @include spacing(sm, (padding-left, padding-right));
+    @include spacing(xs, (padding-top, padding-bottom));
 
     &:focus {
       outline: none;
       background: rgba($c-secondary, 0.5);
     }
   }
+
   &__content {
     display: none;
     @include spacing(sm, (padding-left, padding-right));
   }
+
 }

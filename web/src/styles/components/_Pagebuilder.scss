@@ -1,0 +1,6 @@
+.Pagebuilder {
+  opacity: 0.5;
+  &__item {
+    @include spacing(sm,(margin-top,margin-bottom));
+  }
+}

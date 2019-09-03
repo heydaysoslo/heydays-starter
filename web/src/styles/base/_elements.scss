@@ -16,6 +16,10 @@ img {
   vertical-align: middle; // remove space above/below images
 }
 
+[role='button'] {
+  cursor: pointer;
+}
+
 button {
   cursor: pointer;
   appearance: none;
@@ -84,16 +88,19 @@ ul {
   list-style-type: disc;
   list-style-position: inside;
 }
+
 ol {
   list-style-type: decimal;
   list-style-position: inside;
 }
+
 ul ul,
 ol ul {
   list-style-type: circle;
   list-style-position: inside;
   margin-left: 15px;
 }
+
 ol ol,
 ul ol {
   list-style-type: lower-latin;

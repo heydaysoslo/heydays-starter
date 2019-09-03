@@ -22,14 +22,14 @@ const Content = ({ title, content, button }) => {
 const TextImageSplit = ({ textOnTheRight, image, aspect, ...props }) => {
   return (
     <div className="TextImageSplit">
-      <Grid align="middle">
-        <GridItem sm={6} md={6} lg={6} xl={6} xxl={6}>
+      <Grid columns={{ sm: 2 }} align="middle">
+        <GridItem>
           {!textOnTheRight && <Content {...props} />}
           {textOnTheRight && image && (
             <SanityImage node={image} aspect={aspect} />
           )}
         </GridItem>
-        <GridItem sm={6} md={6} lg={6} xl={6} xxl={6}>
+        <GridItem>
           {textOnTheRight && <Content {...props} />}
           {!textOnTheRight && image && (
             <SanityImage

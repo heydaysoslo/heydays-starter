@@ -84,7 +84,11 @@ export const serializers = {
 const Editor = ({ blocks }) => {
   return (
     <div className="Editor">
-      <BaseBlockContent blocks={blocks} serializers={serializers} />
+      <BaseBlockContent
+        className="Editor__blocks"
+        blocks={blocks}
+        serializers={serializers}
+      />
     </div>
   )
 }

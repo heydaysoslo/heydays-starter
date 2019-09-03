@@ -35,9 +35,18 @@
     }
   }
 
-  &__close {
-    position: absolute;
-    top: 0;
-    right: 0;
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    @include spacing(sm,padding-top);
+    flex-direction: row-reverse;
   }
+
+  // &__close {
+  //   position: absolute;
+  //   top: 0;
+  //   right: 0;
+  // }
+
 }

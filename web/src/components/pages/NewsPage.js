@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
-import { Grid, GridItem } from 'gatsby-theme-heydays'
+import { Grid, Container } from 'gatsby-theme-heydays'
 import Card from '../Card'
 
 const NewsPage = ({ title, content, _rawPagebuilder, ...props }) => {
@@ -9,23 +9,31 @@ const NewsPage = ({ title, content, _rawPagebuilder, ...props }) => {
 
   return (
     <div className="Page">
-      {title && <h1>{title}</h1>}
+      {title && (
+        <header className="Page__header">
+          <Container>
+            <h1 className="Page__title">{title}</h1>
+          </Container>
+        </header>
+      )}
       {articles && (
-        <Grid>
-          {articles.map(
-            article =>
-              article && (
-                <GridItem key={article.id}>
-                  <Card
-                    title={article.title}
-                    image={article._rawMainImage}
-                    excerpt={article._rawExcerpt}
-                    link={article}
-                  />
-                </GridItem>
-              )
-          )}
-        </Grid>
+        <Container className="Page__content">
+          <Grid margin="y" columns={{ xs: 1, sm: 2, md: 3 }}>
+            {articles.map(
+              article =>
+                article && (
+                  <div key={article.id}>
+                    <Card
+                      title={article.title}
+                      image={article._rawMainImage}
+                      excerpt={article._rawExcerpt}
+                      link={article}
+                    />
+                  </div>
+                )
+            )}
+          </Grid>
+        </Container>
       )}
     </div>
   )

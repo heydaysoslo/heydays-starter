@@ -1,6 +1,7 @@
 .Button {
   @include spacing(sm, padding);
   color: red;
+  display: inline-block;
   &--primary {
     background: $c-primary;
   }

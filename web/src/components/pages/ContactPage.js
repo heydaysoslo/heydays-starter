@@ -1,13 +1,20 @@
 import React from 'react'
 import Pagebuilder from '../pagebuilder/Pagebuilder'
+import { Container } from 'gatsby-theme-heydays'
 
 const ContactPage = ({ title, content, _rawPagebuilder, ...props }) => {
   return (
     <div className="Page">
-      <h1>I'm ContactPage Template</h1>
-      {_rawPagebuilder?.sections && (
-        <Pagebuilder sections={_rawPagebuilder.sections} />
-      )}
+      <header className="Page__header">
+        <Container>
+          <h1 className="Page__title">Contact Page Template</h1>
+        </Container>
+      </header>
+      <Container className="Page__content">
+        {_rawPagebuilder?.sections && (
+          <Pagebuilder sections={_rawPagebuilder.sections} />
+        )}
+      </Container>
     </div>
   )
 }
