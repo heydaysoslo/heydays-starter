@@ -1,6 +1,5 @@
 import React from 'react'
-import Grid from '../Grid'
-import GridItem from '../GridItem'
+import Grid, { GridItem } from '../Grid'
 
 import SanityImage from '../editor/SanityImage'
 import Editor from '../editor/Editor'
