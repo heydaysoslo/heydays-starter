@@ -1,0 +1,15 @@
+.Article {
+  // opacity: 0;
+  // &__content {
+  //   opacity: 0;
+  // }
+  &__image {
+    @include spacing(sm, margin-top);
+  }
+  &__content {
+    @include spacing(md, margin-top);
+  }
+  &__latest {
+    @include spacing(md, margin-top);
+  }
+}

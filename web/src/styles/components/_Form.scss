@@ -13,9 +13,12 @@
 
     &[type='checkbox'] {
       border: $border;
-
-      &[value='true'] {
-        background: red;
+      width: 20px;
+      height: 20px;
+      display: inline-block;
+      vertical-align: middle;
+      &:checked {
+        background-color: $c-primary;
       }
     }
 

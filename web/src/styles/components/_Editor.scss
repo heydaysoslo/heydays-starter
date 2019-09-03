@@ -1,12 +1,18 @@
 .Editor {
-  p + p {
-    @include spacing(sm, margin-top);
-  }
-  a {
-    text-decoration: underline;
-
-    &:hover {
-      text-decoration: none;
+  &__blocks {
+    p, ul, ol, .Oembed {
+      @include spacing(sm, (margin-top, margin-bottom));
+    }
+    a {
+      text-decoration: underline;
+  
+      &:hover {
+        text-decoration: none;
+      }
+    }
+    > h1, > h2, > h3, > h4, > h5, > h6 {
+      @include spacing(lg, margin-top);
+      @include spacing(sm, margin-bottom);
     }
   }
 }

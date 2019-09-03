@@ -35,45 +35,55 @@ $content-width: (
 // Spacing
 $spacing: (
   sm: (
-    xxs: 10,
-    xs: 10,
-    sm: 10,
-    md: 10,
-    lg: 10,
-    section: 10
+    xxs: 6,
+    xs: 12,
+    sm: 18,
+    md: 24,
+    lg: 36,
+    section: 36
   ),
   md: (
-    xxs: 30,
-    xs: 30,
-    sm: 30,
-    md: 30,
-    lg: 30,
-    section: 30
+    xxs: 6,
+    xs: 12,
+    sm: 18,
+    md: 24,
+    lg: 36,
+    section: 36
   )
+);
+
+// Grid gutters
+$grid-gutters: (
+  xs: 24,
+  sm: 24,
+  md: 24,
+  lg: 24,
+  xl: 24,
+  xxl: 24
 );
 
 // Typography
 $typography: (
   sm: (
-    h1: 30,
-    h2: 30,
-    h3: 30,
-    body: 30,
-    small: 18
+    h1: 64,
+    h2: 42,
+    h3: 28,
+    body: 20,
+    small: 16
   ),
   lg: (
-    h1: 50,
-    h2: 50,
-    h3: 50,
-    body: 50,
-    small: 18
+    h1: 64,
+    h2: 42,
+    h3: 28,
+    body: 20,
+    small: 16
   ),
   xl: (
-    h1: 70,
-    h2: 70,
-    h3: 70,
-    body: 70,
-    small: 18
+    h1: 64,
+    h2: 42,
+    h3: 28,
+    body: 20,
+    small: 16
   )
 );
 

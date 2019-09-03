@@ -24,7 +24,7 @@ const Menu = () => {
         <Portal>
           <FadeIn trigger={state?.showMenu}>
             <div className="Menu__cover">
-              <Container>
+              <Container className="Menu__container">
                 <button
                   className="Menu__close"
                   onClick={() => actions.toggleMenu()}

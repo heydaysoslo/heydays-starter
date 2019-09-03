@@ -8,20 +8,26 @@ import InView from './InView'
 const Card = ({ title, image, excerpt, link }) => (
   <InView className="Card" activeClassName="Card--is-visible">
     <LinkResolver data={link}>
-      {image ? (
-        <SanityImage node={image} aspectRatio="portrait" />
-      ) : (
-        <AspectContainer
-          aspect={{
-            sm: 'portrait',
-            md: 'portrait',
-            lg: 'portrait',
-            xl: 'portrait'
-          }}
-        />
-      )}
+      <div className="Card__media">
+        {image ? (
+          <SanityImage node={image} aspectRatio="portrait" />
+        ) : (
+          <AspectContainer
+            aspect={{
+              sm: 'portrait',
+              md: 'portrait',
+              lg: 'portrait',
+              xl: 'portrait'
+            }}
+          />
+        )}
+      </div>
       {title && <h3 className="Card__title">{title}</h3>}
-      {excerpt && <Editor blocks={excerpt} />}
+      {excerpt && (
+        <div className="Card__excerpt">
+          <Editor blocks={excerpt} />
+        </div>
+      )}
     </LinkResolver>
   </InView>
 )

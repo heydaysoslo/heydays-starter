@@ -23,12 +23,13 @@ const PageBuilder = ({ sections }) => {
       {sections.map((section, index) => {
         const Component = sectionTypes[section._type] || null
         return Component ? (
-          <Component
-            key={section._key}
-            {...section}
-            prevComp={sections[index - 1] ? sections[index - 1] : null}
-            nextComp={sections[index + 1] ? sections[index + 1] : null}
-          />
+          <div key={section._key} className="PageBuilder__item">
+            <Component
+              {...section}
+              prevComp={sections[index - 1] ? sections[index - 1] : null}
+              nextComp={sections[index + 1] ? sections[index + 1] : null}
+            />
+          </div>
         ) : (
           <p key={section._key} style={{ background: 'yellow' }}>
             Component {section._type} not found

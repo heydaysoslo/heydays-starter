@@ -108,7 +108,7 @@
 
 @mixin font-h1 {
   @include font-size(h1);
-  line-height: 1.307692308;
+  line-height: 1.1;
 }
 
 @mixin font-h2 {
