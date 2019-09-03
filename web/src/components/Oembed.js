@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { AspectContainer } from 'gatsby-theme-heydays'
 
 import { isProviderAllowed } from '../../heydays-config'
+
+import AspectContainer from './AspectContainer'
 
 const Oembed = ({ url }) => {
   const [embed, setEmbed] = useState({})

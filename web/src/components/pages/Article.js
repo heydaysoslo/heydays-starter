@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react'
+import { graphql, useStaticQuery } from 'gatsby'
+
+import { getReadTime } from '../../utils/sanityHelpers'
 import Editor from '../editor/Editor'
 import SanityImage from '../editor/SanityImage'
-import { getReadTime, GridItem, Grid, Container } from 'gatsby-theme-heydays'
+import Container from '../Container'
+import Grid from '../Grid'
+import GridItem from '../GridItem'
 import Share from '../Share'
-import { graphql, useStaticQuery } from 'gatsby'
 import Card from '../Card'
 
 const Article = ({

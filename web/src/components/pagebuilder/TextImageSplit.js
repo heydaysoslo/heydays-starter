@@ -1,5 +1,6 @@
 import React from 'react'
-import { Grid, GridItem } from 'gatsby-theme-heydays'
+import Grid from '../Grid'
+import GridItem from '../GridItem'
 
 import SanityImage from '../editor/SanityImage'
 import Editor from '../editor/Editor'

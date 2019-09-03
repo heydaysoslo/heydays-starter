@@ -4,8 +4,8 @@ import { graphql, useStaticQuery } from 'gatsby'
 import AppContext from './context/AppContext'
 import FadeIn from './FadeIn'
 import MenuItems from './MenuItems'
-import Portal from 'gatsby-theme-heydays/src/components/Portal'
-import { Container } from 'gatsby-theme-heydays'
+import Portal from './Portal'
+import Container from './Container'
 
 const Menu = () => {
   const data = useStaticQuery(query)

@@ -1,6 +1,6 @@
 import React from 'react'
 import Pagebuilder from '../pagebuilder/Pagebuilder'
-import { Container } from 'gatsby-theme-heydays'
+import Container from '../Container'
 
 const Page = ({ title, content, _rawPagebuilder, ...props }) => {
   return (

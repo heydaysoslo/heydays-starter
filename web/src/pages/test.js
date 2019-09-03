@@ -1,16 +1,14 @@
 import React, { useContext } from 'react'
-import {
-  Button,
-  Helmet,
-  Container,
-  useWindowSize,
-  useMediaQuery,
-  useScroll,
-  Modal,
-  AspectContainer,
-  // Image
-  mapEdgesToNode
-} from 'gatsby-theme-heydays'
+import { Helmet } from 'react-helmet'
+
+import { mapEdgesToNode } from '../utils/sanityHelpers'
+import Button from '../components/Button'
+import Container from '../components/Container'
+import Modal from '../components/Modal'
+import AspectContainer from '../components/AspectContainer'
+import useWindowSize from '../components/hooks/useWindowSize'
+import useMediaQuery from '../components/hooks/useMediaQuery'
+import useScroll from '../components/hooks/useScroll'
 import { useStaticQuery, graphql } from 'gatsby'
 // import Img from 'gatsby-image'
 import FadeIn from '../components/FadeIn'

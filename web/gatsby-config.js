@@ -37,26 +37,47 @@ module.exports = new Promise((resolve, reject) => {
       },
       plugins: [
         {
-          resolve: 'gatsby-theme-heydays',
+          resolve: 'gatsby-source-sanity',
           options: {
-            programDirectory: __dirname,
-            env: env,
-            modules: [
-              'vimeo'
-              // 'image-color'
-            ],
-            polyfills: ['fetch', 'Array.from']
+            projectId: env.SANITY_PROJECT_ID,
+            dataset: env.SANITY_DATASET_PROD
+            // a token with read permissions is required
+            // if you have a private dataset
+            // token: env.SANITY_TOKEN,
+            // watchMode: process.env.NODE_ENV === 'development',
+            // overlayDrafts: false
           }
         },
         {
-          resolve: `gatsby-plugin-manifest`,
+          resolve: `gatsby-source-filesystem`,
           options: {
-            name: siteSettings.siteName,
-            short_name: siteSettings.siteName,
-            start_url: `/`,
-            background_color: `#000`,
-            theme_color: `#fff`,
-            display: siteSettings.siteName
+            name: `images`,
+            path: `${__dirname}/src/assets/images`
+          }
+        },
+        `gatsby-plugin-sharp`,
+        `gatsby-transformer-sharp`,
+        `gatsby-plugin-react-helmet`,
+        `gatsby-plugin-portal`,
+        {
+          resolve: `gatsby-plugin-polyfill-io`,
+          options: {
+            features: [
+              `fetch`,
+              'Array.prototype.forEach',
+              'NodeList.prototype.forEach',
+              'Array.prototype.map'
+            ]
+          }
+        },
+        {
+          // https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-sitemap
+          resolve: `gatsby-plugin-sitemap`,
+          options: {
+            output: `/sitemap.xml`
+            // Exclude specific pages or groups of pages using glob parameters
+            // See: https://github.com/isaacs/minimatch
+            // The example below will exclude the single `path/to/page` and all routes beginning with `category`
           }
         },
         {
@@ -91,23 +112,47 @@ module.exports = new Promise((resolve, reject) => {
           }
         },
         {
-          resolve: 'gatsby-plugin-compile-es6-packages',
+          resolve: `gatsby-plugin-google-tagmanager`,
           options: {
-            modules: ['gatsby-theme-heydays']
+            id: env.GOOGLE_TAGMANAGER_ID,
+
+            // Include GTM in development.
+            // Defaults to false meaning GTM will only be loaded in production.
+            includeInDevelopment: false
+
+            // Specify optional GTM environment details.
+            // gtmAuth: "YOUR_GOOGLE_TAGMANAGER_ENVIROMENT_AUTH_STRING",
+            // gtmPreview: "YOUR_GOOGLE_TAGMANAGER_ENVIROMENT_PREVIEW_NAME",
+            // dataLayerName: "YOUR_DATA_LAYER_NAME",
           }
         },
+        // {
+        //   resolve: 'gatsby-source-vimeo-all',
+        //   options: {
+        //     clientId: env.VIMEO_CLIENT_ID,
+        //     clientSecret: env.VIMEO_CLIENT_SECRET,
+        //     accessToken: env.VIMEO_ACCESS_TOKEN
+        //   }
+        // }
+        // 'gatsby-plugin-extract-image-colors'
         {
-          resolve: 'gatsby-source-sanity',
+          resolve: `gatsby-plugin-manifest`,
           options: {
-            projectId: env.SANITY_PROJECT_ID,
-            dataset: env.SANITY_DATASET_PROD,
-            // a token with read permissions is required
-            // if you have a private dataset
-            token: env.SANITY_TOKEN,
-            watchMode: process.env.NODE_ENV === 'development',
-            overlayDrafts: process.env.NODE_ENV === 'development'
+            icon: `${__dirname}/src/assets/images/favicon.png`,
+            name: siteSettings.siteName,
+            short_name: siteSettings.siteName,
+            start_url: `/`,
+            background_color: `#000`,
+            theme_color: `#fff`,
+            display: siteSettings.siteName
           }
         }
+        // {
+        //   resolve: `gatsby-plugin-favicon`,
+        //   options: {
+        //     logo: `${__dirname}/src/assets/images/favicon.png`
+        //   }
+        // }
       ],
       // for avoiding CORS while developing Netlify Functions locally
       // read more: https://www.gatsbyjs.org/docs/api-proxy/#advanced-proxying

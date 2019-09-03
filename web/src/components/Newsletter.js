@@ -3,7 +3,7 @@ import { Formik } from 'formik'
 
 import { newsletterSchema, createDefaultValues } from '../utils/validation'
 import Input from './Input'
-import { Button } from 'gatsby-theme-heydays'
+import Button from './Button'
 
 const Newsletter = props => {
   const {
