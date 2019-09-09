@@ -28,6 +28,7 @@ $typography: (
 
 @function font-size($size, $breakpoint) {
   $sizes: map-get($typography, $breakpoint);
+
   @return map-get($sizes, $size);
 }
 

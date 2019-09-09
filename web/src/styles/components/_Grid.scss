@@ -11,31 +11,31 @@ $grid-gutters: (
 $grid-columns: 12 !default;
 
 .Grid {
-
   display: flex;
   flex: 0 1 auto;
   flex-direction: row;
   flex-wrap: wrap;
 
   // Generate responsive classes
-  @each $bp, $gutter in $grid-gutters {
 
+  @each $bp, $gutter in $grid-gutters {
     // Horizontal gutter between elements
     $half-gutter: ($gutter * 0.5);
 
     // Gutter compensation
     $gutter-compensation: rem-calc($half-gutter * -1);
-    
-    @include bp($bp) {
 
+    @include bp($bp) {
       // Add gutter compensation to elements
-      &--padding, &--#{$bp}-padding {
+      &--padding,
+      &--#{$bp}-padding {
         margin-right: $gutter-compensation;
         margin-left: $gutter-compensation;
       }
 
       // Add gutter to items
-      &--padding > &__item, &--#{$bp}-padding > &__item {
+      &--padding > &__item,
+      &--#{$bp}-padding > &__item {
         padding-right: rem-calc($half-gutter);
         padding-left: rem-calc($half-gutter);
       }
@@ -65,49 +65,39 @@ $grid-columns: 12 !default;
       }
 
       // Set item widths based on $grid-columns number
-      @for $i from 1 through $grid-columns {
 
+      @for $i from 1 through $grid-columns {
         $item-width: percentage(1 / $i);
 
         &--#{$bp}-#{$i} > &__item {
           flex-basis: $item-width;
           max-width: $item-width;
         }
-
       }
-
     }
-
   }
-  
+
   // Generate item specific classes
   &__item {
-
     box-sizing: border-box;
     flex: 0 0 100%;
     max-width: 100%;
 
     // Generate widths based on 12 column grid
+
     @each $bp, $val in $grid-gutters {
       @include bp($bp) {
-        
         @for $i from 1 through $grid-columns {
-
           &--#{$bp}-#{$i} {
             flex-basis: percentage($i/$grid-columns);
             max-width: percentage($i/$grid-columns);
           }
-          
+
           &--#{$bp}-offset-#{$i} {
             margin-left: percentage($i/$grid-columns);
           }
-
         }
-
       }
-
     }
-
   }
-  
 }

@@ -1,19 +1,26 @@
 .Editor {
   &__blocks {
-    
-    p, ul, ol, .Oembed {
+    p,
+    ul,
+    ol,
+    .Oembed {
       @include spacing(xs, (margin-top, margin-bottom));
     }
-    
+
     a {
       text-decoration: underline;
-  
+
       &:hover {
         text-decoration: none;
       }
     }
-    
-    > h1, > h2, > h3, > h4, > h5, > h6 {
+
+    > h1,
+    > h2,
+    > h3,
+    > h4,
+    > h5,
+    > h6 {
       @include spacing(lg, margin-top);
       @include spacing(sm, margin-bottom);
     }
@@ -24,6 +31,5 @@
     > *:last-child {
       margin-bottom: 0;
     }
-
   }
 }

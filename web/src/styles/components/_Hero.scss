@@ -3,6 +3,7 @@
 
   &__content {
     position: absolute;
+
     @include spacing(md, (bottom));
     z-index: 1;
   }

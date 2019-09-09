@@ -60,6 +60,10 @@ module.exports = new Promise((resolve, reject) => {
         `gatsby-plugin-react-helmet`,
         `gatsby-plugin-portal`,
         {
+          resolve: '@danbruegge/gatsby-plugin-stylelint',
+          options: { files: ['**/*.scss'] }
+        },
+        {
           resolve: `gatsby-plugin-polyfill-io`,
           options: {
             features: [

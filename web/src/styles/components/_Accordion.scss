@@ -1,5 +1,4 @@
 .Accordion {
-
   &__item {
     &--is-active {
       .Accordion {
@@ -22,6 +21,7 @@
     background: $c-secondary;
     display: flex;
     justify-content: space-between;
+
     @include spacing(xs, (padding-top, padding-bottom));
 
     &:focus {
@@ -32,7 +32,7 @@
 
   &__content {
     display: none;
+
     @include spacing(sm, (padding-left, padding-right));
   }
-
 }

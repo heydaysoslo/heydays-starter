@@ -1,4 +1,6 @@
 {
-  // "javascript.validate.enable": false,
-  // "vetur.validation.script": false
+  "prettier.eslintIntegration": true, // ignore warning
+  "prettier.stylelintIntegration": true, // ignore warning
+  "eslint.autoFixOnSave": true,
+  "editor.formatOnSave": true
 }

@@ -1,8 +1,4 @@
 .Article {
-  // opacity: 0;
-  // &__content {
-  //   opacity: 0;
-  // }
   &__image {
     @include spacing(sm, margin-top);
   }

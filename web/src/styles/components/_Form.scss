@@ -7,11 +7,12 @@
   }
   &__input {
     border: $border;
+
     @include font-size(body);
     @include spacing(xs, (padding-left, padding-right));
     @include spacing(xxs, (padding-top, padding-bottom));
 
-    &[type='checkbox'] {
+    &[type="checkbox"] {
       border: $border;
       width: 20px;
       height: 20px;

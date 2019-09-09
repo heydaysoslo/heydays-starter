@@ -6,8 +6,9 @@ body {
   font-family: $f-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  @include font-body;
   color: $c-text;
+
+  @include font-body;
 }
 
 ::selection {

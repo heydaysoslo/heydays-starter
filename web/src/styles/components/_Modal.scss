@@ -19,7 +19,7 @@
 
     // Vertical alignment fix
     &:before {
-      content: '';
+      content: "";
       display: inline-block;
       height: 100%;
       vertical-align: middle;
@@ -50,6 +50,7 @@
     top: 2rem;
     right: 1.5rem;
     z-index: 20;
+
     @include bp(md) {
       top: 3rem;
       right: 2rem;

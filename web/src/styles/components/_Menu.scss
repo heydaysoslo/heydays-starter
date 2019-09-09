@@ -1,6 +1,7 @@
 .Menu {
   &__mobile {
     display: block;
+
     @include bp(xl) {
       display: none;
     }
@@ -8,6 +9,7 @@
 
   &__desktop {
     display: none;
+
     @include bp(xl) {
       display: block;
     }
@@ -39,7 +41,8 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    @include spacing(sm,padding-top);
+
+    @include spacing(sm, padding-top);
     flex-direction: row-reverse;
   }
 
@@ -48,5 +51,4 @@
   //   top: 0;
   //   right: 0;
   // }
-
 }

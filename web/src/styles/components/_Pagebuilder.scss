@@ -1,5 +1,5 @@
 .PageBuilder {
   &__item {
-    @include spacing(section,(margin-top,margin-bottom));
+    @include spacing(section, (margin-top, margin-bottom));
   }
 }
