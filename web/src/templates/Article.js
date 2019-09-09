@@ -6,12 +6,12 @@ import Article from '../components/pages/Article'
 
 const NewsTemplate = props => {
   const { data } = props
-  const page = data && data.article
+  const article = data && data.article
 
   return (
-    page && (
-      <Layout {...page}>
-        <Article {...page} />
+    article && (
+      <Layout {...article}>
+        <Article {...article} />
       </Layout>
     )
   )
