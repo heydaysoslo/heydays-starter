@@ -6,10 +6,12 @@ import { blocksToText } from '../utils/sanityHelpers'
 import Header from './Header'
 import Footer from './Footer'
 import SEO from './SEO'
+import Credits from './Credits'
 
 const Layout = props => {
   return (
     <>
+      <Credits />
       <SEO
         getUrl={getUrl}
         type={props._type}
