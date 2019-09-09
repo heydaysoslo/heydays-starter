@@ -10,7 +10,7 @@ import Credits from './Credits'
 
 const Layout = props => {
   return (
-    <>
+    <div className="Site">
       <Credits />
       <SEO
         getUrl={getUrl}
@@ -21,12 +21,10 @@ const Layout = props => {
         image={props._rawMainImage}
         description={props._rawExcerpt && blocksToText(props._rawExcerpt)}
       />
-      <div className="Page">
-        <Header />
-        <div className="Page__content">{props.children}</div>
-        <Footer />
-      </div>
-    </>
+      <Header />
+      <div className="Site__content">{props.children}</div>
+      <Footer />
+    </div>
   )
 }
 
