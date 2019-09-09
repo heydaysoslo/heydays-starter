@@ -19,7 +19,6 @@ We now use [📚`stylelint-prettier/recommended`](https://github.com/prettier/st
 ```json
 // In package.json
 {
-  // ...other config
   "stylelint": {
     "rules": {
       "declaration-block-no-duplicate-properties": true,
@@ -41,3 +40,10 @@ We now use [📚`stylelint-prettier/recommended`](https://github.com/prettier/st
   }
 }
 ```
+
+### netlify.toml
+
+Netlify does not like monorepos that much. Therefore we'll need a little work around.
+We need two toml files one in the root which is the one netlify will use, and on in the
+`/web` root which `gatsby-plugin-netlify-functions` will use. You only need the output
+path for the one in `/web`.
