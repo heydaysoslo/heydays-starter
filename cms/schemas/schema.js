@@ -42,6 +42,7 @@ import carousel from './objects/carousel'
 import oembed from './objects/oembed'
 import accordion from './objects/accordion'
 import accordionItem from './objects/accordionItem'
+import address from './objects/address'
 
 // const personOrder = createOrderDoc('person')
 // const articleOrder = createOrderDoc('article')
@@ -82,6 +83,7 @@ export default createSchema({
     oembed,
     accordion,
     accordionItem,
+    address,
 
     // The following are document types which will appear
     // in the studio.

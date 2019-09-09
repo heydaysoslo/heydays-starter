@@ -7,19 +7,40 @@ export default {
   liveEdit: false,
   __experimental_actions: ['update', 'publish' /*'create', 'delete'*/],
   icon: MdBusiness,
-  options: {
-    fieldset: [{ name: 'Offices' }]
-  },
+  fieldsets: [
+    { name: 'offices', title: 'Offices' },
+    { name: 'contact', title: 'Contact' }
+  ],
   fields: [
     {
       name: 'name',
       title: 'Company name',
-      type: 'string'
+      type: 'string',
+      fieldset: 'contact'
     },
     {
       name: 'email',
       title: 'Email',
-      type: 'email'
+      type: 'email',
+      fieldset: 'contact'
+    },
+    {
+      name: 'phone',
+      title: 'Phone number',
+      type: 'string',
+      fieldset: 'contact'
+    },
+    {
+      name: 'address',
+      title: 'Address',
+      type: 'address',
+      fieldset: 'contact'
+    },
+    {
+      name: 'orgNumber',
+      title: 'Organization number',
+      type: 'string',
+      fieldset: 'contact'
     },
     {
       name: 'social',
