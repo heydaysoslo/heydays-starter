@@ -1,2 +1,5 @@
 [build]
-  functions = "web/netlify-functions"
+  baseDirectory = '/web'
+  functions = "/web/netlify-functions"
+  publish = "/web/public"
+  command = "yarn netlify-build"
