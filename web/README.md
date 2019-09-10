@@ -41,3 +41,5 @@ Netlify does not like monorepos that much. Therefore we'll need a little work ar
 We need two toml files one in the root which is the one netlify will use, and on in the
 `/web` root which `gatsby-plugin-netlify-functions` will use. You only need the output
 path for the one in `/web`.
+
+Enviroment variables for production are kept in the .toml file. Make sure you update both places when you change a value.

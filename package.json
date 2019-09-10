@@ -7,8 +7,8 @@
     "start": "yarn empty-cache && lerna run start --parallel watch",
     "build": "lerna run build --parallel",
     "bootstrap": "lerna bootstrap",
-    "deploy:graphql": "lerna run graphql-deploy",
-    "deploy:sanity": "lerna run sanity-deploy",
+    "deploy:graphql": "lerna run deploy:graphql",
+    "deploy:sanity": "lerna run deploy:sanity",
     "postinstall": "lerna bootstrap"
   },
   "workspaces": [

@@ -8,10 +8,10 @@
     "start": "sanity start",
     "format": "prettier-eslint --write \"**/*.js\" \"!node_modules/**\"",
     "build": "sanity build",
-    "graphql-deploy": "sanity graphql deploy --playground",
+    "deploy:graphql": "sanity graphql deploy --playground",
+    "deploy:sanity": "sanity deploy",
     "lint": "eslint .",
-    "test": "sanity check",
-    "sanity-deploy": "sanity deploy"
+    "test": "sanity check"
   },
   "dependencies": {
     "@material-ui/core": "^4.3.2",
