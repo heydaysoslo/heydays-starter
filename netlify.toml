@@ -2,3 +2,9 @@
   functions = "/web/netlify-functions"
   publish = "/web/public"
   command = "yarn build"
+
+[dev]
+  functions = "/web/netlify-functions"
+  publish = "/web/public"
+  command = "yarn netlify-build"
+  port = 8000

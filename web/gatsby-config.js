@@ -139,22 +139,16 @@ module.exports = new Promise((resolve, reject) => {
         //   }
         // }
         // 'gatsby-plugin-extract-image-colors'
-        {
-          resolve: `gatsby-plugin-manifest`,
-          options: {
-            icon: `${__dirname}/src/assets/images/favicon.png`,
-            name: siteSettings.siteName,
-            short_name: siteSettings.siteName,
-            start_url: `/`,
-            background_color: `#000`,
-            theme_color: `#fff`,
-            display: siteSettings.siteName
-          }
-        }
         // {
-        //   resolve: `gatsby-plugin-favicon`,
+        //   resolve: `gatsby-plugin-manifest`,
         //   options: {
-        //     logo: `${__dirname}/src/assets/images/favicon.png`
+        //     icon: `${__dirname}/src/assets/images/favicon.png`,
+        //     name: siteSettings.siteName,
+        //     short_name: siteSettings.siteName,
+        //     start_url: `/`,
+        //     background_color: `#000`,
+        //     theme_color: `#fff`,
+        //     display: siteSettings.siteName
         //   }
         // }
       ],
