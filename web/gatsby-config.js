@@ -146,12 +146,12 @@ module.exports = new Promise((resolve, reject) => {
           resolve: `gatsby-plugin-manifest`,
           options: {
             icon: `${__dirname}/src/assets/images/favicon.png`,
-            name: siteSettings.siteName,
-            short_name: siteSettings.siteName,
+            name: siteSettings?.siteName,
+            short_name: siteSettings?.siteName,
             start_url: `/`,
             background_color: `#000`,
             theme_color: `#fff`,
-            display: siteSettings.siteName
+            display: siteSettings?.siteName
           }
         }
       ],

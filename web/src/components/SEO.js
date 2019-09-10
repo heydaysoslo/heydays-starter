@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet'
 import { graphql, useStaticQuery } from 'gatsby'
 
 const truncateString = string => {
+  if(!string) return null
   const maxLength = 50
   if (string.length < maxLength) {
     return string
@@ -29,21 +30,21 @@ const SEO = props => {
   const { sanityCompanyInfo, sanitySiteSettings } = data
   const { type, slug, getUrl } = props
 
-  const titleTemplate = `%s » ${sanityCompanyInfo.name}`
-  const locale = sanitySiteSettings.locale || 'en_US'
+  const titleTemplate = `%s » ${sanityCompanyInfo?.name}`
+  const locale = sanitySiteSettings?.locale || 'en_US'
   const ogType = type === 'article' ? 'article' : 'website'
-  const canonicalUrl = `${sanitySiteSettings.siteUrl}${getUrl(type, slug)}`
+  const canonicalUrl = `${sanitySiteSettings?.siteUrl}${getUrl(type, slug)}`
 
   /**
    * Get meta tag overrides recursively, starting from global site settings
    */
-  const sources = [sanitySiteSettings._rawSeo, props, props.seo]
+  const sources = [sanitySiteSettings?._rawSeo, props, props.seo]
   const title = getLastValidOverride(sources, 'title')
   const description = getLastValidOverride(sources, 'description')
   const image = getLastValidOverride(sources, 'image')
 
   const tabTitle =
-    slug === sanitySiteSettings._rawFrontpage.slug.current
+    slug === sanitySiteSettings.?_rawFrontpage.slug.current
       ? title
       : getTitleFromTemplate(titleTemplate, truncateString(title))
   return (
