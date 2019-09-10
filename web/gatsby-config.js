@@ -1,22 +1,14 @@
+require('dotenv').config()
 const path = require('path')
 const globImporter = require('node-sass-glob-importer')
 const proxy = require('http-proxy-middleware')
 
-const envPath = path.join(__dirname.split('/web').join(''), '/.env')
-
-const env =
-  process.env.NODE_ENV === 'development'
-    ? require('dotenv').config({
-        path: envPath
-      }).parsed
-    : process.env
-
 module.exports = new Promise((resolve, reject) => {
   const sanityClient = require('@sanity/client')
   const client = sanityClient({
-    projectId: env.SANITY_PROJECT_ID,
-    dataset: env.SANITY_DATASET_PROD,
-    token: env.SANITY_TOKEN, // or leave blank to be anonymous user
+    projectId: process.env.SANITY_PROJECT_ID,
+    dataset: process.env.SANITY_DATASET_PROD,
+    token: process.env.SANITY_TOKEN, // or leave blank to be anonymous user
     useCdn: true // `false` if you want to ensure fresh data
   })
 
@@ -42,12 +34,12 @@ module.exports = new Promise((resolve, reject) => {
         {
           resolve: 'gatsby-source-sanity',
           options: {
-            projectId: env.SANITY_PROJECT_ID,
-            dataset: env.SANITY_DATASET_PROD
+            projectId: process.env.SANITY_PROJECT_ID,
+            dataset: process.env.SANITY_DATASET_PROD
             // a token with read permissions is required
             // if you have a private dataset
-            // token: env.SANITY_TOKEN,
-            // watchMode: process.env.NODE_ENV === 'development',
+            // token: process.env.SANITY_TOKEN,
+            // watchMode: process.process.env.NODE_ENV === 'development',
             // overlayDrafts: false
           }
         },
@@ -121,7 +113,7 @@ module.exports = new Promise((resolve, reject) => {
         {
           resolve: `gatsby-plugin-google-tagmanager`,
           options: {
-            id: env.GOOGLE_TAGMANAGER_ID,
+            id: process.env.GOOGLE_TAGMANAGER_ID,
 
             // Include GTM in development.
             // Defaults to false meaning GTM will only be loaded in production.
@@ -136,9 +128,9 @@ module.exports = new Promise((resolve, reject) => {
         // {
         //   resolve: 'gatsby-source-vimeo-all',
         //   options: {
-        //     clientId: env.VIMEO_CLIENT_ID,
-        //     clientSecret: env.VIMEO_CLIENT_SECRET,
-        //     accessToken: env.VIMEO_ACCESS_TOKEN
+        //     clientId: process.env.VIMEO_CLIENT_ID,
+        //     clientSecret: process.env.VIMEO_CLIENT_SECRET,
+        //     accessToken: process.env.VIMEO_ACCESS_TOKEN
         //   }
         // }
         // 'gatsby-plugin-extract-image-colors'
@@ -146,12 +138,12 @@ module.exports = new Promise((resolve, reject) => {
           resolve: `gatsby-plugin-manifest`,
           options: {
             icon: `${__dirname}/src/assets/images/favicon.png`,
-            name: siteSettings?.siteName,
-            short_name: siteSettings?.siteName,
+            name: siteSettings ? siteSettings.siteName : 'STARTER',
+            short_name: siteSettings ? siteSettings.siteName : 'STARTER',
             start_url: `/`,
             background_color: `#000`,
             theme_color: `#fff`,
-            display: siteSettings?.siteName
+            display: siteSettings ? siteSettings.siteName : 'STARTER'
           }
         }
       ],

@@ -1,6 +1,15 @@
 # Heydays starter
 
-## Gettings started
+## Getting started
+
+- Run `npx heydays-cli setup` in parent directory of where you want your project.
+- `cd <project-name>/cms && sanity init`
+- Grab `projectId` from `cms/sanity.json`
+- Duplicate `.env-sample` and rename to `.env`. Add in `projectId` to `SANITY_PROJECT_ID`
+- In project root run `yarn deploy:graphql`
+- `yarn start`
+
+## Before deploy
 
 - Add .env variables to netlify settings>build&deploy>environment
 

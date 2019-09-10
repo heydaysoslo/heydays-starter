@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet'
 import { graphql, useStaticQuery } from 'gatsby'
 
 const truncateString = string => {
-  if(!string) return null
+  if (!string) return null
   const maxLength = 50
   if (string.length < maxLength) {
     return string
@@ -44,7 +44,7 @@ const SEO = props => {
   const image = getLastValidOverride(sources, 'image')
 
   const tabTitle =
-    slug === sanitySiteSettings.?_rawFrontpage.slug.current
+    slug === sanitySiteSettings?._rawFrontpage.slug.current
       ? title
       : getTitleFromTemplate(titleTemplate, truncateString(title))
   return (
