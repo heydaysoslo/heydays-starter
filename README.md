@@ -1,49 +1,42 @@
 # Heydays starter
 
-## Installation
+## Gettings started
 
-- Remember to change siteUrl in /web/gatsby-config this is used by the sitemap plugin
+### Tech
 
-<!-- Markdown snippet -->
+- Lerna for handling monorepos
+- Yarn workspace addon for handling monorepos
+- Gatsby for static site building
+- React
+- Sanity for cms
+- Netlify for deploying
+  - Functions for handling tasks that can't be performed on the client
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/heydaysoslo/heydays-starter)
+---
 
-### Stylelinting
+### Commands
 
-We now use [📚`stylelint-prettier/recommended`](https://github.com/prettier/stylelint-config-prettier/blob/master/src/index.js) for our stylelinting. This is controlled in `package.json`. Also check out [📚stylelint-prettier](https://github.com/prettier/stylelint-prettier).
+#### `yarn start`
 
-#### Bring your own rules
+To start the project
 
-[📚 Stylelint docs](https://stylelint.io/user-guide/rules)
+---
 
-```json
-// In package.json
-{
-  "stylelint": {
-    "rules": {
-      "declaration-block-no-duplicate-properties": true,
-      "block-no-empty": true,
-      "declaration-empty-line-before": "never",
-      "at-rule-empty-line-before": [
-        "always",
-        {
-          "except": [
-            "after-same-name",
-            "blockless-after-same-name-blockless",
-            "blockless-after-blockless",
-            "first-nested"
-          ]
-        }
-      ]
-    },
-    "extends": ["stylelint-prettier/recommended"]
-  }
-}
+### Folder structure
+
 ```
-
-### netlify.toml
-
-Netlify does not like monorepos that much. Therefore we'll need a little work around.
-We need two toml files one in the root which is the one netlify will use, and on in the
-`/web` root which `gatsby-plugin-netlify-functions` will use. You only need the output
-path for the one in `/web`.
+project/
+├── cms/
+│   ├── heydays-config.js
+│   ├── bootstrap.min.css
+│   ├── bootstrap-theme.css
+│   └── bootstrap-theme.min.css
+├── web/
+│   ├── heydays-config.js
+│   ├── bootstrap.min.css
+│   ├── bootstrap-theme.css
+│   └── bootstrap-theme.min.css
+├── .env
+├── bootstrap.min.css
+└──
+```

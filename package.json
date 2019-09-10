@@ -4,12 +4,11 @@
   "private": true,
   "scripts": {
     "empty-cache": "rimraf web/.cache",
-    "graphql-deploy": "lerna run graphql-deploy",
-    "build": "lerna run build --parallel",
     "start": "yarn empty-cache && lerna run start --parallel watch",
-    "netlify-build": "cd web && yarn && yarn build",
+    "build": "lerna run build --parallel",
     "bootstrap": "lerna bootstrap",
-    "sanity-deploy": "lerna run sanity-deploy",
+    "deploy:graphql": "lerna run graphql-deploy",
+    "deploy:sanity": "lerna run sanity-deploy",
     "postinstall": "lerna bootstrap"
   },
   "workspaces": [

@@ -17,8 +17,8 @@
     "info": "gatsby info --clipboard",
     "clean": "gatsby clean",
     "clear-cache": "rimraf .cache",
-    "stylelint-check": "stylelint \"**/*.scss\"",
-    "stylelint-fix": "stylelint \"**/*.scss\" --fix"
+    "stylelint:check": "stylelint \"**/*.scss\"",
+    "stylelint:fix": "stylelint \"**/*.scss\" --fix"
   },
   "browserslist": [
     ">1%",
