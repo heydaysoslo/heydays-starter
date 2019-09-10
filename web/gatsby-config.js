@@ -31,7 +31,7 @@ module.exports = new Promise((resolve, reject) => {
   `
   const params = {}
 
-  const res = client.fetch(query, params).then(res => {
+  client.fetch(query, params).then(res => {
     const siteSettings = res[0]
 
     resolve({
