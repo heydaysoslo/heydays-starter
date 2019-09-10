@@ -2,6 +2,7 @@
   base = '/web'
   publish = "/web/public"
   command = "npm i yarn && yarn && yarn build"
+  functions = "/web/netlify-functions"
 
 [dev]
   functions = "/web/netlify-functions"
