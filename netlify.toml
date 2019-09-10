@@ -1,7 +1,7 @@
 [build]
-  functions = "/web/netlify-functions"
+  base = '/web'
   publish = "/web/public"
-  command = "yarn build"
+  command = "yarn netlify-build"
 
 [dev]
   functions = "/web/netlify-functions"

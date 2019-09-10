@@ -6,11 +6,12 @@
     "empty-cache": "rimraf web/.cache",
     "graphql-deploy": "lerna run graphql-deploy",
     "build": "lerna run build --parallel",
-    "start": "yarn empty-cache && lerna run start --parallel",
-    "netlify-build": "cd web && yarn build",
+    "start": "yarn empty-cache && lerna run start --parallel watch",
+    "netlify-build": "cd web && yarn && yarn build",
     "bootstrap": "lerna bootstrap",
     "sanity-deploy": "lerna run sanity-deploy",
-    "postinstall": "lerna bootstrap"
+    "postinstall": "lerna bootstrap",
+    "prebuild": "lerna bootstrap"
   },
   "workspaces": [
     "cms",
