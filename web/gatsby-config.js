@@ -11,8 +11,6 @@ const env =
       }).parsed
     : process.env
 
-console.log('EEEEEEEEEEEEEENV', env)
-
 module.exports = new Promise((resolve, reject) => {
   const sanityClient = require('@sanity/client')
   const client = sanityClient({
