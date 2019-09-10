@@ -139,18 +139,18 @@ module.exports = new Promise((resolve, reject) => {
         //   }
         // }
         // 'gatsby-plugin-extract-image-colors'
-        // {
-        //   resolve: `gatsby-plugin-manifest`,
-        //   options: {
-        //     icon: `${__dirname}/src/assets/images/favicon.png`,
-        //     name: siteSettings.siteName,
-        //     short_name: siteSettings.siteName,
-        //     start_url: `/`,
-        //     background_color: `#000`,
-        //     theme_color: `#fff`,
-        //     display: siteSettings.siteName
-        //   }
-        // }
+        {
+          resolve: `gatsby-plugin-manifest`,
+          options: {
+            icon: `${__dirname}/src/assets/images/favicon.png`,
+            name: siteSettings.siteName,
+            short_name: siteSettings.siteName,
+            start_url: `/`,
+            background_color: `#000`,
+            theme_color: `#fff`,
+            display: siteSettings.siteName
+          }
+        }
       ],
       // for avoiding CORS while developing Netlify Functions locally
       // read more: https://www.gatsbyjs.org/docs/api-proxy/#advanced-proxying
