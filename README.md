@@ -2,6 +2,8 @@
 
 ## Gettings started
 
+- Add .env variables to netlify settings>build&deploy>environment
+
 ### Tech
 
 - Lerna for handling monorepos

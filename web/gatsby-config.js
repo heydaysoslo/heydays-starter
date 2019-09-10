@@ -4,9 +4,14 @@ const proxy = require('http-proxy-middleware')
 
 const envPath = path.join(__dirname.split('/web').join(''), '/.env')
 
-const env = require('dotenv').config({
-  path: envPath
-}).parsed
+const env =
+  process.env.NODE_ENV === 'development'
+    ? require('dotenv').config({
+        path: envPath
+      }).parsed
+    : process.env
+
+console.log('EEEEEEEEEEEEEENV', env)
 
 module.exports = new Promise((resolve, reject) => {
   const sanityClient = require('@sanity/client')
