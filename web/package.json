@@ -7,9 +7,9 @@
   "author": "@heydays",
   "license": "MIT",
   "scripts": {
-    "develop": "yarn clear-cache && gatsby develop -H $HOSTNAME --port 3000 --open",
+    "develop": "npm run clear-cache && gatsby develop -H $HOSTNAME --port 3000 --open",
     "start": "run-p start:**",
-    "start:app": "yarn develop",
+    "start:app": "npm run develop",
     "start:lambda": "netlify-lambda serve src/netlify-functions",
     "build": "run-p build:**",
     "build:app": "gatsby build",
