@@ -1,5 +1,3 @@
 [build]
-  base = 'web'
-  command = 'yarn build'
+  command = 'yarn workspace web build'
   publish = 'web/public'
-  functions = 'web/netlify-functions'
