@@ -45,28 +45,21 @@ async function createPages(graphql, actions, reporter) {
   const pages = (result.data.allSanityPage || {}).edges || []
   const siteSettings = result.data.sanitySiteSettings || {}
 
-  pages
-    .filter(
-      page =>
-        page.node.slug.current !== 'placeholder' &&
-        page.node.slug.current !== '/' &&
-        page.node.id !== siteSettings.frontpage.id
-    )
-    .forEach(page => {
-      const { id, slug } = page.node
+  pages.forEach(page => {
+    const { id, slug } = page.node
 
-      const path = `/${slug.current}`
+    const path = `/${slug.current}`
 
-      reporter.info(`Creating page: ${path}`)
+    reporter.info(`Creating page: ${path}`)
 
-      createPage({
-        path,
-        component: require.resolve('./src/templates/Page.js'),
-        context: { id }
-      })
-
-      createPageDependency({ path, nodeId: id })
+    createPage({
+      path: siteSettings.frontpage.id === id ? '/' : path,
+      component: require.resolve('./src/templates/Page.js'),
+      context: { id }
     })
+
+    createPageDependency({ path, nodeId: id })
+  })
 }
 
 async function createArticles(graphql, actions, reporter) {

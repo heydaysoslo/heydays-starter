@@ -35,12 +35,12 @@ module.exports = new Promise((resolve, reject) => {
           resolve: 'gatsby-source-sanity',
           options: {
             projectId: process.env.SANITY_PROJECT_ID,
-            dataset: process.env.SANITY_DATASET_PROD
+            dataset: process.env.SANITY_DATASET_PROD,
             // a token with read permissions is required
             // if you have a private dataset
             // token: process.env.SANITY_TOKEN,
-            // watchMode: process.process.env.NODE_ENV === 'development',
-            // overlayDrafts: false
+            watchMode: process.env.NODE_ENV === 'development'
+            // overlayDrafts: process.env.NODE_ENV === 'development'
           }
         },
         {
