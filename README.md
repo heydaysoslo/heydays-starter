@@ -2,16 +2,23 @@
 
 ## Getting started
 
-- Run `npx heydays-cli setup` in parent directory of where you want your project.
-- `cd <project-name>/cms && sanity init`
-- Grab `projectId` from `cms/sanity.json`
-- Duplicate `.env-sample` and rename to `.env`. Add in `projectId` to `SANITY_PROJECT_ID`
-- In project root run `yarn deploy:graphql`
-- `yarn start`
+1. Run `npx heydays-cli setup` in parent directory of where you want your project.
+2. `cd <project-name>/cms && sanity init`
+3. Create `.env` from `/web/.env-sample` and add missing keys for sanity. You need `projectId` and `dataset` from `cms/sanity.json`
+4. In project root run `yarn deploy:graphql`
+5. `yarn start`
+6. Once server has started go to `localhost:3000` and fill in required fields for `Company Info` and `Settings > Site Settings`
 
-## Before deploy
+**_ GOTCHA _**
+TL;DR If you're content is not showing on the page restart the server.
 
-- Add .env variables to netlify settings>build&deploy>environment
+Content types without content won't be added into graphql. This means that you'll need to restart the server if you're adding content to a
+content type which previously did not have content.
+
+### 📚Docs
+
+- [Frontend](./web/README.md)
+- [Backend](./cms/README.md)
 
 ### Tech
 
