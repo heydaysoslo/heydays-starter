@@ -1,8 +1,15 @@
 import React from 'react'
 import cc from 'classcat'
 
-export default function Button(props) {
-  const { variant, className, onClick, type, id, disabled } = props
+const Button = ({
+  variant,
+  className,
+  onClick,
+  type,
+  id,
+  disabled,
+  children
+}) => {
   return (
     <button
       disabled={disabled && disabled}
@@ -15,7 +22,9 @@ export default function Button(props) {
         [className]: className
       })}
     >
-      {props.children}
+      {children}
     </button>
   )
 }
+
+export default Button
