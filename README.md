@@ -9,11 +9,11 @@
 5. `yarn start`
 6. Once server has started go to `localhost:3000` and fill in required fields for `Company Info` and `Settings > Site Settings`
 
-**_ GOTCHA _**
+<!-- **_ GOTCHA _**
 TL;DR If you're content is not showing on the page restart the server.
 
 Content types without content won't be added into graphql. This means that you'll need to restart the server if you're adding content to a
-content type which previously did not have content.
+content type which previously did not have content. -->
 
 ### 📚Docs
 
