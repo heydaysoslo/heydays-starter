@@ -38,6 +38,17 @@ content type which previously did not have content. -->
 
 To start the project
 
+#### `yarn deploy:graphql`
+
+When you add new things to the schema you need to deploy the graphql schema.
+
+#### Installing dependencies and running commands with yarn
+
+We use yarn workspaces together with lerna. Yarn workspaces is used to manage multiple packages in a project. Workspaces are defined in `/package.json`. They are currently `web` and `cms`. This means you'll have to install packages in a little bit different way. You need to prefix your commands with `yarn workspace <workspace>`.
+
+ex. to install dep in web project
+`yarn workspace web add lodash`
+
 ---
 
 ### Folder structure
