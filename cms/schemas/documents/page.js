@@ -1,4 +1,5 @@
 import FaFileO from 'react-icons/lib/fa/file-text-o'
+// import PageIcon from '../../custom/components/icons/PageIcon'
 // import Conditional from '../../custom/components/Conditional'
 
 export default {

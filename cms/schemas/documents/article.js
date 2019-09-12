@@ -1,4 +1,5 @@
 import FaNewspaper from 'react-icons/lib/fa/newspaper-o'
+// import NewspaperIcon from '../../custom/components/icons/NewspaperIcon'
 
 export default {
   name: 'article',
