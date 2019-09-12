@@ -1,6 +1,12 @@
+/**
+ * https://www.sanity.io/docs/content-studio/dashboard
+ * Insta
+ * https://www.sanity.io/docs/dashboard/installing-and-configuring-widgets
+ */
 export default {
   widgets: [
     { name: 'structure-menu' },
+
     {
       name: 'netlify',
       options: {
@@ -14,15 +20,22 @@ export default {
         ]
       }
     },
-    { name: 'project-users', layout: { height: 'auto' } },
     {
       name: 'document-list',
       options: {
-        title: 'Recent projects',
+        title: 'Recent articles',
         order: '_createdAt desc',
-        types: ['project']
+        types: ['article']
       },
       layout: { width: 'medium' }
+    },
+    { name: 'project-users', layout: { height: 'auto', width: 'auto' } },
+    {
+      name: 'project-info',
+      layout: {
+        width: 'auto',
+        height: 'auto'
+      }
     }
   ]
 }
