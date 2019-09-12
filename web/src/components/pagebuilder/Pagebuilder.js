@@ -6,6 +6,8 @@ import TextSection from './TextSection'
 import FullImageSection from './FullImageSection'
 import Section from './Section'
 import TextImageSplit from './TextImageSplit'
+import Tabs from '../Tabs'
+
 const CarouselSection = loadable(() => import('./CarouselSection'))
 
 const sectionTypes = {
@@ -14,7 +16,8 @@ const sectionTypes = {
   textSection: TextSection,
   imageSection: FullImageSection,
   textImageSplit: TextImageSplit,
-  carousel: CarouselSection
+  carousel: CarouselSection,
+  tabs: Tabs
 }
 
 const PageBuilder = ({ sections }) => {

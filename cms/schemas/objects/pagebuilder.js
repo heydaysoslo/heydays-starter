@@ -43,6 +43,12 @@ export default {
           name: 'carousel',
           title: 'Carousel',
           type: 'carousel'
+        },
+        // Tabs
+        {
+          name: 'tabs',
+          title: 'Tabs',
+          type: 'tabs'
         }
       ]
     }

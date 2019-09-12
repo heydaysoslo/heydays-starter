@@ -1,0 +1,42 @@
+.Tabs {
+  @include bp(lg) {
+    display: flex;
+  }
+  &__window {
+    background: red;
+    flex-grow: 1;
+  }
+
+  &__triggers {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    @include bp(lg) {
+      width: rem-calc(400);
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+  }
+
+  &__trigger {
+    text-align: left;
+    flex-grow: 1;
+
+    @include bp(lg) {
+      flex-grow: 0;
+    }
+
+    &--is-active {
+      background: orange;
+    }
+  }
+
+  &__pane {
+    display: none;
+
+    &--is-active {
+      display: block;
+    }
+  }
+}
