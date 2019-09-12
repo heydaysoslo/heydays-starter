@@ -3,12 +3,13 @@
   "version": "0.0.4",
   "private": true,
   "scripts": {
-    "empty-cache": "rimraf web/.cache",
+    "empty-cache": "lerna run clean --scope web",
     "start": "yarn empty-cache && lerna run start --parallel watch",
     "build": "lerna run build --parallel",
     "bootstrap": "lerna bootstrap",
     "deploy:graphql": "lerna run deploy:graphql",
     "deploy:sanity": "lerna run deploy:sanity",
+    "export:sanity": "cd cms && yarn export",
     "postinstall": "lerna bootstrap"
   },
   "workspaces": [
@@ -16,8 +17,7 @@
     "web"
   ],
   "devDependencies": {
-    "lerna": "^3.13.1",
-    "rimraf": "^2.6.3"
+    "lerna": "^3.13.1"
   },
   "dependencies": {}
 }
