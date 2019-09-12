@@ -20,21 +20,20 @@ const hiddenCustomTypes = config.customTypes.reduce((res, item) => {
   return res
 }, [])
 
+const pages =
+  S &&
+  S.documentTypeListItems().filter(
+    listItem => config.pageTypes.indexOf(listItem.getId()) !== -1
+  )
+
 const hiddenDocTypes = listItem =>
   ![
     'menu',
     'companyInfo',
     'siteSettings',
-    'page',
-    'article',
+    ...config.pageTypes,
     ...hiddenCustomTypes
   ].includes(listItem.getId())
-
-const pages =
-  S &&
-  S.documentTypeListItems().filter(
-    listItem => listItem.getId() === 'page' || listItem.getId() === 'article'
-  )
 
 export default () =>
   S.list()

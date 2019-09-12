@@ -9,6 +9,12 @@ import FaNewspaper from 'react-icons/lib/fa/newspaper-o'
  */
 
 export default {
+  /**
+   * Page Types
+   *
+   * This controls the order of menu in the desk
+   */
+  pageTypes: ['page', 'article'],
   menus: [
     { title: 'Primary Menu', id: 'primaryMenu' },
     { title: 'Footer Menu', id: 'footerMenu' }
