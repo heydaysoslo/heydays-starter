@@ -78,6 +78,7 @@ const SEO = props => {
       <meta property="og:title" content={tabTitle} />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:title" content={tabTitle} />
+      <html lang={locale.includes('_') ? locale.split('_')[0] : locale} />
     </Helmet>
   )
 }
