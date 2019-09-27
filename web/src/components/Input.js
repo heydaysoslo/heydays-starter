@@ -26,6 +26,7 @@ const Input = ({
           Form__input: true,
           'Form__input--error': errors[name] && touched[name]
         })}
+        id={name}
         type={type}
         name={name}
         placeholder={placeholder && placeholder}
