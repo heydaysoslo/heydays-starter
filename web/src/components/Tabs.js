@@ -93,7 +93,7 @@ const Tabs = ({ items }) => {
             <div
               role="tabpanel"
               id={tab._key}
-              aria-labelledby={tab.title}
+              aria-labelledby={tab._key}
               tabIndex="0"
               key={`pane-${tab._key}`}
               onKeyDownCapture={e => handleKeyDown(e, i)}
