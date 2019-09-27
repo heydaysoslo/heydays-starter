@@ -61,7 +61,7 @@ const Social = () => {
           const link = social[key]
           return (
             <div className="Social__item" key={`social-${link}`}>
-              <LinkResolver data={link}>
+              <LinkResolver data={link} aria-label={key}>
                 {Icon ? <Icon {...IconProps} /> : key}
               </LinkResolver>
             </div>
