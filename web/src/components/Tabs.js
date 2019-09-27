@@ -72,7 +72,7 @@ const Tabs = ({ items }) => {
                 key={`trigger-${tab._key}`}
                 role="tab"
                 aria-selected={isTabActive}
-                tabIndex={!isTabActive && '-1'}
+                tabIndex={!isTabActive ? '-1' : null}
                 aria-controls={tab._key}
                 onKeyDownCapture={e => handleKeyDown(e, i)}
                 onMouseDown={e => e.preventDefault()} // To prevent focus on click but still keeps focus on tab
