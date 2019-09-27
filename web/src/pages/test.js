@@ -14,6 +14,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 import FadeIn from '../components/FadeIn'
 import Layout from '../components/Layout'
 import AppContext from '../components/context/AppContext'
+import useFetch from '../components/hooks/useFetch'
 
 const query = graphql`
   {
@@ -48,6 +49,7 @@ const Index = () => {
   const media = useMediaQuery()
   const windowSize = useWindowSize({ debounce: 100 })
   const scroll = useScroll({ delay: 100 })
+  const { response, error, isLoading } = useFetch(`https://api.kanye.rest`)
 
   const { state, actions } = useContext(AppContext)
 
@@ -65,6 +67,12 @@ const Index = () => {
             Context showMenu is {state.showMenu ? 'on' : 'off'}
           </button>
         )}
+        <div style={{ border: '1px solid red', padding: '20px' }}>
+          useFetch:
+          {isLoading && <p>Kanye Rest is loading</p>}
+          {response && <pre>{JSON.stringify(response)}</pre>}
+          {error && <p>Kanye Rest error: {JSON.stringify(error)}</p>}
+        </div>
         <div style={{ maxWidth: '500px', border: '2px solid black' }}>
           <AspectContainer
             aspect={{
@@ -77,7 +85,7 @@ const Index = () => {
             I'm the wolf
           </AspectContainer>
         </div>
-        {/* 
+        {/*
         <Image
           aspect={{ sm: 'portrait', md: 'portrait', lg: 'landscape' }}
           data={data.allFile.edges[1].node.childImageSharp}
