@@ -1,4 +1,5 @@
 import React from 'react'
+import { CardInterface } from './pagebuilder/CardSection'
 
 import AspectContainer from './AspectContainer'
 import LinkResolver from './LinkResolver'
@@ -6,7 +7,7 @@ import SanityImage from './editor/SanityImage'
 import Editor from './editor/Editor'
 import InView from './InView'
 
-const Card = ({ title, image, excerpt, link }) => (
+const Card: React.SFC<CardInterface> = ({ title, image, excerpt, link }) => (
   <InView className="Card" activeClassName="Card--is-visible">
     <LinkResolver data={link}>
       <div className="Card__media">

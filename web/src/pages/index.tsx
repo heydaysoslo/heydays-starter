@@ -1,14 +1,16 @@
-import React from 'react'
+import * as React from 'react'
 import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
 import Page from '../components/pages/Page'
+import Typescript from '../components/Typescript'
 
 const FrontPage = props => {
   const { data } = props
   const page = data?.sanitySiteSettings?.frontpage
   return (
     <Layout {...page}>
+      <Typescript name="hello" />
       <Page {...page} />
     </Layout>
   )

@@ -1,9 +1,23 @@
-import React from 'react'
+import * as React from 'react'
 import Grid from '../Grid'
 
 import Card from '../Card'
 
-const CardSection = ({ cardsList = [], ...props }) => {
+interface Props {
+  cardsList: Array<CardInterface>,
+}
+
+export interface CardInterface {
+  _key: string,
+  title: string,
+  image: string,
+  excerpt: string,
+  link: string,
+  content: string,
+  cardOverride: string
+}
+
+const CardSection: React.SFC<Props> = ({ cardsList = [], ...props }) => {
   return (
     <div className="CardSection">
       <Grid columns={{ sm: 1, md: 3 }} margin="y">

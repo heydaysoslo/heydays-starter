@@ -2,7 +2,21 @@ import React from 'react'
 import { graphql, Link, useStaticQuery } from 'gatsby'
 import { routes } from '../../heydays-config'
 
-const LinkResolver = ({ data, children, openInNewTab, ...props }) => {
+interface Props {
+  data: {
+    _type: string,
+    id: string,
+    slug: {
+      current: string
+    }
+  },
+  children?: React.ReactElement<any, string | ((props: any) => React.ReactElement<any, string | (new (props: any) => React.Component<any, any, any>)>) | (new (props: any) => React.Component<any, any, any>)>,
+  openInNewTab?: boolean,
+  className?: string,
+  onClick: (ev) => void
+}
+
+const LinkResolver: React.SFC<Props> = ({ data, children, openInNewTab, ...props }) => {
   const { sanitySiteSettings } = useStaticQuery(StaticQuery)
   const frontpageId = sanitySiteSettings?.frontpage?.id
 

@@ -54,6 +54,7 @@ module.exports = new Promise((resolve, reject) => {
         `gatsby-transformer-sharp`,
         `gatsby-plugin-react-helmet`,
         `gatsby-plugin-portal`,
+        `gatsby-plugin-typescript`,
         {
           resolve: '@danbruegge/gatsby-plugin-stylelint',
           options: { files: ['**/*.scss'] }

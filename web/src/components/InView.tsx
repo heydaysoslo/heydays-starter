@@ -19,7 +19,7 @@ import cc from 'classcat'
  * 🎥 With react-spring:  https://github.com/thebuilder/react-intersection-observer/blob/HEAD/docs/Recipes.md#trigger-animations
  */
 
-const InView = ({
+const InView: React.SFC<Props> = ({
   children,
   className = '',
   activeClassName = '',
@@ -55,3 +55,22 @@ const InView = ({
 }
 
 export default InView
+
+interface Props {
+  children?: React.ReactElement<
+    any,
+    | string
+    | ((
+        props: any
+      ) => React.ReactElement<
+        any,
+        string | (new (props: any) => React.Component<any, any, any>)
+      >)
+    | (new (props: any) => React.Component<any, any, any>)
+  >
+  className: string
+  activeClassName: string
+  threshold?: number
+  onInView?: (ev) => void
+  element: string
+}

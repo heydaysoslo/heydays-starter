@@ -43,3 +43,9 @@ We need two toml files one in the root which is the one netlify will use, and on
 path for the one in `/web`.
 
 Enviroment variables for production are kept in the .toml file. Make sure you update both places when you change a value.
+
+### TypeScript
+
+- 📚Docs: https://www.typescriptlang.org/docs/home.html
+- 📹 Basics: https://www.youtube.com/watch?v=ahCwqrYpIuM
+- 📹 With hooks: https://www.youtube.com/watch?v=oQZJxyMoLws
