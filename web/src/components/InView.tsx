@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 import cc from 'classcat'
+import Tag from './Tag'
+import { HtmlElementWithAttributes } from '../interfaces'
 
 /**
  * Usage:
@@ -19,13 +21,13 @@ import cc from 'classcat'
  * 🎥 With react-spring:  https://github.com/thebuilder/react-intersection-observer/blob/HEAD/docs/Recipes.md#trigger-animations
  */
 
-const InView: React.SFC<Props> = ({
+const InView: React.FC<Props> = ({
   children,
   className = '',
   activeClassName = '',
   threshold = 0.25,
   onInView,
-  element
+  element = 'div'
 }) => {
   const [ref, inView, entry] = useInView({
     /* Optional options */
@@ -39,10 +41,11 @@ const InView: React.SFC<Props> = ({
     }
   }, [onInView, inView, ref, entry])
 
-  const Wrapper = element ? element : 'div'
+  const Wrapper = element
 
   return (
     <Wrapper
+      element={element}
       ref={ref}
       className={cc({
         [className]: className,
@@ -57,20 +60,10 @@ const InView: React.SFC<Props> = ({
 export default InView
 
 interface Props {
-  children?: React.ReactElement<
-    any,
-    | string
-    | ((
-        props: any
-      ) => React.ReactElement<
-        any,
-        string | (new (props: any) => React.Component<any, any, any>)
-      >)
-    | (new (props: any) => React.Component<any, any, any>)
-  >
   className: string
   activeClassName: string
   threshold?: number
   onInView?: (ev) => void
-  element: string
+  element: HtmlElementWithAttributes['element']
+  ref: HtmlElementWithAttributes['ref']
 }

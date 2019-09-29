@@ -7,7 +7,7 @@ import SanityImage from './editor/SanityImage'
 import Editor from './editor/Editor'
 import InView from './InView'
 
-const Card: React.SFC<CardInterface> = ({ title, image, excerpt, link }) => (
+const Card: React.FC<CardInterface> = ({ title, image, excerpt, link }) => (
   <InView className="Card" activeClassName="Card--is-visible">
     <LinkResolver data={link}>
       <div className="Card__media">

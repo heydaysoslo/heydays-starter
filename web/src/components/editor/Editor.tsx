@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import BaseBlockContent from '@sanity/block-content-to-react'
 import cc from 'classcat'
 
@@ -81,7 +81,7 @@ export const serializers = {
   }
 }
 
-const Editor = ({ blocks, className }) => {
+const Editor: React.FC<Props> = ({ blocks, className }) => {
   return (
     <div
       className={cc({
@@ -99,3 +99,8 @@ const Editor = ({ blocks, className }) => {
 }
 
 export default Editor
+
+interface Props {
+  blocks: any;
+  className?: string;
+}

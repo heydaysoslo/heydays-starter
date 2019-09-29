@@ -17,7 +17,7 @@ export interface CardInterface {
   cardOverride: string
 }
 
-const CardSection: React.SFC<Props> = ({ cardsList = [], ...props }) => {
+const CardSection: React.FC<Props> = ({ cardsList = [], ...props }) => {
   return (
     <div className="CardSection">
       <Grid columns={{ sm: 1, md: 3 }} margin="y">

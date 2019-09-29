@@ -3,11 +3,16 @@ import Img from 'gatsby-image'
 import { getFluidGatsbyImage } from 'gatsby-source-sanity'
 import { sanity } from '../../../heydays-config'
 
+import {SanityImageInterface} from '../../interfaces'
 import { getAspectRatio, fillMissingAspects } from '../../utils/aspect'
 
 import useMediaQuery from '../useMediaQuery'
 
-const SanityImage = ({ node, maxWidth = 1440, aspectRatio }) => {
+const SanityImage: React.FC<SanityImageInterface> = ({
+  node,
+  maxWidth = 1440,
+  aspectRatio
+}) => {
   if (!node?.asset) {
     return null
   }

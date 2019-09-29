@@ -6,7 +6,7 @@ interface Props {
   phone?: number
 }
 
-const Typescript: React.SFC<Props> = ({ name, phone }) => {
+const Typescript: React.FC<Props> = ({ name, phone }) => {
   const [newName, setNewName] = useState<string>(name)
 
   useEffect(() => {
