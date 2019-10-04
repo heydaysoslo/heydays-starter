@@ -55,6 +55,16 @@ export default {
       type: 'editor'
     },
     {
+      name: 'category',
+      title: 'Category',
+      type: 'array',
+      of: [
+        {
+          type: 'categoryReference'
+        }
+      ]
+    },
+    {
       name: 'authors',
       title: 'Authors',
       type: 'array',

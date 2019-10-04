@@ -11,6 +11,7 @@ import page from './documents/page'
 import person from './documents/person'
 import personOrder from './documents/personOrder'
 import article from './documents/article'
+import category from './documents/category'
 // import articleOrder from './documents/articleOrder'
 import siteSettings from './documents/siteSettings'
 
@@ -38,6 +39,7 @@ import aspect from './objects/aspect'
 import section from './objects/section'
 import textImageSplit from './objects/textImageSplit'
 import personReference from './objects/personReference'
+import categoryReference from './objects/categoryReference'
 import carousel from './objects/carousel'
 import oembed from './objects/oembed'
 import accordion from './objects/accordion'
@@ -81,6 +83,7 @@ export default createSchema({
     section,
     textImageSplit,
     personReference,
+    categoryReference,
     carousel,
     oembed,
     accordion,
@@ -97,7 +100,8 @@ export default createSchema({
     page,
     person,
     personOrder,
-    article
+    article,
+    category
     // articleOrder
   ])
 })
