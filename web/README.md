@@ -49,3 +49,4 @@ Enviroment variables for production are kept in the .toml file. Make sure you up
 - 📚Docs: https://www.typescriptlang.org/docs/home.html
 - 📹 Basics: https://www.youtube.com/watch?v=ahCwqrYpIuM
 - 📹 With hooks: https://www.youtube.com/watch?v=oQZJxyMoLws
+- 🎥 React https://www.youtube.com/watch?v=Z5iWr6Srsj8
