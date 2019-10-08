@@ -6,7 +6,8 @@ import { createAspectRatios } from './src/utils/aspect'
  */
 export const routes = {
   article: '/news/',
-  page: '/'
+  page: '/',
+  category: '/category/'
 }
 
 export const getUrl = (type, slug) => {

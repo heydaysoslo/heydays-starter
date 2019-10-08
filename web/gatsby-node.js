@@ -105,6 +105,46 @@ async function createArticles(graphql, actions, reporter) {
     })
 }
 
+async function createCategories(graphql, actions, reporter) {
+  const { createPage } = actions
+
+  const result = await graphql(`
+    {
+      allSanityCategory(filter: { slug: { current: { ne: null } } }) {
+        edges {
+          node {
+            id
+            slug {
+              _type
+              current
+              _key
+            }
+          }
+        }
+      }
+    }
+  `)
+
+  if (result.errors) throw result.errors
+
+  const categories = (result.data.allSanityCategory || {}).edges || []
+
+  categories.forEach(category => {
+    const { id, slug } = category.node
+    const path = `/category/${slug.current}`
+
+    reporter.info(`Creating category: ${path}`)
+
+    createPage({
+      path,
+      component: require.resolve('./src/templates/Category.js'),
+      context: { id }
+    })
+
+    createPageDependency({ path, nodeId: id })
+  })
+}
+
 // Workaround for newer react
 // https://github.com/gatsbyjs/gatsby/issues/11934
 // exports.onCreateWebpackConfig = ({ getConfig, stage }) => {
@@ -120,4 +160,5 @@ async function createArticles(graphql, actions, reporter) {
 exports.createPages = async ({ graphql, actions, reporter }) => {
   await createPages(graphql, actions, reporter)
   await createArticles(graphql, actions, reporter)
+  await createCategories(graphql, actions, reporter)
 }

@@ -26,7 +26,7 @@ const LinkResolver = ({ data, children, openInNewTab, ...props }) => {
   }
 
   // Only return children if required props are missing
-  if (!data?._type || !data?.slug?.current) {
+  if (!data?._type || !(data?.rawSlug || data?.slug).current) {
     return children
   }
 
@@ -35,7 +35,7 @@ const LinkResolver = ({ data, children, openInNewTab, ...props }) => {
       to={
         frontpageId === data.id
           ? '/'
-          : `${routes[data._type]}${data.slug.current}`
+          : `${routes[data._type]}${(data?.rawSlug || data?.slug).current}`
       }
       className={props.className}
       onClick={props.onClick}
@@ -56,6 +56,7 @@ export const query = graphql`
       slug {
         current
       }
+      _rawSlug(resolveReferences: { maxDepth: 20 })
     }
     ... on SanityArticle {
       id
@@ -64,6 +65,7 @@ export const query = graphql`
       slug {
         current
       }
+      _rawSlug(resolveReferences: { maxDepth: 20 })
     }
   }
 `

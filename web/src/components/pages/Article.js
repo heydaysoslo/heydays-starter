@@ -8,6 +8,7 @@ import Container from '../Container'
 import Grid, { GridItem } from '../Grid'
 import Share from '../Share'
 import Card from '../Card'
+import LinkResolver from '../LinkResolver'
 
 const Article = ({
   _id,
@@ -15,6 +16,7 @@ const Article = ({
   _rawBody,
   _rawMainImage,
   _rawAuthors,
+  _rawCategory,
   publishDate,
   _type,
   slug,
@@ -53,6 +55,17 @@ const Article = ({
                   )}
                 </div>
               ))}
+            {_rawCategory && (
+              <ul>
+                {_rawCategory.map(cat => (
+                  <li>
+                    <LinkResolver data={cat.category}>
+                      {cat.category.title}
+                    </LinkResolver>
+                  </li>
+                ))}
+              </ul>
+            )}
             <Share type={_type} slug={slug.current} />
           </GridItem>
           <GridItem span={{ sm: 12, md: 9 }}>
@@ -97,12 +110,7 @@ export const query = graphql`
   {
     allSanityArticle(limit: 4) {
       nodes {
-        _id
-        _key
-        title
-        _rawMainImage(resolveReferences: { maxDepth: 10 })
-        _rawExcerpt(resolveReferences: { maxDepth: 10 })
-        ...Link
+        ...ArticleCard
       }
     }
   }

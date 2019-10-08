@@ -47,13 +47,7 @@ export const query = graphql`
   {
     allSanityArticle {
       nodes {
-        title
-        isFeatured
-        _updatedAt
-        _rawMainImage(resolveReferences: { maxDepth: 10 })
-        _rawExcerpt(resolveReferences: { maxDepth: 10 })
-        _rawBody(resolveReferences: { maxDepth: 10 })
-        ...Link
+        ...ArticleCard
       }
     }
   }

@@ -40,6 +40,7 @@ export const query = graphql`
     _rawMainImage(resolveReferences: { maxDepth: 20 })
     _rawAuthors(resolveReferences: { maxDepth: 20 })
     _rawPagebuilder(resolveReferences: { maxDepth: 20 })
+    _rawCategory(resolveReferences: { maxDepth: 20 })
     seo {
       title
       description
@@ -51,5 +52,17 @@ export const query = graphql`
         }
       }
     }
+  }
+  fragment ArticleCard on SanityArticle {
+    _id
+    _key
+    _type
+    title
+    publishDate(formatString: "dddd.MMMM-YY", locale: "nb_NO")
+    _rawExcerpt(resolveReferences: { maxDepth: 20 })
+    _rawMainImage(resolveReferences: { maxDepth: 20 })
+    _rawAuthors(resolveReferences: { maxDepth: 20 })
+    _rawCategory(resolveReferences: { maxDepth: 20 })
+    ...Link
   }
 `

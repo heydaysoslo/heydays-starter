@@ -1,6 +1,7 @@
 .Page {
   &__header {
     @include spacing(sm, margin-top);
+    @include spacing(section, margin-bottom);
   }
   &__content {
     @include spacing(sm, margin-top);
