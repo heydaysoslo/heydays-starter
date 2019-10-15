@@ -1,6 +1,11 @@
 {
-  "prettier.eslintIntegration": true, // ignore warning
-  "prettier.stylelintIntegration": true, // ignore warning
-  "eslint.autoFixOnSave": true,
-  "editor.formatOnSave": true
+  "editor.formatOnSave": false,
+// Enable per-language
+"[javascript]": {
+    "editor.formatOnSave": true
+},
+  "prettier.tslintIntegration": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.tslint": true
+  }
 }

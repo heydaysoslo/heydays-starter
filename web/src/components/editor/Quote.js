@@ -1,5 +1,6 @@
 import React from 'react'
 import Editor from './Editor'
+import Typescript from '../Typescript'
 
 const Quote = ({ quote }) => {
   return (
@@ -13,6 +14,7 @@ const Quote = ({ quote }) => {
             <Editor blocks={quote.source} />
           </cite>
         )}
+        <Typescript name={2303} />
       </div>
     )
   )

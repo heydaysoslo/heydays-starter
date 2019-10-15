@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react'
-import Img from 'gatsby-image'
-import { getFluidGatsbyImage } from 'gatsby-source-sanity'
-import { sanity } from '../../../heydays-config'
+import React, { useState, useEffect } from "react"
+import Img from "gatsby-image"
+import { getFluidGatsbyImage } from "gatsby-source-sanity"
+import {oc} from "ts-optchain"
 
-import {SanityImageInterface} from '../../interfaces'
-import { getAspectRatio, fillMissingAspects } from '../../utils/aspect'
+import { sanity } from "../../../heydays-config"
 
-import useMediaQuery from '../useMediaQuery'
+import {SanityImageInterface} from "../../interfaces"
+import { getAspectRatio, fillMissingAspects } from "../../utils/aspect"
+
+import useMediaQuery from "../useMediaQuery"
 
 const SanityImage: React.FC<SanityImageInterface> = ({
   node,
@@ -27,19 +29,16 @@ const SanityImage: React.FC<SanityImageInterface> = ({
   let newFluidProps = fluidProps
   if (
     aspectRatio &&
-    typeof aspectRatio === 'string' &&
-    aspectRatio !== 'original'
+    typeof aspectRatio === "string" &&
+    aspectRatio !== "original"
   ) {
-    newFluidProps = Object.assign(
-      {},
-      {
+    newFluidProps = {
         ...fluidProps,
         aspectRatio: getAspectRatio(aspectRatio)
-      }
-    )
+    }
   }
 
-  return typeof aspectRatio === 'object' ? (
+  return typeof aspectRatio === "object" ? (
     <SanityImageResonsiveAspect
       node={node}
       fluidProps={fluidProps}
@@ -64,7 +63,7 @@ const SanityImageResonsiveAspect = ({ node, aspectRatio, fluidProps }) => {
     })
   }, [fluidProps, activeMediaQuery, aspectRatio])
 
-  return fluid && <Img key={node.asset?.id} fluid={fluid} alt={node.alt} />
+  return fluid && <Img key={oc(node).asset.id(undefined)} fluid={fluid} alt={node.alt} />
 }
 
 export default SanityImage

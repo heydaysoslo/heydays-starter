@@ -1,21 +1,37 @@
-import React from 'react'
-import { graphql, Link, useStaticQuery } from 'gatsby'
-import { routes } from '../../heydays-config'
+import React from "react"
+import { graphql, Link, useStaticQuery } from "gatsby"
+import { routes } from "../../heydays-config"
 
-const LinkResolver: React.FC<Props> = ({ data, children, openInNewTab, ...props }) => {
+import {oc} from 'ts-optchain'
+
+interface IProps {
+  data: {
+    _type: string,
+    id: string,
+    slug: {
+      current: string
+    }
+  },
+  children?: React.ReactNode | undefined,
+  openInNewTab?: boolean,
+  className?: string,
+  onClick?: (ev: any) => void
+}
+
+const LinkResolver: React.FunctionComponent<IProps> = ({ data, children, openInNewTab, ...props }) => {
   const { sanitySiteSettings } = useStaticQuery(StaticQuery)
   const frontpageId = sanitySiteSettings?.frontpage?.id
 
   // Return children if data is missing
-  if (!data) return children
+  if (!data) { return children }
 
   // If external link
-  if (typeof data === 'string') {
+  if (typeof data === "string") {
     const targetProps =
       openInNewTab !== false
         ? {
-            target: '_blank',
-            rel: 'noopener noreferrer'
+            target: "_blank",
+            rel: "noopener noreferrer"
           }
         : {}
     return (
@@ -34,7 +50,7 @@ const LinkResolver: React.FC<Props> = ({ data, children, openInNewTab, ...props 
     <Link
       to={
         frontpageId === data.id
-          ? '/'
+          ? "/"
           : `${routes[data._type]}${data.slug.current}`
       }
       className={props.className}
@@ -77,16 +93,3 @@ export const StaticQuery = graphql`
     }
   }
 `
-interface Props {
-  data: {
-    _type: string,
-    id: string,
-    slug: {
-      current: string
-    }
-  },
-  children?: any,
-  openInNewTab?: boolean,
-  className?: string,
-  onClick?: (ev) => void
-}

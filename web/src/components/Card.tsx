@@ -1,13 +1,21 @@
-import React from 'react'
-import { CardInterface } from './pagebuilder/CardSection'
+import React, { FunctionComponent } from "react";
 
-import AspectContainer from './AspectContainer'
-import LinkResolver from './LinkResolver'
-import SanityImage from './editor/SanityImage'
-import Editor from './editor/Editor'
-import InView from './InView'
+import { SanityImageInterface } from "../interfaces/index";
 
-const Card: React.FC<CardInterface> = ({ title, image, excerpt, link }) => (
+interface IProps {
+  title: string;
+  image: SanityImageInterface;
+  excerpt: any;
+  link: any;
+}
+
+import AspectContainer from "./AspectContainer";
+import LinkResolver from "./LinkResolver";
+import SanityImage from "./editor/SanityImage";
+import Editor from "./editor/Editor";
+import InView from "./InView";
+
+const Card: FunctionComponent<IProps> = ({ title, image, excerpt, link }) => (
   <InView className="Card" activeClassName="Card--is-visible">
     <LinkResolver data={link}>
       <div className="Card__media">
@@ -16,10 +24,10 @@ const Card: React.FC<CardInterface> = ({ title, image, excerpt, link }) => (
         ) : (
           <AspectContainer
             aspect={{
-              sm: 'portrait',
-              md: 'portrait',
-              lg: 'portrait',
-              xl: 'portrait'
+              sm: "portrait",
+              md: "portrait",
+              lg: "portrait",
+              xl: "portrait"
             }}
           />
         )}
@@ -32,6 +40,6 @@ const Card: React.FC<CardInterface> = ({ title, image, excerpt, link }) => (
       )}
     </LinkResolver>
   </InView>
-)
+);
 
-export default Card
+export default Card;

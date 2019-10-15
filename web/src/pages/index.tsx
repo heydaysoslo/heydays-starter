@@ -1,22 +1,24 @@
-import * as React from 'react'
-import { graphql } from 'gatsby'
+import React, { FunctionComponent } from "react";
+import { graphql } from "gatsby";
+import { oc } from "ts-optchain";
 
-import Layout from '../components/Layout'
-import Page from '../components/pages/Page'
-import Typescript from '../components/Typescript'
+import Layout from "../components/Layout";
+import Page from "../components/pages/Page";
+import Typescript from "../components/Typescript";
 
-const FrontPage = props => {
-  const { data } = props
-  const page = data?.sanitySiteSettings?.frontpage
+const FrontPage: FunctionComponent<any> = props => {
+  const { data } = props;
+  const page = oc(data).sanitySiteSettings.frontpage(undefined);
+
   return (
     <Layout {...page}>
-      <Typescript name="hello" />
+      <Typescript name="Mike" dir="left" />
       <Page {...page} />
     </Layout>
-  )
-}
+  );
+};
 
-export default FrontPage
+export default FrontPage;
 
 export const query = graphql`
   {
@@ -26,4 +28,4 @@ export const query = graphql`
       }
     }
   }
-`
+`;

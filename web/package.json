@@ -18,7 +18,9 @@
     "clean": "gatsby clean",
     "clear-cache": "rimraf .cache",
     "stylelint:check": "stylelint \"**/*.scss\"",
-    "stylelint:fix": "stylelint \"**/*.scss\" --fix"
+    "stylelint:fix": "stylelint \"**/*.scss\" --fix",
+    "type-check": "tsc --noEmit",
+    "lint": "tslint --project ."
   },
   "browserslist": [
     ">1%",
@@ -54,6 +56,7 @@
     "gatsby-plugin-sass": "^2.0.11",
     "gatsby-plugin-sharp": "^2.2.19",
     "gatsby-plugin-sitemap": "^2.2.10",
+    "gatsby-plugin-tslint": "^0.0.2",
     "gatsby-plugin-typescript": "^2.1.11",
     "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-source-filesystem": "^2.1.19",
@@ -68,6 +71,7 @@
     "react-intersection-observer": "^8.24.1",
     "react-share": "^3.0.1",
     "react-transition-group": "^4.1.0",
+    "ts-optchain": "^0.1.8",
     "yup": "^0.27.0"
   },
   "devDependencies": {
@@ -75,7 +79,7 @@
     "@babel/plugin-proposal-optional-chaining": "^7.2.0",
     "@danbruegge/gatsby-plugin-stylelint": "^3.4.1",
     "@types/node": "^12.7.8",
-    "@types/react": "^16.9.3",
+    "@types/react": "^16.9.5",
     "@types/react-dom": "^16.9.1",
     "http-proxy-middleware": "^0.19.1",
     "netlify-lambda": "^1.6.3",
@@ -84,6 +88,12 @@
     "stylelint": "^10.1.0",
     "stylelint-config-prettier": "^5.2.0",
     "stylelint-config-recommended-scss": "^3.3.0",
-    "stylelint-prettier": "^1.1.1"
+    "stylelint-prettier": "^1.1.1",
+    "tslint": "^5.20.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-loader": "^3.5.4",
+    "tslint-plugin-prettier": "^2.0.1",
+    "tslint-react": "^4.1.0",
+    "typescript": "^3.6.3"
   }
 }

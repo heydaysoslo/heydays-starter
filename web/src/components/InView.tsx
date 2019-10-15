@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
-import { useInView } from 'react-intersection-observer'
-import cc from 'classcat'
-import Tag from './Tag'
-import { HtmlElementWithAttributes } from '../interfaces'
+import React, { FunctionComponent, useEffect } from "react";
+import { useInView } from "react-intersection-observer";
+import cc from "classcat";
+import Tag from "./Tag";
+import { HtmlElementWithAttributes } from "../interfaces";
 
 /**
  * Usage:
@@ -21,27 +21,27 @@ import { HtmlElementWithAttributes } from '../interfaces'
  * 🎥 With react-spring:  https://github.com/thebuilder/react-intersection-observer/blob/HEAD/docs/Recipes.md#trigger-animations
  */
 
-const InView: React.FC<Props> = ({
+const InView: FunctionComponent<IProps> = ({
   children,
-  className = '',
-  activeClassName = '',
+  className = "",
+  activeClassName = "",
   threshold = 0.25,
   onInView,
-  element = 'div'
+  element = "div"
 }) => {
   const [ref, inView, entry] = useInView({
     /* Optional options */
     threshold,
     triggerOnce: true
-  })
+  });
 
   useEffect(() => {
-    if (onInView && typeof onInView === 'function') {
-      onInView({ inView, ref, entry })
+    if (onInView && typeof onInView === "function") {
+      onInView({ inView, ref, entry });
     }
-  }, [onInView, inView, ref, entry])
+  }, [onInView, inView, ref, entry]);
 
-  const Wrapper = element
+  const Wrapper = element;
 
   return (
     <Wrapper
@@ -54,16 +54,16 @@ const InView: React.FC<Props> = ({
     >
       {children}
     </Wrapper>
-  )
-}
+  );
+};
 
-export default InView
+export default InView;
 
-interface Props {
-  className: string
-  activeClassName: string
-  threshold?: number
-  onInView?: (ev) => void
-  element: HtmlElementWithAttributes['element']
-  ref: HtmlElementWithAttributes['ref']
+interface IProps {
+  className: string;
+  activeClassName: string;
+  threshold?: number;
+  onInView?: (ev: any) => void;
+  element: HtmlElementWithAttributes["element"];
+  ref: HtmlElementWithAttributes["ref"];
 }

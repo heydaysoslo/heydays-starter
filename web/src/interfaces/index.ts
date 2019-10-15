@@ -1,17 +1,17 @@
-export interface SanityImageInterface {
+export interface ISanityImageInterface {
   node: {
-    alt: string
-    caption?: string
+    alt?: string;
+    caption?: string;
     asset: {
-      _ref: string
-      id: string
-    }
+      _ref: string;
+      id: string;
+    };
   }
   maxWidth?: number
   aspectRatio?: string | object
 }
 
-export interface HtmlElementWithAttributes {
+export interface IHtmlElementWithAttributes {
   element: React.ElementType
   ref?: React.Ref<any>
   children?: React.ReactNode

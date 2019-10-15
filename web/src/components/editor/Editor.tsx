@@ -1,32 +1,33 @@
-import * as React from 'react'
-import BaseBlockContent from '@sanity/block-content-to-react'
-import cc from 'classcat'
+import React from "react"
+import BaseBlockContent from "@sanity/block-content-to-react"
+import cc from "classcat"
 
-import LinkResolver from '../LinkResolver'
-import Quote from './Quote'
-import Figure from './Figure'
-import Oembed from '../Oembed'
-import Accordion from '../Accordion'
+import LinkResolver from "../LinkResolver"
+import Quote from "./Quote"
+import Figure from "./Figure"
+import Oembed from "../Oembed"
+import Accordion from "../Accordion"
 
 export const serializers = {
   types: {
     block(props) {
-      if (props.node.children.text && props.node.children.text.length === 0)
+      if (props.node.children.text && props.node.children.text.length === 0) {
         return null
+      }
       switch (props.node.style) {
-        case 'h2':
+        case "h2":
           return <h2>{props.children}</h2>
 
-        case 'h3':
+        case "h3":
           return <h3>{props.children}</h3>
 
-        case 'large':
+        case "large":
           return <p className="text-large">{props.children}</p>
 
-        case 'small':
+        case "small":
           return <small>{props.children}</small>
 
-        case 'span':
+        case "span":
           return <span>{props.children}</span>
 
         default:
@@ -34,7 +35,7 @@ export const serializers = {
       }
     },
     button(props) {
-      if (!props.node.link) return null
+      if (!props.node.link) { return null }
       return (
         <p>
           <LinkResolver
@@ -50,7 +51,7 @@ export const serializers = {
       )
     },
     quote(props) {
-      if (!props.node.content) return null
+      if (!props.node.content) { return null }
       return <Quote quote={props.node} />
     },
     figure(props) {
@@ -60,13 +61,13 @@ export const serializers = {
       return <Oembed url={props.node.url} />
     },
     accordion(props) {
-      return <Accordion items={props.node.items} exclusive defaultActive={2} />
+      return <Accordion items={props.node.items} exclusive={true} defaultActive={2} />
     }
   },
   marks: {
     link(props) {
       const link = props?.mark?.externalLink?.url || props?.mark?.reference
-      if (!link) return props.children
+      if (!link) { return props.children }
       return (
         <LinkResolver
           openInNewTab={props?.mark?.externalLink?.blank}
@@ -81,7 +82,7 @@ export const serializers = {
   }
 }
 
-const Editor: React.FC<Props> = ({ blocks, className }) => {
+const Editor: React.FC<IProps> = ({ blocks, className }) => {
   return (
     <div
       className={cc({
@@ -100,7 +101,7 @@ const Editor: React.FC<Props> = ({ blocks, className }) => {
 
 export default Editor
 
-interface Props {
+interface IProps {
   blocks: any;
-  className?: string;
+  className?: string | undefined;
 }
