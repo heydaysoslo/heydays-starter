@@ -6,6 +6,7 @@ import FadeIn from './FadeIn'
 import MenuItems from './MenuItems'
 import Portal from './Portal'
 import Container from './Container'
+import ThemeSwitcher from './ThemeSwitcher'
 
 const Menu = () => {
   const data = useStaticQuery(query)
@@ -16,6 +17,7 @@ const Menu = () => {
     <nav className="Menu">
       <div className="Menu__desktop">
         <MenuItems menu={menu} />
+        <ThemeSwitcher />
       </div>
       <div className="Menu__mobile">
         <button onClick={() => actions.toggleMenu()}>

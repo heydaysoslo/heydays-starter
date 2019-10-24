@@ -8,7 +8,7 @@
 import React from 'react'
 import { AppProvider } from './src/components/context/AppContext'
 
-require('./src/styles/app.scss')
+// require('./src/styles/app.scss')
 
 export const wrapRootElement = ({ element }) => (
   <AppProvider>{element}</AppProvider>
