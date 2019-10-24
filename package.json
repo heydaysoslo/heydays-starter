@@ -10,7 +10,8 @@
     "deploy:graphql": "lerna run deploy:graphql",
     "deploy:sanity": "lerna run deploy:sanity",
     "export:sanity": "cd cms && yarn export",
-    "postinstall": "lerna bootstrap"
+    "postinstall": "lerna bootstrap",
+    "storybook": "yarn workspace web storybook"
   },
   "workspaces": [
     "cms",

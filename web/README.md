@@ -43,3 +43,8 @@ We need two toml files one in the root which is the one netlify will use, and on
 path for the one in `/web`.
 
 Enviroment variables for production are kept in the .toml file. Make sure you update both places when you change a value.
+
+### Storybook
+
+📚https://storybook.js.org/docs/basics/writing-stories/
+📚https://storybook.js.org/docs/formats/component-story-format/

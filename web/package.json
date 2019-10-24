@@ -18,7 +18,9 @@
     "clean": "gatsby clean",
     "clear-cache": "rimraf .cache",
     "stylelint:check": "stylelint \"**/*.scss\"",
-    "stylelint:fix": "stylelint \"**/*.scss\" --fix"
+    "stylelint:fix": "stylelint \"**/*.scss\" --fix",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "browserslist": [
     ">1%",
@@ -73,6 +75,11 @@
     "@babel/core": "^7.5.5",
     "@babel/plugin-proposal-optional-chaining": "^7.2.0",
     "@danbruegge/gatsby-plugin-stylelint": "^3.4.1",
+    "@storybook/addon-actions": "^5.2.4",
+    "@storybook/addon-links": "^5.2.4",
+    "@storybook/addons": "^5.2.4",
+    "@storybook/react": "^5.2.4",
+    "babel-loader": "^8.0.6",
     "http-proxy-middleware": "^0.19.1",
     "netlify-lambda": "^1.6.3",
     "npm-run-all": "^4.1.5",

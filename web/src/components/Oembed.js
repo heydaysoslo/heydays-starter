@@ -4,13 +4,18 @@ import { isProviderAllowed } from '../../heydays-config'
 
 import AspectContainer from './AspectContainer'
 
-const Oembed = ({ url }) => {
+const Oembed = ({ url, storybook = false }) => {
   const [embed, setEmbed] = useState({})
   useEffect(() => {
-    fetch('/.netlify/functions/oembed', {
-      method: 'POST',
-      body: JSON.stringify({ url })
-    })
+    fetch(
+      `${
+        storybook ? 'http://mikes-mbp-2.heydays.local:3000' : ''
+      }/.netlify/functions/oembed`,
+      {
+        method: 'POST',
+        body: JSON.stringify({ url })
+      }
+    )
       .then(res => res.json())
       .then(res => {
         const provider = res?.result?.provider_name
