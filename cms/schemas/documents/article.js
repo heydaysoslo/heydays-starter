@@ -6,6 +6,9 @@ export default {
   title: 'Article',
   type: 'document',
   icon: FaNewspaper,
+  initialValue: () => ({
+    publishDate: new Date().toISOString()
+  }),
   fields: [
     {
       name: 'title',

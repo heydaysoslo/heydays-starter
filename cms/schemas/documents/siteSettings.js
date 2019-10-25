@@ -11,6 +11,10 @@ export default {
     { name: 'important', title: 'Important pages' },
     { name: 'seo', title: 'SEO' }
   ],
+  initialValue: {
+    siteUrl: 'https://homepage.com',
+    siteName: 'Client name'
+  },
   fields: [
     {
       name: 'siteUrl',

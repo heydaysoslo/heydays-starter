@@ -7,6 +7,9 @@ export default {
   title: 'Page',
   type: 'document',
   icon: FaFileO,
+  initialValue: {
+    template: 'default'
+  },
   fields: [
     {
       name: 'title',
