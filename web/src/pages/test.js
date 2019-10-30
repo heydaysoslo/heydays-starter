@@ -15,6 +15,8 @@ import FadeIn from '../components/FadeIn'
 import Layout from '../components/Layout'
 import AppContext from '../components/context/AppContext'
 import useFetch from '../components/hooks/useFetch'
+import SVGAnimation from '../components/SVGAnimation'
+import Counter from '../components/Counter'
 
 const query = graphql`
   {
@@ -58,6 +60,8 @@ const Index = () => {
   return (
     <Layout>
       <Container>
+        <Counter />
+        <SVGAnimation></SVGAnimation>
         <h1>HomepageW in a user's site</h1>
         <Helmet>
           <title>Hello world</title>

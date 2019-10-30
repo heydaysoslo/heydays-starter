@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 import cc from 'classcat'
+import { motion } from 'framer-motion'
 
 /**
  * Usage:
@@ -30,7 +31,7 @@ const InView = ({
   const [ref, inView, entry] = useInView({
     /* Optional options */
     threshold,
-    triggerOnce: true
+    triggerOnce: false
   })
 
   useEffect(() => {
@@ -39,15 +40,20 @@ const InView = ({
     }
   }, [onInView, inView, ref, entry])
 
-  const Wrapper = element ? element : 'div'
+  const Wrapper = element ? motion[element] : motion.div
 
   return (
     <Wrapper
       ref={ref}
-      className={cc({
-        [className]: className,
-        [activeClassName]: inView
-      })}
+      initial={{ y: 100, opacity: 0 }}
+      animate={{
+        opacity: 1,
+        y: -0
+      }}
+      transition={{
+        ease: 'linear',
+        duration: 1
+      }}
     >
       {children}
     </Wrapper>

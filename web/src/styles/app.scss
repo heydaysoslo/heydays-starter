@@ -10,6 +10,55 @@
 @import "settings/mixins.scss";
 @import "settings/animation.scss";
 
+.SVGAnimation {
+  .st0 {
+    fill: #fec4cd;
+  }
+  .st1 {
+    fill: #ff4c6e;
+  }
+  .st2 {
+    fill: #face6f;
+  }
+  .st3 {
+    fill: #ff6784;
+  }
+  .st4 {
+    fill: #1873f2;
+  }
+  .st5 {
+    fill: none;
+    stroke: #ffffff;
+    stroke-width: 0.6234;
+    stroke-linecap: round;
+    stroke-miterlimit: 10;
+  }
+  .st6 {
+    fill: none;
+    stroke: #272727;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-miterlimit: 10;
+  }
+  .st7 {
+    fill: #b345ff;
+  }
+  .st8 {
+    fill: #ffffff;
+    stroke: #272727;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-miterlimit: 10;
+  }
+  .st9 {
+    fill: none;
+    stroke: #ffffff;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-miterlimit: 10;
+  }
+}
+
 /**
 * Base
 */
