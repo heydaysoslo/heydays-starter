@@ -1,107 +1,65 @@
+import TextImageSplitPreview from "../../custom/components/preview/TextImageSplitPreview";
+
 export default {
-  name: 'textImageSplit',
-  title: 'Text Image Split',
-  type: 'object',
+  name: "textImageSplit",
+  title: "Text Image Split",
+  type: "object",
   fieldsets: [
-    { name: 'image', title: 'Image' },
-    { name: 'content', title: 'Content' }
+    { name: "image", title: "Image" },
+    { name: "content", title: "Content" }
   ],
   fields: [
     {
-      name: 'textOnTheRight',
-      title: 'Text On The Right',
-      type: 'boolean'
+      name: "textOnTheRight",
+      title: "Text On The Right",
+      type: "boolean"
     },
     {
-      name: 'title',
-      title: 'Title',
-      type: 'string',
-      fieldset: 'content'
+      name: "title",
+      title: "Title",
+      type: "string",
+      fieldset: "content"
     },
     {
-      name: 'content',
-      title: 'Content',
-      type: 'editorMinimal',
-      fieldset: 'content'
+      name: "content",
+      title: "Content",
+      type: "editorMinimal",
+      fieldset: "content"
     },
     {
-      name: 'button',
-      title: 'Button',
-      type: 'button'
+      name: "button",
+      title: "Button",
+      type: "button"
     },
     {
-      name: 'image',
-      title: 'Image',
-      type: 'mainImage',
-      fieldset: 'image'
+      name: "image",
+      title: "Image",
+      type: "mainImage",
+      fieldset: "image"
     },
     {
-      name: 'aspect',
-      title: 'Aspect Ratio',
-      type: 'aspect',
-      fieldset: 'image'
+      name: "aspect",
+      title: "Aspect Ratio",
+      type: "aspect",
+      fieldset: "image"
     }
   ],
   preview: {
     select: {
-      title: 'title',
-      media: 'image'
+      title: "title",
+      content: "content",
+      imageUrl: "image.asset.url",
+      textOnTheRight: "textOnTheRight"
     },
-    prepare({ media, title }) {
+    prepare({ imageUrl, title, content, textOnTheRight }) {
       return {
+        textOnTheRight,
         title,
-        media: media || '',
-        subtitle: 'Text Image Split'
-      }
-    }
+        content,
+        imageUrl,
+        subtitle: "Text Image Split"
+      };
+    },
+    component: TextImageSplitPreview
   }
-}
-
-// export default {
-//   name: 'textImageSplit',
-//   title: 'Text Image Split',
-//   type: 'object',
-//   fieldsets: [{ name: 'image', title: 'Image' }],
-//   fields: [
-//     // {
-//     //   name: 'textOnTheRight',
-//     //   title: 'Text On The Right',
-//     //   type: 'boolean'
-//     // },
-//     {
-//       name: 'title',
-//       title: 'title',
-//       type: 'string'
-//     }
-//     // {
-//     //   name: 'text',
-//     //   title: 'Text',
-//     //   type: 'editorMinimal'
-//     // },
-//     // {
-//     //   name: 'image',
-//     //   title: 'Image',
-//     //   type: 'mainImage',
-//     //   fieldset: 'image'
-//     // },
-//     // {
-//     //   name: 'aspect',
-//     //   title: 'Aspect Ratio',
-//     //   type: 'aspect',
-//     //   fieldset: 'image'
-//     // }
-//   ],
-//   preview: {
-//     select: {
-//       title: 'title',
-//       media: 'image'
-//     },
-//     prepare({ media, title }) {
-//       return {
-//         title,
-//         media: media || '',
-//         subtitle: 'Text Image Split'
-//       }
-//     }
-//   }
-// }
+};

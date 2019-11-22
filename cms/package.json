@@ -17,6 +17,7 @@
   "dependencies": {
     "@material-ui/core": "^4.3.2",
     "@sanity/base": "^0.144.0",
+    "@sanity/block-content-to-react": "^2.0.7",
     "@sanity/cli": "^0.144.0",
     "@sanity/components": "^0.144.0",
     "@sanity/core": "^0.144.0",
@@ -31,7 +32,8 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "sanity-plugin-dashboard-widget-document-list": "^0.0.8",
-    "sanity-plugin-dashboard-widget-netlify": "^1.0.1"
+    "sanity-plugin-dashboard-widget-netlify": "^1.0.1",
+    "styled-components": "^4.4.1"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
