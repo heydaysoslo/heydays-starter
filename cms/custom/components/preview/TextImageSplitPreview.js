@@ -17,8 +17,10 @@ const Wrapper = styled.div`
   }
 `;
 
-const TextImageSplitPreview = ({ value }) => {
+const TextImageSplitPreview = ({ value, ...props }) => {
+  if (!value) return <p>loading</p>;
   const { title, textOnTheRight, imageUrl, subtitle, content } = value;
+  console.log(value, props);
   return (
     <>
       <Wrapper>
