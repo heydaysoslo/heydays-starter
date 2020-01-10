@@ -1,16 +1,14 @@
 .Menu {
   &__mobile {
     display: block;
-
-    @include bp(xl) {
+    @include bp(lg) {
       display: none;
     }
   }
 
   &__desktop {
     display: none;
-
-    @include bp(xl) {
+    @include bp(lg) {
       display: block;
     }
   }
