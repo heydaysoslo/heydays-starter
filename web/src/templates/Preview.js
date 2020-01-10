@@ -44,10 +44,6 @@ const Preview = props => {
 
   useEffect(fetchPreview, [refreshCount])
 
-  if (!window) {
-    return <div>Loading preview</div>
-  }
-
   return (
     <div>
       <div className="Preview">
