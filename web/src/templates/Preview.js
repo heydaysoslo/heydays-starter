@@ -44,23 +44,29 @@ const Preview = props => {
 
   useEffect(fetchPreview, [refreshCount])
 
+  if (!window) {
+    return <div>Loading preview</div>
+  }
+
   return (
-    <div className="Preview">
-      <div className="Preview__header">
-        <Container>
-          <span>👀Preview</span>
-          <button className="Button" onClick={refreshData}>
-            🔁Refresh
-          </button>
-          {/* <p>Load a page with id: {props.id}</p> */}
-          {/* <pre>{JSON.stringify(pageData, null, 2)}</pre> */}
-          {/* {pageData.pagebuilder && pageData.pagebuilder.sections && (
+    <div>
+      <div className="Preview">
+        <div className="Preview__header">
+          <Container>
+            <span>👀Preview</span>
+            <button className="Button" onClick={refreshData}>
+              🔁Refresh
+            </button>
+            {/* <p>Load a page with id: {props.id}</p> */}
+            {/* <pre>{JSON.stringify(pageData, null, 2)}</pre> */}
+            {/* {pageData.pagebuilder && pageData.pagebuilder.sections && (
             <PageBuilder sections={pageData.pagebuilder.sections} />
           )} */}
-        </Container>
-      </div>
-      <div className="Preview__content">
-        {pageData && <TemplateResolver data={pageData} />}
+          </Container>
+        </div>
+        <div className="Preview__content">
+          {pageData && <TemplateResolver data={pageData} />}
+        </div>
       </div>
     </div>
   )
