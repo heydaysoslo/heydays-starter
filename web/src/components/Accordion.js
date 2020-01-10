@@ -10,6 +10,8 @@
  * @prop {number} defaultActive
  * Pass the index if you want to leave one open by default
  *
+ * TODO: Allow nested accordions
+ *
  * https://www.w3.org/TR/wai-aria-practices/examples/accordion/accordion.html
  */
 
@@ -17,7 +19,6 @@ import React, { useState, useRef } from 'react'
 import cc from 'classcat'
 
 import keyCodes from '../utils/keyCodes'
-
 import Editor from './editor/Editor'
 
 const Accordion = ({ items, exclusive = false, defaultActive = null }) => {
@@ -29,7 +30,7 @@ const Accordion = ({ items, exclusive = false, defaultActive = null }) => {
   const wrapper = useRef()
 
   // return null if no array
-  if (!Array.isArray(items) && items.length === 0) return null
+  if (!items || (!Array.isArray(items) && items.length === 0)) return null
 
   const handleClick = i => {
     if (exclusive) {
