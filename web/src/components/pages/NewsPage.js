@@ -5,7 +5,7 @@ import Container from '../Container'
 import Card from '../Card'
 import Grid from '../Grid'
 
-const NewsPage = ({ title, content, _rawPagebuilder, ...props }) => {
+const NewsPage = ({ title, content, pagebuilder, ...props }) => {
   const data = useStaticQuery(query)
   const articles = data?.allSanityArticle?.nodes
 

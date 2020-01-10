@@ -2,9 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
-import Page from '../components/pages/Page'
-import ContactPage from '../components/pages/ContactPage'
-import NewsPage from '../components/pages/NewsPage'
+import TemplateResolver from '../components/TemplateResolver'
 
 /**
  * Passing variables into query
@@ -15,27 +13,14 @@ import NewsPage from '../components/pages/NewsPage'
  *
  */
 
-const templates = {
-  frontpage: Page,
-  contact: ContactPage,
-  news: NewsPage,
-  default: Page
-}
-
 const PageTemplate = props => {
   const { data } = props
   const page = data && data.page
 
-  // if (!templates[page.template]) {
-  //   console.warn(
-  //     `No template component found in Page.js for ${page.title} ${page.id}`
-  //   )
-  // }
-  let Component = page.template ? templates[page.template] : templates.default
   return (
     page && (
       <Layout {...page}>
-        <Component {...page} />
+        <TemplateResolver data={page} />
       </Layout>
     )
   )
@@ -54,7 +39,7 @@ export const query = graphql`
     title
     template
     _rawSlug(resolveReferences: { maxDepth: 20 })
-    _rawPagebuilder(resolveReferences: { maxDepth: 20 })
+    pagebuilder: _rawPagebuilder(resolveReferences: { maxDepth: 20 })
     seo {
       title
       description

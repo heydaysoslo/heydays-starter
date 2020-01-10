@@ -2,7 +2,7 @@ import React from 'react'
 import Pagebuilder from '../pagebuilder/Pagebuilder'
 import Container from '../Container'
 
-const ContactPage = ({ title, content, _rawPagebuilder, ...props }) => {
+const ContactPage = ({ title, content, pagebuilder, ...props }) => {
   return (
     <div className="Page">
       <header className="Page__header">
@@ -11,8 +11,8 @@ const ContactPage = ({ title, content, _rawPagebuilder, ...props }) => {
         </Container>
       </header>
       <Container className="Page__content">
-        {_rawPagebuilder?.sections && (
-          <Pagebuilder sections={_rawPagebuilder.sections} />
+        {pagebuilder?.sections && (
+          <Pagebuilder sections={pagebuilder.sections} />
         )}
       </Container>
     </div>
