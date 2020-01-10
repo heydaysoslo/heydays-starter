@@ -8,6 +8,7 @@ import Container from '../Container'
 import Grid, { GridItem } from '../Grid'
 import Share from '../Share'
 import Card from '../Card'
+import PageBuilder from '../pagebuilder/Pagebuilder'
 
 const Article = ({
   _id,
@@ -18,6 +19,7 @@ const Article = ({
   publishDate,
   _type,
   slug,
+  pagebuilder,
   ...props
 }) => {
   const data = useStaticQuery(query)
@@ -71,6 +73,9 @@ const Article = ({
             )}
           </GridItem>
         </Grid>
+        {pagebuilder?.sections && (
+          <PageBuilder sections={pagebuilder.sections} />
+        )}
         {currentArticles && (
           <section className="Article__latest">
             <Grid columns={{ sm: 2 }}>
