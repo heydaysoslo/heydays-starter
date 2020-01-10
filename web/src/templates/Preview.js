@@ -3,7 +3,7 @@ import sanityClient from '@sanity/client'
 
 import Layout from '../components/Layout'
 import Container from '../components/Container'
-import PageBuilder from '../components/pagebuilder/Pagebuilder'
+import TemplateResolver from '../components/TemplateResolver'
 
 const client = sanityClient({
   projectId: '6ptaspv6',
@@ -13,39 +13,63 @@ const client = sanityClient({
 })
 
 const Preview = props => {
-  // Sample id = drafts.ead4f570-86ae-4de0-9ac5-58e07045e861
+  // Sample id = ead4f570-86ae-4de0-9ac5-58e07045e861
+  // http://siteurl.com/_preview/ead4f570-86ae-4de0-9ac5-58e07045e861
 
   const [refreshCount, setRefreshCount] = useState(0)
   const [pageData, setPageData] = useState({})
 
-  const query = `*[_id == $id][0]`
-  const params = { id: props.id }
+  // Get draft if it exists, fall back to published page
+  // Unfortunatly we need to resolve references manually, unlike graphql
+  const query = `*[_id in [$draftId, $id]]{
+    authors[]{
+      person->,
+      ...
+    },
+    ...
+  } | order(_updatedAt desc)`
+  const params = { draftId: `drafts.${props.id}`, id: props.id }
 
   const fetchPreview = () => {
-    client.fetch(query, params).then(setPageData)
+    console.log('Fetch data', params)
+    client.fetch(query, params).then(res => {
+      console.log('Data fetched', res)
+      if (res) {
+        console.log('Set page data', res[0])
+        setPageData(res[0])
+      }
+    })
   }
 
   const refreshData = () => {
     setRefreshCount(refreshCount + 1)
   }
 
-  const heartBeat = () => {}
-
   useEffect(fetchPreview, [refreshCount])
 
   return (
-    <Layout>
-      <Container>
-        <h1>Preview</h1>
-        <button className="Button" onClick={refreshData}>
-          Update data
-        </button>
-        <p>Load a page with id: {props.id}</p>
-        {pageData.pagebuilder && pageData.pagebuilder.sections && (
-          <PageBuilder sections={pageData.pagebuilder.sections} />
+    <div className="Preview">
+      <div className="Preview__header">
+        <Container>
+          <span>👀Preview</span>
+          <button className="Button" onClick={refreshData}>
+            🔁Refresh
+          </button>
+          {/* <p>Load a page with id: {props.id}</p> */}
+          {/* <pre>{JSON.stringify(pageData, null, 2)}</pre> */}
+          {/* {pageData.pagebuilder && pageData.pagebuilder.sections && (
+            <PageBuilder sections={pageData.pagebuilder.sections} />
+          )} */}
+        </Container>
+      </div>
+      <div className="Preview__content">
+        {pageData && (
+          <Layout>
+            <TemplateResolver data={pageData} />
+          </Layout>
         )}
-      </Container>
-    </Layout>
+      </div>
+    </div>
   )
 }
 

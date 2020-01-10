@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
 import Article from '../components/pages/Article'
+import TemplateResolver from '../components/TemplateResolver'
 
 const NewsTemplate = props => {
   const { data } = props
@@ -11,7 +12,7 @@ const NewsTemplate = props => {
   return (
     article && (
       <Layout {...article}>
-        <Article {...article} />
+        <TemplateResolver data={article} />
       </Layout>
     )
   )
@@ -36,10 +37,10 @@ export const query = graphql`
     publishDate(formatString: "dddd.MMMM-YY", locale: "nb_NO")
     _rawSlug(resolveReferences: { maxDepth: 20 })
     _rawExcerpt(resolveReferences: { maxDepth: 20 })
-    _rawBody(resolveReferences: { maxDepth: 20 })
-    _rawMainImage(resolveReferences: { maxDepth: 20 })
-    _rawAuthors(resolveReferences: { maxDepth: 20 })
-    _rawPagebuilder(resolveReferences: { maxDepth: 20 })
+    body: _rawBody(resolveReferences: { maxDepth: 20 })
+    mainImage: _rawMainImage(resolveReferences: { maxDepth: 20 })
+    authors: _rawAuthors(resolveReferences: { maxDepth: 20 })
+    pagebuilder: _rawPagebuilder(resolveReferences: { maxDepth: 20 })
     seo {
       title
       description
