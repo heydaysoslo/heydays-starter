@@ -24,6 +24,7 @@
     "@sanity/default-layout": "^0.147.6",
     "@sanity/default-login": "^0.147.0",
     "@sanity/desk-tool": "^0.147.7",
+    "@sanity/production-preview": "^0.147.0",
     "@sanity/vision": "^0.147.6",
     "classcat": "^4.0.2",
     "date-fns": "^1.30.1",
