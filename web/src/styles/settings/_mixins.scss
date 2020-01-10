@@ -1,6 +1,6 @@
 @mixin responsive-font($responsive, $min, $max: false, $fallback: false) {
   $responsive-unitless: $responsive / ($responsive - $responsive + 1);
-  $dimension: if(unit($responsive) == "vh", "height", "width");
+  $dimension: if(unit($responsive) == 'vh', 'height', 'width');
   $min-breakpoint: $min / $responsive-unitless * 100;
 
   @media (max-#{$dimension}: #{$min-breakpoint}) {
@@ -25,7 +25,7 @@
     background: white;
     z-index: 9999999;
 
-    @include spacing("md", ("left", "bottom"));
+    @include spacing('md', ('left', 'bottom'));
     background: white;
     padding: 0.5em;
     border-radius: 50%;
@@ -34,7 +34,7 @@
   @each $bp, $val in $breakpoints {
     @include bp($bp) {
       &:after {
-        content: "#{$bp}";
+        content: '#{$bp}';
       }
     }
   }
@@ -54,20 +54,20 @@
   }
 }
 @mixin container {
-  @include content-width("image");
+  @include content-width('image');
   position: relative;
   width: 100%;
   margin: 0 auto;
-  padding-left: spacing("sm", "sm");
-  padding-right: spacing("sm", "sm");
+  padding-left: spacing('sm', 'sm');
+  padding-right: spacing('sm', 'sm');
 
   @include bp(md) {
-    padding-left: spacing("sm", "md");
-    padding-right: spacing("sm", "md");
+    padding-left: spacing('sm', 'md');
+    padding-right: spacing('sm', 'md');
   }
   @include bp(lg) {
-    padding-left: spacing("md", "lg");
-    padding-right: spacing("md", "lg");
+    padding-left: spacing('md', 'lg');
+    padding-right: spacing('md', 'lg');
   }
 }
 
@@ -117,7 +117,7 @@
   line-height: 1.307692308;
 }
 @mixin font-small {
-  @include font-size("small");
+  @include font-size('small');
   line-height: 1.428571429;
 }
 @mixin headerHeight {
