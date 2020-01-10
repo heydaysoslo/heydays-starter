@@ -2,37 +2,37 @@
 * Settings ********************************
 */
 
-@import "settings/variables.scss";
-@import "settings/functions.scss";
-@import "settings/breakpoints.scss";
-@import "settings/spacing.scss";
-@import "settings/font-size.scss";
-@import "settings/mixins.scss";
-@import "settings/animation.scss";
+@import 'settings/variables.scss';
+@import 'settings/functions.scss';
+@import 'settings/breakpoints.scss';
+@import 'settings/spacing.scss';
+@import 'settings/font-size.scss';
+@import 'settings/mixins.scss';
+@import 'settings/animation.scss';
 
 /**
 * Base
 */
 
-@import "base/reset";
-@import "base/elements";
-@import "base/typography";
+@import 'base/reset';
+@import 'base/elements';
+@import 'base/typography';
 
 /**
 * Plugins
 */
 
-@import "plugins/swiper";
+@import 'plugins/swiper';
 
 /**
 * Components
 */
 
-@import "components/*";
+@import 'components/*';
 
 /**
 * Utils
 */
 
-@import "utils/helpers";
-@import "utils/ie";
+@import 'utils/helpers';
+@import 'utils/ie';

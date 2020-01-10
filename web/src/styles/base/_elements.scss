@@ -16,7 +16,7 @@ img {
   vertical-align: middle; // remove space above/below images
 }
 
-[role="button"] {
+[role='button'] {
   cursor: pointer;
 }
 
@@ -58,7 +58,7 @@ input {
   border-radius: 0;
 }
 
-input[type="number"] {
+input[type='number'] {
   -moz-appearance: textfield;
 }
 
