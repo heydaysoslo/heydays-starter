@@ -2863,13 +2863,14 @@
     make-error "^1.3.0"
     object-assign "^4.1.1"
 
-"@sanity/client@^0.142.0":
-  version "0.142.0"
-  resolved "https://registry.yarnpkg.com/@sanity/client/-/client-0.142.0.tgz#361ed95f204b38a16c41bc1b495b5670063c058f"
+"@sanity/client@^0.147.3":
+  version "0.147.3"
+  resolved "https://registry.yarnpkg.com/@sanity/client/-/client-0.147.3.tgz#4ac0beb56df455441f203c6bfc8306e3b6c2b191"
+  integrity sha512-wXWL1mPyQZB+1te2KPtSX2zQ0rc+/Ol4DsQYUQ7gY0N/ESWXqLuD14ixWAkLNGy1SbK3ZDLuTrGOstpb7va+Gw==
   dependencies:
-    "@sanity/eventsource" "0.142.0"
-    "@sanity/generate-help-url" "0.142.0"
-    "@sanity/observable" "0.142.0"
+    "@sanity/eventsource" "0.147.0"
+    "@sanity/generate-help-url" "0.147.0"
+    "@sanity/observable" "0.147.0"
     deep-assign "^2.0.0"
     get-it "^5.0.0"
     make-error "^1.3.0"
@@ -3109,13 +3110,6 @@
     eventsource "^1.0.6"
     eventsource-polyfill "^0.9.6"
 
-"@sanity/eventsource@0.142.0":
-  version "0.142.0"
-  resolved "https://registry.yarnpkg.com/@sanity/eventsource/-/eventsource-0.142.0.tgz#02bbeead72917ebd581151b0242d1b9f5b606c47"
-  dependencies:
-    eventsource "^1.0.6"
-    eventsource-polyfill "^0.9.6"
-
 "@sanity/eventsource@0.147.0":
   version "0.147.0"
   resolved "https://registry.npmjs.org/@sanity/eventsource/-/eventsource-0.147.0.tgz#40ef249c0803902800b951c765ffdf58205db6f7"
@@ -3182,10 +3176,6 @@
 "@sanity/generate-help-url@0.140.0", "@sanity/generate-help-url@^0.140.0":
   version "0.140.0"
   resolved "https://registry.yarnpkg.com/@sanity/generate-help-url/-/generate-help-url-0.140.0.tgz#f60ab75be5fdc346b9f0d1c2a0858aa3c2870109"
-
-"@sanity/generate-help-url@0.142.0":
-  version "0.142.0"
-  resolved "https://registry.yarnpkg.com/@sanity/generate-help-url/-/generate-help-url-0.142.0.tgz#ea8777b72bc9db531e25c0066407d504df91f22d"
 
 "@sanity/generate-help-url@0.147.0":
   version "0.147.0"
@@ -3269,13 +3259,6 @@
 "@sanity/observable@0.140.0":
   version "0.140.0"
   resolved "https://registry.yarnpkg.com/@sanity/observable/-/observable-0.140.0.tgz#6c7f51932d7fa446154bb127b24d64f4c9bd46c4"
-  dependencies:
-    object-assign "^4.1.1"
-    rxjs "^6.1.0"
-
-"@sanity/observable@0.142.0":
-  version "0.142.0"
-  resolved "https://registry.yarnpkg.com/@sanity/observable/-/observable-0.142.0.tgz#abf88b3bae5d1661ab64753dcec782a044c59bf5"
   dependencies:
     object-assign "^4.1.1"
     rxjs "^6.1.0"
