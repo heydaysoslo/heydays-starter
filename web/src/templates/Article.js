@@ -2,7 +2,6 @@ import React from 'react'
 import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
-import Article from '../components/pages/Article'
 import TemplateResolver from '../components/TemplateResolver'
 
 const NewsTemplate = props => {

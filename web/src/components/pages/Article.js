@@ -83,8 +83,8 @@ const Article = ({
                 <Card
                   key={article?._key}
                   title={article.title}
-                  image={article._rawMainImage}
-                  excerpt={article._rawExcerpt}
+                  image={article.mainImage}
+                  excerpt={article.excerpt}
                   link={article}
                 />
               ))}
@@ -105,8 +105,8 @@ export const query = graphql`
         _id
         _key
         title
-        _rawMainImage(resolveReferences: { maxDepth: 10 })
-        _rawExcerpt(resolveReferences: { maxDepth: 10 })
+        mainImage: _rawMainImage(resolveReferences: { maxDepth: 10 })
+        excerpt: _rawExcerpt(resolveReferences: { maxDepth: 10 })
         ...Link
       }
     }

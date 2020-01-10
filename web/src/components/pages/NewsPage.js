@@ -27,8 +27,8 @@ const NewsPage = ({ title, content, pagebuilder, ...props }) => {
                   <div key={article.id}>
                     <Card
                       title={article.title}
-                      image={article._rawMainImage}
-                      excerpt={article._rawExcerpt}
+                      image={article.mainImage}
+                      excerpt={article.excerpt}
                       link={article}
                     />
                   </div>
@@ -50,9 +50,9 @@ export const query = graphql`
         title
         isFeatured
         _updatedAt
-        _rawMainImage(resolveReferences: { maxDepth: 10 })
-        _rawExcerpt(resolveReferences: { maxDepth: 10 })
-        _rawBody(resolveReferences: { maxDepth: 10 })
+        mainImage: _rawMainImage(resolveReferences: { maxDepth: 10 })
+        excerpt: _rawExcerpt(resolveReferences: { maxDepth: 10 })
+        body: _rawBody(resolveReferences: { maxDepth: 10 })
         ...Link
       }
     }
