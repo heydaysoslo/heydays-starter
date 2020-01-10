@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import sanityClient from '@sanity/client'
 
-import Layout from '../components/Layout'
+// import Layout from '../components/Layout'
 import Container from '../components/Container'
 import TemplateResolver from '../components/TemplateResolver'
 
@@ -13,9 +13,6 @@ const client = sanityClient({
 })
 
 const Preview = props => {
-  // Sample id = ead4f570-86ae-4de0-9ac5-58e07045e861
-  // http://siteurl.com/_preview/ead4f570-86ae-4de0-9ac5-58e07045e861
-
   const [refreshCount, setRefreshCount] = useState(0)
   const [pageData, setPageData] = useState({})
 
@@ -63,11 +60,7 @@ const Preview = props => {
         </Container>
       </div>
       <div className="Preview__content">
-        {pageData && (
-          <Layout>
-            <TemplateResolver data={pageData} />
-          </Layout>
-        )}
+        {pageData && <TemplateResolver data={pageData} />}
       </div>
     </div>
   )
