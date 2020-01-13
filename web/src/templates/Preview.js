@@ -42,7 +42,8 @@ const Preview = props => {
     ...
   } | order(_updatedAt desc)`
 
-  const params = { draftId: `drafts.${props.id}`, id: props.id }
+  const pageId = props.id ? props.id.replace('drafts.', '') : null
+  const params = { draftId: `drafts.${pageId}`, id: pageId }
 
   const startListening = () => {
     // Listen for changes in document structure
