@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import sanityClient from '@sanity/client'
 import { Helmet } from 'react-helmet'
 
@@ -17,54 +17,71 @@ const client = sanityClient({
 // https://henrique.codes/gatsby-live-preview-sanity/
 
 const Preview = props => {
-  // const [refreshCount, setRefreshCount] = useState(0)
+  // const [isUpdating, setIsUpdating] = useState(false)
+  // const fetchCount = useRef(null)
+  const fetchTimer = useRef(null)
   const [pageData, setPageData] = useState(null)
 
-  const fetchPreview = () => {
-    if (!props.id) {
-      console.log('no id specified')
-      return
-    }
-    // Get draft if it exists, fall back to published page
-    // Unfortunatly we need to resolve references manually, unlike graphql
-    const query = `*[_id in [$draftId, $id]]{
-      authors[]{
-        person->,
-        ...
-      },
-      pagebuilder {
-        sections[]{
-          cardsList[]{
-            content->{...},
-            ...
-          },
+  // Get draft if it exists, fall back to published page
+  // Unfortunatly we need to resolve references manually, unlike graphql
+  const query = `*[_id in [$draftId, $id]]{
+    authors[]{
+      person->,
+      ...
+    },
+    pagebuilder {
+      sections[]{
+        cardsList[]{
+          content->{...},
           ...
         },
         ...
       },
       ...
-    } | order(_updatedAt desc)`
-    const params = { draftId: `drafts.${props.id}`, id: props.id }
+    },
+    ...
+  } | order(_updatedAt desc)`
+
+  const params = { draftId: `drafts.${props.id}`, id: props.id }
+
+  const startListening = () => {
+    // Listen for changes in document structure
+    client.listen(query, params, { includeResult: false }).subscribe(update => {
+      // Unfortunately {includeResult:true} does not resolve refs
+      // so we need to fetch the full preview again
+      // Prevent simultaneous requests with a timer
+      // this also fixes latency issues from Sanity server
+      if (fetchTimer.current) {
+        clearTimeout(fetchTimer.current)
+      }
+      fetchTimer.current = setTimeout(fetchPreview, 2000)
+    })
+  }
+
+  const fetchPreview = () => {
     console.log('Fetch data', params)
     client.fetch(query, params).then(res => {
       console.log('Data fetched', res)
       if (res) {
         console.log('Set page data', res[0])
         setPageData(res[0])
-        // Start listening
-        client.listen(query, params).subscribe(update => {
-          if (update.result) {
-            // There's a bug with reference resolving on the listener
-            // Add some kind of merge logic to prevent updating the references in full
-            console.log('Live update page data', update.result)
-            setPageData(update.result)
-          }
-        })
       }
     })
   }
 
-  useEffect(fetchPreview, [])
+  const initFetching = () => {
+    if (!props.id) {
+      console.log('no id specified')
+      return
+    }
+
+    fetchPreview()
+
+    console.log('Start listening')
+    startListening()
+  }
+
+  useEffect(initFetching, [])
 
   return (
     <div>
@@ -80,11 +97,6 @@ const Preview = props => {
               </span>{' '}
               Preview
             </span>
-            {/* <p>Load a page with id: {props.id}</p> */}
-            {/* <pre>{JSON.stringify(pageData, null, 2)}</pre> */}
-            {/* {pageData.pagebuilder && pageData.pagebuilder.sections && (
-            <PageBuilder sections={pageData.pagebuilder.sections} />
-          )} */}
           </Container>
         </div>
         <div className="Preview__content">

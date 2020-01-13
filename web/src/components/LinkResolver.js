@@ -4,7 +4,7 @@ import { routes } from '../../heydays-config'
 
 const LinkResolver = ({ data, children, openInNewTab, ...props }) => {
   const { sanitySiteSettings } = useStaticQuery(StaticQuery)
-  const frontpageId = sanitySiteSettings?.frontpage?.id
+  const frontpageId = sanitySiteSettings?.frontpage?._id
 
   // Return children if data is missing
   if (!data) return children
@@ -30,16 +30,11 @@ const LinkResolver = ({ data, children, openInNewTab, ...props }) => {
     return children
   }
 
+  const link =
+    frontpageId === data._id ? '/' : `${routes[data._type]}${data.slug.current}`
+
   return (
-    <Link
-      to={
-        frontpageId === data.id
-          ? '/'
-          : `${routes[data._type]}${data.slug.current}`
-      }
-      className={props.className}
-      onClick={props.onClick}
-    >
+    <Link to={link} className={props.className} onClick={props.onClick}>
       {children}
     </Link>
   )
@@ -50,6 +45,7 @@ export default LinkResolver
 export const query = graphql`
   fragment Link on SanityArticleOrPage {
     ... on SanityPage {
+      _id
       id
       _type
       title
@@ -58,6 +54,7 @@ export const query = graphql`
       }
     }
     ... on SanityArticle {
+      _id
       id
       _type
       title
@@ -72,6 +69,7 @@ export const StaticQuery = graphql`
   {
     sanitySiteSettings(_id: { eq: "siteSettings" }) {
       frontpage {
+        _id
         id
       }
     }
