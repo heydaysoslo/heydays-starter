@@ -92,6 +92,7 @@ const Preview = props => {
     laptop: '1200px'
   }
 
+
   return (
     <div>
       <Helmet>
@@ -100,6 +101,7 @@ const Preview = props => {
       <div className="Preview">
         <div className="Preview__header">
           <Container>
+
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <span>
                 <span role="img" aria-label="eyes">
