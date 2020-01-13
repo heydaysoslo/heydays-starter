@@ -1,0 +1,15 @@
+.SizeSwitcher {
+  position: relative;
+
+  &__select {
+    padding-right: 20px;
+  }
+
+  &__icon {
+    width: 15px;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+  }
+}
