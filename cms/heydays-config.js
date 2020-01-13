@@ -1,8 +1,8 @@
-import S from '@sanity/desk-tool/structure-builder'
-import Sort from 'react-icons/lib/fa/sort-amount-asc'
-import FaList from 'react-icons/lib/fa/list-ul'
-import MdPerson from 'react-icons/lib/md/person'
-import FaNewspaper from 'react-icons/lib/fa/newspaper-o'
+import S from "@sanity/desk-tool/structure-builder";
+import Sort from "react-icons/lib/fa/sort-amount-asc";
+import FaList from "react-icons/lib/fa/list-ul";
+import MdPerson from "react-icons/lib/md/person";
+import FaNewspaper from "react-icons/lib/fa/newspaper-o";
 
 /**
  * Config file sanity custom stuff
@@ -14,10 +14,10 @@ export default {
    *
    * This controls the order of menu in the desk
    */
-  pageTypes: ['page', 'article'],
+  pageTypes: ["page"],
   menus: [
-    { title: 'Primary Menu', id: 'primaryMenu' },
-    { title: 'Footer Menu', id: 'footerMenu' }
+    { title: "Primary Menu", id: "primaryMenu" },
+    { title: "Footer Menu", id: "footerMenu" }
   ],
   /**
    * Custom Types
@@ -29,14 +29,14 @@ export default {
    */
   customTypes: [
     {
-      title: 'Person Order',
-      typeId: 'person',
-      typeTitle: 'Person',
-      orderTypeId: 'personOrder',
+      title: "Person Order",
+      typeId: "person",
+      typeTitle: "Person",
+      orderTypeId: "personOrder",
       icon: MdPerson
     }
   ]
-}
+};
 
 /**
  * Actions / Helpers
@@ -45,11 +45,11 @@ export default {
 export const createMenuDeskStructure = menus =>
   S &&
   S.listItem()
-    .title('Menu')
+    .title("Menu")
     .icon(FaList)
     .child(
       S.list()
-        .title('Menu')
+        .title("Menu")
         .items(
           menus.map(({ title, id }) => {
             return S.listItem()
@@ -57,20 +57,20 @@ export const createMenuDeskStructure = menus =>
               .child(
                 S.editor()
                   .id(id)
-                  .schemaType('menu')
+                  .schemaType("menu")
                   .documentId(`menu-${id}`)
               )
-              .icon(FaList)
+              .icon(FaList);
           })
         )
-    )
+    );
 
 export const createCustomTypeDeskStructure = customTypes =>
   customTypes.map(({ title, typeId, typeTitle, icon, orderTypeId }) => {
     // Get all posts
     const posts =
       S &&
-      S.documentTypeListItems().filter(listItem => listItem.getId() === typeId)
+      S.documentTypeListItems().filter(listItem => listItem.getId() === typeId);
     // Get order page of correct type
     const orderPage =
       S &&
@@ -82,7 +82,7 @@ export const createCustomTypeDeskStructure = customTypes =>
             .schemaType(orderTypeId)
             .documentId(orderTypeId)
         )
-        .icon(Sort)
+        .icon(Sort);
 
     // Here you can add more setting types ex. category. Use the same
     // approach as with orderPage
@@ -97,8 +97,8 @@ export const createCustomTypeDeskStructure = customTypes =>
             .title(typeTitle)
             .items([...posts, orderPage])
         )
-    )
-  })
+    );
+  });
 
 // const createOrderDoc = type => {
 //   const upperCaseType = type.charAt(0).toUpperCase() + type.slice(1)
