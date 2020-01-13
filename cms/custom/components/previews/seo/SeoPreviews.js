@@ -17,12 +17,38 @@ class SeoPreviews extends React.PureComponent {
   render() {
     const { options } = this.props;
     const { displayed } = this.props.document;
+    const {
+      title,
+      excerpt: description = [],
+      mainImage: openGraphImage,
+      seo
+    } = displayed;
+
+    const displayTitle = seo && seo.title ? seo.title : title;
+    const displayDescription =
+      seo && seo.description ? seo.description : description;
+    const displayImage = seo && seo.image ? seo.image : openGraphImage;
+
+    const content = {
+      title: displayTitle,
+      description: displayDescription,
+      image: displayImage,
+      isSeo: seo && seo.description
+    };
 
     return (
       <>
-        <GoogleSearchResult document={displayed} options={options} />
-        <TwitterCard document={displayed} options={options} />
-        <FacebookShare document={displayed} options={options} />
+        <GoogleSearchResult
+          content={content}
+          document={displayed}
+          options={options}
+        />
+        <TwitterCard content={content} document={displayed} options={options} />
+        <FacebookShare
+          content={content}
+          document={displayed}
+          options={options}
+        />
       </>
     );
   }

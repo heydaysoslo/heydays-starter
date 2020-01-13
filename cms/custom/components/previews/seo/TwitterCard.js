@@ -32,8 +32,8 @@ class TwitterCard extends React.PureComponent {
   };
 
   render() {
-    const { document, width, options } = this.props;
-    const { title, excerpt, mainImage } = document;
+    const { document, width, options, content } = this.props;
+    const { title, description, image, isSeo } = content;
     const url = assemblePageUrl({ document, options });
     const websiteUrlWithoutProtocol = url.split("://")[1];
     return (
@@ -66,16 +66,16 @@ class TwitterCard extends React.PureComponent {
             <div className={styles.tweetCardPreview}>
               <div className={styles.tweetCardImage}>
                 <img
-                  src={urlFor(mainImage)
+                  src={urlFor(image)
                     .width(300)
                     .url()}
                 />
               </div>
               <div className={styles.tweetCardContent}>
                 <h2 className={styles.tweetCardTitle}>{title}</h2>
-                {excerpt && (
+                {description && (
                   <div className={styles.tweetCardDescription}>
-                    {toPlainText(excerpt)}
+                    {isSeo ? description : toPlainText(description)}
                   </div>
                 )}
                 <div className={styles.tweetCardDestination}>
