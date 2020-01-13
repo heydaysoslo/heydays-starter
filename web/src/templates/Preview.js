@@ -21,6 +21,7 @@ const Preview = props => {
   // const fetchCount = useRef(null)
   const fetchTimer = useRef(null)
   const [pageData, setPageData] = useState(null)
+  const [size, setSize] = useState('full')
 
   // Get draft if it exists, fall back to published page
   // Unfortunatly we need to resolve references manually, unlike graphql
@@ -84,6 +85,13 @@ const Preview = props => {
 
   useEffect(initFetching, [])
 
+  const sizes = {
+    full: '100%',
+    mobile: '375px',
+    tablet: '768px',
+    laptop: '1200px'
+  }
+
   return (
     <div>
       <Helmet>
@@ -92,19 +100,54 @@ const Preview = props => {
       <div className="Preview">
         <div className="Preview__header">
           <Container>
-            <span>
-              <span role="img" aria-label="eyes">
-                👀
-              </span>{' '}
-              Preview
-            </span>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span>
+                <span role="img" aria-label="eyes">
+                  👀
+                </span>{' '}
+                Preview
+              </span>
+              <label className="SizeSwitcher" htmlFor="size">
+                Select size:&nbsp;&nbsp;
+                <select
+                  className="SizeSwitcher__select"
+                  name="size"
+                  id="size"
+                  onChange={e => setSize(e.target.value)}
+                  value={size}
+                >
+                  {Object.keys(sizes).map(size => (
+                    <option value={size} key={`size-${size}`}>
+                      {size.substr(0, 1).toUpperCase()}
+                      {size.substr(1, size.length)}
+                    </option>
+                  ))}
+                </select>
+                <svg
+                  viewBox="0 0 10 10"
+                  className="SizeSwitcher__icon"
+                  aria-label="downward arrow"
+                >
+                  <path d="M0 2 L5 8 L10 2" stroke="black" fill="none" />
+                </svg>
+              </label>
+            </div>
           </Container>
         </div>
         <div className="Preview__content">
           {pageData && (
-            <Layout>
-              <TemplateResolver data={pageData} />
-            </Layout>
+            <div
+              style={{
+                width: sizes[size],
+                border: size === 'full' ? 'none' : '1px solid black',
+                margin: '0 auto',
+                transition: 'width .3s ease'
+              }}
+            >
+              <Layout>
+                <TemplateResolver data={pageData} />
+              </Layout>
+            </div>
           )}
         </div>
       </div>

@@ -10,6 +10,7 @@ import EyeIcon from "part:@sanity/base/eye-icon";
 import EditIcon from "part:@sanity/base/edit-icon";
 
 import SeoPreview from "./custom/components/previews/seo/SeoPreviews";
+import Preview from "./custom/components/previews/preview/Preview";
 
 // Create menus
 const menus = createMenuDeskStructure(config.menus);
@@ -24,12 +25,6 @@ const hiddenCustomTypes = config.customTypes.reduce((res, item) => {
   return res;
 }, []);
 
-const pages =
-  S &&
-  S.documentTypeListItems().filter(
-    listItem => config.pageTypes.indexOf(listItem.getId()) !== -1
-  );
-
 const hiddenDocTypes = listItem =>
   ![
     "menu",
@@ -40,20 +35,34 @@ const hiddenDocTypes = listItem =>
     ...hiddenCustomTypes
   ].includes(listItem.getId());
 
-const articles =
-  S &&
-  S.documentTypeListItems().filter(listItem => listItem.getId() === "article");
-
-const previewURL =
-  window.location.hostname === "localhost" ? localURL : remoteURL;
-const localURL = "http://localhost:3333";
-
 export default () =>
   S.list()
     .title("Content")
     .items([
       menus,
-      ...pages,
+      S.listItem()
+        .title("Page")
+        .schemaType("page")
+        .child(
+          S.documentTypeList("page")
+            .title("Page")
+            .child(documentId =>
+              S.document()
+                .documentId(documentId)
+                .schemaType("page")
+                .views([
+                  S.view.form().icon(EditIcon),
+                  S.view
+                    .component(SeoPreview)
+                    .icon(EyeIcon)
+                    .title("SEO Preview"),
+                  S.view
+                    .component(Preview)
+                    .icon(EyeIcon)
+                    .title("Preview")
+                ])
+            )
+        ),
       S.listItem()
         .title("Article")
         .schemaType("article")
@@ -68,9 +77,12 @@ export default () =>
                   S.view.form().icon(EditIcon),
                   S.view
                     .component(SeoPreview)
-                    .options({ previewURL })
                     .icon(EyeIcon)
-                    .title("SEO Preview")
+                    .title("SEO Preview"),
+                  S.view
+                    .component(Preview)
+                    .icon(EyeIcon)
+                    .title("Preview")
                 ])
             )
         ),
