@@ -8,11 +8,10 @@ export default styled.div(
     ${spacing.section('my')}
     /* ${my({ md: 'xs', lg: 'lg' })} */
 
-
     ${fonts.title('red')}
 
     ${bp.spesific('sm,lg')`
-      background: orange;
+      opacity: .5;
     `}
   `
 )

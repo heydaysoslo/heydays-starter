@@ -1,13 +1,15 @@
 import React from 'react'
 import cc from 'classcat'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import LinkResolver from './LinkResolver'
 import { fonts } from '../styles/utilities'
 
-const Wrapper = styled(LinkResolver)`
-  ${fonts.title('red')}
-`
+const Wrapper = styled(LinkResolver)(
+  ({ theme: { colors } }) => css`
+    ${fonts.title(colors.text)};
+  `
+)
 
 const MenuItems = ({ menu, closeMenu, className }) => {
   if (!menu) return null

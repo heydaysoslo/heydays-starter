@@ -23,6 +23,9 @@ import { css } from 'styled-components'
  * py = padding-top and padding-bottom
  * px = padding-left and padding-right
  *
+ * Usage:
+ * ${spacing.section('my')} || ${spacing.section('my,mx')}
+ *
  *
  * @param {string} props ex uses: 'mt,ml' for multiple. 'mr' for single. Defaults to 'mb'
  * @param {object} size

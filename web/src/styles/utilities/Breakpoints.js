@@ -1,6 +1,9 @@
 import { css } from 'styled-components'
 import theme from '../themes'
 import { emSize } from './Converters'
+import { ThemeProps, ThemeContext, ThemedStyledProps } from 'styled-components'
+
+console.log('theme', ThemeProps, ThemeContext, ThemedStyledProps)
 
 /**
  * Breakpoint functions examples:
