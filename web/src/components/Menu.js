@@ -6,6 +6,7 @@ import FadeIn from './FadeIn'
 import MenuItems from './MenuItems'
 import Portal from './Portal'
 import Container from './Container'
+import StyledMenu from '../styles/components/StyledMenu'
 
 const Menu = () => {
   const data = useStaticQuery(query)
@@ -13,36 +14,38 @@ const Menu = () => {
   const { state, actions } = useContext(AppContext)
 
   return (
-    <nav className="Menu">
-      <div className="Menu__desktop">
-        <MenuItems menu={menu} />
-      </div>
-      <div className="Menu__mobile">
-        <button onClick={() => actions.toggleMenu()}>
-          {state?.showMenu ? 'Close' : 'Menu'}
-        </button>
-        <Portal>
-          <FadeIn trigger={state?.showMenu}>
-            <div className="Menu__cover">
-              <Container className="Menu__container">
-                <button
-                  className="Menu__close"
-                  onClick={() => actions.toggleMenu()}
-                >
-                  {state?.showMenu ? 'Close' : 'Menu'}
-                </button>
-                <div className="Menu__wrapper">
-                  <MenuItems
-                    menu={menu}
-                    closeMenu={() => actions.toggleMenu(false)}
-                  />
-                </div>
-              </Container>
-            </div>
-          </FadeIn>
-        </Portal>
-      </div>
-    </nav>
+    <StyledMenu>
+      <nav className="Menu">
+        <div className="Menu__desktop">
+          <MenuItems menu={menu} />
+        </div>
+        <div className="Menu__mobile">
+          <button onClick={() => actions.toggleMenu()}>
+            {state?.showMenu ? 'Close' : 'Menu'}
+          </button>
+          <Portal>
+            <FadeIn trigger={state?.showMenu}>
+              <div className="Menu__cover">
+                <Container className="Menu__container">
+                  <button
+                    className="Menu__close"
+                    onClick={() => actions.toggleMenu()}
+                  >
+                    {state?.showMenu ? 'Close' : 'Menu'}
+                  </button>
+                  <div className="Menu__wrapper">
+                    <MenuItems
+                      menu={menu}
+                      closeMenu={() => actions.toggleMenu(false)}
+                    />
+                  </div>
+                </Container>
+              </div>
+            </FadeIn>
+          </Portal>
+        </div>
+      </nav>
+    </StyledMenu>
   )
 }
 

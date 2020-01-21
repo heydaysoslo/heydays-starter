@@ -1,12 +1,18 @@
 import React from 'react'
 import cc from 'classcat'
+import styled from 'styled-components'
 
 import LinkResolver from './LinkResolver'
+import { fonts } from '../styles/utilities'
+
+const Wrapper = styled(LinkResolver)`
+  ${fonts.title('red')}
+`
 
 const MenuItems = ({ menu, closeMenu, className }) => {
   if (!menu) return null
   return menu.map(item => (
-    <LinkResolver
+    <Wrapper
       key={item._key}
       data={item?.externalLink?.url || item?.reference}
       className={cc({
@@ -17,7 +23,7 @@ const MenuItems = ({ menu, closeMenu, className }) => {
       openInNewTab={item?.externalLink?.blank}
     >
       {item?.title || item?.reference?.title}
-    </LinkResolver>
+    </Wrapper>
   ))
 }
 
