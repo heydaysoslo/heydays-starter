@@ -29,7 +29,7 @@ import { config } from 'react-transition-group'
  * @param {object} size
  */
 export const createSpacing = (props = 'mb', size) => {
-  const values = props.split(',')
+  const values = props.split(',').map(string => string.trim())
   // If there is single prop
   if (values.length === 0) {
     return css`
