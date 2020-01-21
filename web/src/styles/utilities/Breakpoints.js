@@ -55,20 +55,46 @@ export const between = (min, max) => (...args) => {
 }
 
 export const only = Object.keys(theme.breakpoints).reduce((acc, bp, i) => {
-  console.log('this', theme.breakpoints[bp])
-  console.log('next', Object.keys(theme.breakpoints)[i + 1])
   acc[bp] = (...args) => css`
     @media (min-width: ${emSize(
         theme.breakpoints[bp]
-      )}) and (max-width: ${emSize(Object.keys(theme.breakpoints)[i + 1])}) {
+      )}) and (max-width: ${emSize(
+        theme.breakpoints[Object.keys(theme.breakpoints)[i + 1]]
+      )}) {
       ${css(...args)}
     }
   `
   return acc
 }, {})
 
-// TODO: Make spesific
+/**
+ * Breakpoint handler for a set of styles for a spesific breakpoints. Ex. no margin on xs and md
+ * Usage:
+ *
+ * ${spesific('md,xl')`
+      background: orange;
+    `}
 
-// specific(['xs', 'xl'])`
-//   background: orange;
-// `
+ * @param {string} breakpointsString string of comma separated breakpoints ex. 'md,xl'
+ */
+export const spesific = breakpointsString => (...args) => {
+  const breakpoints = breakpointsString.split(',').map(string => string.trim())
+  // console.log(breakpoints)
+  if (breakpoints.length === 1) {
+    return css`
+      ${only[breakpoints[0]]`
+      ${css(...args)}
+    `}
+    `
+  } else {
+    return css`
+      ${breakpoints.map(
+        bp => css`
+          ${only[bp]`
+            ${css(...args)}
+          `}
+        `
+      )}
+    `
+  }
+}

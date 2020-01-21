@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { spacing, fonts, above, only, remSize } from '../utilities'
+import { spacing, fonts, above, spesific } from '../utilities'
 import { my } from 'styled-components-spacing'
 
 export default styled.div(
@@ -13,8 +13,8 @@ export default styled.div(
     `} */
     ${fonts.title('red')}
 
-    ${only.md`
-      background: pink;
+    ${spesific('sm,lg')`
+      background: orange;
     `}
   `
 )
