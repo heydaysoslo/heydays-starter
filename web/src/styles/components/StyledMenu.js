@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { spacing, fonts, above, spesific } from '../utilities'
+import { spacing, fonts, bp } from '../utilities'
 import { my } from 'styled-components-spacing'
 
 export default styled.div(
@@ -8,12 +8,10 @@ export default styled.div(
     ${spacing.section('my')}
     /* ${my({ md: 'xs', lg: 'lg' })} */
 
-    /* ${above.lg`
-      background: ${colors.primary}
-    `} */
+
     ${fonts.title('red')}
 
-    ${spesific('sm,lg')`
+    ${bp.spesific('sm,lg')`
       background: orange;
     `}
   `

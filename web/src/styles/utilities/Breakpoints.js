@@ -2,35 +2,59 @@ import { css } from 'styled-components'
 import theme from '../themes'
 import { emSize } from './Converters'
 
-// iterate through the breakpoints and create a media template
-export const above = Object.keys(theme.breakpoints).reduce(
-  (accumulator, bp) => {
-    // use em in breakpoints to work properly cross-browser and support users
-    // changing their browsers font-size: https://zellwk.com/blog/media-query-units/
-    accumulator[bp] = (...args) => css`
-      @media (min-width: ${emSize(theme.breakpoints[bp])}) {
-        ${css(...args)};
-      }
-    `
-    return accumulator
-  },
-  {}
-)
+/**
+ * Breakpoint functions examples:
+  export default styled.div`
+
+    ${bp.above.md`
+      background: red;
+    `}
+
+    ${bp.below.md`
+      background: orange;
+    `}
+
+    ${bp.between('md','xl')`
+      background: orange;
+    `}
+
+    ${bp.only.md`
+      background: orange;
+    `}
+
+    ${bp.spesific('md')`
+      background: orange;
+    `}
+
+    ${bp.spesific('md,xl')`
+      background: orange;
+    `}
+  `
+ */
 
 // iterate through the breakpoints and create a media template
-export const below = Object.keys(theme.breakpoints).reduce(
-  (accumulator, bp) => {
-    // use em in breakpoints to work properly cross-browser and support users
-    // changing their browsers font-size: https://zellwk.com/blog/media-query-units/
-    accumulator[bp] = (...args) => css`
-      @media (max-width: ${emSize(theme.breakpoints[bp])}) {
-        ${css(...args)};
-      }
-    `
-    return accumulator
-  },
-  {}
-)
+const above = Object.keys(theme.breakpoints).reduce((accumulator, bp) => {
+  // use em in breakpoints to work properly cross-browser and support users
+  // changing their browsers font-size: https://zellwk.com/blog/media-query-units/
+  accumulator[bp] = (...args) => css`
+    @media (min-width: ${emSize(theme.breakpoints[bp])}) {
+      ${css(...args)};
+    }
+  `
+  return accumulator
+}, {})
+
+// iterate through the breakpoints and create a media template
+const below = Object.keys(theme.breakpoints).reduce((accumulator, bp) => {
+  // use em in breakpoints to work properly cross-browser and support users
+  // changing their browsers font-size: https://zellwk.com/blog/media-query-units/
+  accumulator[bp] = (...args) => css`
+    @media (max-width: ${emSize(theme.breakpoints[bp])}) {
+      ${css(...args)};
+    }
+  `
+  return accumulator
+}, {})
 
 /**
  *
@@ -44,7 +68,7 @@ export const below = Object.keys(theme.breakpoints).reduce(
  * @param {string} min string needs to relate to a key in theme.breakpoints
  * @param {string} max string needs to relate to a key in theme.breakpoints
  */
-export const between = (min, max) => (...args) => {
+const between = (min, max) => (...args) => {
   return css`
     @media (min-width: ${emSize(
         theme.breakpoints[min]
@@ -54,7 +78,7 @@ export const between = (min, max) => (...args) => {
   `
 }
 
-export const only = Object.keys(theme.breakpoints).reduce((acc, bp, i) => {
+const only = Object.keys(theme.breakpoints).reduce((acc, bp, i) => {
   acc[bp] = (...args) => css`
     @media (min-width: ${emSize(
         theme.breakpoints[bp]
@@ -77,7 +101,7 @@ export const only = Object.keys(theme.breakpoints).reduce((acc, bp, i) => {
 
  * @param {string} breakpointsString string of comma separated breakpoints ex. 'md,xl'
  */
-export const spesific = breakpointsString => (...args) => {
+const spesific = breakpointsString => (...args) => {
   const breakpoints = breakpointsString.split(',').map(string => string.trim())
   // console.log(breakpoints)
   if (breakpoints.length === 1) {
@@ -97,4 +121,12 @@ export const spesific = breakpointsString => (...args) => {
       )}
     `
   }
+}
+
+export const bp = {
+  above,
+  below,
+  between,
+  only,
+  spesific
 }

@@ -1,21 +1,21 @@
 import { css } from 'styled-components'
 
 import theme from '../themes'
-import { above } from './Breakpoints'
+import { bp } from './Breakpoints'
 
 export const fonts = {
   h1: () => css`
     ${theme.fonts.medium()}
-    ${above.lg`
+    ${bp.above.lg`
       ${theme.fonts.xlarge()}
     `}
-    ${above.xl`
+    ${bp.above.xl`
       ${theme.fonts.xxlarge()}
     `}
   `,
   body: () => css`
     ${theme.fonts.small()}
-    ${above.lg`
+    ${bp.above.lg`
       ${theme.fonts.medium()}
     `}
   `,

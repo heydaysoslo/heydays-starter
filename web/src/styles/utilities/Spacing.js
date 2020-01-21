@@ -1,6 +1,5 @@
 import * as scSpacing from 'styled-components-spacing'
 import { css } from 'styled-components'
-import { config } from 'react-transition-group'
 
 /**
  * Create spacing

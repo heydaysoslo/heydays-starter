@@ -1,7 +1,7 @@
 import { createGlobalStyle, css } from 'styled-components'
 import { spacing } from './Spacing'
 import themes from '../themes'
-import { above } from './Breakpoints'
+import { bp } from './Breakpoints'
 import { fonts } from './Typography'
 
 export const GlobalStyle = createGlobalStyle`
@@ -178,7 +178,7 @@ ${process.env.NODE_ENV === 'development' &&
       ${Object.keys(themes.breakpoints).map(
         key =>
           css`
-            ${above[key]`content: '${key}';`}
+            ${bp.above[key]`content: '${key}';`}
           `
       )}
     }
