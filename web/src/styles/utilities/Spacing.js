@@ -31,15 +31,19 @@ import { css } from 'styled-components'
  * @param {object} size
  */
 export const createSpacing = (props = 'mb', size) => {
-  const values = props.split(',').map(string => string.trim())
+  if (typeof props !== 'string') {
+    console.info('Spacing functions expects a string')
+    return null
+  }
+  const propsArr = props.split(',').map(string => string.trim())
   // If there is single prop
-  if (values.length === 0) {
+  if (propsArr.length === 0) {
     return css`
       ${scSpacing[props](size)}
     `
   }
   // If there are multiple props
-  return values.map(
+  return propsArr.map(
     val =>
       css`
         ${scSpacing[val](size)}

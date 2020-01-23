@@ -94,7 +94,44 @@ export const darkTheme = {
     lg: 600,
     xl: 800,
     xxl: 900
-  }
+  },
+  fonts: {
+    xxlarge: () =>
+      css`
+        font-size: ${remSize(300)};
+        line-height: 1.2;
+      `,
+    xlarge: () =>
+      css`
+        font-size: ${remSize(300)};
+        line-height: 1.2;
+      `,
+    large: () =>
+      css`
+        font-size: ${remSize(300)};
+        line-height: 1.2;
+      `,
+    medium: () =>
+      css`
+        font-size: ${remSize(300)};
+        line-height: 1.2;
+      `,
+    small: () =>
+      css`
+        font-size: ${remSize(300)};
+        line-height: 1.2;
+      `,
+    xs: () =>
+      css`
+        font-size: ${remSize(300)};
+        line-height: 1.2;
+      `
+  },
+  defaultStyle: css`
+    html {
+      font-size: 200%;
+    }
+  `
 }
 
 export default theme

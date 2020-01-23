@@ -1,9 +1,6 @@
 import { css } from 'styled-components'
 import theme from '../themes'
 import { emSize } from './Converters'
-import { ThemeProps, ThemeContext, ThemedStyledProps } from 'styled-components'
-
-console.log('theme', ThemeProps, ThemeContext, ThemedStyledProps)
 
 /**
  * Breakpoint functions examples:
@@ -39,11 +36,15 @@ console.log('theme', ThemeProps, ThemeContext, ThemedStyledProps)
 const above = Object.keys(theme.breakpoints).reduce((accumulator, bp) => {
   // use em in breakpoints to work properly cross-browser and support users
   // changing their browsers font-size: https://zellwk.com/blog/media-query-units/
-  accumulator[bp] = (...args) => css`
-    @media (min-width: ${emSize(theme.breakpoints[bp])}) {
-      ${css(...args)};
+  accumulator[bp] = (...args) => {
+    return function(props) {
+      return css`
+        @media (min-width: ${emSize(props.theme.breakpoints[bp])}) {
+          ${css(...args)};
+        }
+      `
     }
-  `
+  }
   return accumulator
 }, {})
 
@@ -51,11 +52,15 @@ const above = Object.keys(theme.breakpoints).reduce((accumulator, bp) => {
 const below = Object.keys(theme.breakpoints).reduce((accumulator, bp) => {
   // use em in breakpoints to work properly cross-browser and support users
   // changing their browsers font-size: https://zellwk.com/blog/media-query-units/
-  accumulator[bp] = (...args) => css`
-    @media (max-width: ${emSize(theme.breakpoints[bp])}) {
-      ${css(...args)};
+  accumulator[bp] = (...args) => {
+    return function(props) {
+      return css`
+        @media (max-width: ${emSize(props.theme.breakpoints[bp])}) {
+          ${css(...args)};
+        }
+      `
     }
-  `
+  }
   return accumulator
 }, {})
 
@@ -72,25 +77,39 @@ const below = Object.keys(theme.breakpoints).reduce((accumulator, bp) => {
  * @param {string} max string needs to relate to a key in theme.breakpoints
  */
 const between = (min, max) => (...args) => {
-  return css`
-    @media (min-width: ${emSize(
-        theme.breakpoints[min]
-      )}) and (max-width: ${emSize(theme.breakpoints[max])}) {
-      ${css(...args)};
+  return function({ theme: { breakpoints } }) {
+    if (!min || !max) {
+      console.info('Either the min or max props is missing')
+      return null
     }
-  `
+    // Get index from max from props
+    const maxIndex = Object.keys(breakpoints).indexOf(max)
+    // get key for breakpoint after max from props
+    const maxKey = Object.keys(breakpoints)[maxIndex + 1]
+    return css`
+      @media (min-width: ${emSize(breakpoints[min])}) and (max-width: ${emSize(
+          breakpoints[maxKey]
+        )}) {
+        ${css(...args)}
+      }
+    `
+  }
 }
 
 const only = Object.keys(theme.breakpoints).reduce((acc, bp, i) => {
-  acc[bp] = (...args) => css`
-    @media (min-width: ${emSize(
-        theme.breakpoints[bp]
-      )}) and (max-width: ${emSize(
-        theme.breakpoints[Object.keys(theme.breakpoints)[i + 1]]
-      )}) {
-      ${css(...args)}
+  acc[bp] = (...args) => {
+    return function(props) {
+      return css`
+        @media (min-width: ${emSize(
+            props.theme.breakpoints[bp]
+          )}) and (max-width: ${emSize(
+            props.theme.breakpoints[Object.keys(props.theme.breakpoints)[i + 1]]
+          )}) {
+          ${css(...args)}
+        }
+      `
     }
-  `
+  }
   return acc
 }, {})
 
@@ -105,8 +124,12 @@ const only = Object.keys(theme.breakpoints).reduce((acc, bp, i) => {
  * @param {string} breakpointsString string of comma separated breakpoints ex. 'md,xl'
  */
 const spesific = breakpointsString => (...args) => {
+  if (typeof breakpointsString !== 'string') {
+    console.info(
+      `The bp.spesific funtion expects a string separated by comma if you have multiple breakpoints. Ex: 'sm,lg'`
+    )
+  }
   const breakpoints = breakpointsString.split(',').map(string => string.trim())
-  // console.log(breakpoints)
   if (breakpoints.length === 1) {
     return css`
       ${only[breakpoints[0]]`
