@@ -1,17 +1,15 @@
 import React from 'react'
-import cc from 'classcat'
+import styled, { css } from 'styled-components'
+
+import { spacing } from '../styles/utilities'
 
 const Container = ({ children, className }) => {
-  return (
-    <div
-      className={cc({
-        Container: true,
-        [className]: className
-      })}
-    >
-      {children}
-    </div>
-  )
+  return <div className={className}>{children}</div>
 }
 
-export default Container
+export default styled(Container)(
+  ({ theme }) => css`
+    width: 100%;
+    ${spacing.xs()}
+  `
+)

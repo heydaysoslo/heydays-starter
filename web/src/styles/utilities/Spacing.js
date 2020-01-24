@@ -76,5 +76,11 @@ export const spacing = {
     createSpacing(props, {
       xs: 'lg',
       lg: 'section'
+    }),
+  gutter: props =>
+    createSpacing(props, {
+      xs: 'gutter'
     })
 }
+
+// Create negative spacing

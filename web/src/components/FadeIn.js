@@ -1,11 +1,21 @@
 import React from 'react'
-import { CSSTransition } from 'react-transition-group'
+import { motion } from 'framer-motion'
 
-const FadeIn = ({ trigger, children }) => {
+const FadeIn = ({ trigger, children, className }) => {
+  const variants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 }
+  }
+
   return (
-    <CSSTransition in={trigger} timeout={500} classNames="FadeIn">
-      <div className="FadeIn">{children}</div>
-    </CSSTransition>
+    <motion.div
+      initial="hidden"
+      animate={trigger ? 'visible' : 'hidden'}
+      className={className}
+      variants={variants}
+    >
+      {children}
+    </motion.div>
   )
 }
 

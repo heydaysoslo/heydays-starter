@@ -25,11 +25,11 @@ export const fonts = {
   title: (color = 'black') => {
     return function({ theme }) {
       return css`
-    ${theme.fonts.xlarge()}
-    color: ${color};
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  `
+        ${theme.fonts.xlarge()}
+        color: ${color || theme.colors.text};
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      `
     }
   }
 }

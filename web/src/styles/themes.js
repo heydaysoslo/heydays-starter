@@ -10,10 +10,10 @@ export const colors = {
 
 export const breakpoints = {
   xs: 0,
-  sm: 375,
-  md: 768,
-  lg: 1170,
-  xl: 1400,
+  sm: 550,
+  md: 870,
+  lg: 1200,
+  xl: 1600,
   xxl: 1800
 }
 
@@ -23,8 +23,14 @@ export const spacing = {
   md: remSize(15),
   lg: remSize(40),
   xl: remSize(80),
-  section: remSize(160)
+  section: remSize(160),
+  gutter: remSize(20)
 }
+
+export const negativeSpacing = Object.keys(spacing).reduce((acc, key) => {
+  acc[key] = `-${spacing[key]}`
+  return acc
+}, {})
 
 export const fonts = {
   xxlarge: () =>
@@ -59,6 +65,14 @@ export const fonts = {
     `
 }
 
+export const aspect = {
+  portrait: (7 / 6) * 100,
+  landscape: (2 / 3) * 100,
+  landscape: 100,
+  widescreen: (9 / 16) * 100,
+  panorama: (11 / 16) * 100
+}
+
 export const contentWidth = {
   small: remSize(600),
   large: remSize(1200)
@@ -68,7 +82,9 @@ export const theme = {
   colors,
   breakpoints,
   spacing,
+  negativeSpacing,
   fonts,
+  aspect,
   contentWidth
 }
 
@@ -85,7 +101,8 @@ export const darkTheme = {
     md: remSize(600),
     lg: remSize(600),
     xl: remSize(600),
-    section: remSize(600)
+    section: remSize(600),
+    gutter: remSize(40)
   },
   breakpoints: {
     xs: 0,
