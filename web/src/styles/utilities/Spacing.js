@@ -9,6 +9,7 @@ import { css } from 'styled-components'
  * https://docs.emmet.io/cheat-sheet/
  *
  * Available props:
+ * m = margin
  * ml = margin-left
  * mt = margin-top
  * mr = margin-right
@@ -16,6 +17,7 @@ import { css } from 'styled-components'
  * my = margin-top and margin-bottom
  * mx = margin-left and margin-right
  *
+ * p = padding
  * pl = padding-left
  * pt = padding-top
  * pr = padding-right
