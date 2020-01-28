@@ -7,7 +7,7 @@ import MenuItems from './MenuItems'
 import Portal from './Portal'
 import Container from './Container'
 import styled, { css } from 'styled-components'
-import { bp, spacing, fonts } from '../styles/utilities'
+import { bp, spacing, fonts, color } from '../styles/utilities'
 import { Button } from './elements'
 
 const Menu = ({ className }) => {
@@ -80,6 +80,8 @@ const StyledFadeIn = styled(FadeIn)(
 
 export default styled(Menu)(
   ({ theme }) => css`
+  ${console.log(color.isDark('red'))}
+    background: ${color.hsla('orange', 0.2)};
     .mobile {
       display: none;
       ${bp.below.lg`

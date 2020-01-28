@@ -20,7 +20,7 @@ import React, { useState, useRef } from 'react'
 import keyCodes from '../utils/keyCodes'
 import styled, { css } from 'styled-components'
 
-import { spacing } from '../styles/utilities'
+import { spacing, color } from '../styles/utilities'
 import { H3 } from './elements'
 import Editor from './editor/Editor'
 
@@ -142,26 +142,27 @@ StyledAccordion.Item = styled(AccordionItem)(
   ({ theme, active, exclusive, i }) => {
     const isActive = exclusive ? active === i : active.includes(i)
     return css`
-    .trigger {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      text-align: left;
-      background: ${theme.colors.secondary};
-      ${spacing.xs('py')}
-      background: ${isActive ? theme.colors.primary : theme.colors.secondary};
+      .trigger {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        text-align: left;
+        background: ${isActive
+          ? theme.colors.primary
+          : color.darken(theme.colors.secondary, 2.5)};
+        ${spacing.xs('py')}
 
-      &:focus {
-        outline: none;
-        background: ${theme.colors.primary};
+        &:focus {
+          outline: none;
+          background: ${theme.colors.primary};
+        }
       }
-    }
 
-    .content {
-      display: ${isActive ? 'block' : 'none'};
-      ${spacing.sm('px')}
-    }
-  `
+      .content {
+        display: ${isActive ? 'block' : 'none'};
+        ${spacing.sm('px')}
+      }
+    `
   }
 )
 
