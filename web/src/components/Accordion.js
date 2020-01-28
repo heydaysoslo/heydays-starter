@@ -149,8 +149,14 @@ StyledAccordion.Item = styled(AccordionItem)(
         text-align: left;
         background: ${isActive
           ? theme.colors.primary
-          : color.darken(theme.colors.secondary, 2.5)};
-        ${spacing.xs('py')}
+          : color.darken(theme.colors.primary, 0.2)};
+        ${spacing.xs('py')};
+        transition: ${theme.transitions.fast('background')};
+
+        &:hover {
+          background: ${color.darken(theme.colors.primary, 0.5)};
+          opacity: 0.5;
+        }
 
         &:focus {
           outline: none;

@@ -78,6 +78,11 @@ export const contentWidth = {
   large: remSize(1200)
 }
 
+export const transitions = {
+  fast: (props = '') => `${props} 0.1s ease`,
+  slow: (props = '') => `${props} 1s ease`
+}
+
 export const theme = {
   colors,
   breakpoints,
@@ -85,7 +90,8 @@ export const theme = {
   negativeSpacing,
   fonts,
   aspect,
-  contentWidth
+  contentWidth,
+  transitions
 }
 
 export const darkTheme = {
