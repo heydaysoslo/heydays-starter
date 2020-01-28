@@ -18,7 +18,7 @@ export default FrontPage
 
 export const query = graphql`
   {
-    sanitySiteSettings(id: { eq: "0f217bb5-f7f6-5420-b7c6-58db2c12b8c7" }) {
+    sanitySiteSettings(_id: { eq: "ead4f570-86ae-4de0-9ac5-58e07045e861" }) {
       frontpage {
         ...Page
       }
