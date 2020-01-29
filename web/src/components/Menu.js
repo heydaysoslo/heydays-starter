@@ -80,7 +80,6 @@ const StyledFadeIn = styled(FadeIn)(
 
 export default styled(Menu)(
   ({ theme }) => css`
-  ${console.log(color.isDark('red'))}
     background: ${color.hsla('orange', 0.2)};
     .mobile {
       display: none;
