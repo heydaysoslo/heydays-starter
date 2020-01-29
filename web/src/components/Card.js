@@ -7,7 +7,7 @@ import Editor from './editor/Editor'
 import InView from './InView'
 import styled, { css } from 'styled-components'
 import { spacing } from '../styles/utilities'
-import { H3 } from './elements'
+import { P } from './elements'
 
 const Card = ({ className, title, image, excerpt, link }) => (
   <InView className={className} activeClassName="is-visible">
@@ -23,7 +23,11 @@ const Card = ({ className, title, image, excerpt, link }) => (
           />
         )}
       </div>
-      {title && <H3 className="title">{title}</H3>}
+      {title && (
+        <P modifiers="large" className="title">
+          {title}
+        </P>
+      )}
       {excerpt && (
         <div className="excerpt">
           <Editor blocks={excerpt} />
