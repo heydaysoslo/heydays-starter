@@ -78,6 +78,12 @@ export const contentWidth = {
   large: remSize(1200)
 }
 
+export const icons = {
+  small: remSize(40),
+  medium: remSize(80),
+  large: remSize(160)
+}
+
 export const transitions = {
   fast: (props = '') => `${props} 0.1s ease`,
   slow: (props = '') => `${props} 1s ease`
@@ -91,7 +97,8 @@ export const theme = {
   fonts,
   aspect,
   contentWidth,
-  transitions
+  transitions,
+  icons
 }
 
 export const darkTheme = {

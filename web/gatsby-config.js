@@ -41,6 +41,11 @@ module.exports = new Promise((resolve, reject) => {
             // overlayDrafts: process.env.NODE_ENV === 'development'
           }
         },
+        `gatsby-plugin-styled-components`,
+        `gatsby-plugin-sharp`,
+        `gatsby-transformer-sharp`,
+        `gatsby-plugin-react-helmet`,
+        `gatsby-plugin-portal`,
         {
           resolve: `gatsby-source-filesystem`,
           options: {
@@ -48,11 +53,21 @@ module.exports = new Promise((resolve, reject) => {
             path: `${__dirname}/src/assets/images`
           }
         },
-        `gatsby-plugin-styled-components`,
-        `gatsby-plugin-sharp`,
-        `gatsby-transformer-sharp`,
-        `gatsby-plugin-react-helmet`,
-        `gatsby-plugin-portal`,
+        {
+          resolve: `gatsby-source-filesystem`,
+          options: {
+            name: `assets`,
+            path: `${__dirname}/src/assets`
+          }
+        },
+        {
+          resolve: 'gatsby-plugin-react-svg',
+          options: {
+            rule: {
+              include: /icons\/.*\.svg/
+            }
+          }
+        },
         {
           resolve: '@danbruegge/gatsby-plugin-stylelint',
           options: { files: ['**/*.scss'] }

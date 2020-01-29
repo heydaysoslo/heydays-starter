@@ -4,12 +4,18 @@ import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import Page from '../components/pages/Page'
 
+import Icon from '../components/Icon'
+
 const FrontPage = props => {
   const { data } = props
-  console.log(data)
   const page = data?.sanitySiteSettings?.frontpage
   return (
     <Layout {...page}>
+      {/* <StyledSomething /> */}
+      <Icon name="check" modifiers="small" />
+      <Icon name="config" />
+      <Icon name="calendar" modifiers="large" />
+      <Icon name="hakuna" modifiers="large" />
       <Page {...page} />
     </Layout>
   )
