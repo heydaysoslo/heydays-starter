@@ -10,6 +10,6 @@ const Container = ({ children, className }) => {
 export default styled(Container)(
   ({ theme }) => css`
     width: 100%;
-    ${spacing.xs()}
+    ${spacing.gutter('mx')}
   `
 )
