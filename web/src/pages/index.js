@@ -6,6 +6,7 @@ import Page from '../components/pages/Page'
 
 const FrontPage = props => {
   const { data } = props
+  console.log(data)
   const page = data?.sanitySiteSettings?.frontpage
   return (
     <Layout {...page}>
@@ -18,7 +19,7 @@ export default FrontPage
 
 export const query = graphql`
   {
-    sanitySiteSettings(_id: { eq: "ead4f570-86ae-4de0-9ac5-58e07045e861" }) {
+    sanitySiteSettings {
       frontpage {
         ...Page
       }
