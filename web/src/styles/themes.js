@@ -68,7 +68,7 @@ export const fonts = {
 export const aspect = {
   portrait: (7 / 6) * 100,
   landscape: (2 / 3) * 100,
-  landscape: 100,
+  square: 100,
   widescreen: (9 / 16) * 100,
   panorama: (11 / 16) * 100
 }

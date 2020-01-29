@@ -123,7 +123,7 @@ const TabPanel = ({ className, children, tab, isTabActive, ...props }) => {
       role="tabpanel"
       id={tab._key}
       aria-labelledby={tab._key}
-      tabIndex="0"
+      // tabIndex="0" // removed because of linter
       key={`pane-${tab._key}`}
       className={className}
     >

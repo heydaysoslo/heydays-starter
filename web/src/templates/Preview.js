@@ -92,7 +92,6 @@ const Preview = props => {
     laptop: '1200px'
   }
 
-
   return (
     <div>
       <Helmet>
@@ -101,7 +100,6 @@ const Preview = props => {
       <div className="Preview">
         <div className="Preview__header">
           <Container>
-
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <span>
                 <span role="img" aria-label="eyes">
@@ -115,7 +113,7 @@ const Preview = props => {
                   className="SizeSwitcher__select"
                   name="size"
                   id="size"
-                  onChange={e => setSize(e.target.value)}
+                  onBlur={e => setSize(e.target.value)}
                   value={size}
                 >
                   {Object.keys(sizes).map(size => (

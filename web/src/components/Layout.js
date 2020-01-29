@@ -9,7 +9,6 @@ import SEO from './SEO'
 import { ThemeProvider } from 'styled-components'
 import theme, { darkTheme } from '../styles/themes'
 import { GlobalStyle } from '../styles/utilities/Global'
-import { createTints, createMixColorSteps } from '../styles/utilities'
 // import Credits from './Credits'
 
 const Layout = props => {
@@ -23,18 +22,6 @@ const Layout = props => {
   return (
     <ThemeProvider theme={themes[number % themes.length]}>
       <button onClick={handleClick}>Change theme</button>
-      <div style={{ display: 'flex' }}>
-        {createTints('red', 5).map(color => (
-          <div
-            style={{ backgroundColor: color, height: '200px', width: '200px' }}
-          ></div>
-        ))}
-        {createMixColorSteps('red', 'blue', 5).map(color => (
-          <div
-            style={{ backgroundColor: color, height: '200px', width: '200px' }}
-          ></div>
-        ))}
-      </div>
       <div className="Site">
         {/* <Credits /> */}
         {props && (

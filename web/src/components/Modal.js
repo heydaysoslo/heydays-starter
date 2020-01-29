@@ -45,7 +45,13 @@ export default function Modal({
           trigger={open}
           style={animationWrapper ? {} : { display: open ? 'block' : 'none' }}
         >
-          <div onClick={outsideClick} className="Modal">
+          <div
+            role="button"
+            tabIndex="0"
+            onClick={outsideClick}
+            onKeyDown={outsideClick}
+            className="Modal"
+          >
             <div
               className="Modal__backdrop"
               style={backdrop && { backgroundColor: backdrop }}

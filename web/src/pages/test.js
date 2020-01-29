@@ -15,6 +15,8 @@ import FadeIn from '../components/FadeIn'
 import Layout from '../components/Layout'
 import AppContext from '../components/context/AppContext'
 import useFetch from '../components/hooks/useFetch'
+import Icon from '../components/Icon'
+import { createTints, createMixColorSteps } from '../styles/utilities'
 
 const query = graphql`
   {
@@ -58,6 +60,32 @@ const Index = () => {
   return (
     <Layout>
       <Container>
+        <Icon name="check" modifiers="small" />
+        <Icon name="config" />
+        <Icon name="calendar" modifiers="large" />
+        <Icon name="hakuna" modifiers="large" />
+        <div style={{ display: 'flex' }}>
+          {createTints('red', 5).map(color => (
+            <div
+              key={`tint-${color}`}
+              style={{
+                backgroundColor: color,
+                height: '200px',
+                width: '200px'
+              }}
+            ></div>
+          ))}
+          {createMixColorSteps('red', 'blue', 5).map(color => (
+            <div
+              key={`mixStep-${color}`}
+              style={{
+                backgroundColor: color,
+                height: '200px',
+                width: '200px'
+              }}
+            ></div>
+          ))}
+        </div>
         <h1>HomepageW in a user's site</h1>
         <Helmet>
           <title>Hello world</title>

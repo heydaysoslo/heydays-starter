@@ -7,7 +7,7 @@ import Quote from './Quote'
 import Figure from './Figure'
 import Oembed from '../Oembed'
 import Accordion from '../Accordion'
-import { H3, Text, H2, P } from '../elements'
+import { H3, H2, P } from '../elements'
 
 export const serializers = {
   types: {

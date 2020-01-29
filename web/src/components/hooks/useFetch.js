@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 /**
  *
@@ -13,11 +13,12 @@ const useFetch = (url, options = {}) => {
   const [response, setResponse] = useState(null)
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
+  const initialOptions = useRef(options)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const request = await fetch(url, { options })
+        const request = await fetch(url, { initialOptions })
         const data = await request.json()
         setResponse(data)
         setIsLoading(false)
@@ -27,7 +28,7 @@ const useFetch = (url, options = {}) => {
     }
 
     fetchData()
-  }, [url, options])
+  }, [url, initialOptions])
 
   return { response, error, isLoading }
 }
