@@ -5,7 +5,7 @@ import { getReadTime } from '../../utils/sanityHelpers'
 import Editor from '../editor/Editor'
 import SanityImage from '../editor/SanityImage'
 import Container from '../Container'
-import Grid, { GridItem } from '../Grid'
+import Grid from '../Grid'
 import Share from '../Share'
 import Card from '../Card'
 import PageBuilder from '../pagebuilder/Pagebuilder'
@@ -36,7 +36,7 @@ const Article = ({
     <Container>
       <article className="Article">
         <Grid reverse={{ md: true }}>
-          <GridItem span={{ md: 3 }}>
+          <Grid.Item span={{ md: 3 }}>
             {body && `Read time: ${getReadTime(body)}min`}
             {publishDate && <p className="Article__date">{publishDate}</p>}
             {authors &&
@@ -56,8 +56,8 @@ const Article = ({
                 </div>
               ))}
             {slug && slug.current && <Share type={_type} slug={slug.current} />}
-          </GridItem>
-          <GridItem span={{ sm: 12, md: 9 }}>
+          </Grid.Item>
+          <Grid.Item span={{ sm: 12, md: 9 }}>
             <header className="Article__header">
               {title && <h1 className="Article__title">{title}</h1>}
               {mainImage && (
@@ -71,7 +71,7 @@ const Article = ({
                 <Editor blocks={body} />
               </div>
             )}
-          </GridItem>
+          </Grid.Item>
         </Grid>
         {pagebuilder?.sections && (
           <PageBuilder sections={pagebuilder.sections} />

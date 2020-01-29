@@ -7,6 +7,7 @@ import Quote from './Quote'
 import Figure from './Figure'
 import Oembed from '../Oembed'
 import Accordion from '../Accordion'
+import { H3, Text, H2, P } from '../elements'
 
 export const serializers = {
   types: {
@@ -15,22 +16,26 @@ export const serializers = {
         return null
       switch (props.node.style) {
         case 'h2':
-          return <h2>{props.children}</h2>
+          return <H2>{props.children}</H2>
 
         case 'h3':
-          return <h3>{props.children}</h3>
+          return <H3>{props.children}</H3>
 
         case 'large':
-          return <p className="text-large">{props.children}</p>
+          return <P modifiers="large">{props.children}</P>
 
         case 'small':
-          return <small>{props.children}</small>
+          return (
+            <P as="small" modifiers="small">
+              {props.children}
+            </P>
+          )
 
         case 'span':
-          return <span>{props.children}</span>
+          return <P as="span">{props.children}</P>
 
         default:
-          return <p>{props.children}</p>
+          return <P>{props.children}</P>
       }
     },
     button(props) {

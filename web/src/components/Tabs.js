@@ -1,15 +1,16 @@
 import React, { useState, useRef } from 'react'
-import cc from 'classcat'
+import styled, { css } from 'styled-components'
 
 import keyCodes from '../utils/keyCodes'
 
 import Editor from './editor/Editor'
+import { bp, remSize } from '../styles/utilities'
 
 /**
  * https://www.w3.org/TR/wai-aria-practices/examples/tabs/tabs-1/tabs.html
  */
 
-const Tabs = ({ items }) => {
+const Tabs = ({ items, className }) => {
   const defaultActive =
     Array.isArray(items) && items.filter(tab => tab.defaultOpen)
 
@@ -32,7 +33,7 @@ const Tabs = ({ items }) => {
       e.preventDefault()
     }
 
-    const refs = [...wrapper.current.querySelectorAll('.Tabs__trigger')]
+    const refs = [...wrapper.current.querySelectorAll('.trigger')]
 
     if (e.keyCode === arrowRight) {
       if (refs[i + 1]) {
@@ -62,52 +63,116 @@ const Tabs = ({ items }) => {
     }
   }
   return (
-    <div className="Tabs" ref={wrapper}>
-      <div className="Tabs__triggers" role="tablist">
+    <div className={className} ref={wrapper}>
+      <div className="triggers" role="tablist">
         {items &&
           items.map((tab, i) => {
             const isTabActive = activeTab?._key === tab._key
             return (
-              <button
+              <StyledTabs.Trigger
                 key={`trigger-${tab._key}`}
-                role="tab"
-                aria-selected={isTabActive}
-                tabIndex={!isTabActive ? '-1' : null}
-                aria-controls={tab._key}
+                isTabActive={isTabActive}
+                tab={tab}
                 onKeyDownCapture={e => handleKeyDown(e, i)}
                 onMouseDown={e => e.preventDefault()} // To prevent focus on click but still keeps focus on tab
-                className={cc({
-                  Tabs__trigger: true,
-                  'Tabs__trigger--is-active': isTabActive
-                })}
                 onClick={() => handleClick(tab)}
               >
                 {tab.title}
-              </button>
+              </StyledTabs.Trigger>
             )
           })}
       </div>
-      <div className="Tabs__window">
+      <div className="window">
         {items &&
-          items.map((tab, i) => (
-            <div
-              role="tabpanel"
-              id={tab._key}
-              aria-labelledby={tab._key}
-              tabIndex="0"
-              key={`pane-${tab._key}`}
-              onKeyDownCapture={e => handleKeyDown(e, i)}
-              className={cc({
-                Tabs__pane: true,
-                'Tabs__pane--is-active': activeTab?._key === tab._key
-              })}
-            >
-              <Editor blocks={tab.content} />
-            </div>
-          ))}
+          items.map((tab, i) => {
+            const isTabActive = activeTab?._key === tab._key
+            return (
+              <StyledTabs.Panel
+                key={`pane-${tab._key}`}
+                tab={tab}
+                onKeyDownCapture={e => handleKeyDown(e, i)}
+                isTabActive={isTabActive}
+              >
+                <Editor blocks={tab.content} />
+              </StyledTabs.Panel>
+            )
+          })}
       </div>
     </div>
   )
 }
 
-export default Tabs
+const TabTrigger = ({ className, children, isTabActive, tab, ...props }) => {
+  return (
+    <button
+      {...props}
+      role="tab"
+      aria-selected={isTabActive}
+      tabIndex={!isTabActive ? '-1' : null}
+      aria-controls={tab._key}
+      className={`${className} trigger`}
+    >
+      {children}
+    </button>
+  )
+}
+const TabPanel = ({ className, children, tab, isTabActive, ...props }) => {
+  return (
+    <div
+      {...props}
+      role="tabpanel"
+      id={tab._key}
+      aria-labelledby={tab._key}
+      tabIndex="0"
+      key={`pane-${tab._key}`}
+      className={className}
+    >
+      {children}
+    </div>
+  )
+}
+
+const StyledTabs = styled(Tabs)(props => {
+  return css`
+    ${bp.above.lg`
+    display: flex;
+  `}
+    .window {
+      background: red;
+      flex-grow: 1;
+    }
+
+    .triggers {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+
+      ${bp.above.lg`
+        width: ${remSize(400)};
+        flex-direction: column;
+        justify-content: flex-start;
+    `}
+    }
+  `
+})
+
+StyledTabs.Trigger = styled(TabTrigger)(
+  ({ theme, isTabActive }) => css`
+    text-align: left;
+    flex-grow: 1;
+    background: ${isTabActive ? theme.colors.primary : theme.colors.secondary};
+
+    ${bp.above.lg`
+      flex-grow: 0;
+    `}
+  `
+)
+
+StyledTabs.Panel = styled(TabPanel)(
+  ({ isTabActive }) =>
+    css`
+      display: ${isTabActive ? 'block' : 'none'};
+    `
+)
+
+export default StyledTabs

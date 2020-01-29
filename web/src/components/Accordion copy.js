@@ -16,20 +16,12 @@
  */
 
 import React, { useState, useRef } from 'react'
+import cc from 'classcat'
 
 import keyCodes from '../utils/keyCodes'
-import styled, { css } from 'styled-components'
-
-import { spacing, color } from '../styles/utilities'
-import { H3 } from './elements'
 import Editor from './editor/Editor'
 
-const Accordion = ({
-  items,
-  exclusive = false,
-  defaultActive = null,
-  className
-}) => {
+const Accordion = ({ items, exclusive = false, defaultActive = null }) => {
   const [active, setActive] = useState(
     exclusive ? defaultActive : [defaultActive]
   )
@@ -53,9 +45,9 @@ const Accordion = ({
     }
   }
   return (
-    <div className={className} ref={wrapper}>
+    <div className="Accordion" ref={wrapper}>
       {items.map((item, i) => (
-        <StyledAccordion.Item
+        <AccordionItem
           key={item._key}
           i={i}
           active={active}
@@ -70,10 +62,10 @@ const Accordion = ({
 }
 
 const AccordionItem = ({
-  className,
   item,
   handleClick,
   i,
+  exclusive,
   active,
   wrapperRef
 }) => {
@@ -84,8 +76,7 @@ const AccordionItem = ({
     if ([arrowDown, arrowUp, home, end].indexOf(e.keyCode) > -1) {
       e.preventDefault()
     }
-    const refs = [...wrapperRef.current.querySelectorAll('.trigger')]
-
+    const refs = [...wrapperRef.current.querySelectorAll('.Accordion__trigger')]
     if (e.keyCode === arrowDown) {
       if (refs[i + 1]) {
         refs[i + 1].focus()
@@ -108,9 +99,16 @@ const AccordionItem = ({
     }
   }
   return (
-    <div className={className}>
+    <div
+      className={cc({
+        Accordion__item: true,
+        'Accordion__item--is-active': exclusive
+          ? active === i
+          : active.includes(i)
+      })}
+    >
       <button
-        className="trigger"
+        className="Accordion__trigger"
         onClick={() => handleClick(i)}
         onMouseDown={e => e.preventDefault()} // To prevent focus on click but still keeps focus on tab
         onKeyDownCapture={e => handleKeyDown(e)}
@@ -122,11 +120,11 @@ const AccordionItem = ({
         aria-controls={`${item._key}-${i}`}
         id={`${i}-${item._key}`}
       >
-        <H3 className="title">{item.title}</H3>
-        <div className="icon">v</div>
+        <h3 className="Accordion__title">{item.title}</h3>
+        <div className="Accordion__icon">v</div>
       </button>
       <div
-        className="content"
+        className="Accordion__content"
         id={`${item._key}-${i}`}
         aria-labelledby={`${i}-${item._key}`}
       >
@@ -136,39 +134,4 @@ const AccordionItem = ({
   )
 }
 
-const StyledAccordion = styled(Accordion)(({ theme }) => css``)
-
-StyledAccordion.Item = styled(AccordionItem)(
-  ({ theme, active, exclusive, i }) => {
-    const isActive = exclusive ? active === i : active.includes(i)
-    return css`
-      .trigger {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        text-align: left;
-        background: ${isActive
-          ? theme.colors.primary
-          : color.darken(theme.colors.primary, 0.2)};
-        ${spacing.xs('py')};
-        transition: ${theme.transitions.fast('background')};
-
-        &:hover {
-          background: ${color.darken(theme.colors.primary, 0.5)};
-        }
-
-        &:focus {
-          outline: none;
-          background: ${theme.colors.primary};
-        }
-      }
-
-      .content {
-        display: ${isActive ? 'block' : 'none'};
-        ${spacing.sm('px')}
-      }
-    `
-  }
-)
-
-export default StyledAccordion
+export default Accordion

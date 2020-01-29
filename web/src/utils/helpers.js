@@ -21,3 +21,22 @@ export const formatList = (arr, type = 'conjunction', lang = 'en') => {
     type
   }).format(arr)
 }
+/**
+ * Adds dots to classname string
+ * convert 'classname1 classname2' => '.classname1 .classname2'
+ *
+ * @param {string} className from styled-components
+ */
+export const addDotsToClassName = classNames => {
+  if (typeof classNames !== 'string') {
+    console.info(
+      `Type of className needs to be a string. Was ${classNames} and is ${typeof classNames}`
+    )
+    return null
+  }
+  if (!classNames.includes(' ')) return `.${classNames}`
+  return classNames
+    .split(' ')
+    .map(className => `.${className}`)
+    .join(' ')
+}

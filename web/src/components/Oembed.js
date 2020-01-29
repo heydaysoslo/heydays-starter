@@ -3,8 +3,9 @@ import React, { useEffect, useState } from 'react'
 import { isProviderAllowed } from '../../heydays-config'
 
 import AspectContainer from './AspectContainer'
+import styled from 'styled-components'
 
-const Oembed = ({ url }) => {
+const Oembed = ({ url, className }) => {
   const [embed, setEmbed] = useState({})
   useEffect(() => {
     fetch('/.netlify/functions/oembed', {
@@ -22,7 +23,7 @@ const Oembed = ({ url }) => {
       })
   }, [url])
   return (
-    <div className="Oembed">
+    <div className={className}>
       {embed?.result?.html && embed?.result?.type === 'video' && (
         <AspectContainer
           aspect={parseInt(embed.result.height) / parseInt(embed.result.width)}
@@ -40,4 +41,14 @@ const Oembed = ({ url }) => {
   )
 }
 
-export default Oembed
+export default styled(Oembed)`
+  position: relative;
+
+  iframe[height] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+  }
+`

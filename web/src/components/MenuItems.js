@@ -1,7 +1,8 @@
 import React from 'react'
-import cc from 'classcat'
+import styled, { css } from 'styled-components'
 
 import LinkResolver from './LinkResolver'
+import { fonts, spacing } from '../styles/utilities'
 
 const MenuItems = ({ menu, closeMenu, className }) => {
   if (!menu) return null
@@ -9,10 +10,7 @@ const MenuItems = ({ menu, closeMenu, className }) => {
     <LinkResolver
       key={item._key}
       data={item?.externalLink?.url || item?.reference}
-      className={cc({
-        Menu__item: true,
-        [className]: className
-      })}
+      className={className}
       onClick={closeMenu}
       openInNewTab={item?.externalLink?.blank}
     >
@@ -21,4 +19,9 @@ const MenuItems = ({ menu, closeMenu, className }) => {
   ))
 }
 
-export default MenuItems
+export default styled(MenuItems)(
+  ({ theme: { colors } }) => css`
+    ${spacing.sm('ml')}
+    ${fonts.title()}
+  `
+)

@@ -5,27 +5,31 @@ import LinkResolver from './LinkResolver'
 import SanityImage from './editor/SanityImage'
 import Editor from './editor/Editor'
 import InView from './InView'
+import styled, { css } from 'styled-components'
+import { spacing } from '../styles/utilities'
+import { P } from './elements'
 
-const Card = ({ title, image, excerpt, link }) => (
-  <InView className="Card" activeClassName="Card--is-visible">
+const Card = ({ className, title, image, excerpt, link }) => (
+  <InView className={className} activeClassName="is-visible">
     <LinkResolver data={link}>
-      <div className="Card__media">
+      <div className="media">
         {image ? (
           <SanityImage node={image} aspectRatio="portrait" />
         ) : (
           <AspectContainer
             aspect={{
-              sm: 'portrait',
-              md: 'portrait',
-              lg: 'portrait',
-              xl: 'portrait'
+              xs: 'portrait'
             }}
           />
         )}
       </div>
-      {title && <h3 className="Card__title">{title}</h3>}
+      {title && (
+        <P modifiers="large" className="title">
+          {title}
+        </P>
+      )}
       {excerpt && (
-        <div className="Card__excerpt">
+        <div className="excerpt">
           <Editor blocks={excerpt} />
         </div>
       )}
@@ -33,4 +37,24 @@ const Card = ({ title, image, excerpt, link }) => (
   </InView>
 )
 
-export default Card
+export default styled(Card)(
+  ({ theme }) => css`
+    /* transition: opacity $trans, transform $trans; */
+    opacity: 0;
+    transform: translateY(50px);
+
+    &.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .media {
+      background: #f1f1f1;
+    }
+
+    .title,
+    .excerpt {
+      ${spacing.sm('mt')}
+    }
+  `
+)

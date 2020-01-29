@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { getUrl } from '../../../web/heydays-config'
 import { blocksToText } from '../utils/sanityHelpers'
@@ -6,27 +6,54 @@ import { blocksToText } from '../utils/sanityHelpers'
 import Header from './Header'
 import Footer from './Footer'
 import SEO from './SEO'
+import { ThemeProvider } from 'styled-components'
+import theme, { darkTheme } from '../styles/themes'
+import { GlobalStyle } from '../styles/utilities/Global'
+import { createTints, createMixColorSteps } from '../styles/utilities'
 // import Credits from './Credits'
 
 const Layout = props => {
+  const themes = [theme, darkTheme]
+  const [number, setNumber] = useState(0)
+
+  const handleClick = () => {
+    setNumber(number + 1)
+    console.log(number, themes[number % themes.length])
+  }
   return (
-    <div className="Site">
-      {/* <Credits /> */}
-      {props && (
-        <SEO
-          getUrl={getUrl}
-          type={props._type}
-          slug={props._rawSlug?.current || ''}
-          seo={props.seo}
-          title={props.title}
-          image={props._rawMainImage}
-          description={props._rawExcerpt && blocksToText(props._rawExcerpt)}
-        />
-      )}
-      <Header />
-      <div className="Site__content">{props.children}</div>
-      <Footer />
-    </div>
+    <ThemeProvider theme={themes[number % themes.length]}>
+      <button onClick={handleClick}>Change theme</button>
+      <div style={{ display: 'flex' }}>
+        {createTints('red', 5).map(color => (
+          <div
+            style={{ backgroundColor: color, height: '200px', width: '200px' }}
+          ></div>
+        ))}
+        {createMixColorSteps('red', 'blue', 5).map(color => (
+          <div
+            style={{ backgroundColor: color, height: '200px', width: '200px' }}
+          ></div>
+        ))}
+      </div>
+      <div className="Site">
+        {/* <Credits /> */}
+        {props && (
+          <SEO
+            getUrl={getUrl}
+            type={props._type}
+            slug={props._rawSlug?.current || ''}
+            seo={props.seo}
+            title={props.title}
+            image={props._rawMainImage}
+            description={props._rawExcerpt && blocksToText(props._rawExcerpt)}
+          />
+        )}
+        <Header />
+        <div className="Site__content">{props.children}</div>
+        <Footer />
+        <GlobalStyle />
+      </div>
+    </ThemeProvider>
   )
 }
 

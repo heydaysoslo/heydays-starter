@@ -1,6 +1,4 @@
 require('dotenv').config()
-const path = require('path')
-const globImporter = require('node-sass-glob-importer')
 const proxy = require('http-proxy-middleware')
 
 module.exports = new Promise((resolve, reject) => {
@@ -50,6 +48,7 @@ module.exports = new Promise((resolve, reject) => {
             path: `${__dirname}/src/assets/images`
           }
         },
+        `gatsby-plugin-styled-components`,
         `gatsby-plugin-sharp`,
         `gatsby-transformer-sharp`,
         `gatsby-plugin-react-helmet`,
@@ -92,13 +91,6 @@ module.exports = new Promise((resolve, reject) => {
             host: `https://ablymed.com`,
             sitemap: `https://ablymed.com/sitemap.xml`,
             policy: [{ userAgent: '*', allow: '/' }]
-          }
-        },
-        {
-          resolve: `gatsby-plugin-sass`,
-          options: {
-            includePaths: [path.join(__dirname, '/src/styles/app')],
-            importer: globImporter()
           }
         },
         {

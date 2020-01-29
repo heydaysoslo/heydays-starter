@@ -1,72 +1,57 @@
-import React, { useEffect, useRef, useState } from 'react'
-import cc from 'classcat'
-import useMediaQuery from './hooks/useMediaQuery'
-import useWindowSize from './hooks/useWindowSize'
+import React, { useRef } from 'react'
+import styled from 'styled-components'
+import { css } from 'styled-components'
+import { bp } from '../styles/utilities'
 
-const AspectContainer = ({
-  aspect,
-  background,
-  className,
-  contentClass,
-  children
-}) => {
-  const windowSize = useWindowSize({ debounce: 250 })
-  const activeMediaQuery = useMediaQuery()
-  const [aspectClass, setAspectClass] = useState('')
-
-  const wrapper = useRef(null)
-  const content = useRef(null)
-
-  const handleResize = () => {
-    if (content.current && wrapper.current) {
-      const height = content.current.getBoundingClientRect().height
-      wrapper.current.style.cssText = 'min-height:' + height + 'px'
-    }
-    if (typeof aspect === 'number') {
-      wrapper.current.style.cssText = `padding-top: calc(${aspect} * 100%);`
-    }
-  }
-
-  const getAspectClass = mq => {
-    const aspectKeys = Object.keys(aspect)
-    const lastAspect = aspectKeys[aspectKeys.length - 1]
-    return aspect[mq] ? aspect[mq] : aspect[lastAspect]
-  }
-
-  const handleMediaQuery = () => {
-    if (typeof aspect !== 'number') {
-      const key = getAspectClass(activeMediaQuery)
-      setAspectClass(key)
-    }
-  }
-
-  useEffect(handleResize, [windowSize])
-  useEffect(handleMediaQuery, [activeMediaQuery])
-
+const AspectContainer = ({ background, className, children }) => {
   return (
-    <div
-      ref={wrapper}
-      className={cc({
-        AspectContainer: true,
-        ['AspectContainer__' + aspectClass]: aspectClass,
-        [className]: className
-      })}
-    >
-      {background && (
-        <div className="AspectContainer__background">{background}</div>
-      )}
-      <div
-        className={cc({
-          AspectContainer__container: true,
-          [contentClass]: contentClass
-        })}
-      >
-        <div ref={content} className="AspectContainer__content">
-          {children}
-        </div>
+    <div className={className}>
+      {background && <div className="background">{background}</div>}
+      <div className="container">
+        <div className="content">{children}</div>
       </div>
     </div>
   )
 }
 
-export default AspectContainer
+export default styled(AspectContainer)(
+  props => css`
+    position: relative;
+    width: 100%;
+    display: block;
+    height: 0;
+    overflow: hidden;
+    ${props.aspect &&
+      typeof props.aspect === 'number' &&
+      css`
+        padding-top: ${props.aspect * 100}%;
+      `}
+    ${props.aspect &&
+      typeof props.aspect === 'object' &&
+      Object.keys(props.aspect).map(
+        key => bp.above[key]`
+          padding-top: ${props.theme.aspect[props.aspect[key]]}%;
+        `
+      )}
+
+    .container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+    }
+
+    .background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .content {
+      height: 100%;
+    }
+  `
+)

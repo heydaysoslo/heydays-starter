@@ -1,128 +1,29 @@
 import React from 'react'
-import cc from 'classcat'
+import styled, { css } from 'styled-components'
 
-const breakpoints = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl']
+import { remSize, bp, spacing } from '../styles/utilities'
 
-/*
+const DEFAULT_SETTINGS = {
+  gutter: remSize(10)
+}
 
-Usage:
-
-//
-// Manual grid layout
-//
-
-<Grid>
-  <GridItem span={{ sm: 6, lg: 3 }}>Content</GridItem>
-</Grid>
-
-
-//
-// Block grid layout
-//
-
-<Grid columns={{ xs: 3, md: 6}}>
-  <Scissors>Col 1</Scissors>
-  <Paper>Col 2</Paper>
-  <Rock>Col 3</Rock>
-  <Scissors>Col 4</Scissors>
-  <Paper>Col 5</Paper>
-  <Rock>Col 6</Rock>
-</Grid>
-
-*/
-
-/**
- * Grid
- * All direct children will be wrapped automatically in a <div>
- * @param {columns} Object Number of columns per row. Integer from 1 to 12.
- * @param {className} String
- */
-
-const Grid = ({
+export const Grid = ({
   columns = {},
   reverse = {},
-  // margin = false,
   margin = false,
   padding = true,
   collapse = false,
   className,
   children
 }) => {
-  const generateResponsiveClassNames = () => {
-    // Remove padding if global collapse
-    if (collapse === true) {
-      padding = false
-    }
-
-    return breakpoints.reduce((classNames, bp, i) => {
-      // Block grid classes
-      classNames[`Grid--${bp}-${columns[bp]}`] = columns && columns[bp]
-
-      // Reversed layout classes
-      classNames[`Grid--${bp}-reverse`] = reverse && reverse[bp]
-
-      // Collapse
-      if (collapse === true && i === 0) {
-        classNames[`Grid--collapse`] = true
-      } else {
-        classNames[`Grid--${bp}-collapse`] = collapse && collapse[bp]
-      }
-
-      // Gutters
-      if (padding === true && i === 0) {
-        classNames[`Grid--padding`] = true
-      } else {
-        classNames[`Grid--${bp}-padding`] = padding && padding[bp]
-      }
-
-      if (margin === 'y') {
-        classNames[`Grid--margin-y`] = true
-      }
-
-      // if (margin) {
-      //   if (margin === true) {
-      //     classNames[`Grid--${bp}-margin`] = true
-      //   } else {
-      //     classNames[`Grid--${bp}-margin`] = margin && margin[bp]
-      //   }
-      // } else {
-      //   if (padding === true && i === 0) {
-      //     classNames[`Grid--${bp}-padding`] = true
-      //   } else {
-      //     classNames[`Grid--${bp}-padding`] = padding && padding[bp]
-      //   }
-      // }
-
-      return classNames
-    }, {})
-  }
-
-  const classNames = generateResponsiveClassNames()
-
   return (
-    <div
-      className={cc({
-        [className]: className,
-        Grid: true,
-        ...classNames
-      })}
-    >
+    <div className={className} modifiers={[reverse && 'reverse']}>
       {React.Children.map(children, (child, i) => {
-        if (child.type === GridItem) {
+        if (child.type.displayName === 'Grid__Item') {
           return child
         } else {
           return (
-            <div
-              key={`Grid__item-${i}`}
-              className={cc({
-                Grid__item: true,
-                [`Grid__item-${i}`]: className,
-                [`${className}__item`]: className,
-                [`${className}__item-${i}`]: className
-              })}
-            >
-              {child}
-            </div>
+            <StyledGrid.Item key={`Grid__item-${i}`}>{child}</StyledGrid.Item>
           )
         }
       })}
@@ -130,38 +31,46 @@ const Grid = ({
   )
 }
 
-/**
- * GridItem
- * Total columns are 12
- * @param {className} String
- * @param {span} Object Number of columns the item covers. Integer from 1 to 12.
- */
 export const GridItem = ({ span = {}, offset = {}, children, className }) => {
-  const generateResponsiveClassNames = () => {
-    return breakpoints.reduce((classNames, bp) => {
-      if (span[bp]) {
-        classNames[`Grid__item--${bp}-${span[bp]}`] = true
-      }
-      if (offset[bp]) {
-        classNames[`Grid__item--${bp}-offset-${offset[bp]}`] = true
-      }
-      return classNames
-    }, {})
-  }
-
-  const classNames = generateResponsiveClassNames()
-
-  return (
-    <div
-      className={cc({
-        [className]: className,
-        Grid__item: true,
-        ...classNames
-      })}
-    >
-      {children}
-    </div>
-  )
+  // console.log('grid-item-props', span, offset)
+  return <div className={className}>{children}</div>
 }
 
-export default Grid
+const StyledGrid = styled(Grid)(
+  props => css`
+    display: flex;
+    flex: 0 1 auto;
+    flex-direction: ${props.reverse ? 'row-reverse' : 'row'};
+    flex-wrap: wrap;
+    align-items: ${props.align ? props.align : 'auto'};
+
+    ${StyledGrid.Item} {
+      ${spacing.gutter ? spacing.gutter('px') : DEFAULT_SETTINGS.gutter}
+      ${props.margin === 'y' && spacing.gutter('mb')}
+      ${props.columns &&
+        Object.keys(props.columns).map(
+          key => bp.above[key]`
+            flex-basis: ${(1 / props.columns[key]) * 100}%;
+            max-width: ${(1 / props.columns[key]) * 100}%;
+          `
+        )}
+    }
+  `
+)
+
+StyledGrid.Item = styled(GridItem)(
+  ({ span }) => css`
+    box-sizing: border-box;
+    flex: 0 0 100%;
+    max-width: 100%;
+    ${span &&
+      Object.keys(span).map(
+        key => bp.above[key]`
+            flex-basis: ${(span[key] / 12) * 100}%;
+            max-width: ${(span[key] / 12) * 100}%;
+          `
+      )}
+  `
+)
+
+export default StyledGrid
