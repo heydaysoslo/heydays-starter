@@ -38,7 +38,6 @@ export const GridItem = ({ span = {}, offset = {}, children, className }) => {
 
 const StyledGrid = styled(Grid)(
   props => css`
-    /* ${console.log('styled-grid-props', props)} */
     display: flex;
     flex: 0 1 auto;
     flex-direction: ${props.reverse ? 'row-reverse' : 'row'};
@@ -60,16 +59,15 @@ const StyledGrid = styled(Grid)(
 )
 
 StyledGrid.Item = styled(GridItem)(
-  props => css`
-    /* ${console.log('StyledGridItem props', props)} */
+  ({ span }) => css`
     box-sizing: border-box;
     flex: 0 0 100%;
     max-width: 100%;
-    ${props.span &&
-      Object.keys(props.span).map(
+    ${span &&
+      Object.keys(span).map(
         key => bp.above[key]`
-            flex-basis: ${(props.span[key] / 12) * 100}%;
-            max-width: ${(props.span[key] / 12) * 100}%;
+            flex-basis: ${(span[key] / 12) * 100}%;
+            max-width: ${(span[key] / 12) * 100}%;
           `
       )}
   `
