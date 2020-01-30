@@ -33,3 +33,59 @@ export const fonts = {
     }
   }
 }
+
+export const globalTypeStyle = ({ theme }) => css`
+  h1,
+  .h1 {
+    ${fonts.h1()}
+  }
+
+  h2,
+  .h2 {
+    ${fonts.h1()}
+  }
+
+  h3,
+  .h3 {
+    ${fonts.title()}
+  }
+
+  small,
+  .text-small {
+    ${fonts.body()}
+  }
+
+  strong {
+    font-weight: bold;
+  }
+
+  *:focus {
+    outline-color: ${theme.colors.primary};
+  }
+
+  a {
+    font-family: ${theme.fontFamily.serif};
+    cursor: pointer;
+    position: relative;
+    text-decoration: none;
+    color: currentColor;
+  }
+
+  .link {
+    display: inline-block;
+    border-bottom: ${theme.colors.secondary};
+    transition: border-color ${theme.trans.fast};
+
+    &:hover {
+      border-color: transparent;
+    }
+  }
+
+  .sans {
+    font-family: ${theme.fontFamily.sans};
+  }
+
+  .serif {
+    font-family: ${theme.fontFamily.serif};
+  }
+`

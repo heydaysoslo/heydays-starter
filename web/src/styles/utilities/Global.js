@@ -2,7 +2,7 @@ import { createGlobalStyle, css } from 'styled-components'
 import { spacing } from './Spacing'
 import themes from '../themes'
 import { bp } from './Breakpoints'
-import { fonts } from './Typography'
+import { fonts, globalTypeStyle } from './Typography'
 
 export const GlobalStyle = createGlobalStyle(
   ({ theme }) => css`
@@ -103,59 +103,7 @@ export const GlobalStyle = createGlobalStyle(
     }
 
     /* Typography */
-    h1,
-    .h1 {
-      ${fonts.h1()}
-    }
-
-    h2,
-    .h2 {
-      ${fonts.h1()}
-    }
-
-    h3,
-    .h3 {
-      ${fonts.title()}
-    }
-
-    small,
-    .text-small {
-      ${fonts.body()}
-    }
-
-    strong {
-      font-weight: bold;
-    }
-
-    *:focus {
-      outline-color: ${theme.colors.primary};
-    }
-
-    a {
-      font-family: ${theme.fontFamily.serif};
-      cursor: pointer;
-      position: relative;
-      text-decoration: none;
-      color: currentColor;
-    }
-
-    .link {
-      display: inline-block;
-      border-bottom: ${theme.colors.secondary};
-      transition: border-color ${theme.trans.fast};
-
-      &:hover {
-        border-color: transparent;
-      }
-    }
-
-    .sans {
-      font-family: ${theme.fontFamily.sans};
-    }
-
-    .serif {
-      font-family: ${theme.fontFamily.serif};
-    }
+    ${globalTypeStyle}
 
     /* Add visible tag that shows breakpoint for dev environment */
     ${process.env.NODE_ENV === 'development' &&
