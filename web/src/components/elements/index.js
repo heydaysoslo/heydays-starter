@@ -1,2 +1,3 @@
-export * from './Button.js'
+export * from './Button'
 export * from './Typography'
+export * from './Select'

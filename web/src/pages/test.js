@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Helmet } from 'react-helmet'
 
 import { mapEdgesToNode } from '../utils/sanityHelpers'
@@ -17,6 +17,7 @@ import AppContext from '../components/context/AppContext'
 import useFetch from '../components/hooks/useFetch'
 import Icon from '../components/Icon'
 import { createTints, createMixColorSteps } from '../styles/utilities'
+import { Select } from '../components/elements'
 
 const query = graphql`
   {
@@ -52,14 +53,28 @@ const Index = () => {
   const windowSize = useWindowSize({ debounce: 100 })
   const scroll = useScroll({ delay: 100 })
   const { response, error, isLoading } = useFetch(`https://api.kanye.rest`)
+  const [select, setSelect] = useState(null)
 
   const { state, actions } = useContext(AppContext)
 
   console.log(mapEdgesToNode(data.allSanityPage))
 
+  const options = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' }
+  ]
+
   return (
     <Layout>
       <Container>
+        <Select
+          options={options}
+          onChange={(value, actions) => setSelect(value.value)}
+          // defaultValue={options[0]}
+          // defaultMenuIsOpen={true}
+        />
+        <p>{select ? `Selected: ${select}` : 'Nothing is selected yet'}</p>
         <Icon name="check" modifiers="small" />
         <Icon name="config" color="orange" />
         <Icon name="calendar" modifiers="large" />
