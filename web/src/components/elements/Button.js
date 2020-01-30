@@ -8,7 +8,6 @@ const BUTTON_MODIFIERS = {
 
     &:hover {
       background-color: none;
-      background: none;
       color: orange;
     }
   `,
@@ -19,7 +18,6 @@ const BUTTON_MODIFIERS = {
 
 export const Button = styled.button`
   appearance: none;
-  border: none;
   background: none;
   display: inline-block;
   border: 1px solid black;

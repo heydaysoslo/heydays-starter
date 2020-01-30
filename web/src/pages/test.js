@@ -61,7 +61,7 @@ const Index = () => {
     <Layout>
       <Container>
         <Icon name="check" modifiers="small" />
-        <Icon name="config" />
+        <Icon name="config" color="orange" />
         <Icon name="calendar" modifiers="large" />
         <Icon name="hakuna" modifiers="large" />
         <div style={{ display: 'flex' }}>

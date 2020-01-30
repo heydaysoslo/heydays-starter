@@ -8,6 +8,8 @@
 import React from 'react'
 import { AppProvider } from './src/components/context/AppContext'
 
+require('./src/styles/reset.css')
+
 export const wrapRootElement = ({ element }) => (
   <AppProvider>{element}</AppProvider>
 )
