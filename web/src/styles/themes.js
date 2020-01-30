@@ -34,9 +34,9 @@ export const negativeSpacing = Object.keys(spacing).reduce((acc, key) => {
 }, {})
 
 export const fontFamily = {
-  sans: `'Suisse Works', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+  sans: `'SuisseIntl', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
   Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;`,
-  serif: `'SuisseIntl', times, serif`
+  serif: `'Suisse Works', times, serif`
 }
 
 export const fonts = {

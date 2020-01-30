@@ -184,6 +184,13 @@ StyledAccordion.Item = styled(AccordionItem)(
         text-align: left;
         ${spacing.xs('py')};
 
+        .title {
+          font-family: ${theme.fontFamily.sans};
+          color: ${isActive
+            ? theme.colors.primary
+            : color.darken(theme.colors.primary, 0.2)};
+        }
+
         &:focus {
           outline: none;
           background: ${theme.colors.primary};
@@ -209,7 +216,7 @@ StyledAccordion.Item = styled(AccordionItem)(
 
       &:hover {
         border-color: ${color.darken(theme.colors.primary, 0.5)};
-        .trigger {
+        .trigger .title {
           color: ${color.darken(theme.colors.primary, 0.5)};
         }
 
