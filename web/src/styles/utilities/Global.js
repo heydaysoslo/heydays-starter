@@ -107,7 +107,6 @@ export const GlobalStyle = createGlobalStyle(
 
     /* Global styling from theme */
     ${theme.defaultStyle && theme.defaultStyle}
-    ${console.log(theme)}
 
     /* Add visible tag that shows breakpoint for dev environment */
     ${process.env.NODE_ENV === 'development' &&
