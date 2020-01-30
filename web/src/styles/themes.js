@@ -102,8 +102,12 @@ export const borderWidth = {
 }
 
 export const border = {
-  small: `${borderWidth.small} solid ${colors.border}`,
-  large: `${borderWidth.large} solid ${colors.border}`
+  large: key => ({ theme }) => css`
+    ${key}: ${theme.borderWidth.large} solid ${theme.colors.border};
+  `,
+  small: key => ({ theme }) => css`
+    ${key}: ${theme.borderWidth.small} solid ${theme.colors.border};
+  `
 }
 
 export const theme = {
@@ -117,8 +121,8 @@ export const theme = {
   contentWidth,
   trans,
   icons,
-  border,
-  borderWidth
+  borderWidth,
+  border
 }
 
 export const darkTheme = {

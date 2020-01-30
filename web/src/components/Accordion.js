@@ -16,9 +16,10 @@
  */
 
 import React, { useState, useRef } from 'react'
+import { motion } from 'framer-motion'
+import styled, { css } from 'styled-components'
 
 import keyCodes from '../utils/keyCodes'
-import styled, { css } from 'styled-components'
 
 import { spacing, color } from '../styles/utilities'
 import { H3 } from './elements'
@@ -107,6 +108,14 @@ const AccordionItem = ({
       refs[refs.length - 1].focus()
     }
   }
+  const horVariants = {
+    closed: { rotate: 0 },
+    open: { rotate: 180 }
+  }
+  const verVariants = {
+    closed: { rotate: 0 },
+    open: { rotate: -90 }
+  }
   return (
     <div className={className}>
       <button
@@ -123,7 +132,26 @@ const AccordionItem = ({
         id={`${i}-${item._key}`}
       >
         <H3 className="title">{item.title}</H3>
-        <div className="icon">v</div>
+        <svg className="icon" viewBox="0 0 10 10">
+          <motion.line
+            variants={verVariants}
+            animate={active === i ? 'open' : 'closed'}
+            className="ver"
+            x1="5"
+            y1="0"
+            x2="5"
+            y2="10"
+          />
+          <motion.line
+            variants={horVariants}
+            animate={active === i ? 'open' : 'closed'}
+            className="hor"
+            x1="0"
+            y1="5"
+            x2="10"
+            y2="5"
+          />
+        </svg>
       </button>
       <div
         className="content"
@@ -142,20 +170,19 @@ StyledAccordion.Item = styled(AccordionItem)(
   ({ theme, active, exclusive, i }) => {
     const isActive = exclusive ? active === i : active.includes(i)
     return css`
+      ${theme.border.large('border-bottom')};
+      border-color: ${isActive
+        ? theme.colors.primary
+        : color.darken(theme.colors.primary, 0.2)};
+      transition: border-color ${theme.trans.fast}, color ${theme.trans.fast};
+
       .trigger {
         display: flex;
+        align-items: center;
         justify-content: space-between;
         width: 100%;
         text-align: left;
-        background: ${isActive
-          ? theme.colors.primary
-          : color.darken(theme.colors.primary, 0.2)};
         ${spacing.xs('py')};
-        transition: background ${theme.trans.fast};
-
-        &:hover {
-          background: ${color.darken(theme.colors.primary, 0.5)};
-        }
 
         &:focus {
           outline: none;
@@ -163,9 +190,34 @@ StyledAccordion.Item = styled(AccordionItem)(
         }
       }
 
+      .icon {
+        width: ${theme.icons.small};
+        height: ${theme.icons.small};
+        ${spacing.sm('mr')};
+        line {
+          stroke: ${isActive
+            ? theme.colors.primary
+            : color.darken(theme.colors.primary, 0.2)};
+        }
+      }
+
       .content {
         display: ${isActive ? 'block' : 'none'};
         ${spacing.sm('px')}
+        ${spacing.md('pb')}
+      }
+
+      &:hover {
+        border-color: ${color.darken(theme.colors.primary, 0.5)};
+        .trigger {
+          color: ${color.darken(theme.colors.primary, 0.5)};
+        }
+
+        .icon {
+          line {
+            stroke: ${color.darken(theme.colors.primary, 0.5)};
+          }
+        }
       }
     `
   }
