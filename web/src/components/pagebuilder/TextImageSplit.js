@@ -4,7 +4,7 @@ import Grid from '../Grid'
 import SanityImage from '../editor/SanityImage'
 import Editor from '../editor/Editor'
 import ButtonResolver from '../ButtonResolver'
-import { H3 } from '../elements'
+import { H3, Button } from '../elements'
 
 const Content = ({ title, content, button }) => {
   return (
@@ -14,7 +14,12 @@ const Content = ({ title, content, button }) => {
         <Editor className="TextImageSplit__content" blocks={content} />
       )}
       {button?.link && (
-        <ButtonResolver className="TextImageSplit__button" button={button} />
+        <Button
+          as={ButtonResolver}
+          modifiers={button?.type && button?.type}
+          className="TextImageSplit__button"
+          button={button}
+        />
       )}
     </>
   )
@@ -29,7 +34,7 @@ const TextImageSplit = ({
   return (
     <Grid reverse={textOnTheRight} columns={{ sm: 2 }} align="center">
       <Grid.Item>
-        <Content {...props} />}
+        <Content {...props} />
       </Grid.Item>
       <Grid.Item>
         <SanityImage

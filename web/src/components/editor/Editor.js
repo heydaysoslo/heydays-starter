@@ -7,7 +7,7 @@ import Quote from './Quote'
 import Figure from './Figure'
 import Oembed from '../Oembed'
 import Accordion from '../Accordion'
-import { H3, H2, P } from '../elements'
+import { H3, H2, P, Button } from '../elements'
 
 export const serializers = {
   types: {
@@ -42,15 +42,13 @@ export const serializers = {
       if (!props.node.link) return null
       return (
         <p>
-          <LinkResolver
+          <Button
+            as={LinkResolver}
             data={props.node.link.link}
-            className={cc({
-              Button: true,
-              [`Button--${props.node.type}`]: props.node.type
-            })}
+            modifiers={props.node.type && props.node.type}
           >
             {props.node.link.title} hello
-          </LinkResolver>
+          </Button>
         </p>
       )
     },

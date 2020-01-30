@@ -1,16 +1,39 @@
 import React from 'react'
 import Editor from '../editor/Editor'
 import ButtonResolver from '../ButtonResolver'
+import { P, H3, Button } from '../elements'
+import styled, { css } from 'styled-components'
+import { spacing } from '../../styles/utilities'
 
-const Section = ({ label, title, content, button }) => {
+const Section = ({ label, title, content, button, className }) => {
   return (
-    <div className="Section">
-      {label && <p className="Section__label">{label}</p>}
-      {title && <h3 className="Section__title">{title}</h3>}
-      {content && <Editor className="Section__content" blocks={content} />}
-      {button && <ButtonResolver button={button} />}
+    <div className={className}>
+      {label && (
+        <P modifiers="small" className="label">
+          {label}
+        </P>
+      )}
+      {title && <H3 className="title">{title}</H3>}
+      {content && <Editor className="content" blocks={content} />}
+      {button && (
+        <Button
+          className="button"
+          as={ButtonResolver}
+          modifiers={button?.type && button?.type}
+          button={button}
+        />
+      )}
     </div>
   )
 }
 
-export default Section
+export default styled(Section)(
+  ({ theme }) => css`
+    text-align: center;
+    ${spacing.section('my')}
+
+    .button {
+      ${spacing.md('mt')}
+    }
+  `
+)

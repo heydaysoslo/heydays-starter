@@ -126,16 +126,18 @@ export const darkTheme = {
   colors: {
     primary: 'green',
     secondary: 'orange',
-    text: 'blue'
+    text: 'white',
+    border: 'red',
+    background: '#b2b2b2'
   },
   spacing: {
-    xs: remSize(600),
-    sm: remSize(10),
-    md: remSize(600),
-    lg: remSize(600),
-    xl: remSize(600),
-    section: remSize(600),
-    gutter: remSize(40)
+    xs: remSize(20),
+    sm: remSize(50),
+    md: remSize(60),
+    lg: remSize(100),
+    xl: remSize(150),
+    section: remSize(250),
+    gutter: remSize(60)
   },
   breakpoints: {
     xs: 0,
@@ -145,41 +147,12 @@ export const darkTheme = {
     xl: 800,
     xxl: 900
   },
-  fonts: {
-    xxlarge: () =>
-      css`
-        font-size: ${remSize(300)};
-        line-height: 1.2;
-      `,
-    xlarge: () =>
-      css`
-        font-size: ${remSize(300)};
-        line-height: 1.2;
-      `,
-    large: () =>
-      css`
-        font-size: ${remSize(300)};
-        line-height: 1.2;
-      `,
-    medium: () =>
-      css`
-        font-size: ${remSize(300)};
-        line-height: 1.2;
-      `,
-    small: () =>
-      css`
-        font-size: ${remSize(300)};
-        line-height: 1.2;
-      `,
-    xs: () =>
-      css`
-        font-size: ${remSize(300)};
-        line-height: 1.2;
-      `
-  },
-  defaultStyle: css`
+  defaultStyle: ({ theme }) => css`
     html {
-      font-size: 200%;
+      font-size: 75%;
+    }
+    body {
+      background: ${theme.colors.background};
     }
   `
 }

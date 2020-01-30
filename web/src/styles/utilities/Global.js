@@ -105,6 +105,10 @@ export const GlobalStyle = createGlobalStyle(
     /* Typography */
     ${globalTypeStyle}
 
+    /* Global styling from theme */
+    ${theme.defaultStyle && theme.defaultStyle}
+    ${console.log(theme)}
+
     /* Add visible tag that shows breakpoint for dev environment */
     ${process.env.NODE_ENV === 'development' &&
       css`
