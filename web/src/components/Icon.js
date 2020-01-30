@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 import { useStaticQuery, graphql } from 'gatsby'
 import { applyStyleModifiers } from 'styled-components-modifiers'
@@ -19,43 +19,56 @@ import { applyStyleModifiers } from 'styled-components-modifiers'
 const Icon = ({ className, name = 'calendar' }) => {
   const data = useStaticQuery(query)
   const icons = data?.allFile?.nodes
+  const [Component, setComponent] = useState(null)
 
-  // create object with all the icon files imported
-  const imports = icons.reduce((acc, icon) => {
-    acc[icon.name] = require(`../assets/icons/${icon.name}${icon.ext}`)
-    return acc
-  }, {})
+  const icon = icons.find(
+    icon => icon.name.toLowerCase() === name.toLowerCase()
+  )
 
-  // Get correct icon based on name prop
-  const Comp = imports[name]
+  useEffect(() => {
+    if (icon?.name && icon?.ext) {
+      import(`../assets/icons/${icon.name}${icon.ext}`).then(comp => {
+        setComponent(() => comp.default) // Renderer expects a functional component
+      })
+    }
+  }, [icon])
 
-  if (!Comp) {
+  if (!icon) {
     console.warn(`Icon with name ${name} does not exist 🤷‍♂️`)
     return null
   }
 
   return (
-    <div className={className}>
-      <Comp />
-    </div>
+    Component && (
+      <div className={className}>
+        <Component />
+      </div>
+    )
   )
 }
 
-const ICON_MODIFIERS = {
-  small: ({ theme }) => css`
-    height: ${theme.icons.small};
-  `,
-  large: ({ theme }) => css`
-    height: ${theme.icons.large};
-  `
-}
+// Create modifiers based on theme.icons settings. Modifier name will be
+// the same as the key value of theme.icons ex. 'large'
+const ICON_MODIFIERS = theme =>
+  Object.keys(theme.icons).reduce((obj, key) => {
+    obj[key] = ({ theme }) => css`
+      height: ${theme.icons[key]};
+
+      /* Type spesific styling in this case size */
+      ${key === 'large' &&
+        css`
+          .cls-3 {
+            fill: red;
+          }
+        `}
+    `
+    return obj
+  }, {})
 
 export default styled(Icon)(
   ({ theme }) => css`
     display: inline-block;
     height: ${theme.icons.medium};
-
-    ${applyStyleModifiers(ICON_MODIFIERS)}
 
     svg {
       height: 100%;
@@ -64,6 +77,8 @@ export default styled(Icon)(
     .cls-3 {
       fill: green;
     }
+
+    ${applyStyleModifiers(ICON_MODIFIERS(theme))}
   `
 )
 
