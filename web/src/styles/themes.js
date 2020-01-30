@@ -5,7 +5,8 @@ import { remSize } from './utilities/Converters'
 export const colors = {
   primary: 'red',
   secondary: 'green',
-  text: 'black'
+  text: 'black',
+  border: 'black'
 }
 
 export const breakpoints = {
@@ -31,6 +32,12 @@ export const negativeSpacing = Object.keys(spacing).reduce((acc, key) => {
   acc[key] = `-${spacing[key]}`
   return acc
 }, {})
+
+export const fontFamily = {
+  sans: `'Suisse Works', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+  Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;`,
+  serif: `'SuisseIntl', times, serif`
+}
 
 export const fonts = {
   xxlarge: () =>
@@ -84,9 +91,19 @@ export const icons = {
   large: remSize(160)
 }
 
-export const transitions = {
-  fast: (props = '') => `${props} 0.1s ease`,
-  slow: (props = '') => `${props} 1s ease`
+export const trans = {
+  fast: `0.1s ease`,
+  slow: `1s ease`
+}
+
+export const borderWidth = {
+  small: remSize(1),
+  large: remSize(3)
+}
+
+export const border = {
+  small: `${borderWidth.small} solid ${colors.border}`,
+  large: `${borderWidth.large} solid ${colors.border}`
 }
 
 export const theme = {
@@ -94,11 +111,14 @@ export const theme = {
   breakpoints,
   spacing,
   negativeSpacing,
+  fontFamily,
   fonts,
   aspect,
   contentWidth,
-  transitions,
-  icons
+  trans,
+  icons,
+  border,
+  borderWidth
 }
 
 export const darkTheme = {

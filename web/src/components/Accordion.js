@@ -151,7 +151,7 @@ StyledAccordion.Item = styled(AccordionItem)(
           ? theme.colors.primary
           : color.darken(theme.colors.primary, 0.2)};
         ${spacing.xs('py')};
-        transition: ${theme.transitions.fast('background')};
+        transition: background ${theme.trans.fast};
 
         &:hover {
           background: ${color.darken(theme.colors.primary, 0.5)};
