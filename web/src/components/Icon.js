@@ -11,12 +11,14 @@ import { applyStyleModifiers } from 'styled-components-modifiers'
  * Usage:
  * <Icon name="check" modifiers="small" />
  * <Icon name="config" />
+ * <Icon name="calendar" color="orange"/>
  * <Icon name="calendar" modifiers="large" />
  *
  * @param {string} name // name of the icon file without extension.
+ * @param {string} color // overrides colors
  */
 
-const Icon = ({ className, name = 'calendar' }) => {
+const Icon = ({ className, name = 'calendar', color }) => {
   const data = useStaticQuery(query)
   const icons = data?.allFile?.nodes
   const [Component, setComponent] = useState(null)
@@ -66,7 +68,7 @@ const ICON_MODIFIERS = theme =>
   }, {})
 
 export default styled(Icon)(
-  ({ theme }) => css`
+  ({ theme, color }) => css`
     display: inline-block;
     height: ${theme.icons.medium};
 
@@ -79,6 +81,15 @@ export default styled(Icon)(
     }
 
     ${applyStyleModifiers(ICON_MODIFIERS(theme))}
+
+    /* Override color */
+    ${color &&
+      css`
+        .cls-3,
+        .cls-2 {
+          fill: ${color};
+        }
+      `}
   `
 )
 
