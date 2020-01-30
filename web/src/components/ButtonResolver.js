@@ -1,6 +1,5 @@
 import React from 'react'
 import LinkResolver from './LinkResolver'
-import cc from 'classcat'
 
 const ButtonResolver = ({ button, className }) => {
   const title = button?.link?.title || button?.link?.reference?.title
