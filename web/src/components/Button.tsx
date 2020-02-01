@@ -1,7 +1,16 @@
 import React from 'react'
 import cc from 'classcat'
 
-const Button = ({
+type Props = {
+  variant?: string
+  className?: string
+  onClick?: () => void
+  type?: 'submit' | 'button'
+  id?: string
+  disabled?: boolean
+}
+
+const Button: React.FC<Props> = ({
   variant,
   className,
   onClick,

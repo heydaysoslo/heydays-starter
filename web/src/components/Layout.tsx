@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { getUrl } from '../../../web/heydays-config'
+import { getUrl } from '../../heydays-config'
 import { blocksToText } from '../utils/sanityHelpers'
 
 import Header from './Header'
@@ -9,6 +9,7 @@ import SEO from './SEO'
 import { ThemeProvider } from 'styled-components'
 import theme, { darkTheme } from '../styles/themes'
 import { GlobalStyle } from '../styles/utilities/Global'
+import Button from './Button'
 // import Credits from './Credits'
 
 const Layout = props => {
@@ -21,7 +22,9 @@ const Layout = props => {
   }
   return (
     <ThemeProvider theme={themes[number % themes.length]}>
-      <button onClick={handleClick}>Change theme</button>
+      <Button variant="primary" onClick={handleClick}>
+        Change theme
+      </Button>
       <div className="Site">
         {/* <Credits /> */}
         {props && (
