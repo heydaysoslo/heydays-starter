@@ -7,7 +7,7 @@ import MenuItems from './MenuItems'
 import Portal from './Portal'
 import Container from './Container'
 import styled, { css } from 'styled-components'
-import { bp, spacing, fonts, color } from '../styles/utilities'
+import { bp, fonts, color } from '../styles/utilities'
 import { Button } from './elements'
 
 const Menu = ({ className }) => {
@@ -103,7 +103,7 @@ export default styled(Menu)(
       justify-content: space-between;
       align-items: flex-start;
 
-      ${spacing.sm('pt')}
+      ${theme.spacing.sm('pt')}
       flex-direction: row-reverse;
     }
   `

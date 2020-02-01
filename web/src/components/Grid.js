@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
-import { remSize, bp, spacing } from '../styles/utilities'
+import { remSize, bp } from '../styles/utilities'
 
 const DEFAULT_SETTINGS = {
   gutter: remSize(10)
@@ -37,21 +37,25 @@ export const GridItem = ({ span = {}, offset = {}, children, className }) => {
 }
 
 const StyledGrid = styled(Grid)(
-  props => css`
+  ({ theme, reverse, align, margin, columns }) => css`
     display: flex;
     flex: 0 1 auto;
-    flex-direction: ${props.reverse ? 'row-reverse' : 'row'};
+    flex-direction: ${reverse ? 'row-reverse' : 'row'};
     flex-wrap: wrap;
-    align-items: ${props.align ? props.align : 'auto'};
+    align-items: ${align ? align : 'auto'};
 
     ${StyledGrid.Item} {
-      ${spacing.gutter ? spacing.gutter('px') : DEFAULT_SETTINGS.gutter}
-      ${props.margin === 'y' && spacing.gutter('mb')}
-      ${props.columns &&
-        Object.keys(props.columns).map(
+      ${
+        theme.spacing.gutter
+          ? theme.spacing.gutter('px')
+          : DEFAULT_SETTINGS.gutter
+      }
+      ${margin === 'y' && theme.spacing.gutter('mb')}
+      ${columns &&
+        Object.keys(columns).map(
           key => bp.above[key]`
-            flex-basis: ${(1 / props.columns[key]) * 100}%;
-            max-width: ${(1 / props.columns[key]) * 100}%;
+            flex-basis: ${(1 / columns[key]) * 100}%;
+            max-width: ${(1 / columns[key]) * 100}%;
           `
         )}
     }

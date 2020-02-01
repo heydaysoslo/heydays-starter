@@ -4,7 +4,6 @@ import styled, { css } from 'styled-components'
 
 import Menu from './Menu'
 import Container from './Container'
-import { spacing } from '../styles/utilities'
 import { H1 } from './elements'
 
 const Header = ({ className }) => {
@@ -24,7 +23,7 @@ const Header = ({ className }) => {
 
 export default styled(Header)(
   ({ theme }) => css`
-    ${spacing.sm('py')}
+    ${theme.spacing.sm('py')}
     background: ${theme.colors.primary};
 
     .container {

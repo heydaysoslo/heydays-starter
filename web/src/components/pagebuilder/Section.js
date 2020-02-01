@@ -3,7 +3,6 @@ import Editor from '../editor/Editor'
 import ButtonResolver from '../ButtonResolver'
 import { P, H3, Button } from '../elements'
 import styled, { css } from 'styled-components'
-import { spacing } from '../../styles/utilities'
 
 const Section = ({ label, title, content, button, className }) => {
   return (
@@ -30,10 +29,10 @@ const Section = ({ label, title, content, button, className }) => {
 export default styled(Section)(
   ({ theme }) => css`
     text-align: center;
-    ${spacing.section('my')}
+    ${theme.spacing.section('my')}
 
     .button {
-      ${spacing.md('mt')}
+      ${theme.spacing.md('mt')}
     }
   `
 )

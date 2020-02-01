@@ -2,7 +2,6 @@ import React from 'react'
 import Pagebuilder from '../pagebuilder/Pagebuilder'
 import Container from '../Container'
 import styled, { css } from 'styled-components'
-import { spacing } from '../../styles/utilities'
 import { H1, P } from '../elements'
 
 const Page = ({ className, title, content, pagebuilder, ...props }) => {
@@ -26,10 +25,10 @@ const Page = ({ className, title, content, pagebuilder, ...props }) => {
 export default styled(Page)(
   ({ theme }) => css`
     .header {
-      ${spacing.sm('mt')}
+      ${theme.spacing.sm('mt')}
     }
     .content {
-      ${spacing.sm('mt')}
+      ${theme.spacing.sm('mt')}
     }
   `
 )

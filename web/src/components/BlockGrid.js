@@ -26,7 +26,7 @@ export default styled(BlockGrid)(({ theme, columns, gap }) => {
     grid-template-columns: 1fr;
     ${gap &&
       css`
-        grid-gap: ${theme.spacing.gutter};
+        ${theme.spacing.gutter('gap')}
       `};
     ${cols &&
       css`

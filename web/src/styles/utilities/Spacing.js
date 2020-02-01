@@ -1,88 +1,104 @@
-import * as scSpacing from 'styled-components-spacing'
 import { css } from 'styled-components'
 
-/**
- * Create spacing
- *
- * props describes the type and direction of your spacing.
- * Ex. margin-bottom = mb. It uses emmet's css naming conventions.
- * https://docs.emmet.io/cheat-sheet/
- *
- * Available props:
- * m = margin
- * ml = margin-left
- * mt = margin-top
- * mr = margin-right
- * mb = margin-bottom
- * my = margin-top and margin-bottom
- * mx = margin-left and margin-right
- *
- * p = padding
- * pl = padding-left
- * pt = padding-top
- * pr = padding-right
- * pb = padding-bottom
- * py = padding-top and padding-bottom
- * px = padding-left and padding-right
- *
- * Usage:
- * ${spacing.section('my')} || ${spacing.section('my,mx')}
- *
- *
- * @param {string} props ex uses: 'mt,ml' for multiple. 'mr' for single. Defaults to 'mb'
- * @param {object} size
- */
-export const createSpacing = (props = 'mb', size) => {
-  if (typeof props !== 'string') {
-    console.info('Spacing functions expects a string')
-    return null
-  }
-  const propsArr = props.split(',').map(string => string.trim())
-  // If there is single prop
-  if (propsArr.length === 0) {
+const mixinDefs = {
+  m: ['margin'],
+  ml: ['margin-left'],
+  mt: ['margin-top'],
+  mr: ['margin-right'],
+  mb: ['margin-bottom'],
+  my: ['margin-top', 'margin-bottom'],
+  mx: ['margin-left', 'margin-right'],
+
+  p: ['padding'],
+  pl: ['padding-left'],
+  pt: ['padding-top'],
+  pr: ['padding-right'],
+  pb: ['padding-bottom'],
+  py: ['padding-top', 'padding-bottom'],
+  px: ['padding-left', 'padding-right'],
+
+  gap: ['grid-gap']
+}
+
+const mixins = Object.keys(mixinDefs).reduce((acc, key) => {
+  acc[key] = value => ({ theme }) => {
     return css`
-      ${scSpacing[props](size)}
+      ${mixinDefs[key].map(
+        prop => css`
+          ${prop}: ${value};
+        `
+      )}
     `
   }
-  // If there are multiple props
-  return propsArr.map(
-    val =>
-      css`
-        ${scSpacing[val](size)}
-      `
-  )
-}
+  return acc
+}, {})
+
+/**
+ * Structure of reponsiveSpacingDefs obj below
+ *
+ * [name of function]: {
+ *  [breakpoint]: [spacing value (theme.spacing ref || hard value ex: 100px)]
+ * }
+ *
+ */
+
+// const responsiveSpacingDefs = {
+//   xs: {
+//     xs: 'xs',
+//     lg: 'lg'
+//   },
+//   sm: {
+//     xs: 'sm',
+//     lg: 'section'
+//   },
+//   gutter: {
+//     xs: 'gutter',
+//     lg: 'gutter'
+//   }
+// }
+
+// const responsiveSpacing = Object.keys(responsiveSpacingDefs).reduce(
+//   (acc, key) => {
+//     acc[key] = propsString => ({ theme }) => {
+//       // turn prop string into array. 'my,mt' => ['my', 'mt']
+//       const props = propsString.split(',').map(prop => prop.trim())
+//       // get breakpoints with values
+//       const breakpoints = responsiveSpacingDefs[key]
+//       // Loop over breakpoints to insert values
+//       return Object.keys(breakpoints).map(breakpoint => {
+//         // Get breakpoint spesific value
+//         const value = breakpoints[breakpoint]
+//         // Check if value exists in theme ex. if value === 'lg' we have theme.spacing.lg
+//         // If value does not correspond to any key in spacing we assume it is a hardcoded value
+//         const themeValue = theme.spacing[value]
+//         // No breakpoint needed for xs breakpoint
+//         return css`
+//           ${breakpoint === 'xs' &&
+//             props.map(
+//               prop =>
+//                 css`
+//                   ${spacing[prop](themeValue || value)}
+//                 `
+//             )}
+//           ${breakpoint !== 'xs' &&
+//             css`
+//               ${bp.above[breakpoint]`
+//                 ${props.map(
+//                   prop =>
+//                     css`
+//                       ${spacing[prop](themeValue || value)}
+//                     `
+//                 )}
+//               `}
+//             `}
+//         `
+//       })
+//     }
+//     return acc
+//   },
+//   {}
+// )
 
 export const spacing = {
-  xs: props =>
-    createSpacing(props, {
-      xs: 'xs',
-      lg: 'sm'
-    }),
-  sm: props =>
-    createSpacing(props, {
-      xs: 'sm',
-      lg: 'md'
-    }),
-  md: props =>
-    createSpacing(props, {
-      xs: 'md',
-      lg: 'lg'
-    }),
-  lg: props =>
-    createSpacing(props, {
-      xs: 'lg',
-      lg: 'lg'
-    }),
-  section: props =>
-    createSpacing(props, {
-      xs: 'lg',
-      lg: 'section'
-    }),
-  gutter: props =>
-    createSpacing(props, {
-      xs: 'gutter'
-    })
+  ...mixins
 }
-
-// TODO: Create negative spacing

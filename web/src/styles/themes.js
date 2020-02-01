@@ -1,5 +1,7 @@
 import { css } from 'styled-components'
 
+import { bp } from './utilities/Breakpoints'
+import { addSpacingProps } from './utilities/helpers'
 import { remSize } from './utilities/Converters'
 
 export const colors = {
@@ -18,7 +20,7 @@ export const breakpoints = {
   xxl: 1800
 }
 
-export const spacing = {
+export const spacingUnit = {
   xs: remSize(5),
   sm: remSize(10),
   md: remSize(15),
@@ -28,10 +30,38 @@ export const spacing = {
   gutter: remSize(20)
 }
 
-export const negativeSpacing = Object.keys(spacing).reduce((acc, key) => {
-  acc[key] = `-${spacing[key]}`
-  return acc
-}, {})
+export const spacing = {
+  xs: props => ({ theme }) => css`
+    ${addSpacingProps(props, theme.spacingUnit.xs)}
+
+    ${bp.above.lg`
+      ${addSpacingProps(props, theme.spacingUnit.sm)}
+   `}
+  `,
+  sm: props => ({ theme }) => css`
+    ${addSpacingProps(props, theme.spacingUnit.sm)}
+
+    ${bp.above.lg`
+      ${addSpacingProps(props, theme.spacingUnit.md)}
+   `}
+  `,
+  md: props => ({ theme }) => css`
+    ${addSpacingProps(props, theme.spacingUnit.md)}
+
+    ${bp.above.lg`
+      ${addSpacingProps(props, theme.spacingUnit.lg)}
+   `}
+  `,
+  lg: props => ({ theme }) => css`
+    ${addSpacingProps(props, theme.spacingUnit.lg)}
+  `,
+  section: props => ({ theme }) => css`
+    ${addSpacingProps(props, theme.spacingUnit.section)}
+  `,
+  gutter: props => ({ theme }) => css`
+    ${addSpacingProps(props, theme.spacingUnit.gutter)}
+  `
+}
 
 export const fontFamily = {
   sans: `'SuisseIntl', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
@@ -101,20 +131,21 @@ export const borderWidth = {
   large: remSize(3)
 }
 
+// TODO: Add dynamic property without error
 export const border = {
   large: key => ({ theme }) => css`
-    ${key}: ${theme.borderWidth.large} solid ${theme.colors.border};
+    border: ${theme.borderWidth.large} solid ${theme.colors.border};
   `,
   small: key => ({ theme }) => css`
-    ${key}: ${theme.borderWidth.small} solid ${theme.colors.border};
+    border: ${theme.borderWidth.small} solid ${theme.colors.border};
   `
 }
 
 export const theme = {
   colors,
   breakpoints,
+  spacingUnit,
   spacing,
-  negativeSpacing,
   fontFamily,
   fonts,
   aspect,
@@ -133,15 +164,6 @@ export const darkTheme = {
     text: 'white',
     border: 'red',
     background: '#b2b2b2'
-  },
-  spacing: {
-    xs: remSize(20),
-    sm: remSize(50),
-    md: remSize(60),
-    lg: remSize(100),
-    xl: remSize(150),
-    section: remSize(250),
-    gutter: remSize(60)
   },
   breakpoints: {
     xs: 0,

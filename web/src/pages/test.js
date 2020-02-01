@@ -18,6 +18,7 @@ import useFetch from '../components/hooks/useFetch'
 import Icon from '../components/Icon'
 import { createTints, createMixColorSteps } from '../styles/utilities'
 import { Select } from '../components/elements'
+import styled, { css } from 'styled-components'
 
 const query = graphql`
   {
@@ -57,7 +58,7 @@ const Index = () => {
 
   const { state, actions } = useContext(AppContext)
 
-  console.log(mapEdgesToNode(data.allSanityPage))
+  // console.log(mapEdgesToNode(data.allSanityPage))
 
   const options = [
     { value: 'chocolate', label: 'Chocolate' },
@@ -65,8 +66,15 @@ const Index = () => {
     { value: 'vanilla', label: 'Vanilla' }
   ]
 
+  const TestSpacing = styled.div(
+    ({ theme }) => css`
+      ${theme.spacing.xs('my')}
+    `
+  )
+
   return (
     <Layout>
+      <TestSpacing>Hei verden</TestSpacing>
       <Container>
         <Select
           options={options}

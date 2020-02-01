@@ -1,5 +1,4 @@
 import { createGlobalStyle, css } from 'styled-components'
-import { spacing } from './Spacing'
 import themes from '../themes'
 import { bp } from './Breakpoints'
 import { fonts, globalTypeStyle } from './Typography'
@@ -116,7 +115,7 @@ export const GlobalStyle = createGlobalStyle(
       position: fixed;
       bottom: 0;
       left: 0;
-      ${spacing.xs('py,px')}
+      ${theme.spacing.xs('py,px')}
       ${fonts.body()}
 
       ${Object.keys(themes.breakpoints).map(

@@ -6,7 +6,6 @@ import SanityImage from './editor/SanityImage'
 import Editor from './editor/Editor'
 import InView from './InView'
 import styled, { css } from 'styled-components'
-import { spacing } from '../styles/utilities'
 import { P } from './elements'
 
 const Card = ({ className, title, image, excerpt, link }) => (
@@ -54,7 +53,7 @@ export default styled(Card)(
 
     .title,
     .excerpt {
-      ${spacing.sm('mt')}
+      ${theme.spacing.sm('mt')}
     }
   `
 )

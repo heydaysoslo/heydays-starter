@@ -21,7 +21,7 @@ import styled, { css } from 'styled-components'
 
 import keyCodes from '../utils/keyCodes'
 
-import { spacing, color } from '../styles/utilities'
+import { color } from '../styles/utilities'
 import { H3 } from './elements'
 import Editor from './editor/Editor'
 
@@ -182,7 +182,7 @@ StyledAccordion.Item = styled(AccordionItem)(
         justify-content: space-between;
         width: 100%;
         text-align: left;
-        ${spacing.xs('py')};
+        ${theme.spacing.xs('py')};
 
         .title {
           font-family: ${theme.fontFamily.sans};
@@ -200,7 +200,7 @@ StyledAccordion.Item = styled(AccordionItem)(
       .icon {
         width: ${theme.icons.small};
         height: ${theme.icons.small};
-        ${spacing.sm('mr')};
+        ${theme.spacing.sm('mr')};
         line {
           stroke: ${isActive
             ? theme.colors.primary
@@ -210,8 +210,8 @@ StyledAccordion.Item = styled(AccordionItem)(
 
       .content {
         display: ${isActive ? 'block' : 'none'};
-        ${spacing.sm('px')}
-        ${spacing.md('pb')}
+        ${theme.spacing.sm('px')}
+        ${theme.spacing.md('pb')}
       }
 
       &:hover {

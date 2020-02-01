@@ -2,7 +2,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 
 import LinkResolver from './LinkResolver'
-import { fonts, spacing } from '../styles/utilities'
+import { fonts } from '../styles/utilities'
 
 const MenuItems = ({ menu, closeMenu, className }) => {
   if (!menu) return null
@@ -20,8 +20,8 @@ const MenuItems = ({ menu, closeMenu, className }) => {
 }
 
 export default styled(MenuItems)(
-  ({ theme: { colors } }) => css`
-    ${spacing.sm('ml')}
+  ({ theme }) => css`
+    ${theme.spacing.sm('ml')}
     ${fonts.title()}
   `
 )
