@@ -56,7 +56,12 @@ async function createPages(graphql, actions, reporter) {
 
     const path = `/${slug.current}`
 
-    reporter.info(`Creating page: ${path}`)
+    // TODO: Consider removing this as it is known to cause issues
+    // https://sanity-io-land.slack.com/archives/C9Z7RC3V1/p1580090596210600
+    // https://sanity-io-land.slack.com/archives/C9Y51FDGA/p1580156946022500
+    if (process.env.NODE_ENV === 'development') {
+      reporter.info(`Creating page: ${path}`)
+    }
 
     createPage({
       path: siteSettings.frontpage.id === id ? '/' : path,
@@ -99,7 +104,12 @@ async function createArticles(graphql, actions, reporter) {
       const { id, slug } = article.node
       const path = `/news/${slug.current}`
 
-      reporter.info(`Creating article: ${path}`)
+      // TODO: Consider removing this as it is known to cause issues
+      // https://sanity-io-land.slack.com/archives/C9Z7RC3V1/p1580090596210600
+      // https://sanity-io-land.slack.com/archives/C9Y51FDGA/p1580156946022500
+      if (process.env.NODE_ENV === 'development') {
+        reporter.info(`Creating article: ${path}`)
+      }
 
       createPage({
         path,
@@ -110,18 +120,6 @@ async function createArticles(graphql, actions, reporter) {
       createPageDependency({ path, nodeId: id })
     })
 }
-
-// Workaround for newer react
-// https://github.com/gatsbyjs/gatsby/issues/11934
-// exports.onCreateWebpackConfig = ({ getConfig, stage }) => {
-//   const config = getConfig()
-//   if (stage.startsWith('develop') && config.resolve) {
-//     config.resolve.alias = {
-//       ...config.resolve.alias,
-//       'react-dom': '@hot-loader/react-dom'
-//     }
-//   }
-// }
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   await createPages(graphql, actions, reporter)
