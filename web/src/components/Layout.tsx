@@ -9,7 +9,7 @@ import SEO from './SEO'
 import { ThemeProvider } from 'styled-components'
 import theme, { darkTheme } from '../styles/themes'
 import { GlobalStyle } from '../styles/utilities/Global'
-import Button from './Button'
+import { Button, P } from './elements'
 // import Credits from './Credits'
 
 const Layout = props => {
@@ -22,9 +22,7 @@ const Layout = props => {
   }
   return (
     <ThemeProvider theme={themes[number % themes.length]}>
-      <Button variant="primary" onClick={handleClick}>
-        Change theme
-      </Button>
+      <Button onClick={handleClick}>Change theme</Button>
       <div className="Site">
         {/* <Credits /> */}
         {props && (
@@ -39,6 +37,7 @@ const Layout = props => {
           />
         )}
         <Header />
+        <P>Hello there</P>
         <div className="Site__content">{props.children}</div>
         <Footer />
         <GlobalStyle />

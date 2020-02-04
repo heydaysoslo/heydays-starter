@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react'
 import { Helmet } from 'react-helmet'
 
 import { mapEdgesToNode } from '../utils/sanityHelpers'
-import Button from '../components/Button'
 import Container from '../components/Container'
 import Modal from '../components/Modal'
 import AspectContainer from '../components/AspectContainer'
@@ -17,8 +16,9 @@ import AppContext from '../components/context/AppContext'
 import useFetch from '../components/hooks/useFetch'
 import Icon from '../components/Icon'
 import { createTints, createMixColorSteps } from '../styles/utilities'
-import { Select } from '../components/elements'
+import { Select, Button } from '../components/elements'
 import styled, { css } from 'styled-components'
+import { Grid } from '../components/elements/Grid'
 
 const query = graphql`
   {
@@ -74,6 +74,8 @@ const Index = () => {
 
   return (
     <Layout>
+      <Button modifiers="small">Click me</Button>
+      <Button modifiers={['secondary', 'small']}>Click me</Button>
       <TestSpacing>Hei verden</TestSpacing>
       <Container>
         <Select
@@ -86,7 +88,7 @@ const Index = () => {
         <Icon name="check" modifiers="small" />
         <Icon name="config" color="orange" />
         <Icon name="calendar" modifiers="large" />
-        <Icon name="hakuna" modifiers="large" />
+        <Icon name="fullstack" modifiers="large" />
         <div style={{ display: 'flex' }}>
           {createTints('red', 5).map(color => (
             <div
@@ -175,7 +177,6 @@ const Index = () => {
         >
           <Img fluid={data.allFile.edges[1].node.childImageSharp.fluid} />
         </div> */}
-        <Button variant="secondary">I'm button</Button>
         <pre>{JSON.stringify(media, null, 2)}</pre>
         <pre>{JSON.stringify(windowSize, null, 2)}</pre>
         <pre>{JSON.stringify(scroll, null, 2)}</pre>

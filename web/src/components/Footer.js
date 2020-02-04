@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 
 import Container from './Container'
-import Grid from './Grid'
+import { Grid } from './elements'
 import Newsletter from './Newsletter'
 import LinkResolver from './LinkResolver'
 import Social from './Social'
@@ -14,7 +14,7 @@ const Footer = () => {
   return (
     <div className="Footer">
       <Container>
-        <Grid margin="y" columns={{ sm: 2, md: 4 }}>
+        <Grid spacing="my" columns={{ sm: 2, md: 4 }}>
           <ul className="Footer__menu">
             {menu &&
               menu.map(item => (

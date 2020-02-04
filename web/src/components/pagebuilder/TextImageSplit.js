@@ -1,5 +1,5 @@
 import React from 'react'
-import Grid from '../Grid'
+import { Grid } from '../elements'
 
 import SanityImage from '../editor/SanityImage'
 import Editor from '../editor/Editor'

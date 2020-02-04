@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, ComponentType, Component } from 'react'
 import styled, { css } from 'styled-components'
 import { useStaticQuery, graphql } from 'gatsby'
 import { applyStyleModifiers } from 'styled-components-modifiers'
@@ -18,10 +18,38 @@ import { applyStyleModifiers } from 'styled-components-modifiers'
  * @param {string} color // overrides colors
  */
 
-const Icon = ({ className, name = 'calendar', color }) => {
+type Name =
+  | 'calendar'
+  | 'check'
+  | 'cloud'
+  | 'concept'
+  | 'house'
+  | 'fullstack'
+  | 'config'
+  | 'graph'
+  | 'link'
+  | 'process'
+  | 'plus'
+  | 'mobile'
+  | 'science'
+  | 'search'
+  | 'ux'
+  | 'team'
+  | 'wink'
+  | 'wand'
+
+type Modifiers = 'small' | 'medium' | 'large'
+
+type Props = {
+  name: Name
+  color?: string
+  modifiers?: Modifiers | Modifiers[]
+}
+
+const Icon = ({ className, name = 'calendar' }) => {
   const data = useStaticQuery(query)
   const icons = data?.allFile?.nodes
-  const [Component, setComponent] = useState(null)
+  const [Component, setComponent] = useState<ComponentType | null>(null)
 
   const icon = icons.find(
     icon => icon.name.toLowerCase() === name.toLowerCase()
@@ -67,7 +95,7 @@ const ICON_MODIFIERS = theme =>
     return obj
   }, {})
 
-export default styled(Icon)(
+export default styled(Icon)<Props>(
   ({ theme, color }) => css`
     display: inline-block;
     height: ${theme.icons.medium};

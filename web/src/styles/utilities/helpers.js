@@ -21,7 +21,15 @@ export const addSpacingProps = (propsString = 'mb', value) => {
   }
   const props = propsString.split(',').map(prop => prop.trim())
   return css`
-    ${props.map(prop => spacing[prop](value))}
+    ${props.map(prop => {
+      if (!spacing[prop]) {
+        console.warn(
+          `addSpacingProp: the method ${prop} does not exist on spacing`
+        )
+        return null
+      }
+      return spacing[prop](value)
+    })}
   `
 }
 

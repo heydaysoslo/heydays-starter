@@ -1,4 +1,4 @@
-import { css } from 'styled-components'
+import { css, DefaultTheme } from 'styled-components'
 
 import { bp } from './utilities/Breakpoints'
 import { addSpacingProps } from './utilities/helpers'
@@ -141,7 +141,7 @@ export const border = {
   `
 }
 
-export const theme = {
+export const theme: DefaultTheme = {
   colors,
   breakpoints,
   spacingUnit,
@@ -156,7 +156,7 @@ export const theme = {
   border
 }
 
-export const darkTheme = {
+export const darkTheme: DefaultTheme = {
   ...theme,
   colors: {
     primary: 'green',
@@ -178,7 +178,7 @@ export const darkTheme = {
       font-size: 75%;
     }
     body {
-      background: ${theme.colors.background};
+      background: ${theme?.colors?.background};
     }
   `
 }

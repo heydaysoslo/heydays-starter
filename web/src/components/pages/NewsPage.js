@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby'
 
 import Container from '../Container'
 import Card from '../Card'
-import Grid from '../Grid'
+import { Grid } from '../elements'
 
 const NewsPage = ({ title, content, pagebuilder, ...props }) => {
   const data = useStaticQuery(query)
@@ -20,7 +20,7 @@ const NewsPage = ({ title, content, pagebuilder, ...props }) => {
       )}
       {articles && (
         <Container className="Page__content">
-          <Grid margin="y" columns={{ xs: 1, sm: 2, md: 3 }}>
+          <Grid spacing="my" columns={{ xs: 1, sm: 2, md: 3 }}>
             {articles.map(
               article =>
                 article && (

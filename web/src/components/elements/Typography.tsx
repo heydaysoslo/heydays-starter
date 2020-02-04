@@ -3,6 +3,12 @@ import { applyStyleModifiers } from 'styled-components-modifiers'
 
 import { fonts } from '../../styles/utilities'
 
+type Modifiers = 'large' | 'small'
+
+type Props = {
+  modifiers?: Modifiers | Modifiers[]
+}
+
 const P_MODIFIERS = {
   large: ({ theme }) => css`
     font-size: 2rem;
@@ -12,7 +18,7 @@ const P_MODIFIERS = {
   `
 }
 
-export const P = styled.p(
+export const P = styled.p<Props>(
   ({ theme }) => css`
     ${fonts.body()}
     ${applyStyleModifiers(P_MODIFIERS)}

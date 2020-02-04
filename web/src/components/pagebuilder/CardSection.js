@@ -1,5 +1,5 @@
 import React from 'react'
-import Grid from '../Grid'
+import { Grid } from '../elements'
 
 import Card from '../Card'
 import BlockGrid from '../BlockGrid'
@@ -7,7 +7,7 @@ import BlockGrid from '../BlockGrid'
 const CardSection = ({ cardsList = [], ...props }) => {
   return (
     <>
-      <Grid columns={{ sm: 1, md: 3 }} margin="y">
+      <Grid columns={{ sm: 1, md: 3 }} spacing="my">
         {cardsList.map(card => {
           const { content, cardOverride } = card
           return (
