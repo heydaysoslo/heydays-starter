@@ -18,7 +18,7 @@ import Icon from '../components/Icon'
 import { createTints, createMixColorSteps } from '../styles/utilities'
 import { Select, Button } from '../components/elements'
 import styled, { css } from 'styled-components'
-import { Grid } from '../components/elements/Grid'
+import Test from '../components/Test'
 
 const query = graphql`
   {
@@ -74,6 +74,7 @@ const Index = () => {
 
   return (
     <Layout>
+      <Test />
       <Button modifiers="small">Click me</Button>
       <Button modifiers={['secondary', 'small']}>Click me</Button>
       <TestSpacing>Hei verden</TestSpacing>

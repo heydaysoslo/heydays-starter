@@ -30,13 +30,16 @@ declare module 'styled-components' {
       gutter?: string
     }
     spacing: {
-      xs?: (props?: string) => []
-      sm?: (props?: string) => []
-      md?: (props?: string) => []
-      lg?: (props?: string) => []
-      xl?: (props?: string) => []
-      section?: (props?: string) => []
-      gutter?: (props?: string) => []
+      xs?: (props?: string) => void | any
+      sm?: (props?: string) => void | any
+      md?: (props?: string) => void | any
+      lg?: (props?: string) => void | any
+      xl?: (props?: string) => void | any
+      section?: (props?: string) => void | any
+      gutter?: (props?: string) => void | any
+    }
+    grid?: {
+      columns: number
     }
     fontFamily: {
       sans?: string

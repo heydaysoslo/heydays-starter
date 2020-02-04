@@ -63,6 +63,10 @@ export const spacing = {
   `
 }
 
+export const grid = {
+  columns: 12
+}
+
 export const fontFamily = {
   sans: `'SuisseIntl', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
   Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;`,
@@ -146,6 +150,7 @@ export const theme: DefaultTheme = {
   breakpoints,
   spacingUnit,
   spacing,
+  grid,
   fontFamily,
   fonts,
   aspect,
@@ -164,6 +169,9 @@ export const darkTheme: DefaultTheme = {
     text: 'white',
     border: 'red',
     background: '#b2b2b2'
+  },
+  grid: {
+    columns: 24
   },
   breakpoints: {
     xs: 0,
