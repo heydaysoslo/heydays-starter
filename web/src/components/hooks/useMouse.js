@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react'
+
 const initialMouseState = {
   x: null,
   y: null,
@@ -11,7 +13,7 @@ const initialMouseState = {
   movementY: null,
   offsetX: null,
   offsetY: null
-};
+}
 
 function getMousePositionFromEvent(e) {
   const {
@@ -25,7 +27,7 @@ function getMousePositionFromEvent(e) {
     clientY,
     offsetX,
     offsetY
-  } = e;
+  } = e
   return {
     screenX,
     screenY,
@@ -39,25 +41,23 @@ function getMousePositionFromEvent(e) {
     offsetY,
     x: screenX,
     y: screenY
-  };
+  }
 }
 
 const useMouse = () => {
-  const [mousePosition, setMousePostition] = useState(
-    initialMouseState
-  );
+  const [mousePosition, setMousePostition] = useState(initialMouseState)
 
   function updateMousePosition(e) {
-    setMousePostition(getMousePositionFromEvent(e));
+    setMousePostition(getMousePositionFromEvent(e))
   }
 
   useEffect(() => {
-    document.addEventListener("mousemove", updateMousePosition);
+    document.addEventListener('mousemove', updateMousePosition)
     return () => {
-      document.removeEventListener("mousemove", updateMousePosition);
-    };
-  }, []);
-  return mousePosition;
+      document.removeEventListener('mousemove', updateMousePosition)
+    }
+  }, [])
+  return mousePosition
 }
 
 export default useMouse

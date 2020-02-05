@@ -19,11 +19,11 @@ import React, { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import styled, { css } from 'styled-components'
 
-import keyCodes from '../utils/keyCodes'
+import keyCodes from '../../utils/keyCodes'
 
-import { color } from '../styles/utilities'
-import { H3 } from './elements'
-import Editor from './editor/Editor'
+import { color, spacing } from '../../styles/utilities'
+import { H3 } from '.'
+import Editor from '../editor'
 
 const Accordion = ({
   items,
@@ -182,7 +182,7 @@ StyledAccordion.Item = styled(AccordionItem)(
         justify-content: space-between;
         width: 100%;
         text-align: left;
-        ${theme.spacing.xs('py')};
+        ${spacing.xs('py')};
 
         .title {
           font-family: ${theme.fontFamily.sans};
@@ -200,7 +200,7 @@ StyledAccordion.Item = styled(AccordionItem)(
       .icon {
         width: ${theme.icons.small};
         height: ${theme.icons.small};
-        ${theme.spacing.sm('mr')};
+        ${spacing.sm('mr')};
         line {
           stroke: ${isActive
             ? theme.colors.primary
@@ -210,8 +210,8 @@ StyledAccordion.Item = styled(AccordionItem)(
 
       .content {
         display: ${isActive ? 'block' : 'none'};
-        ${theme.spacing.sm('px')}
-        ${theme.spacing.md('pb')}
+        ${spacing.sm('px')}
+        ${spacing.md('pb')}
       }
 
       &:hover {

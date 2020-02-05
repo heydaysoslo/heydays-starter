@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { css } from 'styled-components'
-import { bp } from '../styles/utilities'
+import { bp } from '../../styles/utilities'
 
 const AspectContainer = ({ background, className, children }) => {
   return (

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 import { isProviderAllowed } from '../../heydays-config'
 
-import AspectContainer from './AspectContainer'
+import AspectContainer from './elements/AspectContainer'
 import styled from 'styled-components'
 
 const Oembed = ({ url, className }) => {

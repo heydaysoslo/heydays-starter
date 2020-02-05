@@ -1,8 +1,9 @@
 import React from 'react'
-import Editor from '../editor/Editor'
-import ButtonResolver from '../ButtonResolver'
+import Editor from '../editor/'
+import ButtonResolver from '../resolvers/ButtonResolver'
 import { P, H3, Button } from '../elements'
 import styled, { css } from 'styled-components'
+import { spacing } from '../../styles/utilities'
 
 const Section = ({ label, title, content, button, className }) => {
   return (
@@ -29,10 +30,10 @@ const Section = ({ label, title, content, button, className }) => {
 export default styled(Section)(
   ({ theme }) => css`
     text-align: center;
-    ${theme.spacing.section('my')}
+    ${spacing.section('my')}
 
     .button {
-      ${theme.spacing.md('mt')}
+      ${spacing.md('mt')}
     }
   `
 )

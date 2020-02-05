@@ -1,55 +1,58 @@
 import React, { useContext, useState } from 'react'
 import { Helmet } from 'react-helmet'
 
-import { mapEdgesToNode } from '../utils/sanityHelpers'
-import Container from '../components/Container'
-import Modal from '../components/Modal'
-import AspectContainer from '../components/AspectContainer'
+// import { mapEdgesToNode } from '../utils/sanityHelpers'
 import useWindowSize from '../components/hooks/useWindowSize'
 import useMediaQuery from '../components/hooks/useMediaQuery'
 import useScroll from '../components/hooks/useScroll'
-import { useStaticQuery, graphql } from 'gatsby'
+// import { useStaticQuery, graphql } from 'gatsby'
 // import Img from 'gatsby-image'
 import FadeIn from '../components/FadeIn'
 import Layout from '../components/Layout'
 import AppContext from '../components/context/AppContext'
 import useFetch from '../components/hooks/useFetch'
-import Icon from '../components/Icon'
-import { createTints, createMixColorSteps } from '../styles/utilities'
-import { Select, Button } from '../components/elements'
+import { createTints, createMixColorSteps, spacing } from '../styles/utilities'
+import {
+  Select,
+  Button,
+  Container,
+  Modal,
+  AspectContainer,
+  Icon
+} from '../components/elements'
 import styled, { css } from 'styled-components'
 import Test from '../components/Test'
 
-const query = graphql`
-  {
-    allFile {
-      edges {
-        node {
-          name
-          childImageSharp {
-            fluid {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-        }
-      }
-    }
-    allSanityPage {
-      edges {
-        node {
-          _key
-          title
-          slug {
-            current
-          }
-        }
-      }
-    }
-  }
-`
+// const query = graphql`
+//   {
+//     allFile {
+//       edges {
+//         node {
+//           name
+//           childImageSharp {
+//             fluid {
+//               ...GatsbyImageSharpFluid_withWebp
+//             }
+//           }
+//         }
+//       }
+//     }
+//     allSanityPage {
+//       edges {
+//         node {
+//           _key
+//           title
+//           slug {
+//             current
+//           }
+//         }
+//       }
+//     }
+//   }
+// `
 
 const Index = () => {
-  const data = useStaticQuery(query)
+  // const data = useStaticQuery(query)
   const media = useMediaQuery()
   const windowSize = useWindowSize({ debounce: 100 })
   const scroll = useScroll({ delay: 100 })
@@ -68,7 +71,7 @@ const Index = () => {
 
   const TestSpacing = styled.div(
     ({ theme }) => css`
-      ${theme.spacing.xs('my')}
+      ${spacing.xs('my')}
     `
   )
 

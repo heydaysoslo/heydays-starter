@@ -1,5 +1,6 @@
 // import original module declarations
 import 'styled-components'
+import { BorderProps } from '../types'
 
 // and extend them!
 declare module 'styled-components' {
@@ -29,7 +30,7 @@ declare module 'styled-components' {
       section?: string
       gutter?: string
     }
-    spacing: {
+    spacing?: {
       xs?: (props?: string) => void | any
       sm?: (props?: string) => void | any
       md?: (props?: string) => void | any
@@ -80,8 +81,8 @@ declare module 'styled-components' {
       large?: string
     }
     border: {
-      small?: (key: string) => void
-      large?: (key: string) => void
+      small?: (prop: BorderProps) => ({ theme: DefaultTheme }) => void
+      large?: (prop: BorderProps) => ({ theme: DefaultTheme }) => void
     }
     defaultStyle?: ({ theme }: { theme: DefaultTheme | undefined }) => void
   }

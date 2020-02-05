@@ -5,7 +5,7 @@ import { sanity } from '../../../heydays-config'
 
 import { getAspectRatio, fillMissingAspects } from '../../utils/aspect'
 
-import useMediaQuery from '../useMediaQuery'
+import { useMediaQuery } from '../hooks'
 
 const SanityImage = ({ node, maxWidth = 1440, aspectRatio }) => {
   if (!node?.asset) {

@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 
 import { FacebookIcon, TwitterIcon, LinkedinIcon } from 'react-share'
-import LinkResolver from './LinkResolver'
+import { LinkResolver } from './resolvers'
 
 // Temporary instagram icon
 const InstagramIcon = () => (

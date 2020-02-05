@@ -2,12 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 
 import { getReadTime } from '../../utils/sanityHelpers'
-import Editor from '../editor/Editor'
+import Editor from '../editor'
 import SanityImage from '../editor/SanityImage'
-import Container from '../Container'
-import { Grid } from '../elements'
+import { Grid, GridItem, Container, Card } from '../elements'
 import Share from '../Share'
-import Card from '../Card'
 import PageBuilder from '../pagebuilder/Pagebuilder'
 
 const Article = ({
@@ -36,7 +34,7 @@ const Article = ({
     <Container>
       <article className="Article">
         <Grid reverse={{ md: true }}>
-          <Grid.Item span={{ md: 3 }}>
+          <GridItem span={{ md: 3 }}>
             {body && `Read time: ${getReadTime(body)}min`}
             {publishDate && <p className="Article__date">{publishDate}</p>}
             {authors &&
@@ -56,8 +54,8 @@ const Article = ({
                 </div>
               ))}
             {slug && slug.current && <Share type={_type} slug={slug.current} />}
-          </Grid.Item>
-          <Grid.Item span={{ sm: 12, md: 9 }}>
+          </GridItem>
+          <GridItem span={{ sm: 12, md: 9 }}>
             <header className="Article__header">
               {title && <h1 className="Article__title">{title}</h1>}
               {mainImage && (
@@ -71,7 +69,7 @@ const Article = ({
                 <Editor blocks={body} />
               </div>
             )}
-          </Grid.Item>
+          </GridItem>
         </Grid>
         {pagebuilder?.sections && (
           <PageBuilder sections={pagebuilder.sections} />

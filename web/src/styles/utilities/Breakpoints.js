@@ -1,6 +1,8 @@
 import { css } from 'styled-components'
-import theme from '../themes'
+import { breakpoints } from '../themes'
 import { emSize } from './Converters'
+
+console.log('breakpoints', breakpoints)
 
 /**
  * Breakpoint functions examples:
@@ -33,7 +35,7 @@ import { emSize } from './Converters'
  */
 
 // iterate through the breakpoints and create a media template
-const above = Object.keys(theme.breakpoints).reduce((accumulator, bp) => {
+const above = Object.keys(breakpoints).reduce((accumulator, bp) => {
   // use em in breakpoints to work properly cross-browser and support users
   // changing their browsers font-size: https://zellwk.com/blog/media-query-units/
   accumulator[bp] = (...args) => {
@@ -49,7 +51,7 @@ const above = Object.keys(theme.breakpoints).reduce((accumulator, bp) => {
 }, {})
 
 // iterate through the breakpoints and create a media template
-const below = Object.keys(theme.breakpoints).reduce((accumulator, bp) => {
+const below = Object.keys(breakpoints).reduce((accumulator, bp) => {
   // use em in breakpoints to work properly cross-browser and support users
   // changing their browsers font-size: https://zellwk.com/blog/media-query-units/
   accumulator[bp] = (...args) => {
@@ -96,7 +98,7 @@ const between = (min, max) => (...args) => {
   }
 }
 
-const only = Object.keys(theme.breakpoints).reduce((acc, bp, i) => {
+const only = Object.keys(breakpoints).reduce((acc, bp, i) => {
   acc[bp] = (...args) => {
     return function(props) {
       return css`

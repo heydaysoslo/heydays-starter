@@ -1,5 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
+import { spacing } from '../../styles/utilities'
 
 const Container = ({ children, className }) => {
   return <div className={className}>{children}</div>
@@ -8,6 +9,6 @@ const Container = ({ children, className }) => {
 export default styled(Container)(
   ({ theme }) => css`
     width: 100%;
-    ${theme.spacing.gutter('px')}
+    ${spacing.gutter('px')}
   `
 )

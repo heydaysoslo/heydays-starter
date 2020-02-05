@@ -3,8 +3,8 @@ import sanityClient from '@sanity/client'
 import { Helmet } from 'react-helmet'
 
 import Layout from '../components/Layout'
-import Container from '../components/Container'
-import TemplateResolver from '../components/TemplateResolver'
+import { Container } from '../components/elements'
+import { TemplateResolver } from '../components/resolvers'
 
 const client = sanityClient({
   projectId: '6ptaspv6',

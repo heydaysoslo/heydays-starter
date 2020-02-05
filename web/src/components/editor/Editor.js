@@ -2,12 +2,11 @@ import React from 'react'
 import BaseBlockContent from '@sanity/block-content-to-react'
 import cc from 'classcat'
 
-import LinkResolver from '../LinkResolver'
+import { LinkResolver } from '../resolvers'
 import Quote from './Quote'
 import Figure from './Figure'
 import Oembed from '../Oembed'
-import Accordion from '../Accordion'
-import { H3, H2, P, Button } from '../elements'
+import { H3, H2, P, Button, Accordion } from '../elements'
 
 export const serializers = {
   types: {

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
-import { bp } from '../../styles/utilities'
+import { bp, spacing } from '../../styles/utilities'
 import {
   FlexBoxAlignItems,
   SpacingMixins,
@@ -11,10 +11,10 @@ import {
 
 type Props = {
   className?: string
-  columns?: ResponsiveColumns | number // This will override span in Grid.Item
+  columns?: ResponsiveColumns | number // This will override span in GridItem
   reverse?: ResponsiveReverse | boolean
   align?: FlexBoxAlignItems
-  spacing?: SpacingMixins
+  gap?: SpacingMixins
   collapse?: boolean | SpacingMixins
 }
 
@@ -22,7 +22,7 @@ type GridItemProps = {
   className?: string
   offset?: ResponsiveColumns | number
   span?: ResponsiveColumns | number
-  spacing?: SpacingMixins
+  gap?: SpacingMixins
   collapse?: boolean
 }
 
@@ -47,7 +47,7 @@ const BaseGridItem: React.FC<GridItemProps> = ({ children, className }) => {
 }
 
 export const GridItem = styled(BaseGridItem)<GridItemProps>(
-  ({ theme, span, spacing, offset }) => css`
+  ({ theme, span, gap, offset }) => css`
     box-sizing: border-box;
     flex: 0 0 100%;
     max-width: 100%;
@@ -65,7 +65,7 @@ export const GridItem = styled(BaseGridItem)<GridItemProps>(
             max-width: ${(span[key] / (theme?.grid?.columns || 12)) * 100}%;
           `
       )}
-    ${spacing && theme?.spacing?.gutter && theme.spacing.gutter(spacing)}
+    ${gap && spacing?.gutter && spacing.gutter(gap)}
     ${offset &&
       typeof offset === 'number' &&
       css`
@@ -82,7 +82,7 @@ export const GridItem = styled(BaseGridItem)<GridItemProps>(
 )
 
 export default styled(BaseGrid)<Props>(
-  ({ theme, reverse, align, spacing, columns, collapse }) => css`
+  ({ theme, reverse, align, gap, columns, collapse }) => css`
     display: flex;
     flex: 0 1 auto;
     flex-direction: ${reverse ? 'row-reverse' : 'row'};
@@ -90,10 +90,7 @@ export default styled(BaseGrid)<Props>(
     align-items: ${align ? align : 'auto'};
 
     ${GridItem} {
-      ${spacing &&
-        !collapse &&
-        theme?.spacing?.gutter &&
-        theme.spacing.gutter(spacing)}
+      ${gap && !collapse && spacing.gutter(spacing)}
       ${collapse &&
         css`
           margin: 0;

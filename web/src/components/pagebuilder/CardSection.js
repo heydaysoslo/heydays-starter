@@ -1,8 +1,8 @@
 import React from 'react'
 import { Grid } from '../elements'
 
-import Card from '../Card'
-import BlockGrid from '../BlockGrid'
+import Card from '../elements/Card'
+import BlockGrid from '../elements/BlockGrid'
 
 const CardSection = ({ cardsList = [], ...props }) => {
   return (

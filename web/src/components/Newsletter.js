@@ -2,7 +2,7 @@ import React from 'react'
 import { Formik } from 'formik'
 
 import { newsletterSchema, createDefaultValues } from '../utils/validation'
-import Input from './Input'
+import Input from './elements/Input'
 import { Button } from './elements'
 
 const Newsletter = props => {

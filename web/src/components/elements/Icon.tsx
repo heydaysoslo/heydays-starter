@@ -57,7 +57,7 @@ const Icon = ({ className, name = 'calendar' }) => {
 
   useEffect(() => {
     if (icon?.name && icon?.ext) {
-      import(`../assets/icons/${icon.name}${icon.ext}`).then(comp => {
+      import(`../../assets/icons/${icon.name}${icon.ext}`).then(comp => {
         setComponent(() => comp.default) // Renderer expects a functional component
       })
     }

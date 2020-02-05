@@ -1,10 +1,10 @@
 import React, { useState, useRef } from 'react'
 import styled, { css } from 'styled-components'
 
-import keyCodes from '../utils/keyCodes'
+import keyCodes from '../../utils/keyCodes'
 
-import Editor from './editor/Editor'
-import { bp, remSize } from '../styles/utilities'
+import Editor from '../editor'
+import { bp, remSize } from '../../styles/utilities'
 
 /**
  * https://www.w3.org/TR/wai-aria-practices/examples/tabs/tabs-1/tabs.html
