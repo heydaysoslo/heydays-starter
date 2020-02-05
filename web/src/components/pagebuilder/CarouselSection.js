@@ -8,9 +8,7 @@ const CarouselSection = ({ images }) => {
     <div className="CarouselSection">
       <Carousel>
         {images.map(image => (
-          <div className="Carousel__item" key={image._key}>
-            <SanityImage node={image} aspectRatio="landscape" />
-          </div>
+          <SanityImage key={image._key} node={image} aspectRatio="landscape" />
         ))}
       </Carousel>
     </div>
