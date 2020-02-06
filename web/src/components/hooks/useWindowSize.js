@@ -23,7 +23,7 @@ const getSize = () => {
     : null
 }
 
-const useWindowSize = settings => {
+const useWindowSize = (settings = {}) => {
   const [windowSize, setWindowSize] = useState(getSize())
 
   const resizeEvent = debounce(
