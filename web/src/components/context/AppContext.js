@@ -2,15 +2,20 @@
  * Remember to import it in gatsby-browser.js
  */
 
-import React, { useState } from 'react'
+import React, { useState, createContext } from 'react'
 import { setOverflowHidden } from '../../utils/helpers'
 
-import AppContext from './Context'
+const initialValue = {
+  state: {
+    showMenu: false
+  },
+  actions: {}
+}
+
+const AppContext = createContext(initialValue)
 
 export const AppProvider = ({ children }) => {
-  const [state, setState] = useState({
-    showMenu: false
-  })
+  const [state, setState] = useState(initialValue.state)
   return (
     <AppContext.Provider
       value={{
