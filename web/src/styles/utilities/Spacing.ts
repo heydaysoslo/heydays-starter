@@ -2,7 +2,6 @@ import { css } from 'styled-components'
 
 import { addSpacingProps } from './helpers'
 import { bp } from './Breakpoints'
-console.log('TCL: bp', bp)
 
 const mixinDefs = {
   m: ['margin'],

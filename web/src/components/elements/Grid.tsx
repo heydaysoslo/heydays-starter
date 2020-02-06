@@ -65,7 +65,6 @@ export const GridItem = styled(BaseGridItem)<GridItemProps>(
             max-width: ${(span[key] / (theme?.grid?.columns || 12)) * 100}%;
           `
       )}
-      ${console.log('hello', gap)}
     ${gap && spacing?.gutter && spacing.gutter(gap)}
     ${offset &&
       typeof offset === 'number' &&
