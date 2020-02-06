@@ -18,7 +18,6 @@ const Layout = props => {
 
   const handleClick = () => {
     setNumber(number + 1)
-    console.log(number, themes[number % themes.length])
   }
   return (
     <ThemeProvider theme={themes[number % themes.length]}>

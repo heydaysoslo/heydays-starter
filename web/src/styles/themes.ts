@@ -1,8 +1,7 @@
 import { css, DefaultTheme } from 'styled-components'
 
-import { bp } from './utilities/Breakpoints'
-import { addSpacingProps } from './utilities/helpers'
 import { remSize } from './utilities/Converters'
+import { BorderProps } from '../types'
 
 export const colors = {
   primary: 'red',
@@ -30,37 +29,8 @@ export const spacingUnit = {
   gutter: remSize(20)
 }
 
-export const spacing = {
-  xs: props => ({ theme }) => css`
-    ${addSpacingProps(props, theme.spacingUnit.xs)}
-
-    ${bp.above.lg`
-      ${addSpacingProps(props, theme.spacingUnit.sm)}
-   `}
-  `,
-  sm: props => ({ theme }) => css`
-    ${addSpacingProps(props, theme.spacingUnit.sm)}
-
-    ${bp.above.lg`
-      ${addSpacingProps(props, theme.spacingUnit.md)}
-   `}
-  `,
-  md: props => ({ theme }) => css`
-    ${addSpacingProps(props, theme.spacingUnit.md)}
-
-    ${bp.above.lg`
-      ${addSpacingProps(props, theme.spacingUnit.lg)}
-   `}
-  `,
-  lg: props => ({ theme }) => css`
-    ${addSpacingProps(props, theme.spacingUnit.lg)}
-  `,
-  section: props => ({ theme }) => css`
-    ${addSpacingProps(props, theme.spacingUnit.section)}
-  `,
-  gutter: props => ({ theme }) => css`
-    ${addSpacingProps(props, theme.spacingUnit.gutter)}
-  `
+export const grid = {
+  columns: 12
 }
 
 export const fontFamily = {
@@ -131,13 +101,12 @@ export const borderWidth = {
   large: remSize(3)
 }
 
-// TODO: Add dynamic property without error
 export const border = {
-  large: key => ({ theme }) => css`
-    border: ${theme.borderWidth.large} solid ${theme.colors.border};
+  large: (prop: BorderProps) => ({ theme }: { theme: DefaultTheme }) => css`
+    ${prop}: ${theme.borderWidth.large} solid ${theme.colors.border};
   `,
-  small: key => ({ theme }) => css`
-    border: ${theme.borderWidth.small} solid ${theme.colors.border};
+  small: (prop: BorderProps) => ({ theme }: { theme: DefaultTheme }) => css`
+    ${prop}: ${theme.borderWidth.small} solid ${theme.colors.border};
   `
 }
 
@@ -145,7 +114,7 @@ export const theme: DefaultTheme = {
   colors,
   breakpoints,
   spacingUnit,
-  spacing,
+  grid,
   fontFamily,
   fonts,
   aspect,
@@ -164,6 +133,18 @@ export const darkTheme: DefaultTheme = {
     text: 'white',
     border: 'red',
     background: '#b2b2b2'
+  },
+  grid: {
+    columns: 24
+  },
+  spacingUnit: {
+    xs: remSize(15),
+    sm: remSize(110),
+    md: remSize(115),
+    lg: remSize(140),
+    xl: remSize(180),
+    section: remSize(1160),
+    gutter: remSize(120)
   },
   breakpoints: {
     xs: 0,

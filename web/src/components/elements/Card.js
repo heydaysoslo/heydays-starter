@@ -1,12 +1,12 @@
 import React from 'react'
 
 import AspectContainer from './AspectContainer'
-import LinkResolver from './LinkResolver'
-import SanityImage from './editor/SanityImage'
-import Editor from './editor/Editor'
-import InView from './InView'
+import { LinkResolver } from '../resolvers'
+import Editor, { SanityImage } from '../editor'
+import InView from '../InView'
 import styled, { css } from 'styled-components'
-import { P } from './elements'
+import { P } from './Typography'
+import { spacing } from '../../styles/utilities'
 
 const Card = ({ className, title, image, excerpt, link }) => (
   <InView className={className} activeClassName="is-visible">
@@ -53,7 +53,7 @@ export default styled(Card)(
 
     .title,
     .excerpt {
-      ${theme.spacing.sm('mt')}
+      ${spacing.sm('mt')}
     }
   `
 )

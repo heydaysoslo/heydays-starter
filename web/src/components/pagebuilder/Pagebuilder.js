@@ -6,7 +6,7 @@ import TextSection from './TextSection'
 import FullImageSection from './FullImageSection'
 import Section from './Section'
 import TextImageSplit from './TextImageSplit'
-import Tabs from '../Tabs'
+import { Tabs } from '../elements'
 
 const CarouselSection = loadable(() => import('./CarouselSection'))
 

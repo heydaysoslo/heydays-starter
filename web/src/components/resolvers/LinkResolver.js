@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql, Link, useStaticQuery } from 'gatsby'
-import { routes } from '../../heydays-config'
+import { routes } from '../../../heydays-config'
 
 const LinkResolver = ({ data, children, openInNewTab, ...props }) => {
   const { sanitySiteSettings } = useStaticQuery(StaticQuery)

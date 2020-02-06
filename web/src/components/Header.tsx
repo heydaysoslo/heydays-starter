@@ -3,8 +3,8 @@ import { Link } from 'gatsby'
 import styled, { css } from 'styled-components'
 
 import Menu from './Menu'
-import Container from './Container'
-import { H1 } from './elements'
+import { Container, H1 } from './elements'
+import { spacing } from '../styles/utilities'
 
 const Header = ({ className }) => {
   return (
@@ -23,7 +23,7 @@ const Header = ({ className }) => {
 
 export default styled(Header)(
   ({ theme }) => css`
-    ${theme.spacing.sm('py')}
+    ${spacing.sm('py')}
     background: ${theme.colors.primary};
 
     .container {

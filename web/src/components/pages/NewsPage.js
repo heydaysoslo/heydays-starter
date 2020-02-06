@@ -1,9 +1,7 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 
-import Container from '../Container'
-import Card from '../Card'
-import { Grid } from '../elements'
+import { Container, Card, Grid } from '../elements'
 
 const NewsPage = ({ title, content, pagebuilder, ...props }) => {
   const data = useStaticQuery(query)

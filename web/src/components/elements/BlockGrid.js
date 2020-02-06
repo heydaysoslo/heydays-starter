@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { bp } from '../styles/utilities'
+import { bp, spacing } from '../../styles/utilities'
 
 const BlockGrid = ({ className, children }) => {
   return <div className={className}>{children}</div>
@@ -26,7 +26,7 @@ export default styled(BlockGrid)(({ theme, columns, gap }) => {
     grid-template-columns: 1fr;
     ${gap &&
       css`
-        ${theme.spacing.gutter('gap')}
+        ${spacing.gutter('gap')}
       `};
     ${cols &&
       css`

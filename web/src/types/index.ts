@@ -47,3 +47,10 @@ export type ResponsiveReverse = {
   xl?: boolean
   xxl?: boolean
 }
+
+export type BorderProps =
+  | 'border'
+  | 'border-top'
+  | 'border-right'
+  | 'border-bottom'
+  | 'border-left'

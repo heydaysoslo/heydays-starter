@@ -5,10 +5,9 @@ import AppContext from './context/AppContext'
 import FadeIn from './FadeIn'
 import MenuItems from './MenuItems'
 import Portal from './Portal'
-import Container from './Container'
 import styled, { css } from 'styled-components'
-import { bp, fonts, color } from '../styles/utilities'
-import { Button } from './elements'
+import { bp, fonts, color, spacing } from '../styles/utilities'
+import { Button, Container } from './elements'
 
 const Menu = ({ className }) => {
   const data = useStaticQuery(query)
@@ -103,7 +102,7 @@ export default styled(Menu)(
       justify-content: space-between;
       align-items: flex-start;
 
-      ${theme.spacing.sm('pt')}
+      ${spacing.sm('pt')}
       flex-direction: row-reverse;
     }
   `

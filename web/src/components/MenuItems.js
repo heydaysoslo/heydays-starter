@@ -1,8 +1,8 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
-import LinkResolver from './LinkResolver'
-import { fonts } from '../styles/utilities'
+import { LinkResolver } from './resolvers'
+import { fonts, spacing } from '../styles/utilities'
 
 const MenuItems = ({ menu, closeMenu, className }) => {
   if (!menu) return null
@@ -21,7 +21,7 @@ const MenuItems = ({ menu, closeMenu, className }) => {
 
 export default styled(MenuItems)(
   ({ theme }) => css`
-    ${theme.spacing.sm('ml')}
+    ${spacing.sm('ml')}
     ${fonts.title()}
   `
 )

@@ -4,7 +4,7 @@ import { spacing } from './Spacing'
 /**
  * 'mb', '20px' => 'margin-botton: 20px'
  * 'mb, ml', '20px' => 'margin-botton: 20px; margin-left: 20px'
- * 'mb', theme.spacing.xs => 'margin-bottom: 1rem'
+ * 'mb', spacing.xs => 'margin-bottom: 1rem'
  *
  * @param {*} propsString string of spacing mixins (my, mx, pb...)
  * @param {*} value the value you want to insert for the props

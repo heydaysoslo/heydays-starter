@@ -1,10 +1,9 @@
 import React from 'react'
-import { Grid } from '../elements'
 
 import SanityImage from '../editor/SanityImage'
-import Editor from '../editor/Editor'
-import ButtonResolver from '../ButtonResolver'
-import { H3, Button } from '../elements'
+import Editor from '../editor/'
+import { ButtonResolver } from '../resolvers'
+import { H3, Button, Grid } from '../elements'
 
 const Content = ({ title, content, button }) => {
   return (
@@ -16,7 +15,7 @@ const Content = ({ title, content, button }) => {
       {button?.link && (
         <Button
           as={ButtonResolver}
-          modifiers={button?.type && button?.type}
+          modifiers={button?.type && button.type}
           className="TextImageSplit__button"
           button={button}
         />
@@ -33,16 +32,12 @@ const TextImageSplit = ({
 }) => {
   return (
     <Grid reverse={textOnTheRight} columns={{ sm: 2 }} align="center">
-      <Grid.Item>
-        <Content {...props} />
-      </Grid.Item>
-      <Grid.Item>
-        <SanityImage
-          className="TextImageSplit__image"
-          node={image}
-          aspect={aspect}
-        />
-      </Grid.Item>
+      <Content {...props} />
+      <SanityImage
+        className="TextImageSplit__image"
+        node={image}
+        aspect={aspect}
+      />
     </Grid>
   )
 }

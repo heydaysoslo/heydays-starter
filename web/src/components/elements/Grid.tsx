@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
-import { remSize, bp } from '../../styles/utilities'
+import { bp, spacing } from '../../styles/utilities'
 import {
   FlexBoxAlignItems,
   SpacingMixins,
@@ -9,60 +9,101 @@ import {
   ResponsiveReverse
 } from '../../types'
 
-type StyledProps = {
-  columns: ResponsiveColumns | number
+type Props = {
+  className?: string
+  columns?: ResponsiveColumns | number // This will override span in GridItem
   reverse?: ResponsiveReverse | boolean
   align?: FlexBoxAlignItems
-  spacing?: SpacingMixins
-  collapse?: boolean
-  className?: string
+  gap?: SpacingMixins
+  collapse?: boolean | SpacingMixins
 }
 
-export const Grid: React.FC<StyledProps> = ({ className, children }) => {
+type GridItemProps = {
+  className?: string
+  offset?: ResponsiveColumns | number
+  span?: ResponsiveColumns | number
+  gap?: SpacingMixins
+  collapse?: boolean
+}
+
+const BaseGrid: React.FC<Props> = ({ className, children }) => {
   if (!children) return null
   return (
     <div className={className}>
       {/* TODO: Fix the any type */}
       {React.Children.map(children, (child: any, i: number) => {
-        if (child?.type?.displayName === 'Grid__Item') {
+        if (child?.type?.displayName === 'Grid__GridItem') {
           return child
         } else {
-          return (
-            <StyledGrid.Item key={`Grid__item-${i}`}>{child}</StyledGrid.Item>
-          )
+          return <GridItem key={`Grid__item-${i}`}>{child}</GridItem>
         }
       })}
     </div>
   )
 }
 
-type GridItemProps = {
-  span?: ResponsiveColumns | number
-  offset?: ResponsiveColumns | number
-  className?: string
-}
-
-export const GridItem: React.FC<GridItemProps> = ({
-  span = {},
-  offset = {},
-  children,
-  className
-}) => {
-  // console.log('grid-item-props', span, offset)
+const BaseGridItem: React.FC<GridItemProps> = ({ children, className }) => {
   return <div className={className}>{children}</div>
 }
 
-const StyledGrid = styled(Grid)<StyledProps>(
-  ({ theme, reverse, align, spacing, columns }) => css`
+export const GridItem = styled(BaseGridItem)<GridItemProps>(
+  ({ theme, span, gap, offset }) => css`
+    box-sizing: border-box;
+    flex: 0 0 100%;
+    max-width: 100%;
+    ${span &&
+      typeof span === 'number' &&
+      css`
+        flex-basis: ${(span / (theme?.grid?.columns || 12)) * 100}%;
+        max-width: ${(span / (theme?.grid?.columns || 12)) * 100}%;
+      `}
+    ${span &&
+      typeof span === 'object' &&
+      Object.keys(span).map(
+        key => bp.above[key]`
+            flex-basis: ${(span[key] / (theme?.grid?.columns || 12)) * 100}%;
+            max-width: ${(span[key] / (theme?.grid?.columns || 12)) * 100}%;
+          `
+      )}
+    ${gap && spacing?.gutter && spacing.gutter(gap)}
+    ${offset &&
+      typeof offset === 'number' &&
+      css`
+        margin-left: ${(offset / (theme?.grid?.columns || 12)) * 100}%;
+      `}
+    ${offset &&
+      typeof offset === 'object' &&
+      Object.keys(offset).map(
+        key => bp.above[key]`
+          margin-left: ${(offset[key] / (theme?.grid?.columns || 12)) * 100}%;
+        `
+      )}
+  `
+)
+
+export default styled(BaseGrid)<Props>(
+  ({ theme, reverse, align, gap, columns, collapse }) => css`
     display: flex;
     flex: 0 1 auto;
     flex-direction: ${reverse ? 'row-reverse' : 'row'};
     flex-wrap: wrap;
     align-items: ${align ? align : 'auto'};
 
-    ${StyledGrid.Item} {
-      ${spacing && theme?.spacing?.gutter && theme.spacing.gutter(spacing)}
+    ${GridItem} {
+      ${gap && !collapse && spacing.gutter(spacing)}
+      ${collapse &&
+        css`
+          margin: 0;
+          padding: 0;
+        `}
       ${columns &&
+        typeof columns === 'number' &&
+        css`
+          flex-basis: ${(columns / (theme?.grid?.columns || 12)) * 100}%;
+          max-width: ${(columns / (theme?.grid?.columns || 12)) * 100}%;
+        `}
+      ${columns &&
+        typeof columns === 'object' &&
         Object.keys(columns).map(
           key => bp.above[key]`
             flex-basis: ${(1 / columns[key]) * 100}%;
@@ -72,20 +113,3 @@ const StyledGrid = styled(Grid)<StyledProps>(
     }
   `
 )
-
-StyledGrid.Item = styled(GridItem)<GridItemProps>(
-  ({ span }) => css`
-    box-sizing: border-box;
-    flex: 0 0 100%;
-    max-width: 100%;
-    ${span &&
-      Object.keys(span).map(
-        key => bp.above[key]`
-            flex-basis: ${(span[key] / 12) * 100}%;
-            max-width: ${(span[key] / 12) * 100}%;
-          `
-      )}
-  `
-)
-
-export default StyledGrid

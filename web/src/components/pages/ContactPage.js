@@ -1,6 +1,6 @@
 import React from 'react'
 import Pagebuilder from '../pagebuilder/Pagebuilder'
-import Container from '../Container'
+import { Container } from '../elements'
 
 const ContactPage = ({ title, content, pagebuilder, ...props }) => {
   return (

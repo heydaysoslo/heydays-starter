@@ -1,9 +1,9 @@
 import React from 'react'
 
-import Article from '../components/pages/Article'
-import Page from '../components/pages/Page'
-import ContactPage from '../components/pages/ContactPage'
-import NewsPage from '../components/pages/NewsPage'
+import Article from '../pages/Article'
+import Page from '../pages/Page'
+import ContactPage from '../pages/ContactPage'
+import NewsPage from '../pages/NewsPage'
 
 const templates = {
   article: Article,

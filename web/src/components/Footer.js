@@ -1,10 +1,9 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 
-import Container from './Container'
-import { Grid } from './elements'
+import { Grid, Container } from './elements'
 import Newsletter from './Newsletter'
-import LinkResolver from './LinkResolver'
+import { LinkResolver } from './resolvers'
 import Social from './Social'
 
 const Footer = () => {

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
 
-import { setOverflowHidden } from '../utils/helpers'
-import Portal from './Portal'
-import { Button } from './elements'
+import { setOverflowHidden } from '../../utils/helpers'
+import Portal from '../Portal'
+import { Button } from '.'
 
 export default function Modal({
   buttonText,

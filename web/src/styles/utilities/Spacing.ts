@@ -1,5 +1,9 @@
 import { css } from 'styled-components'
 
+import { addSpacingProps } from './helpers'
+import { bp } from './Breakpoints'
+console.log('TCL: bp', bp)
+
 const mixinDefs = {
   m: ['margin'],
   ml: ['margin-left'],
@@ -68,7 +72,7 @@ const mixins = Object.keys(mixinDefs).reduce((acc, key) => {
 //       return Object.keys(breakpoints).map(breakpoint => {
 //         // Get breakpoint spesific value
 //         const value = breakpoints[breakpoint]
-//         // Check if value exists in theme ex. if value === 'lg' we have theme.spacing.lg
+//         // Check if value exists in theme ex. if value === 'lg' we have spacing.lg
 //         // If value does not correspond to any key in spacing we assume it is a hardcoded value
 //         const themeValue = theme.spacing[value]
 //         // No breakpoint needed for xs breakpoint
@@ -99,6 +103,40 @@ const mixins = Object.keys(mixinDefs).reduce((acc, key) => {
 //   {}
 // )
 
+export const responsiveSpacing = {
+  xs: props => ({ theme }) => css`
+    ${addSpacingProps(props, theme.spacingUnit.xs)}
+
+    ${bp.above.lg`
+      ${addSpacingProps(props, theme.spacingUnit.sm)}
+   `}
+  `,
+  sm: props => ({ theme }) => css`
+    ${addSpacingProps(props, theme.spacingUnit.sm)}
+
+    ${bp.above.lg`
+      ${addSpacingProps(props, theme.spacingUnit.md)}
+   `}
+  `,
+  md: props => ({ theme }) => css`
+    ${addSpacingProps(props, theme.spacingUnit.md)}
+
+    ${bp.above.lg`
+      ${addSpacingProps(props, theme.spacingUnit.lg)}
+   `}
+  `,
+  lg: props => ({ theme }) => css`
+    ${addSpacingProps(props, theme.spacingUnit.lg)}
+  `,
+  section: props => ({ theme }) => css`
+    ${addSpacingProps(props, theme.spacingUnit.section)}
+  `,
+  gutter: props => ({ theme }) => css`
+    ${addSpacingProps(props, theme.spacingUnit.gutter)}
+  `
+}
+
 export const spacing = {
-  ...mixins
+  ...mixins,
+  ...responsiveSpacing
 }
