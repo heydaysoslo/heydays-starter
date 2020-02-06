@@ -2,8 +2,6 @@ import { css } from 'styled-components'
 import { breakpoints } from '../themes'
 import { emSize } from './Converters'
 
-console.log('breakpoints', breakpoints)
-
 /**
  * Breakpoint functions examples:
   export default styled.div`

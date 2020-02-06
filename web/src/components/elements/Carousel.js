@@ -4,103 +4,6 @@ import keygen from 'uuid/v1'
 import styled, { css } from 'styled-components'
 import { bp, spacing, color, remSize } from '../../styles/utilities'
 
-// class Flickity extends Component {
-//   state = {
-//     id: `flickity-${keygen()}`,
-//     flkty: null
-//   }
-//   static defaultProps = {
-//     // groupCells: true,
-//     // freeScroll: false,
-//     wrapAround: true,
-//     // imagesLoaded: false,
-//     // lazyLoad: false,
-//     // contain: true
-//     pageDots: false
-//     // prevNextButtons: false
-//     // adaptiveHeight: true
-//   }
-//   componentDidMount() {
-//     const { id } = this.state
-//     this.setState({
-//       flkty: new flickity(
-//         `#${id}`,
-//         {
-//           ...this.props,
-//           initialIndex: Math.floor(this.props.children.length / 2)
-//         },
-//         () => {
-//           this.state.flkty.on('dragStart', this.handleDrag)
-//           this.state.flkty.on('dragEnd', this.handleDrag)
-//         }
-//       )
-//     })
-//     const wrapper = document.getElementById(id)
-//     wrapper.addEventListener(
-//       'touchstart',
-//       this.touchStart,
-//       {
-//         passive: true
-//       },
-//       {
-//         passive: true
-//       }
-//     )
-//     wrapper.addEventListener('touchmove', this.preventTouch, {
-//       passive: false
-//     })
-//   }
-
-//   handleDrag = (event, pointer, moveVector) => {
-//     // console.log('HANDLEDRAG FIRED', event)
-//     // this.setState({
-//     //     dragging: true
-//     // })
-//   }
-
-//   touchStart(e) {
-//     this.firstClientX = e.touches[0].clientX
-//     this.firstClientY = e.touches[0].clientY
-//   }
-
-//   preventTouch(e) {
-//     const minValue = 5 // threshold
-
-//     this.clientX = e.touches[0].clientX - this.firstClientX
-//     this.clientY = e.touches[0].clientY - this.firstClientY
-
-//     // Vertical scrolling does not work when you start swiping horizontally.
-//     if (Math.abs(this.clientX) > minValue) {
-//       e.preventDefault()
-//       e.returnValue = false
-//       return false
-//     }
-//   }
-
-//   componentWillUnmount() {
-//     const wrapper = document.getElementById(this.state.id)
-//     wrapper.removeEventListener('touchstart', this.touchStart)
-//     wrapper.removeEventListener('touchmove', this.preventTouch, {
-//       passive: false
-//     })
-//     // this.state.flkty.off('dragStart', this.handleDrag)
-//     // this.state.flkty.off('dragEnd', this.handleDrag)
-//   }
-//   render() {
-//     const { id } = this.state
-//     return (
-//       <div id={id} className={`Flickity ${this.props.className}`}>
-//         {this.props.children.map((child, index) =>
-//           React.cloneElement(child, {
-//             flkty: this.state.flkty,
-//             index
-//           })
-//         )}
-//       </div>
-//     )
-//   }
-// }
-
 const defaultOptions = {
   // groupCells: true,
   // freeScroll: false,
@@ -124,7 +27,7 @@ const Carousel = ({ className, children, options = defaultOptions }) => {
         initialIndex: Math.floor(children.length / 2)
       })
     )
-  }, [])
+  }, [options, id, children])
 
   useEffect(() => {
     function touchStart(e) {
@@ -146,8 +49,7 @@ const Carousel = ({ className, children, options = defaultOptions }) => {
       }
     }
     if (flkty) {
-      console.log('TCL: Carousel -> flkty', flkty)
-
+      // console.log('TCL: Carousel -> flkty', flkty)
       // flkty.on('dragStart', this.handleDrag)
       // flkty.on('dragEnd', this.handleDrag)
     }
@@ -173,7 +75,7 @@ const Carousel = ({ className, children, options = defaultOptions }) => {
   return (
     <div className={className} id={id}>
       {children.map((child, index) => (
-        <figure className="item">
+        <figure key={child?.props?.node?._key} className="item">
           {React.cloneElement(child, {
             flkty,
             index
