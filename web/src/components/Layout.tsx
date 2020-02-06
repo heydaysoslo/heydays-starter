@@ -36,7 +36,6 @@ const Layout = props => {
           />
         )}
         <Header />
-        <P>Hello there</P>
         <div className="Site__content">{props.children}</div>
         <Footer />
         <GlobalStyle />
