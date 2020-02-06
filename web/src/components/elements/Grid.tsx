@@ -65,6 +65,7 @@ export const GridItem = styled(BaseGridItem)<GridItemProps>(
             max-width: ${(span[key] / (theme?.grid?.columns || 12)) * 100}%;
           `
       )}
+      ${console.log('hello', gap)}
     ${gap && spacing?.gutter && spacing.gutter(gap)}
     ${offset &&
       typeof offset === 'number' &&
@@ -90,7 +91,7 @@ export default styled(BaseGrid)<Props>(
     align-items: ${align ? align : 'auto'};
 
     ${GridItem} {
-      ${gap && !collapse && spacing.gutter(spacing)}
+      ${gap && !collapse && spacing.gutter(gap)}
       ${collapse &&
         css`
           margin: 0;
