@@ -17,11 +17,12 @@ exports.onCreateBabelConfig = ({ actions }) => {
 async function createPages(graphql, actions, reporter) {
   const { createPage } = actions
 
-  createPage({
-    path: '/_preview',
-    matchPath: '/_preview/:id',
-    component: require.resolve('./src/templates/Preview.js')
-  })
+  // TMP hide to debug build error
+  // createPage({
+  //   path: '/_preview',
+  //   matchPath: '/_preview/:id',
+  //   component: require.resolve('./src/templates/Preview.js')
+  // })
 
   const result = await graphql(`
     {
