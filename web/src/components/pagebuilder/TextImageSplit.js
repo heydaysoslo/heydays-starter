@@ -4,42 +4,53 @@ import SanityImage from '../editor/SanityImage'
 import Editor from '../editor/'
 import { ButtonResolver } from '../resolvers'
 import { H3, Button, Grid } from '../elements'
-
-const Content = ({ title, content, button }) => {
-  return (
-    <>
-      {title && <H3>{title}</H3>}
-      {content && (
-        <Editor className="TextImageSplit__content" blocks={content} />
-      )}
-      {button?.link && (
-        <Button
-          as={ButtonResolver}
-          modifiers={button?.type && button.type}
-          className="TextImageSplit__button"
-          button={button}
-        />
-      )}
-    </>
-  )
-}
+import styled, { css } from 'styled-components'
+import { spacing } from '../../styles/utilities'
 
 const TextImageSplit = ({
   textOnTheRight = false,
   image,
   aspect,
-  ...props
+  button,
+  title,
+  content,
+  className
 }) => {
   return (
-    <Grid reverse={textOnTheRight} columns={{ sm: 2 }} align="center">
-      <Content {...props} />
-      <SanityImage
-        className="TextImageSplit__image"
-        node={image}
-        aspect={aspect}
-      />
-    </Grid>
+    <div className={className}>
+      <Grid
+        reverse={textOnTheRight}
+        columns={{ sm: 2 }}
+        gap="px"
+        align="center"
+      >
+        <div className="content">
+          {title && <H3>{title}</H3>}
+          {content && (
+            <Editor className="TextImageSplit__content" blocks={content} />
+          )}
+          {button?.link && (
+            <Button
+              as={ButtonResolver}
+              modifiers={button?.type && button.type}
+              className="TextImageSplit__button"
+              button={button}
+            />
+          )}
+        </div>
+        <SanityImage
+          className="TextImageSplit__image"
+          node={image}
+          aspect={aspect}
+        />
+      </Grid>
+    </div>
   )
 }
 
-export default TextImageSplit
+export default styled(TextImageSplit)(
+  ({ theme }) => css`
+    ${spacing.gutter('mx', true)}
+    ${spacing.section('my')}
+  `
+)
