@@ -15,11 +15,6 @@ const Box = styled.div`
 const Test = ({ className }) => {
   return (
     <div className={className}>
-      <ResponsiveMenu>
-        {[...new Array(12)].map((box, i) => (
-          <p>Menu {i + 1}</p>
-        ))}
-      </ResponsiveMenu>
       <Grid columns={1} gap="px">
         {[...new Array(12)].map((box, i) => (
           <Box>{i + 1}</Box>
@@ -38,14 +33,3 @@ const Test = ({ className }) => {
 }
 
 export default styled(Test)(({ theme }) => css``)
-
-/**
- * Proposal grid props:
- *
- * <Grid
- *  gap={SpacingMixins} // Effects children
- *  gapX={SpacingMixins} // Effects children
- *  gapY={SpacingMixins} // Effects children
- *  spacing={SpacingMixins} // Outer container?
- * />
- */
