@@ -18,7 +18,7 @@ const NewsPage = ({ title, content, pagebuilder, ...props }) => {
       )}
       {articles && (
         <Container className="Page__content">
-          <Grid spacing="my" columns={{ xs: 1, sm: 2, md: 3 }}>
+          <Grid gap="my" columns={{ xs: 1, sm: 2, md: 3 }}>
             {articles.map(
               article =>
                 article && (

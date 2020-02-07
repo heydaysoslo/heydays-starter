@@ -7,7 +7,7 @@ import BlockGrid from '../elements/BlockGrid'
 const CardSection = ({ cardsList = [], ...props }) => {
   return (
     <>
-      <Grid columns={{ sm: 1, md: 3 }} spacing="my">
+      <Grid columns={{ sm: 1, md: 3 }} gap="my">
         {cardsList.map(card => {
           const { content, cardOverride } = card
           return (

@@ -13,7 +13,7 @@ const Footer = () => {
   return (
     <div className="Footer">
       <Container>
-        <Grid spacing="my" columns={{ sm: 2, md: 4 }}>
+        <Grid gap="my" columns={{ sm: 2, md: 4 }}>
           <ul className="Footer__menu">
             {menu &&
               menu.map(item => (
