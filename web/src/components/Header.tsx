@@ -1,13 +1,18 @@
-import React from 'react'
-import { Link } from 'gatsby'
+import React, { useContext } from 'react'
+import { Link, useStaticQuery, graphql } from 'gatsby'
 import styled, { css } from 'styled-components'
 
 // import Menu from './Menu'
 import { Container, H1 } from './elements'
 import { spacing } from '../styles/utilities'
 import ResponsiveMenu from './ResponsiveMenu'
+import { LinkResolver } from './resolvers'
+import AppContext from './context/AppContext'
 
 const Header = ({ className }) => {
+  const data = useStaticQuery(query)
+  const menuItems = data?.sanityMenu?._rawItem
+  const { state, actions } = useContext(AppContext)
   return (
     <header className={className}>
       <Container className="container">
@@ -19,8 +24,18 @@ const Header = ({ className }) => {
           </H1>
           {/* <Menu /> */}
           <ResponsiveMenu>
-            {[...new Array(12)].map((box, i) => (
+            {/* {[...new Array(12)].map((box, i) => (
               <p>Menu {i + 1}</p>
+            ))} */}
+            {menuItems.map(item => (
+              <LinkResolver
+                key={item._key}
+                data={item?.externalLink?.url || item?.reference}
+                onClick={() => state.ShowMenu && actions.toggleMenu(false)}
+                openInNewTab={item?.externalLink?.blank}
+              >
+                {item?.title || item?.reference?.title}
+              </LinkResolver>
             ))}
           </ResponsiveMenu>
         </div>
@@ -45,3 +60,14 @@ export default styled(Header)(
     }
   `
 )
+
+export const query = graphql`
+  {
+    sanityMenu(_id: { eq: "menu-primaryMenu" }) {
+      _id
+      _key
+      _type
+      _rawItem(resolveReferences: { maxDepth: 10 })
+    }
+  }
+`
