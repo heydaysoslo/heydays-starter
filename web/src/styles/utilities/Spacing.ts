@@ -103,35 +103,62 @@ const mixins = Object.keys(mixinDefs).reduce((acc, key) => {
 // )
 
 export const responsiveSpacing = {
-  xs: props => ({ theme }) => css`
-    ${addSpacingProps(props, theme.spacingUnit.xs)}
+  xs: (props, negative = false) => ({ theme }) => css`
+    ${addSpacingProps(
+      props,
+      negative ? `-${theme.spacingUnit.xs}` : theme.spacingUnit.xs
+    )}
 
     ${bp.above.lg`
-      ${addSpacingProps(props, theme.spacingUnit.sm)}
+      ${addSpacingProps(
+        props,
+        negative ? `-${theme.spacingUnit.sm}` : theme.spacingUnit.sm
+      )}
    `}
   `,
-  sm: props => ({ theme }) => css`
-    ${addSpacingProps(props, theme.spacingUnit.sm)}
+  sm: (props, negative = false) => ({ theme }) => css`
+    ${addSpacingProps(
+      props,
+      negative ? `-${theme.spacingUnit.sm}` : theme.spacingUnit.sm
+    )}
 
     ${bp.above.lg`
-      ${addSpacingProps(props, theme.spacingUnit.md)}
+      ${addSpacingProps(
+        props,
+        negative ? `-${theme.spacingUnit.md}` : theme.spacingUnit.md
+      )}
    `}
   `,
-  md: props => ({ theme }) => css`
-    ${addSpacingProps(props, theme.spacingUnit.md)}
+  md: (props, negative = false) => ({ theme }) => css`
+    ${addSpacingProps(
+      props,
+      negative ? `-${theme.spacingUnit.md}` : theme.spacingUnit.md
+    )}
 
     ${bp.above.lg`
-      ${addSpacingProps(props, theme.spacingUnit.lg)}
+      ${addSpacingProps(
+        props,
+        negative ? `-${theme.spacingUnit.lg}` : theme.spacingUnit.lg
+      )}
    `}
   `,
-  lg: props => ({ theme }) => css`
-    ${addSpacingProps(props, theme.spacingUnit.lg)}
+  lg: (props, negative = false) => ({ theme }) => css`
+    ${addSpacingProps(
+      props,
+      negative ? `-${theme.spacingUnit.lg}` : theme.spacingUnit.lg
+    )}
   `,
-  section: props => ({ theme }) => css`
-    ${addSpacingProps(props, theme.spacingUnit.section)}
+  section: (props, negative = false) => ({ theme }) => css`
+    ${addSpacingProps(
+      props,
+      negative ? `-${theme.spacingUnit.section}` : theme.spacingUnit.section
+    )}
   `,
-  gutter: props => ({ theme }) => css`
-    ${addSpacingProps(props, theme.spacingUnit.gutter)}
+  gutter: (props, negative = false) => ({ theme }) => css`
+    ${addSpacingProps(
+      props,
+      negative ? `-${theme.spacingUnit.gutter}` : theme.spacingUnit.gutter
+    )}
   `
 }
 
