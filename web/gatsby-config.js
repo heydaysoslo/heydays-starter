@@ -1,6 +1,25 @@
 require('dotenv').config()
 const proxy = require('http-proxy-middleware')
 
+function toPlainText(blocks = []) {
+  return (
+    blocks
+      // loop through each block
+      .map(block => {
+        // if it's not a text block with children,
+        // return nothing
+        if (block._type !== 'block' || !block.children) {
+          return ''
+        }
+        // loop through the children spans, and join the
+        // text strings
+        return block.children.map(child => child.text).join('')
+      })
+      // join the parapgraphs leaving split by two linebreaks
+      .join('\n\n')
+  )
+}
+
 module.exports = {
   siteMetadata: {
     facebookAppId: 'a3475893asda',
@@ -132,6 +151,35 @@ module.exports = {
         background_color: `#000`,
         theme_color: `#fff`,
         display: 'STARTER'
+      }
+    },
+    {
+      resolve: `gatsby-plugin-lunr`,
+      options: {
+        languages: [{ name: 'en' }],
+        // Fields to index. If store === true value will be stored in index file.
+        fields: [
+          { name: 'title', store: true, attributes: { boost: 20 } },
+          { name: 'description', store: true, attributes: { boost: 5 } },
+          { name: 'content', store: true },
+          { name: 'url', store: true },
+          { name: 'date', store: true }
+        ],
+        resolvers: {
+          SanityArticle: {
+            title: node => node.title,
+            description: node => 'this is the excerpt',
+            content: node => {
+              if (node.body) {
+                return toPlainText(node.body)
+              }
+              return ''
+            },
+            url: node => node.slug.current,
+            date: node => node._createdAt
+          }
+        },
+        filename: 'search_index.json'
       }
     }
   ],
