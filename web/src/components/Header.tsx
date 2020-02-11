@@ -22,22 +22,20 @@ const Header = ({ className }) => {
               LOGO
             </Link>
           </H1>
-          {/* <Menu /> */}
-          <ResponsiveMenu>
-            {/* {[...new Array(12)].map((box, i) => (
-              <p>Menu {i + 1}</p>
-            ))} */}
-            {menuItems.map(item => (
-              <LinkResolver
-                key={item._key}
-                data={item?.externalLink?.url || item?.reference}
-                onClick={() => state.ShowMenu && actions.toggleMenu(false)}
-                openInNewTab={item?.externalLink?.blank}
-              >
-                {item?.title || item?.reference?.title}
-              </LinkResolver>
-            ))}
-          </ResponsiveMenu>
+          {menuItems && (
+            <ResponsiveMenu>
+              {menuItems.map(item => (
+                <LinkResolver
+                  key={item._key}
+                  data={item?.externalLink?.url || item?.reference}
+                  onClick={() => state.ShowMenu && actions.toggleMenu(false)}
+                  openInNewTab={item?.externalLink?.blank}
+                >
+                  {item?.title || item?.reference?.title}
+                </LinkResolver>
+              ))}
+            </ResponsiveMenu>
+          )}
         </div>
       </Container>
     </header>
