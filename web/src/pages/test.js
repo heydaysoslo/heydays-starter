@@ -1,12 +1,9 @@
 import React, { useContext, useState } from 'react'
 import { Helmet } from 'react-helmet'
 
-// import { mapEdgesToNode } from '../utils/sanityHelpers'
 import useWindowSize from '../components/hooks/useWindowSize'
 import useMediaQuery from '../components/hooks/useMediaQuery'
 import useScroll from '../components/hooks/useScroll'
-// import { useStaticQuery, graphql } from 'gatsby'
-// import Img from 'gatsby-image'
 import FadeIn from '../components/FadeIn'
 import Layout from '../components/Layout'
 import AppContext from '../components/context/AppContext'
@@ -23,45 +20,28 @@ import {
 import styled, { css } from 'styled-components'
 import Test from '../components/Test'
 
-// const query = graphql`
-//   {
-//     allFile {
-//       edges {
-//         node {
-//           name
-//           childImageSharp {
-//             fluid {
-//               ...GatsbyImageSharpFluid_withWebp
-//             }
-//           }
-//         }
-//       }
-//     }
-//     allSanityPage {
-//       edges {
-//         node {
-//           _key
-//           title
-//           slug {
-//             current
-//           }
-//         }
-//       }
-//     }
-//   }
-// `
-
 const Index = () => {
-  // const data = useStaticQuery(query)
   const media = useMediaQuery()
   const windowSize = useWindowSize({ debounce: 100 })
   const scroll = useScroll({ delay: 100 })
   const { response, error, isLoading } = useFetch(`https://api.kanye.rest`)
+  const {
+    response: secondResponse,
+    error: secondError,
+    isLoading: secondIsLoading
+  } = useFetch([
+    {
+      key: 'rss',
+      url: `https://api.rss2json.com/v1/api.json?rss_url=`
+    },
+    {
+      key: 'kanye',
+      url: `https://api.kanye.rest`
+    }
+  ])
   const [select, setSelect] = useState(null)
 
   const { state, actions } = useContext(AppContext)
-
-  // console.log(mapEdgesToNode(data.allSanityPage))
 
   const options = [
     { value: 'chocolate', label: 'Chocolate' },
@@ -127,8 +107,14 @@ const Index = () => {
         <div style={{ border: '1px solid red', padding: '20px' }}>
           useFetch:
           {isLoading && <p>Kanye Rest is loading</p>}
-          {response && <pre>{JSON.stringify(response)}</pre>}
+          {response && <pre>{JSON.stringify(response, null, 2)}</pre>}
           {error && <p>Kanye Rest error: {JSON.stringify(error)}</p>}
+        </div>
+        <div style={{ border: '1px solid red', padding: '20px' }}>
+          useFetch:
+          {secondIsLoading && <p>Waiting</p>}
+          {response && <pre>{JSON.stringify(secondResponse, null, 2)}</pre>}
+          {error && <p>Kanye Rest error: {JSON.stringify(secondError)}</p>}
         </div>
         <div style={{ maxWidth: '500px', border: '2px solid black' }}>
           <AspectContainer
@@ -142,11 +128,6 @@ const Index = () => {
             I'm the wolf
           </AspectContainer>
         </div>
-        {/*
-        <Image
-          aspect={{ sm: 'portrait', md: 'portrait', lg: 'landscape' }}
-          data={data.allFile.edges[1].node.childImageSharp}
-        />*/}
         <Modal
           buttonText="Open modal"
           buttonType="primary"
@@ -172,15 +153,6 @@ const Index = () => {
             </>
           )}
         </Modal>
-        {/* <div
-          style={{
-            maxWidth: '400px',
-            backgroundColor: data.allFile.edges[1].node.colors.vibrant,
-            padding: '2rem'
-          }}
-        >
-          <Img fluid={data.allFile.edges[1].node.childImageSharp.fluid} />
-        </div> */}
         <pre>{JSON.stringify(media, null, 2)}</pre>
         <pre>{JSON.stringify(windowSize, null, 2)}</pre>
         <pre>{JSON.stringify(scroll, null, 2)}</pre>
