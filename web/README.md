@@ -35,6 +35,28 @@ We now use [📚`stylelint-prettier/recommended`](https://github.com/prettier/st
 }
 ```
 
+## Deploy to netlify
+
+### Gatsby build
+
+- Add repo to git
+- Deploy sanity **OBS** make sure you are logged into correct account (dev@heydays)
+- login to gatsby cloud
+- Create a new site
+- Add repo build directory `/web`
+- login with @dev on sanity.io
+- Go back to gatsby cloyd and Connect sanity
+- Add .env variables for preview and build (make sure none of them are blank. Gotcha set the production dataset for sanity)
+- Set up hosting click do it now
+- Add heydays as team and click create
+
+---
+
+- Go to the netlify app
+- connect to repo
+- Add env variables
+- deploy
+
 ### netlify.toml
 
 Netlify does not like monorepos that much. Therefore we'll need a little work around.
