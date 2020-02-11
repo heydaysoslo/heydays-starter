@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import flickity from 'flickity'
 import keygen from 'uuid/v1'
 import styled, { css } from 'styled-components'
 import { bp, spacing, color, remSize } from '../../styles/utilities'
@@ -21,12 +20,15 @@ const Carousel = ({ className, children, options = defaultOptions }) => {
   const [flkty, setFlkty] = useState(null)
 
   useEffect(() => {
-    setFlkty(
-      new flickity(`#${id}`, {
-        ...options,
-        initialIndex: Math.floor(children.length / 2)
-      })
-    )
+    import('flickity').then(res => {
+      const flickity = res.default
+      setFlkty(
+        new flickity(`#${id}`, {
+          ...options,
+          initialIndex: Math.floor(children.length / 2)
+        })
+      )
+    })
   }, [options, id, children])
 
   useEffect(() => {
