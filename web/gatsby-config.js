@@ -168,16 +168,25 @@ module.exports = {
         resolvers: {
           SanityArticle: {
             title: node => node.title,
-            description: node => 'this is the excerpt',
+            description: node => {
+              return node.excerpt ? toPlainText(node.excerpt) : ''
+            },
             content: node => {
-              if (node.body) {
-                return toPlainText(node.body)
-              }
-              return ''
+              return node.body ? toPlainText(node.body) : ''
             },
             url: node => node.slug.current,
             date: node => node._createdAt
           }
+          // SanityPage: {
+          //   title: node => node.title,
+          //   description: node => 'this is the excerpt',
+          //   content: node => {
+          //     // return node.pagebuilder ? toPlainText(node.pagebuilder) : ''
+          //     return ''
+          //   },
+          //   url: node => node.slug.current,
+          //   date: node => node._createdAt
+          // }
         },
         filename: 'search_index.json'
       }

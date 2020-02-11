@@ -29,14 +29,4 @@ const Search = ({ data, location }) => {
   )
 }
 
-// export const pageQuery = graphql`
-//   query {
-//     site {
-//       siteMetadata {
-//         title
-//       }
-//     }
-//   }
-// `
-
 export default Search
