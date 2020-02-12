@@ -1,0 +1,12 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chrome for Heydays starter",
+      "url": "http://mikes-mbp-2.heydays.local:3000/",
+      "webRoot": "${workspaceRoot}/web"
+    }
+  ]
+}
