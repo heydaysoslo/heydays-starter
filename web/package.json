@@ -7,7 +7,7 @@
   "author": "@heydays",
   "license": "MIT",
   "scripts": {
-    "develop": "gatsby clean && gatsby develop -H $HOSTNAME --port 3000 --open",
+    "develop": "gatsby clean && gatsby develop --port 3000 --open",
     "start": "run-p start:**",
     "start:app": "yarn develop",
     "start:lambda": "netlify-lambda serve src/netlify-functions",
@@ -15,6 +15,7 @@
     "build:app": "gatsby build",
     "build:lambda": "netlify-lambda build src/netlify-functions",
     "info": "gatsby info --clipboard",
+    "ngrok": "ngrok http 3000",
     "stylelint:check": "stylelint \"**/*.js\"",
     "stylelint:fix": "stylelint \"**/*.js\" --fix"
   },
@@ -65,6 +66,7 @@
     "gatsby-source-filesystem": "^2.1.19",
     "gatsby-source-sanity": "^5.0.5",
     "gatsby-transformer-sharp": "^2.3.13",
+    "ngrok": "^3.2.7",
     "oembed-parser": "^1.3.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
