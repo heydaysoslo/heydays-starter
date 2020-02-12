@@ -70,6 +70,7 @@
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
     "react-intersection-observer": "^8.24.1",
+    "react-player": "^1.15.2",
     "react-select": "^3.0.8",
     "react-share": "^3.0.1",
     "react-transition-group": "^4.1.0",

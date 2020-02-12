@@ -19,6 +19,7 @@ import {
 } from '../components/elements'
 import styled, { css } from 'styled-components'
 import Test from '../components/Test'
+import Video from '../components/Video'
 
 const Index = () => {
   const media = useMediaQuery()
@@ -57,6 +58,9 @@ const Index = () => {
 
   return (
     <Layout>
+      {/* <Video url="https://www.youtube.com/watch?v=lYGthBDzt8o" /> */}
+      <Video url="https://www.youtube.com/watch?v=hHW1oY26kxQ" />
+      <Video url="https://vimeo.com/390848060" />
       <Test />
       <Button modifiers="small">Click me</Button>
       <Button modifiers={['secondary', 'small']}>Click me</Button>
