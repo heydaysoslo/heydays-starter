@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react'
 import sanityClient from '@sanity/client'
 import { Helmet } from 'react-helmet'
+import styled, { css } from 'styled-components'
 
 import Layout from '../components/Layout'
-import { Container } from '../components/elements'
 import { TemplateResolver } from '../components/resolvers'
 
 const client = sanityClient({
@@ -13,25 +13,19 @@ const client = sanityClient({
   withCredentials: true
 })
 
-// Might be something to cathc from here:
-// https://henrique.codes/gatsby-live-preview-sanity/
-
-const Preview = props => {
-  // const [isUpdating, setIsUpdating] = useState(false)
-  // const fetchCount = useRef(null)
-  const fetchTimer = useRef(null)
-  const [pageData, setPageData] = useState(null)
-  const [size, setSize] = useState('full')
-
-  // Get draft if it exists, fall back to published page
-  // Unfortunatly we need to resolve references manually, unlike graphql
-  const query = `*[_id in [$draftId, $id]]{
+// Get draft if it exists, fall back to published page
+// Unfortunatly we need to resolve references manually, unlike graphql
+const SanityQuery = `*[_id in [$draftId, $id]]{
     authors[]{
       person->,
       ...
     },
     pagebuilder {
       sections[]{
+        seeAllLink {
+          reference->{slug, title},
+          ...
+        },
         cardsList[]{
           content->{...},
           ...
@@ -43,26 +37,38 @@ const Preview = props => {
     ...
   } | order(_updatedAt desc)`
 
-  const pageId = props.id ? props.id.replace('drafts.', '') : null
+// Might be something to cathc from here:
+// https://henrique.codes/gatsby-live-preview-sanity/
+
+const Preview = ({ className, id }) => {
+  // const [isUpdating, setIsUpdating] = useState(false)
+  // const fetchCount = useRef(null)
+  const fetchTimer = useRef(null)
+  const [pageData, setPageData] = useState(null)
+  const [size, setSize] = useState('full')
+
+  const pageId = id ? id.replace('drafts.', '') : null
   const params = { draftId: `drafts.${pageId}`, id: pageId }
 
   const startListening = () => {
     // Listen for changes in document structure
-    client.listen(query, params, { includeResult: false }).subscribe(update => {
-      // Unfortunately {includeResult:true} does not resolve refs
-      // so we need to fetch the full preview again
-      // Prevent simultaneous requests with a timer
-      // this also fixes latency issues from Sanity server
-      if (fetchTimer.current) {
-        clearTimeout(fetchTimer.current)
-      }
-      fetchTimer.current = setTimeout(fetchPreview, 2000)
-    })
+    client
+      .listen(SanityQuery, params, { includeResult: false })
+      .subscribe(update => {
+        // Unfortunately {includeResult:true} does not resolve refs
+        // so we need to fetch the full preview again
+        // Prevent simultaneous requests with a timer
+        // this also fixes latency issues from Sanity server
+        if (fetchTimer.current) {
+          clearTimeout(fetchTimer.current)
+        }
+        fetchTimer.current = setTimeout(fetchPreview, 2000)
+      })
   }
 
   const fetchPreview = () => {
     console.log('Fetch data', params)
-    client.fetch(query, params).then(res => {
+    client.fetch(SanityQuery, params).then(res => {
       console.log('Data fetched', res)
       if (res) {
         console.log('Set page data', res[0])
@@ -72,7 +78,7 @@ const Preview = props => {
   }
 
   const initFetching = () => {
-    if (!props.id) {
+    if (!id) {
       console.log('no id specified')
       return
     }
@@ -85,69 +91,17 @@ const Preview = props => {
 
   useEffect(initFetching, [])
 
-  const sizes = {
-    full: '100%',
-    mobile: '375px',
-    tablet: '768px',
-    laptop: '1200px'
-  }
-
   return (
-    <div>
+    <div className={className}>
       <Helmet>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
       <div className="Preview">
-        <div className="Preview__header">
-          <Container>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <span>
-                <span role="img" aria-label="eyes">
-                  👀
-                </span>{' '}
-                Preview
-              </span>
-              <label className="SizeSwitcher" htmlFor="size">
-                Select size:&nbsp;&nbsp;
-                <select
-                  className="SizeSwitcher__select"
-                  name="size"
-                  id="size"
-                  onBlur={e => setSize(e.target.value)}
-                  value={size}
-                >
-                  {Object.keys(sizes).map(size => (
-                    <option value={size} key={`size-${size}`}>
-                      {size.substr(0, 1).toUpperCase()}
-                      {size.substr(1, size.length)}
-                    </option>
-                  ))}
-                </select>
-                <svg
-                  viewBox="0 0 10 10"
-                  className="SizeSwitcher__icon"
-                  aria-label="downward arrow"
-                >
-                  <path d="M0 2 L5 8 L10 2" stroke="black" fill="none" />
-                </svg>
-              </label>
-            </div>
-          </Container>
-        </div>
         <div className="Preview__content">
           {pageData && (
-            <div
-              style={{
-                width: sizes[size],
-                border: size === 'full' ? 'none' : '1px solid black',
-                margin: '0 auto',
-                transition: 'width .3s ease'
-              }}
-            >
-              <Layout>
-                <TemplateResolver data={pageData} />
-              </Layout>
-            </div>
+            <Layout>
+              <TemplateResolver data={pageData} />
+            </Layout>
           )}
         </div>
       </div>
@@ -155,4 +109,4 @@ const Preview = props => {
   )
 }
 
-export default Preview
+export default styled(Preview)(({ theme }) => css``)
