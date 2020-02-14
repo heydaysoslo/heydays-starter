@@ -33,7 +33,9 @@
     "react-dom": "^16.8.6",
     "react-select": "^3.0.8",
     "sanity-plugin-dashboard-widget-document-list": "^0.0.8",
-    "sanity-plugin-dashboard-widget-netlify": "^1.0.1"
+    "sanity-plugin-dashboard-widget-netlify": "^1.0.1",
+    "sanity-plugin-media": "^0.2.10",
+    "sanity-plugin-tabs": "^1.1.2"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
