@@ -11,7 +11,7 @@ import FaNewspaper from "react-icons/lib/fa/newspaper-o";
 export default {
   previewUrl: {
     production: "https://heydays-starter.netlify.com/_preview/",
-    dev: "http://mikes-mbp-2.heydays.local:3000/_preview/"
+    dev: "http://localhost:3000/_preview/"
   },
   /**
    * Page Types
