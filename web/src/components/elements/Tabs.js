@@ -15,7 +15,7 @@ const Tabs = ({ items, className }) => {
     Array.isArray(items) && items.filter(tab => tab.defaultOpen)
 
   const [activeTab, setActiveTab] = useState(
-    defaultActive.length > 0 ? defaultActive[0] : items[0]
+    defaultActive.length > 0 ? defaultActive[0] : items && items[0] && items[0]
   )
 
   const wrapper = useRef()
@@ -69,16 +69,19 @@ const Tabs = ({ items, className }) => {
           items.map((tab, i) => {
             const isTabActive = activeTab?._key === tab._key
             return (
-              <StyledTabs.Trigger
-                key={`trigger-${tab._key}`}
-                isTabActive={isTabActive}
-                tab={tab}
-                onKeyDownCapture={e => handleKeyDown(e, i)}
-                onMouseDown={e => e.preventDefault()} // To prevent focus on click but still keeps focus on tab
-                onClick={() => handleClick(tab)}
-              >
-                {tab.title}
-              </StyledTabs.Trigger>
+              tab.title &&
+              tab.content && (
+                <StyledTabs.Trigger
+                  key={`trigger-${tab._key}`}
+                  isTabActive={isTabActive}
+                  tab={tab}
+                  onKeyDownCapture={e => handleKeyDown(e, i)}
+                  onMouseDown={e => e.preventDefault()} // To prevent focus on click but still keeps focus on tab
+                  onClick={() => handleClick(tab)}
+                >
+                  {tab.title}
+                </StyledTabs.Trigger>
+              )
             )
           })}
       </div>
@@ -87,14 +90,17 @@ const Tabs = ({ items, className }) => {
           items.map((tab, i) => {
             const isTabActive = activeTab?._key === tab._key
             return (
-              <StyledTabs.Panel
-                key={`pane-${tab._key}`}
-                tab={tab}
-                onKeyDownCapture={e => handleKeyDown(e, i)}
-                isTabActive={isTabActive}
-              >
-                <Editor blocks={tab.content} />
-              </StyledTabs.Panel>
+              tab.content &&
+              tab.title && (
+                <StyledTabs.Panel
+                  key={`pane-${tab._key}`}
+                  tab={tab}
+                  onKeyDownCapture={e => handleKeyDown(e, i)}
+                  isTabActive={isTabActive}
+                >
+                  <Editor blocks={tab.content} />
+                </StyledTabs.Panel>
+              )
             )
           })}
       </div>
