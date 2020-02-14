@@ -4,20 +4,20 @@ import { bp } from './Breakpoints'
 
 export const fonts = {
   h1: () => ({ theme }) => css`
-    ${theme.fonts.medium()};
+    ${theme?.fonts?.medium()};
     ${bp.above.lg`
-      ${theme.fonts.xlarge()};
+      ${theme?.fonts?.xlarge()};
     `}
     ${bp.above.xl`
-      ${theme.fonts.xxlarge()};
+      ${theme?.fonts?.xxlarge()};
     `}
   `,
   body: () => {
     return function({ theme }) {
       return css`
-        ${theme.fonts.small()}
+        ${theme?.fonts?.small()}
         ${bp.above.lg`
-        ${theme.fonts.medium()}
+        ${theme?.fonts?.medium()}
       `}
       `
     }
@@ -25,10 +25,11 @@ export const fonts = {
   title: (color = 'black') => {
     return function({ theme }) {
       return css`
-        ${theme.fonts.xlarge()}
-        color: ${color || theme.colors.text};
+        ${theme?.fonts?.small()}
+        ${theme?.fonts?.xlarge()}
+        color: ${color || theme?.colors?.text};
         text-transform: uppercase;
-        letter-spacing: 1px;
+        letter-spacing: 10px; /** Må kanskje rs'e for å aktivere chat */
       `
     }
   }

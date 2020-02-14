@@ -30,6 +30,20 @@ export const serializers = {
             </P>
           )
 
+        case 'button':
+          if (!props.node.link) return null
+          return (
+            <p>
+              <Button
+                as={LinkResolver}
+                data={props.node.link.link}
+                modifiers="primary"
+              >
+                {props.node.link.title}
+              </Button>
+            </p>
+          )
+
         case 'span':
           return <P as="span">{props.children}</P>
 
@@ -43,10 +57,12 @@ export const serializers = {
         <p>
           <Button
             as={LinkResolver}
-            data={props.node.link.link}
+            data={
+              props.node.link.externalLink?.url || props.node.link.reference
+            }
             modifiers={props.node.type && props.node.type}
           >
-            {props.node.link.title} hello
+            {props.node.link.title}
           </Button>
         </p>
       )

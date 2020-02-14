@@ -16,6 +16,7 @@ const TextImageSplit = ({
   content,
   className
 }) => {
+  if (!image && !title) return null
   return (
     <div className={className}>
       <Grid
@@ -38,11 +39,13 @@ const TextImageSplit = ({
             />
           )}
         </div>
-        <SanityImage
-          className="TextImageSplit__image"
-          node={image}
-          aspect={aspect}
-        />
+        <div className="image">
+          <SanityImage
+            className="TextImageSplit__image"
+            node={image}
+            aspectRatio={aspect}
+          />
+        </div>
       </Grid>
     </div>
   )

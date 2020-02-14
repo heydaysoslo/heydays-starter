@@ -11,13 +11,15 @@ const Page = ({ className, title, content, pagebuilder, ...props }) => {
       <Container className="container">
         <header className="header">
           <P>Page</P>
-          <H1>{title}</H1>
+          {title && <H1>{title}</H1>}
         </header>
-        <div className="content">
-          {pagebuilder?.sections && (
-            <Pagebuilder sections={pagebuilder.sections} />
-          )}
-        </div>
+        {pagebuilder && (
+          <div className="content">
+            {pagebuilder?.sections && (
+              <Pagebuilder sections={pagebuilder.sections} />
+            )}
+          </div>
+        )}
       </Container>
     </div>
   )

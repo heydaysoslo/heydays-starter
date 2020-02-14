@@ -12,10 +12,10 @@ export const Select = styled(UnstyledSelect)(
   ({ theme }) => css`
     .Select__control {
       &:hover {
-        border-color: ${theme.colors.primary};
+        border-color: ${theme?.colors?.primary};
       }
       &--is-focused {
-        border-color: ${theme.colors.primary};
+        border-color: ${theme?.colors?.primary};
       }
     }
     .Select__option {
@@ -23,8 +23,8 @@ export const Select = styled(UnstyledSelect)(
 
       &--is-selected,
       &--is-focused {
-        background: ${theme.colors.primary};
-        color: ${theme.colors.text};
+        background: ${theme?.colors?.primary};
+        color: ${theme?.colors?.text};
       }
     }
   `

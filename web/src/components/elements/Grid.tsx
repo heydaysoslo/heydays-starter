@@ -51,6 +51,7 @@ export const GridItem = styled(BaseGridItem)<GridItemProps>(
     box-sizing: border-box;
     flex: 0 0 100%;
     max-width: 100%;
+    width: 100%;
     ${span &&
       typeof span === 'number' &&
       css`
@@ -85,9 +86,14 @@ export default styled(BaseGrid)<Props>(
   ({ theme, reverse, align, gap, columns, collapse }) => css`
     display: flex;
     flex: 0 1 auto;
-    flex-direction: ${reverse ? 'row-reverse' : 'row'};
+    flex-direction: ${reverse ? 'column-reverse' : 'column'};
+    min-height: 0;
     flex-wrap: wrap;
     align-items: ${align ? align : 'auto'};
+
+    ${bp.above.sm`
+      flex-direction: ${reverse ? 'row-reverse' : 'row'};
+    `}
 
     ${GridItem} {
       ${gap && !collapse && spacing.gutter(gap)}

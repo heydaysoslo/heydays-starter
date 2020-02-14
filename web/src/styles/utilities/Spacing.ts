@@ -106,58 +106,58 @@ export const responsiveSpacing = {
   xs: (props, negative = false) => ({ theme }) => css`
     ${addSpacingProps(
       props,
-      negative ? `-${theme.spacingUnit.xs}` : theme.spacingUnit.xs
+      negative ? `-${theme?.spacingUnit?.xs}` : theme?.spacingUnit?.xs
     )}
 
     ${bp.above.lg`
       ${addSpacingProps(
         props,
-        negative ? `-${theme.spacingUnit.sm}` : theme.spacingUnit.sm
+        negative ? `-${theme?.spacingUnit?.sm}` : theme?.spacingUnit?.sm
       )}
    `}
   `,
   sm: (props, negative = false) => ({ theme }) => css`
     ${addSpacingProps(
       props,
-      negative ? `-${theme.spacingUnit.sm}` : theme.spacingUnit.sm
+      negative ? `-${theme?.spacingUnit?.sm}` : theme?.spacingUnit?.sm
     )}
 
     ${bp.above.lg`
       ${addSpacingProps(
         props,
-        negative ? `-${theme.spacingUnit.md}` : theme.spacingUnit.md
+        negative ? `-${theme?.spacingUnit?.md}` : theme?.spacingUnit?.md
       )}
    `}
   `,
   md: (props, negative = false) => ({ theme }) => css`
     ${addSpacingProps(
       props,
-      negative ? `-${theme.spacingUnit.md}` : theme.spacingUnit.md
+      negative ? `-${theme?.spacingUnit?.md}` : theme?.spacingUnit?.md
     )}
 
     ${bp.above.lg`
       ${addSpacingProps(
         props,
-        negative ? `-${theme.spacingUnit.lg}` : theme.spacingUnit.lg
+        negative ? `-${theme?.spacingUnit?.lg}` : theme?.spacingUnit?.lg
       )}
    `}
   `,
   lg: (props, negative = false) => ({ theme }) => css`
     ${addSpacingProps(
       props,
-      negative ? `-${theme.spacingUnit.lg}` : theme.spacingUnit.lg
+      negative ? `-${theme?.spacingUnit?.lg}` : theme?.spacingUnit?.lg
     )}
   `,
   section: (props, negative = false) => ({ theme }) => css`
     ${addSpacingProps(
       props,
-      negative ? `-${theme.spacingUnit.section}` : theme.spacingUnit.section
+      negative ? `-${theme?.spacingUnit?.section}` : theme?.spacingUnit?.section
     )}
   `,
   gutter: (props, negative = false) => ({ theme }) => css`
     ${addSpacingProps(
       props,
-      negative ? `-${theme.spacingUnit.gutter}` : theme.spacingUnit.gutter
+      negative ? `-${theme?.spacingUnit?.gutter}` : theme?.spacingUnit?.gutter
     )}
   `
 }

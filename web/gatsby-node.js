@@ -65,7 +65,12 @@ async function createPages(graphql, actions, reporter) {
     }
 
     createPage({
-      path: siteSettings.frontpage.id === id ? '/' : path,
+      path:
+        siteSettings &&
+        siteSettings.frontpage &&
+        siteSettings.frontpage.id === id
+          ? '/'
+          : path,
       component: require.resolve('./src/templates/Page.js'),
       context: { id }
     })

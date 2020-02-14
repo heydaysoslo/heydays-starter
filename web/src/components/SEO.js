@@ -30,6 +30,13 @@ const SEO = props => {
   const { sanityCompanyInfo, sanitySiteSettings } = data
   const { type, slug, getUrl } = props
 
+  if (type || slug) {
+    console.info(
+      `Type or slug is missing. We need this to make the SEO. Type: ${type} and Slug: ${slug}`
+    )
+    return null
+  }
+
   const titleTemplate = `%s » ${sanityCompanyInfo?.name}`
   const locale = sanitySiteSettings?.locale || 'en_US'
   const ogType = type === 'article' ? 'article' : 'website'

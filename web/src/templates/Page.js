@@ -15,7 +15,7 @@ import { TemplateResolver } from '../components/resolvers'
 
 const PageTemplate = props => {
   const { data } = props
-  const page = data && data.page
+  const page = data && data?.page
 
   return (
     page && (

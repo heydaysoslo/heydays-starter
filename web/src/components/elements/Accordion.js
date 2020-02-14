@@ -55,17 +55,21 @@ const Accordion = ({
   }
   return (
     <div className={className} ref={wrapper}>
-      {items.map((item, i) => (
-        <StyledAccordion.Item
-          key={item._key}
-          i={i}
-          active={active}
-          item={item}
-          exclusive={exclusive}
-          handleClick={handleClick}
-          wrapperRef={wrapper}
-        />
-      ))}
+      {items.map(
+        (item, i) =>
+          item.title &&
+          item.content && (
+            <StyledAccordion.Item
+              key={item._key}
+              i={i}
+              active={active}
+              item={item}
+              exclusive={exclusive}
+              handleClick={handleClick}
+              wrapperRef={wrapper}
+            />
+          )
+      )}
     </div>
   )
 }

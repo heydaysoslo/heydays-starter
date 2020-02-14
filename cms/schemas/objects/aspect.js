@@ -1,17 +1,16 @@
 export default {
-  name: 'aspect',
-  title: 'Aspect ratio',
-  description:
-    'Image will not appear if you choose nothing. This setting only affects iPad and upwards screen sizes',
-  type: 'string',
+  name: "aspect",
+  title: "Aspect ratio",
+  description: "This setting only affects iPad and upwards screen sizes",
+  type: "string",
   // validation: Rule => Rule.required(), // can't apply this in all cases wait for conditional fields
   options: {
     list: [
-      { value: 'original', title: 'Original' },
-      { value: 'landscape', title: 'Landscape' },
-      { value: 'portrait', title: 'Portrait' }
+      { value: "original", title: "Original" },
+      { value: "landscape", title: "Landscape" },
+      { value: "portrait", title: "Portrait" }
     ],
-    direction: 'horizontal',
-    layout: 'radio'
+    direction: "horizontal",
+    layout: "radio"
   }
-}
+};

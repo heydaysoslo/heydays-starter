@@ -16,9 +16,12 @@ module.exports = {
         dataset: process.env.SANITY_DATASET_PROD,
         // a token with read permissions is required
         // if you have a private dataset
-        // token: process.env.SANITY_TOKEN,
-        watchMode: process.env.NODE_ENV === 'development'
-        // overlayDrafts: process.env.NODE_ENV === 'development'
+        token:
+          process.env.NODE_ENV === 'development'
+            ? process.env.SANITY_TOKEN
+            : '',
+        watchMode: process.env.NODE_ENV === 'development',
+        overlayDrafts: process.env.NODE_ENV === 'development'
       }
     },
     `gatsby-plugin-styled-components`,
