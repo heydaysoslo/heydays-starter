@@ -8,19 +8,21 @@ import styled from 'styled-components'
 const Oembed = ({ url, className }) => {
   const [embed, setEmbed] = useState({})
   useEffect(() => {
-    fetch('/.netlify/functions/oembed', {
-      method: 'POST',
-      body: JSON.stringify({ url })
-    })
-      .then(res => res.json())
-      .then(res => {
-        const provider = res?.result?.provider_name
-        if (provider && isProviderAllowed(provider.toLowerCase())) {
-          setEmbed(res)
-        } else {
-          console.info(`${provider} embed is not allowed`)
-        }
+    if (url) {
+      fetch('/.netlify/functions/oembed', {
+        method: 'POST',
+        body: JSON.stringify({ url })
       })
+        .then(res => res.json())
+        .then(res => {
+          const provider = res?.result?.provider_name
+          if (provider && isProviderAllowed(provider.toLowerCase())) {
+            setEmbed(res)
+          } else {
+            console.info(`${provider} embed is not allowed`)
+          }
+        })
+    }
   }, [url])
   return (
     <div className={className}>

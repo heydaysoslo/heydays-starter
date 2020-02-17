@@ -5,6 +5,7 @@
   "scripts": {
     "empty-cache": "lerna run clean --scope web",
     "start": "yarn empty-cache && lerna run start --parallel",
+    "live": "yarn workspace web live",
     "build": "lerna run build --parallel",
     "bootstrap": "lerna bootstrap",
     "deploy:graphql": "lerna run deploy:graphql",
