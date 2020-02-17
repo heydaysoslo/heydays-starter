@@ -78,13 +78,6 @@ module.exports = {
       }
     },
     {
-      resolve: `gatsby-plugin-netlify-functions`,
-      options: {
-        functionsSrc: `${__dirname}/src/netlify-functions`,
-        functionsOutput: `${__dirname}/netlify-functions`
-      }
-    },
-    {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
         host: `https://ablymed.com`,
@@ -137,18 +130,5 @@ module.exports = {
         display: 'STARTER'
       }
     }
-  ],
-  // for avoiding CORS while developing Netlify Functions locally
-  // read more: https://www.gatsbyjs.org/docs/api-proxy/#advanced-proxying
-  developMiddleware: app => {
-    app.use(
-      '/.netlify/functions/',
-      proxy({
-        target: 'http://localhost:9000/',
-        pathRewrite: {
-          '^/\\.netlify/functions': ''
-        }
-      })
-    )
-  }
+  ]
 }

@@ -60,9 +60,9 @@ async function createPages(graphql, actions, reporter) {
     // TODO: Consider removing this as it is known to cause issues
     // https://sanity-io-land.slack.com/archives/C9Z7RC3V1/p1580090596210600
     // https://sanity-io-land.slack.com/archives/C9Y51FDGA/p1580156946022500
-    if (process.env.NODE_ENV === 'development') {
-      reporter.info(`Creating page: ${path}`)
-    }
+    // if (process.env.NODE_ENV === 'development') {
+    //   reporter.info(`Creating page: ${path}`)
+    // }
 
     createPage({
       path:

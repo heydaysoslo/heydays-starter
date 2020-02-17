@@ -1,4 +1,6 @@
-export const handler = (event, context, callback) => {
+module.exports.handler = (event, context, callback) => {
+  console.log('OEMBED FUNCTION FIRED')
+
   const { extract } = require('oembed-parser')
   const { url } = JSON.parse(event.body)
 

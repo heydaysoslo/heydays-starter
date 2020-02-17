@@ -1,2 +1,11 @@
 [build]
-  functions = "/netlify-functions"
+  functions = "netlify-functions/"
+  command = 'yarn build'
+
+[dev]
+  functions = "netlify-functions/"
+  command = 'yarn develop'
+  functionsPort = 34567
+  port = 3000
+  targetPort = 8000
+
