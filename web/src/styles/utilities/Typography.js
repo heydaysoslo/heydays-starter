@@ -28,8 +28,6 @@ export const fonts = {
         ${theme?.fonts?.small()}
         ${theme?.fonts?.xlarge()}
         color: ${color || theme?.colors?.text};
-        text-transform: uppercase;
-        letter-spacing: 10px; /** Må kanskje rs'e for å aktivere chat */
       `
     }
   }

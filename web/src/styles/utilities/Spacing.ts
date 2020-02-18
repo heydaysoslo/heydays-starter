@@ -2,6 +2,7 @@ import { css } from 'styled-components'
 
 import { addSpacingProps } from './helpers'
 import { bp } from './Breakpoints'
+import { remSize } from './Converters'
 
 const mixinDefs = {
   m: ['margin'],
@@ -102,6 +103,28 @@ const mixins = Object.keys(mixinDefs).reduce((acc, key) => {
 //   {}
 // )
 
+//
+// spacing.xs('py', {mulitplier: .5, func: val => val * .5})
+//
+
+// Parse units like vw, px, rem etc and split into {number, unit}
+const parseUnit = value => {
+  const number = parseFloat(value)
+  const unit = value.replace(/^[\-\d\.]+/, '')
+  return { number, unit }
+}
+
+const getPropValue = (value, options) => {
+  if (!value) {
+    return value
+  }
+  if (!options?.multiplier) {
+    return value
+  }
+  const unitParsed = parseUnit(value)
+  return `${unitParsed.number * options.multiplier}${unitParsed.unit}`
+}
+
 export const responsiveSpacing = {
   xs: (props, negative = false) => ({ theme }) => css`
     ${addSpacingProps(
@@ -142,23 +165,17 @@ export const responsiveSpacing = {
       )}
    `}
   `,
-  lg: (props, negative = false) => ({ theme }) => css`
+  lg: (props, options) => ({ theme }) => css`
+    ${addSpacingProps(props, getPropValue(theme?.spacingUnit?.lg, options))}
+  `,
+  section: (props, options) => ({ theme }) => css`
     ${addSpacingProps(
       props,
-      negative ? `-${theme?.spacingUnit?.lg}` : theme?.spacingUnit?.lg
+      getPropValue(theme?.spacingUnit?.section, options)
     )}
   `,
-  section: (props, negative = false) => ({ theme }) => css`
-    ${addSpacingProps(
-      props,
-      negative ? `-${theme?.spacingUnit?.section}` : theme?.spacingUnit?.section
-    )}
-  `,
-  gutter: (props, negative = false) => ({ theme }) => css`
-    ${addSpacingProps(
-      props,
-      negative ? `-${theme?.spacingUnit?.gutter}` : theme?.spacingUnit?.gutter
-    )}
+  gutter: (props, options) => ({ theme }) => css`
+    ${addSpacingProps(props, getPropValue(theme?.spacingUnit?.gutter, options))}
   `
 }
 

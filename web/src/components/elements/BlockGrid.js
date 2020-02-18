@@ -6,7 +6,7 @@ const BlockGrid = ({ className, children }) => {
   return <div className={className}>{children}</div>
 }
 
-export default styled(BlockGrid)(({ theme, columns, gap }) => {
+export default styled(BlockGrid)(({ columns, gap }) => {
   let cols
   if (typeof columns === 'string') {
     cols = columns
