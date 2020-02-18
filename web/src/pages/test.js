@@ -30,16 +30,19 @@ const Index = () => {
     response: secondResponse,
     error: secondError,
     isLoading: secondIsLoading
-  } = useFetch([
-    {
-      key: 'rss',
-      url: `https://api.rss2json.com/v1/api.json?rss_url=`
-    },
-    {
-      key: 'kanye',
-      url: `https://api.kanye.rest`
+  } = useFetch({
+    rss: `https://api.rss2json.com/v1/api.json?rss_url=`,
+    kanye: `https://api.kanye.rest`,
+    oembed: {
+      url: '/.netlify/functions/oembed',
+      options: {
+        method: 'POST',
+        body: JSON.stringify({
+          url: 'https://www.youtube.com/watch?v=hHW1oY26kxQ'
+        })
+      }
     }
-  ])
+  })
   const [select, setSelect] = useState(null)
 
   const { state, actions } = useContext(AppContext)
@@ -59,8 +62,20 @@ const Index = () => {
   return (
     <Layout>
       {/* <Video url="https://www.youtube.com/watch?v=lYGthBDzt8o" /> */}
-      <Video url="https://www.youtube.com/watch?v=hHW1oY26kxQ" />
-      <Video url="https://vimeo.com/390848060" />
+      {/* <Video url="https://www.youtube.com/watch?v=hHW1oY26kxQ" />
+      <Video url="https://vimeo.com/390848060" /> */}
+      <div style={{ border: '1px solid red', padding: '20px' }}>
+        useFetch:
+        {isLoading && <p>Kanye Rest is loading</p>}
+        {response && <pre>{JSON.stringify(response, null, 2)}</pre>}
+        {error && <p>Kanye Rest error: {JSON.stringify(error)}</p>}
+      </div>
+      <div style={{ border: '1px solid red', padding: '20px' }}>
+        useFetch:
+        {secondIsLoading && <p>Waiting</p>}
+        {response && <pre>{JSON.stringify(secondResponse, null, 2)}</pre>}
+        {error && <p>Kanye Rest error: {JSON.stringify(secondError)}</p>}
+      </div>
       <Test />
       <Button modifiers="small">Click me</Button>
       <Button modifiers={['secondary', 'small']}>Click me</Button>
@@ -108,18 +123,6 @@ const Index = () => {
             Context showMenu is {state.showMenu ? 'on' : 'off'}
           </button>
         )}
-        <div style={{ border: '1px solid red', padding: '20px' }}>
-          useFetch:
-          {isLoading && <p>Kanye Rest is loading</p>}
-          {response && <pre>{JSON.stringify(response, null, 2)}</pre>}
-          {error && <p>Kanye Rest error: {JSON.stringify(error)}</p>}
-        </div>
-        <div style={{ border: '1px solid red', padding: '20px' }}>
-          useFetch:
-          {secondIsLoading && <p>Waiting</p>}
-          {response && <pre>{JSON.stringify(secondResponse, null, 2)}</pre>}
-          {error && <p>Kanye Rest error: {JSON.stringify(secondError)}</p>}
-        </div>
         <div style={{ maxWidth: '500px', border: '2px solid black' }}>
           <AspectContainer
             aspect={{
