@@ -13,20 +13,22 @@ import { useState, useEffect } from 'react'
  *
  * fetch multiple
  *
- * const { response, error, isLoading } = useFetch([
- * {
- *  key: 'rss',
- *  url: `https://api.rss2json.com/v1/api.json?rss_url=`
- * },
- * {
- *  key: 'kanye',
- *  url: `https://api.kanye.rest`
- * }
- * ])
+ * const { response, error, isLoading } = useFetch({
+ *  rss: `https://api.rss2json.com/v1/api.json?rss_url=`,
+ *  kanye: `https://api.kanye.rest`,
+ *  oembed: {
+ *    url: '/.netlify/functions/oembed'
+ *    options: {
+ *      method: 'POST',
+ *      body: JSON.stringify({ url: 'https://www.youtube.com/watch?v=hHW1oY26kxQ' })
+ *    }
+ *  },
+ * })
  *
  * => {
  *  "rss": { "status": "error", "message": "`rss_url` parameter must be a valid url." },
  *  "kanye": { "quote": "Distraction is the enemy of vision" }
+ *  "oembed": { ... }
  * }
  *
  * We're only handling one set options. If you're doing post one and get on another.
@@ -37,11 +39,14 @@ const useFetch = (url, options = {}) => {
   const [response, setResponse] = useState(null)
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [isAllDone, setIsAllDone] = useState(
+    typeof url === 'object' ? Object.keys(url).length : null
+  )
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const request = await fetch(url, { options })
+        const request = await fetch(url, options)
         const data = await request.json()
         setResponse(data)
         setIsLoading(false)
@@ -50,23 +55,31 @@ const useFetch = (url, options = {}) => {
       }
     }
     async function fetchMultipleData(urls) {
-      urls.forEach(async (item, i) => {
+      const keys = Object.keys(urls)
+      keys.forEach(async (key, i) => {
         try {
-          const request = await fetch(item.url, { options })
+          const hasOptions = urls[key].hasOwnProperty('options')
+          console.log({ options: hasOptions ? urls[key].options : null })
+          const request = await fetch(
+            [hasOptions ? urls[key].url : urls[key]], // Pass correct url
+            hasOptions ? urls[key].options : null // Pass optional options
+          )
           const data = await request.json()
           setResponse(response =>
             Object.assign(
               {},
               {
                 ...response,
-                [item.key]: data
+                [key]: data
               }
             )
           )
           setIsLoading(false)
+          setIsAllDone(c => c - 1)
         } catch (error) {
           setError(error)
           setIsLoading(false)
+          setIsAllDone(c => c - 1)
         }
       })
     }
@@ -77,7 +90,11 @@ const useFetch = (url, options = {}) => {
     }
   }, [])
 
-  return { response, error, isLoading }
+  return {
+    response,
+    error,
+    isLoading: typeof url === 'object' ? isAllDone !== 0 : isLoading
+  }
 }
 
 export default useFetch

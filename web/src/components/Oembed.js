@@ -1,27 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 import { isProviderAllowed } from '../../heydays-config'
 
 import AspectContainer from './elements/AspectContainer'
 import styled from 'styled-components'
+import { useFetch } from './hooks'
 
 const Oembed = ({ url, className }) => {
-  const [embed, setEmbed] = useState({})
-  useEffect(() => {
-    fetch('/.netlify/functions/oembed', {
+  const { response: embed, isLoading, error } = useFetch(
+    '/.netlify/functions/oembed',
+    {
       method: 'POST',
       body: JSON.stringify({ url })
-    })
-      .then(res => res.json())
-      .then(res => {
-        const provider = res?.result?.provider_name
-        if (provider && isProviderAllowed(provider.toLowerCase())) {
-          setEmbed(res)
-        } else {
-          console.info(`${provider} embed is not allowed`)
-        }
-      })
-  }, [url])
+    }
+  )
+  if (isLoading || error) return null
   return (
     <div className={className}>
       {embed?.result?.html && embed?.result?.type === 'video' && (
