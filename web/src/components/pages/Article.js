@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
+import { LightgalleryProvider, LightgalleryItem } from 'react-lightgallery'
 
 import { getReadTime } from '../../utils/sanityHelpers'
 import Editor from '../editor'
@@ -17,8 +18,7 @@ const Article = ({
   publishDate,
   _type,
   slug,
-  pagebuilder,
-  ...props
+  pagebuilder
 }) => {
   const data = useStaticQuery(query)
   const latestArticles = data?.allSanityArticle?.nodes
@@ -32,64 +32,85 @@ const Article = ({
 
   return (
     <Container>
-      <article className="Article">
-        <Grid reverse={{ md: true }}>
-          <GridItem span={{ md: 3 }}>
-            {body && `Read time: ${getReadTime(body)}min`}
-            {publishDate && <p className="Article__date">{publishDate}</p>}
-            {authors &&
-              authors.map(author => (
-                <div className="Author" key={author._key}>
-                  {author?.person?.image && (
-                    <div className="Author__image">
-                      <SanityImage
-                        node={author.person.image}
-                        aspectRatio="square"
-                      />
-                    </div>
-                  )}
-                  {author?.person?.name && (
-                    <h3 className="Author__title">{author.person.name}</h3>
-                  )}
-                </div>
-              ))}
-            {slug && slug.current && <Share type={_type} slug={slug.current} />}
-          </GridItem>
-          <GridItem span={{ sm: 12, md: 9 }}>
-            <header className="Article__header">
-              {title && <h1 className="Article__title">{title}</h1>}
-              {mainImage && (
-                <div className="Article__image">
-                  <SanityImage node={mainImage} />
+      <LightgalleryProvider>
+        <article className="Article">
+          <Grid reverse={{ md: true }}>
+            <GridItem span={{ md: 3 }}>
+              {body && `Read time: ${getReadTime(body)}min`}
+              {publishDate && <p className="Article__date">{publishDate}</p>}
+              {authors &&
+                authors.map(author => (
+                  <div className="Author" key={author._key}>
+                    {author?.person?.image && (
+                      <div className="Author__image">
+                        {author.person.image.url && (
+                          <LightgalleryItem
+                            src={author?.person?.image?.url}
+                            group="article"
+                          >
+                            <SanityImage
+                              node={author.person.image}
+                              aspectRatio="square"
+                            />
+                          </LightgalleryItem>
+                        )}
+                      </div>
+                    )}
+                    {author?.person?.name && (
+                      <h3 className="Author__title">{author.person.name}</h3>
+                    )}
+                  </div>
+                ))}
+              {slug && slug.current && (
+                <Share type={_type} slug={slug.current} />
+              )}
+            </GridItem>
+            <GridItem span={{ sm: 12, md: 9 }}>
+              <header className="Article__header">
+                {title && <h1 className="Article__title">{title}</h1>}
+                {mainImage && (
+                  <div className="Article__image">
+                    {console.log(
+                      'TCL: mainImage?.asset?.url',
+                      mainImage?.asset
+                    )}
+                    <LightgalleryItem
+                      src={mainImage?.asset?.url}
+                      group="article"
+                    >
+                      <img src={mainImage?.asset?.url} alt="" />
+                      {/* <SanityImage node={mainImage} /> */}
+                    </LightgalleryItem>
+                  </div>
+                )}
+              </header>
+              {body && (
+                <div className="Article__content">
+                  <Editor blocks={body} />
                 </div>
               )}
-            </header>
-            {body && (
-              <div className="Article__content">
-                <Editor blocks={body} />
-              </div>
-            )}
-          </GridItem>
-        </Grid>
-        {pagebuilder?.sections && (
-          <PageBuilder sections={pagebuilder.sections} />
-        )}
-        {currentArticles && (
-          <section className="Article__latest">
-            <Grid columns={{ sm: 2 }}>
-              {currentArticles.map(article => (
-                <Card
-                  key={article?._key}
-                  title={article.title}
-                  image={article.mainImage}
-                  excerpt={article.excerpt}
-                  link={article}
-                />
-              ))}
-            </Grid>
-          </section>
-        )}
-      </article>
+            </GridItem>
+          </Grid>
+          {pagebuilder?.sections && (
+            <PageBuilder sections={pagebuilder.sections} />
+          )}
+          {currentArticles && (
+            <section className="Article__latest">
+              <Grid columns={{ sm: 2 }}>
+                {currentArticles.map(article => (
+                  <Card
+                    key={article?._key}
+                    title={article.title}
+                    image={article.mainImage}
+                    excerpt={article.excerpt}
+                    link={article}
+                  />
+                ))}
+              </Grid>
+            </section>
+          )}
+        </article>
+      </LightgalleryProvider>
     </Container>
   )
 }

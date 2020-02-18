@@ -9,6 +9,7 @@ import React from 'react'
 import { AppProvider } from './src/components/context/AppContext'
 
 require('./src/styles/reset.css')
+require('lightgallery.js/dist/css/lightgallery.css')
 
 export const wrapRootElement = ({ element }) => (
   <AppProvider>{element}</AppProvider>
