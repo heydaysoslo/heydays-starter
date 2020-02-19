@@ -1,6 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { Grid, GridItem, Container } from './elements'
+import { spacing } from '../styles/utilities'
 // import { ThemeProvider } from 'styled-components'
 // import ResponsiveMenu from './ResponsiveMenu'
 
@@ -12,7 +13,8 @@ const Box = styled.div`
   font-size: 12px;
   padding: 10px;
   text-align: center;
-  padding: 40px 10px;
+  /* padding: 40px 10px; */
+  ${spacing.demovalue('py')};
 `
 
 const Test = ({ className }) => {
@@ -51,7 +53,7 @@ const Test = ({ className }) => {
       </Grid>
 
       <h3>Flex block grid (gaps)</h3>
-      <Grid gap={true} columns={{ xs: 2, sm: 4 }}>
+      <Grid gapUnit="demovalue" gap={true} columns={{ xs: 2, sm: 4 }}>
         <Box color="purple">Hello</Box>
         <Box color="red">Hello</Box>
         <Box color="blue">Hello</Box>
