@@ -88,7 +88,7 @@ const useFetch = (url, options = {}) => {
     } else {
       fetchMultipleData(url)
     }
-  }, [])
+  }, [url]) // eslint disable exhaustive-deps
 
   return {
     response,
