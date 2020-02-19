@@ -8,13 +8,13 @@ import { spacing } from '../../styles/utilities'
 const Page = ({ className, title, content, pagebuilder, ...props }) => {
   return (
     <div className={className}>
-      <Container className="container">
-        <header className="header">
+      <Container className="Page__container">
+        <header className="Page__header">
           <P>Page</P>
           {title && <H1>{title}</H1>}
         </header>
         {pagebuilder && (
-          <div className="content">
+          <div className="Page__content">
             {pagebuilder?.sections && (
               <Pagebuilder sections={pagebuilder.sections} />
             )}
@@ -27,10 +27,10 @@ const Page = ({ className, title, content, pagebuilder, ...props }) => {
 
 export default styled(Page)(
   ({ theme }) => css`
-    .header {
+    .Page__header {
       ${spacing.sm('mt')}
     }
-    .content {
+    .Page__content {
       ${spacing.sm('mt')}
     }
   `
