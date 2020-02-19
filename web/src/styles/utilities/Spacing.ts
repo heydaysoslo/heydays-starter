@@ -1,6 +1,6 @@
 import { css } from 'styled-components'
 
-import { addSpacingProps } from './helpers'
+import { addSpacingProps, parseCssUnit } from './helpers'
 import { bp } from './Breakpoints'
 import { remSize } from './Converters'
 
@@ -107,75 +107,96 @@ const mixins = Object.keys(mixinDefs).reduce((acc, key) => {
 // spacing.xs('py', {mulitplier: .5, func: val => val * .5})
 //
 
-// Parse units like vw, px, rem etc and split into {number, unit}
-const parseUnit = value => {
-  const number = parseFloat(value)
-  const unit = value.replace(/^[\-\d\.]+/, '')
-  return { number, unit }
-}
-
-const getPropValue = (value, options) => {
+const applyPropValueOptions = (value, options) => {
+  // Leave early if we don't have an official value
   if (!value) {
     return value
   }
-  if (!options?.multiplier) {
-    return value
+  // Apply multipier
+  if (options?.multiplier) {
+    const unitParsed = parseCssUnit(value)
+    if (unitParsed.number) {
+      return `${unitParsed.number * options.multiplier}${unitParsed.unit}`
+    }
   }
-  const unitParsed = parseUnit(value)
-  return `${unitParsed.number * options.multiplier}${unitParsed.unit}`
+  return value
 }
 
 export const responsiveSpacing = {
-  xs: (props, negative = false) => ({ theme }) => css`
+  xs: (props, options) => ({ theme }) => css`
     ${addSpacingProps(
       props,
-      negative ? `-${theme?.spacingUnit?.xs}` : theme?.spacingUnit?.xs
+      applyPropValueOptions(theme?.spacingUnit?.xs, options)
     )}
 
     ${bp.above.lg`
       ${addSpacingProps(
         props,
-        negative ? `-${theme?.spacingUnit?.sm}` : theme?.spacingUnit?.sm
+        applyPropValueOptions(theme?.spacingUnit?.sm, options)
       )}
    `}
   `,
-  sm: (props, negative = false) => ({ theme }) => css`
+  sm: (props, options) => ({ theme }) => css`
     ${addSpacingProps(
       props,
-      negative ? `-${theme?.spacingUnit?.sm}` : theme?.spacingUnit?.sm
+      applyPropValueOptions(theme?.spacingUnit?.sm, options)
     )}
 
     ${bp.above.lg`
       ${addSpacingProps(
         props,
-        negative ? `-${theme?.spacingUnit?.md}` : theme?.spacingUnit?.md
+        applyPropValueOptions(theme?.spacingUnit?.md, options)
       )}
    `}
   `,
-  md: (props, negative = false) => ({ theme }) => css`
+  md: (props, options) => ({ theme }) => css`
     ${addSpacingProps(
       props,
-      negative ? `-${theme?.spacingUnit?.md}` : theme?.spacingUnit?.md
+      applyPropValueOptions(theme?.spacingUnit?.md, options)
     )}
 
     ${bp.above.lg`
       ${addSpacingProps(
         props,
-        negative ? `-${theme?.spacingUnit?.lg}` : theme?.spacingUnit?.lg
+        applyPropValueOptions(theme?.spacingUnit?.lg, options)
       )}
    `}
   `,
   lg: (props, options) => ({ theme }) => css`
-    ${addSpacingProps(props, getPropValue(theme?.spacingUnit?.lg, options))}
+    ${addSpacingProps(
+      props,
+      applyPropValueOptions(theme?.spacingUnit?.lg, options)
+    )}
   `,
   section: (props, options) => ({ theme }) => css`
     ${addSpacingProps(
       props,
-      getPropValue(theme?.spacingUnit?.section, options)
+      applyPropValueOptions(theme?.spacingUnit?.section, options)
     )}
   `,
   gutter: (props, options) => ({ theme }) => css`
-    ${addSpacingProps(props, getPropValue(theme?.spacingUnit?.gutter, options))}
+    ${addSpacingProps(
+      props,
+      applyPropValueOptions(theme?.spacingUnit?.md, options)
+    )}
+    ${bp.above.lg`
+      ${addSpacingProps(
+        props,
+        applyPropValueOptions(theme?.spacingUnit?.gutter, options)
+      )}
+   `}
+  `,
+  container: (props, options) => ({ theme }) => css`
+    ${addSpacingProps(
+      props,
+      applyPropValueOptions(theme?.spacingUnit?.md, options)
+    )}
+    ${bp.above.md`
+    ${addSpacingProps(
+      props,
+      applyPropValueOptions(theme?.spacingUnit?.lg, options)
+    )}
+ `}
   `
 }
 

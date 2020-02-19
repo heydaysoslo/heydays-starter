@@ -60,7 +60,7 @@ const Index = () => {
     <Layout>
       {/* <Video url="https://www.youtube.com/watch?v=lYGthBDzt8o" /> */}
       {/* <Video url="https://www.youtube.com/watch?v=hHW1oY26kxQ" /> */}
-      <Video url="https://vimeo.com/390848060" />
+      {/* <Video url="https://vimeo.com/390848060" /> */}
       <Test />
       <Button modifiers="small">Click me</Button>
       <Button modifiers={['secondary', 'small']}>Click me</Button>
