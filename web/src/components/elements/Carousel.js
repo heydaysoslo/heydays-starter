@@ -67,8 +67,9 @@ const Carousel = ({
       // flkty.on('dragStart', this.handleDrag)
       // flkty.on('dragEnd', this.handleDrag)
     }
-    if (container?.current) {
-      container.current.addEventListener('touchstart', touchStart, {
+    const wrapper = container?.current
+    if (wrapper) {
+      wrapper.addEventListener('touchstart', touchStart, {
         passive: true
       })
       container.current.addEventListener('touchmove', preventTouch, {
@@ -112,22 +113,25 @@ const CustomButtons = ({ flkty, children }) => {
 
   useEffect(() => {
     flkty.on('change', i => setIndex(i))
-  }, [])
+  }, [flkty])
 
   // Navigation
   useLayoutEffect(() => {
     const handlePrev = () => flkty.select(index - 1)
     const handleNext = () => flkty.select(index + 1)
 
-    if (prevButton?.current && nextButton?.current) {
-      prevButton.current.addEventListener('click', handlePrev)
-      nextButton.current.addEventListener('click', handleNext)
+    const pButton = prevButton?.current
+    const nButton = nextButton?.current
+
+    if (pButton && nButton) {
+      pButton.addEventListener('click', handlePrev)
+      nButton.addEventListener('click', handleNext)
     }
 
     return () => {
-      if (prevButton?.current && nextButton?.current) {
-        prevButton.current.removeEventListener('click', handlePrev)
-        nextButton.current.removeEventListener('click', handleNext)
+      if (pButton && nButton) {
+        pButton.removeEventListener('click', handlePrev)
+        nButton.removeEventListener('click', handleNext)
       }
     }
   }, [prevButton, nextButton, flkty, index])
