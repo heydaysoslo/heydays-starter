@@ -12,6 +12,7 @@ as dummy data for new projects.
 Deploys GraphQL db. This needs to be done every time you
 change the schema. You also need to restart the server
 afterwards.
+asdf
 
 ### `yarn deploy:sanity`
 
