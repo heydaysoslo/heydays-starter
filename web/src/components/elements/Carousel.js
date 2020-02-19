@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import keygen from 'uuid/v1'
+import React, { useState, useLayoutEffect, useEffect, useRef } from 'react'
 import styled, { css } from 'styled-components'
 import { bp, spacing, color, remSize } from '../../styles/utilities'
+import Icon from './Icon'
 
 const defaultOptions = {
   // groupCells: true,
@@ -9,36 +9,48 @@ const defaultOptions = {
   wrapAround: false,
   // imagesLoaded: false,
   // lazyLoad: false,
-  // contain: true
-  pageDots: false
-  // prevNextButtons: false
-  // adaptiveHeight: true
+  // contain: true,
+  pageDots: true,
+  prevNextButtons: false,
+  adaptiveHeight: true
 }
 
-const Carousel = ({ className, children, options = defaultOptions }) => {
-  const id = `flickity-${keygen()}`
+const Carousel = ({
+  className,
+  children,
+  options = defaultOptions,
+  customButtons = true
+}) => {
   const [flkty, setFlkty] = useState(null)
+  const container = useRef(null)
 
-  useEffect(() => {
-    import('flickity').then(res => {
-      const flickity = res.default
-      setFlkty(
-        new flickity(`#${id}`, {
-          ...options,
-          initialIndex: Math.floor(children.length / 2)
-        })
-      )
-    })
-  }, [options, id, children])
+  // Init
+  useLayoutEffect(() => {
+    if (!flkty) {
+      import('flickity').then(res => {
+        const flickity = res.default
+        // flickity('next')
+        if (container?.current) {
+          setFlkty(
+            new flickity(container.current, {
+              ...options,
+              initialIndex: 0 // set index of default slide
+            })
+          )
+        }
+      })
+    }
+  }, [options, children, flkty])
 
-  useEffect(() => {
+  // Prevent vertical scrolling when swiping
+  useLayoutEffect(() => {
     function touchStart(e) {
       this.firstClientX = e.touches[0].clientX
       this.firstClientY = e.touches[0].clientY
     }
 
     function preventTouch(e) {
-      const minValue = 5 // threshold
+      const minValue = 3 // threshold
 
       this.clientX = e.touches[0].clientX - this.firstClientX
       this.clientY = e.touches[0].clientY - this.firstClientY
@@ -55,38 +67,122 @@ const Carousel = ({ className, children, options = defaultOptions }) => {
       // flkty.on('dragStart', this.handleDrag)
       // flkty.on('dragEnd', this.handleDrag)
     }
-    const wrapper = document.getElementById(id)
-    if (wrapper) {
-      wrapper.addEventListener('touchstart', touchStart, {
+    if (container?.current) {
+      container.current.addEventListener('touchstart', touchStart, {
         passive: true
       })
-      wrapper.addEventListener('touchmove', preventTouch, {
+      container.current.addEventListener('touchmove', preventTouch, {
         passive: false
       })
     }
 
     return () => {
-      if (wrapper) {
-        wrapper.removeEventListener('touchstart', touchStart)
-        wrapper.removeEventListener('touchmove', preventTouch, {
+      if (container?.current) {
+        container.current.removeEventListener('touchstart', touchStart)
+        container.current.removeEventListener('touchmove', preventTouch, {
           passive: false
         })
       }
     }
-  }, [children, id, options, flkty])
+  }, [children, options, flkty, container])
+
   return (
-    <div className={className} id={id}>
-      {children.map((child, index) => (
-        <figure key={child?.props?.node?._key} className="item">
-          {React.cloneElement(child, {
-            flkty,
-            index
-          })}
-        </figure>
-      ))}
+    <div className={className}>
+      <div ref={container} id="hello">
+        {children.map((child, index) => (
+          <figure key={child?.props?.node?._key} className="item">
+            {React.cloneElement(child, {
+              flkty,
+              index
+            })}
+          </figure>
+        ))}
+      </div>
+      {customButtons && container && flkty && (
+        <CustomButtons flkty={flkty} children={children} />
+      )}
     </div>
   )
 }
+
+const CustomButtons = ({ flkty, children }) => {
+  const [index, setIndex] = useState(flkty?.selectedIndex)
+  const prevButton = useRef(null)
+  const nextButton = useRef(null)
+
+  useEffect(() => {
+    flkty.on('change', i => setIndex(i))
+  }, [])
+
+  // Navigation
+  useLayoutEffect(() => {
+    const handlePrev = () => flkty.select(index - 1)
+    const handleNext = () => flkty.select(index + 1)
+
+    if (prevButton?.current && nextButton?.current) {
+      prevButton.current.addEventListener('click', handlePrev)
+      nextButton.current.addEventListener('click', handleNext)
+    }
+
+    return () => {
+      if (prevButton?.current && nextButton?.current) {
+        prevButton.current.removeEventListener('click', handlePrev)
+        nextButton.current.removeEventListener('click', handleNext)
+      }
+    }
+  }, [prevButton, nextButton, flkty, index])
+
+  return (
+    <Navigation flkty={flkty} index={index} children={children}>
+      index: {index}
+      <button
+        ref={prevButton}
+        aria-label="Previous"
+        className="Navigation__button Navigation__button--prev"
+      >
+        prev
+        <Icon name="link" />
+      </button>
+      <button
+        ref={nextButton}
+        aria-label="Next"
+        className="Navigation__button Navigation__button--next"
+      >
+        next
+        <Icon name="plus" />
+      </button>
+    </Navigation>
+  )
+}
+
+const Navigation = styled.div(
+  ({ theme, flkty, index, children }) => css`
+    .Navigation__button {
+      height: ${flkty?.viewport?.getBoundingClientRect()?.height}px;
+      position: absolute;
+      top: 0;
+      background: ${theme?.colors?.background};
+      transition: ${theme?.transition?.fast};
+      z-index: 9;
+
+      &:active {
+        transform: translateX(-20px);
+      }
+
+      &--prev {
+        left: 0;
+        opacity: ${index < 1 ? 0 : 1};
+        pointer-events: ${index < 1 ? 'none' : 'auto'};
+      }
+
+      &--next {
+        right: 0;
+        opacity: ${index < children.length + 1 ? 1 : 0};
+        pointer-events: ${index < children.length + 1 ? 'auto' : 'none'};
+      }
+    }
+  `
+)
 
 export default styled(Carousel)(
   ({ theme }) => css`
@@ -110,10 +206,6 @@ export default styled(Carousel)(
       position: relative;
       height: 100%;
 
-      figure {
-        opacity: 0;
-        transition: 1s ease;
-      }
       .is-selected {
         opacity: 1;
       }
@@ -212,7 +304,6 @@ export default styled(Carousel)(
     .flickity-prev-next-button.next {
       right: 0;
       left: auto;
-      background: orange;
 
       &:after {
         content: '\\2192';
@@ -221,7 +312,6 @@ export default styled(Carousel)(
     }
     .flickity-prev-next-button.previous {
       left: 0;
-      background: red;
 
       &:after {
         content: '\\2190';
@@ -249,47 +339,46 @@ export default styled(Carousel)(
 
     .item {
       width: 80%;
-      background: orange;
-      height: 800px;
+      opacity: .5;
+
+      &.is-selected {
+        opacity: 1;
+      }
     }
 
     /* ---- page dots ---- */
 
-    /* .flickity-page-dots { */
-    /* display: none; */
-    /* } */
-
-    .flickity-rtl .flickity-page-dots {
-      direction: rtl;
-    }
-/*
     .flickity-page-dots {
       display: flex;
       justify-content: center;
-    } */
+    }
 
     .flickity-page-dots .dot {
       cursor: pointer;
 
       ${spacing.md('py')}
+      ${spacing.xs('mx')}
       width: ${remSize(50)};
 
       &:before {
         content: '';
+        display: inline-block;
         width: 100%;
         height: 2px;
-        background: ${theme.colors.primary};
+        background: orange;
         transition: ${theme.trans.fast};
       }
 
       &:hover {
         &:before {
-          background: ${color.darken(theme.colors.primary, 0.2)};
+          background: ${color.darken(theme.colors.text, 0.2)};
         }
       }
 
-      .is-selected {
-        opacity: 1;
+      &.is-selected {
+        &:before {
+          background: ${theme.colors.text};
+        }
       }
     }
 
