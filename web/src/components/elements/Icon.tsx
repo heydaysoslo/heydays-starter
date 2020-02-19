@@ -43,13 +43,16 @@ type Modifiers = 'small' | 'medium' | 'large'
 type Props = {
   name: Name
   color?: string
+  className?: string
   modifiers?: Modifiers | Modifiers[]
 }
 
-const Icon = ({ className, name = 'calendar' }) => {
+const Icon = ({ className, name = 'calendar' }: Props) => {
   const data = useStaticQuery(query)
   const icons = data?.allFile?.nodes
-  const [Component, setComponent] = useState<ComponentType | null>(null)
+  const [Component, setComponent] = useState<ComponentType<{
+    className?: string
+  }> | null>(null)
 
   const icon = icons.find(
     icon => icon.name.toLowerCase() === name.toLowerCase()
@@ -68,13 +71,7 @@ const Icon = ({ className, name = 'calendar' }) => {
     return null
   }
 
-  return (
-    Component && (
-      <div className={className}>
-        <Component />
-      </div>
-    )
-  )
+  return Component && <Component className={className} />
 }
 
 // Create modifiers based on theme.icons settings. Modifier name will be
