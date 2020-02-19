@@ -72,15 +72,15 @@ const Carousel = ({
       wrapper.addEventListener('touchstart', touchStart, {
         passive: true
       })
-      container.current.addEventListener('touchmove', preventTouch, {
+      wrapper.addEventListener('touchmove', preventTouch, {
         passive: false
       })
     }
 
     return () => {
       if (container?.current) {
-        container.current.removeEventListener('touchstart', touchStart)
-        container.current.removeEventListener('touchmove', preventTouch, {
+        wrapper.removeEventListener('touchstart', touchStart)
+        wrapper.removeEventListener('touchmove', preventTouch, {
           passive: false
         })
       }
