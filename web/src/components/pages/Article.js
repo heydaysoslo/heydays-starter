@@ -63,7 +63,7 @@ const Article = ({
         )}
         {currentArticles && (
           <section className="Article__latest">
-            <Grid columns={{ sm: 2 }}>
+            <Grid gap={true} columns={{ xs: 2 }}>
               {currentArticles.map(article => (
                 <Card
                   key={article?._key}
@@ -85,7 +85,7 @@ export default Article
 
 export const query = graphql`
   {
-    allSanityArticle(limit: 4) {
+    allSanityArticle(limit: 3) {
       nodes {
         _id
         _key
