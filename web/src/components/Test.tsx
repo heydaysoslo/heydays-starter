@@ -14,7 +14,7 @@ const Box = styled.div`
   padding: 10px;
   text-align: center;
   /* padding: 40px 10px; */
-  ${spacing.demovalue('py')};
+  ${spacing.gutter('p')};
 `
 
 const Test = ({ className }) => {
@@ -53,7 +53,7 @@ const Test = ({ className }) => {
       </Grid>
 
       <h3>Flex block grid (gaps)</h3>
-      <Grid gapUnit="demovalue" gap={true} columns={{ xs: 2, sm: 4 }}>
+      <Grid gap={true} columns={{ xs: 2, sm: 4 }}>
         <Box color="purple">Hello</Box>
         <Box color="red">Hello</Box>
         <Box color="blue">Hello</Box>

@@ -30,6 +30,36 @@ export const spacingUnit = {
   gutter: remSize(40)
 }
 
+export const responsiveSpacing = {
+  xs: {
+    xs: 'xs',
+    lg: 'sm'
+  },
+  sm: {
+    xs: 'sm',
+    lg: 'md'
+  },
+  md: {
+    xs: 'md',
+    lg: 'lg'
+  },
+  lg: {
+    xs: 'lg'
+  },
+  section: {
+    xs: '5vw'
+  },
+  gutter: {
+    xs: 'md',
+    lg: 'gutter'
+  },
+  container: {
+    xs: '10px',
+    md: 'lg',
+    lg: '5vw'
+  }
+}
+
 export const grid = {
   columns: 12
 }

@@ -1,8 +1,8 @@
 import { css } from 'styled-components'
 
+import { responsiveSpacing } from '../../styles/themes'
 import { addSpacingProps, parseCssUnit } from './helpers'
 import { bp } from './Breakpoints'
-import { remSize } from './Converters'
 
 const mixinDefs = {
   m: ['margin'],
@@ -125,17 +125,18 @@ const applyPropValueOptions = (value, options) => {
 /**
  * Spacing config proposal
  */
-const spacingConfig = {
-  demovalue: {
+
+/*
+
+USE:
+
+const responsiveSpacing = {
+  container: {
     xs: '10px',
     md: 'lg',
     lg: '5vw'
   }
 }
-
-/*
-
-USE:
 
 // Basic prop
 const Item = styled.div`
@@ -149,13 +150,13 @@ const Item = styled.div`
 
 */
 
-const spacingConfigMap = Object.keys(spacingConfig).reduce((acc, key) => {
+const spacingConfigMap = Object.keys(responsiveSpacing).reduce((acc, key) => {
   // Make spacing key accessible as object (ie: spacing.gutter)
   acc[key] = (props, options = {}) => ({ theme }) => {
     // Map through all breakpoints for current spacing setting
-    return Object.keys(spacingConfig[key]).map(bpKey => {
+    return Object.keys(responsiveSpacing[key]).map(bpKey => {
       // value can either be a theme.spacingUnit.key or a regular unit (like 10px)
-      const value = spacingConfig[key][bpKey]
+      const value = responsiveSpacing[key][bpKey]
       // Check if value is a key on the themes spacingUnit, if not use the value
       const unit = theme?.spacingUnit[value] || value
       return bp.above[bpKey]`
@@ -166,86 +167,73 @@ const spacingConfigMap = Object.keys(spacingConfig).reduce((acc, key) => {
   return acc
 }, {})
 
-export const responsiveSpacing = {
-  xs: (props, options) => ({ theme }) => css`
-    ${addSpacingProps(
-      props,
-      applyPropValueOptions(theme?.spacingUnit?.xs, options)
-    )}
-
-    ${bp.above.lg`
-      ${addSpacingProps(
-        props,
-        applyPropValueOptions(theme?.spacingUnit?.sm, options)
-      )}
-   `}
-  `,
-  sm: (props, options) => ({ theme }) => css`
-    ${addSpacingProps(
-      props,
-      applyPropValueOptions(theme?.spacingUnit?.sm, options)
-    )}
-
-    ${bp.above.lg`
-      ${addSpacingProps(
-        props,
-        applyPropValueOptions(theme?.spacingUnit?.md, options)
-      )}
-   `}
-  `,
-  md: (props, options) => ({ theme }) => css`
-    ${addSpacingProps(
-      props,
-      applyPropValueOptions(theme?.spacingUnit?.md, options)
-    )}
-
-    ${bp.above.lg`
-      ${addSpacingProps(
-        props,
-        applyPropValueOptions(theme?.spacingUnit?.lg, options)
-      )}
-   `}
-  `,
-  lg: (props, options) => ({ theme }) => css`
-    ${addSpacingProps(
-      props,
-      applyPropValueOptions(theme?.spacingUnit?.lg, options)
-    )}
-  `,
-  section: (props, options) => ({ theme }) => css`
-    ${addSpacingProps(
-      props,
-      applyPropValueOptions(theme?.spacingUnit?.section, options)
-    )}
-  `,
-  gutter: (props, options) => ({ theme }) => css`
-    ${addSpacingProps(
-      props,
-      applyPropValueOptions(theme?.spacingUnit?.md, options)
-    )}
-    ${bp.above.lg`
-      ${addSpacingProps(
-        props,
-        applyPropValueOptions(theme?.spacingUnit?.gutter, options)
-      )}
-   `}
-  `,
-  container: (props, options) => ({ theme }) => css`
-    ${addSpacingProps(
-      props,
-      applyPropValueOptions(theme?.spacingUnit?.md, options)
-    )}
-    ${bp.above.md`
-    ${addSpacingProps(
-      props,
-      applyPropValueOptions(theme?.spacingUnit?.lg, options)
-    )}
- `}
-  `
-}
-
 export const spacing = {
   ...mixins,
-  ...responsiveSpacing,
   ...spacingConfigMap
 }
+
+// export const responsiveSpacing = {
+//   xs: (props, options) => ({ theme }) => css`
+//     ${addSpacingProps(
+//       props,
+//       applyPropValueOptions(theme?.spacingUnit?.xs, options)
+//     )}
+
+//     ${bp.above.lg`
+//       ${addSpacingProps(
+//         props,
+//         applyPropValueOptions(theme?.spacingUnit?.sm, options)
+//       )}
+//    `}
+//   `,
+//   sm: (props, options) => ({ theme }) => css`
+//     ${addSpacingProps(
+//       props,
+//       applyPropValueOptions(theme?.spacingUnit?.sm, options)
+//     )}
+
+//     ${bp.above.lg`
+//       ${addSpacingProps(
+//         props,
+//         applyPropValueOptions(theme?.spacingUnit?.md, options)
+//       )}
+//    `}
+//   `,
+//   md: (props, options) => ({ theme }) => css`
+//     ${addSpacingProps(
+//       props,
+//       applyPropValueOptions(theme?.spacingUnit?.md, options)
+//     )}
+
+//     ${bp.above.lg`
+//       ${addSpacingProps(
+//         props,
+//         applyPropValueOptions(theme?.spacingUnit?.lg, options)
+//       )}
+//    `}
+//   `,
+//   lg: (props, options) => ({ theme }) => css`
+//     ${addSpacingProps(
+//       props,
+//       applyPropValueOptions(theme?.spacingUnit?.lg, options)
+//     )}
+//   `,
+//   section: (props, options) => ({ theme }) => css`
+//     ${addSpacingProps(
+//       props,
+//       applyPropValueOptions(theme?.spacingUnit?.section, options)
+//     )}
+//   `,
+//   gutter: (props, options) => ({ theme }) => css`
+//     ${addSpacingProps(
+//       props,
+//       applyPropValueOptions(theme?.spacingUnit?.md, options)
+//     )}
+//     ${bp.above.lg`
+//       ${addSpacingProps(
+//         props,
+//         applyPropValueOptions(theme?.spacingUnit?.gutter, options)
+//       )}
+//    `}
+//   `
+// }
