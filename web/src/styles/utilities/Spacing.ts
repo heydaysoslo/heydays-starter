@@ -108,7 +108,7 @@ const mixins = Object.keys(mixinDefs).reduce((acc, key) => {
 //
 
 const applyPropValueOptions = (value, options) => {
-  // Leave early if we don't have an official value
+  // Leave early if we don't have a value
   if (!value) {
     return value
   }
@@ -121,6 +121,50 @@ const applyPropValueOptions = (value, options) => {
   }
   return value
 }
+
+/**
+ * Spacing config proposal
+ */
+const spacingConfig = {
+  demovalue: {
+    xs: '10px',
+    md: 'lg',
+    lg: '5vw'
+  }
+}
+
+/*
+
+USE:
+
+// Basic prop
+const Item = styled.div`
+  ${spacing.key('my')};
+`
+
+// With options
+const Item = styled.div`
+  ${spacing.key('my,py', {multiplier:0.5})};
+`
+
+*/
+
+const spacingConfigMap = Object.keys(spacingConfig).reduce((acc, key) => {
+  // Make spacing key accessible as object (ie: spacing.gutter)
+  acc[key] = (props, options = {}) => ({ theme }) => {
+    // Map through all breakpoints for current spacing setting
+    return Object.keys(spacingConfig[key]).map(bpKey => {
+      // value can either be a theme.spacingUnit.key or a regular unit (like 10px)
+      const value = spacingConfig[key][bpKey]
+      // Check if value is a key on the themes spacingUnit, if not use the value
+      const unit = theme?.spacingUnit[value] || value
+      return bp.above[bpKey]`
+          ${addSpacingProps(props, applyPropValueOptions(unit, options))}
+        `
+    })
+  }
+  return acc
+}, {})
 
 export const responsiveSpacing = {
   xs: (props, options) => ({ theme }) => css`
@@ -202,5 +246,6 @@ export const responsiveSpacing = {
 
 export const spacing = {
   ...mixins,
-  ...responsiveSpacing
+  ...responsiveSpacing,
+  ...spacingConfigMap
 }
