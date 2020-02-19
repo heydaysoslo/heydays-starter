@@ -54,3 +54,12 @@ export type BorderProps =
   | 'border-right'
   | 'border-bottom'
   | 'border-left'
+
+export type SpacingUnits =
+  | 'xs'
+  | 'sm'
+  | 'md'
+  | 'lg'
+  | 'xl'
+  | 'section'
+  | 'gutter'

@@ -76,6 +76,8 @@ const Index = () => {
         {response && <pre>{JSON.stringify(secondResponse, null, 2)}</pre>}
         {error && <p>Kanye Rest error: {JSON.stringify(secondError)}</p>}
       </div>
+      {/* <Video url="https://www.youtube.com/watch?v=hHW1oY26kxQ" /> */}
+      {/* <Video url="https://vimeo.com/390848060" /> */}
       <Test />
       <Button modifiers="small">Click me</Button>
       <Button modifiers={['secondary', 'small']}>Click me</Button>

@@ -22,7 +22,7 @@ const TextImageSplit = ({
       <Grid
         reverse={textOnTheRight}
         columns={{ sm: 2 }}
-        gap="px"
+        gap={true}
         align="center"
       >
         <div className="content">
@@ -53,7 +53,12 @@ const TextImageSplit = ({
 
 export default styled(TextImageSplit)(
   ({ theme }) => css`
-    ${spacing.gutter('mx', true)}
     ${spacing.section('my')}
+    .TextImageSplit__content {
+      ${spacing.sm('mt')}
+    }
+    .TextImageSplit__button {
+      ${spacing.sm('mt')}
+    }
   `
 )

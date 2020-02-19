@@ -6,7 +6,8 @@ import {
   FlexBoxAlignItems,
   SpacingMixins,
   ResponsiveColumns,
-  ResponsiveReverse
+  ResponsiveReverse,
+  SpacingUnits
 } from '../../types'
 
 type Props = {
@@ -14,15 +15,18 @@ type Props = {
   columns?: ResponsiveColumns | number // This will override span in GridItem
   reverse?: ResponsiveReverse | boolean
   align?: FlexBoxAlignItems
-  gap?: SpacingMixins
+  justify?: FlexBoxJustifyContent
   collapse?: boolean | SpacingMixins
+  gapUnit?: SpacingUnits
+  gap?: object | boolean
+  gapY?: object | boolean
+  gapX?: object | boolean
 }
 
 type GridItemProps = {
   className?: string
   offset?: ResponsiveColumns | number
   span?: ResponsiveColumns | number
-  gap?: SpacingMixins
   collapse?: boolean
 }
 
@@ -47,17 +51,25 @@ const BaseGridItem: React.FC<GridItemProps> = ({ children, className }) => {
 }
 
 export const GridItem = styled(BaseGridItem)<GridItemProps>(
-  ({ theme, span, gap, offset }) => css`
+  ({ theme, span, offset }) => css`
+    
     box-sizing: border-box;
     flex: 0 0 100%;
-    max-width: 100%;
     width: 100%;
-    ${span &&
-      typeof span === 'number' &&
-      css`
-        flex-basis: ${(span / (theme?.grid?.columns || 12)) * 100}%;
-        max-width: ${(span / (theme?.grid?.columns || 12)) * 100}%;
-      `}
+    max-width: 100%;
+
+    ${
+      span && typeof span === 'number' && span > 1
+        ? css`
+            flex-basis: ${(span / (theme?.grid?.columns || 12)) * 100}%;
+            max-width: ${(span / (theme?.grid?.columns || 12)) * 100}%;
+          `
+        : css`
+            flex-basis: ${span * 100}%;
+            max-width: ${span * 100}%;
+          `
+    }
+
     ${span &&
       typeof span === 'object' &&
       Object.keys(span).map(
@@ -66,12 +78,13 @@ export const GridItem = styled(BaseGridItem)<GridItemProps>(
             max-width: ${(span[key] / (theme?.grid?.columns || 12)) * 100}%;
           `
       )}
-    ${gap && spacing?.gutter && spacing.gutter(gap)}
+    
     ${offset &&
       typeof offset === 'number' &&
       css`
         margin-left: ${(offset / (theme?.grid?.columns || 12)) * 100}%;
       `}
+
     ${offset &&
       typeof offset === 'object' &&
       Object.keys(offset).map(
@@ -83,39 +96,61 @@ export const GridItem = styled(BaseGridItem)<GridItemProps>(
 )
 
 export default styled(BaseGrid)<Props>(
-  ({ theme, reverse, align, gap, columns, collapse }) => css`
+  ({
+    theme,
+    reverse,
+    align,
+    justify,
+    gap,
+    columns,
+    collapse,
+    gapUnit = 'gutter',
+    gapY,
+    gapX
+  }) => css`
     display: flex;
     flex: 0 1 auto;
-    flex-direction: ${reverse ? 'column-reverse' : 'column'};
-    min-height: 0;
+    flex-direction: ${reverse ? 'row-reverse' : 'row'};
     flex-wrap: wrap;
-    align-items: ${align ? align : 'auto'};
+    align-items: ${align ? align : 'stretch'};
+    justify-content: ${justify ? justify : 'flex-start'};
+    min-height: 0;
 
-    ${bp.above.sm`
-      flex-direction: ${reverse ? 'row-reverse' : 'row'};
-    `}
+    /* Make it possible to add margins */
+    ${gapY && spacing[gapUnit]('my', { multiplier: -0.5 })}
+    ${gapX && spacing[gapUnit]('mx', { multiplier: -0.5 })}
+    ${gap && spacing[gapUnit]('mx,my', { multiplier: -0.5 })}
 
-    ${GridItem} {
-      ${gap && !collapse && spacing.gutter(gap)}
+    > ${GridItem} {
+
+      ${gapY && spacing[gapUnit]('py', { multiplier: 0.5 })}
+      ${gapX && spacing[gapUnit]('px', { multiplier: 0.5 })}
+      ${gap && spacing[gapUnit]('p', { multiplier: 0.5 })}
+
       ${collapse &&
         css`
           margin: 0;
           padding: 0;
         `}
+
+      /* Generate item width based on number */
       ${columns &&
         typeof columns === 'number' &&
         css`
-          flex-basis: ${(columns / (theme?.grid?.columns || 12)) * 100}%;
-          max-width: ${(columns / (theme?.grid?.columns || 12)) * 100}%;
+          flex-basis: ${100 / columns}%;
+          max-width: ${100 / columns}%;
         `}
+
+      /* Generate item width based on breakpoints */
       ${columns &&
         typeof columns === 'object' &&
         Object.keys(columns).map(
           key => bp.above[key]`
-            flex-basis: ${(1 / columns[key]) * 100}%;
-            max-width: ${(1 / columns[key]) * 100}%;
+            flex-basis: ${100 / columns[key]}%;
+            max-width: ${100 / columns[key]}%;
           `
         )}
+
     }
   `
 )

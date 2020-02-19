@@ -7,6 +7,7 @@ import SanityImage from '../editor/SanityImage'
 import { Grid, GridItem, Container, Card } from '../elements'
 import Share from '../Share'
 import PageBuilder from '../pagebuilder/Pagebuilder'
+import Author from '../elements/Author'
 
 const Article = ({
   _id,
@@ -34,27 +35,6 @@ const Article = ({
     <Container>
       <article className="Article">
         <Grid reverse={{ md: true }}>
-          <GridItem span={{ md: 3 }}>
-            {body && `Read time: ${getReadTime(body)}min`}
-            {publishDate && <p className="Article__date">{publishDate}</p>}
-            {authors &&
-              authors.map(author => (
-                <div className="Author" key={author._key}>
-                  {author?.person?.image && (
-                    <div className="Author__image">
-                      <SanityImage
-                        node={author.person.image}
-                        aspectRatio="square"
-                      />
-                    </div>
-                  )}
-                  {author?.person?.name && (
-                    <h3 className="Author__title">{author.person.name}</h3>
-                  )}
-                </div>
-              ))}
-            {slug && slug.current && <Share type={_type} slug={slug.current} />}
-          </GridItem>
           <GridItem span={{ sm: 12, md: 9 }}>
             <header className="Article__header">
               {title && <h1 className="Article__title">{title}</h1>}
@@ -70,13 +50,20 @@ const Article = ({
               </div>
             )}
           </GridItem>
+          <GridItem span={{ md: 3 }}>
+            {body && `Read time: ${getReadTime(body)}min`}
+            {publishDate && <p className="Article__date">{publishDate}</p>}
+            {authors &&
+              authors.map(author => <Author key={author._key} {...author} />)}
+            {slug && slug.current && <Share type={_type} slug={slug.current} />}
+          </GridItem>
         </Grid>
         {pagebuilder?.sections && (
           <PageBuilder sections={pagebuilder.sections} />
         )}
         {currentArticles && (
           <section className="Article__latest">
-            <Grid columns={{ sm: 2 }}>
+            <Grid gap={true} columns={{ xs: 2 }}>
               {currentArticles.map(article => (
                 <Card
                   key={article?._key}
@@ -98,7 +85,7 @@ export default Article
 
 export const query = graphql`
   {
-    allSanityArticle(limit: 4) {
+    allSanityArticle(limit: 3) {
       nodes {
         _id
         _key
