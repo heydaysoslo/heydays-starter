@@ -43,8 +43,8 @@ export const aspectRatios = createAspectRatios({
  * Inititially none of the providers add js as script tags
  *
  * You can check provider name here: https://oembed.com/providers.json
- * (Make sure it's in lowercase)
  */
 export const allowedEmbedProviders = ['vimeo', 'youtube', 'soundcloud']
-export const isProviderAllowed = provider =>
-  allowedEmbedProviders.indexOf(provider) >= 0
+export const isProviderAllowed = provider => {
+  return allowedEmbedProviders.indexOf(provider.toLowerCase()) >= 0
+}
