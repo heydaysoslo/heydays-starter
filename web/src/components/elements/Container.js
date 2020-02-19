@@ -9,6 +9,6 @@ const Container = ({ children, className }) => {
 export default styled(Container)(
   ({ theme }) => css`
     width: 100%;
-    ${spacing.gutter('px')}
+    ${spacing.container('px')}
   `
 )

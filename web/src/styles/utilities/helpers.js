@@ -43,3 +43,18 @@ export const addProps = (propsString, value) => {
     )}
   `
 }
+
+/**
+ * Parses css unit and returns object with number and unit separated
+ * @param {string|number} cssUnit CSS length unit (1em, 2rem, 3vh, 4vw, 100%, ...)
+ * @returns {object} float and unit separated {number:float, unit:string}
+ */
+export const parseCssUnit = cssUnit => {
+  const number = parseFloat(cssUnit)
+  // Leave early if a unitless number is passed
+  if (!isNaN(cssUnit)) {
+    return { number, unit: '' }
+  }
+  const unit = cssUnit.replace(/^[\-\d\.]+/, '')
+  return { number, unit }
+}

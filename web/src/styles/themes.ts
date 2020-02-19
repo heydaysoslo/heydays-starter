@@ -27,7 +27,7 @@ export const spacingUnit = {
   lg: remSize(40),
   xl: remSize(80),
   section: remSize(160),
-  gutter: remSize(20)
+  gutter: remSize(40)
 }
 
 export const grid = {
@@ -145,7 +145,7 @@ export const darkTheme: DefaultTheme = {
     lg: remSize(140),
     xl: remSize(180),
     section: remSize(1160),
-    gutter: remSize(120)
+    gutter: remSize(30)
   },
   breakpoints: {
     xs: 0,
