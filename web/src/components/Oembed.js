@@ -14,6 +14,15 @@ const Oembed = ({ url, className }) => {
       body: JSON.stringify({ url })
     }
   )
+  if (
+    embed?.result?.provider_name &&
+    !isProviderAllowed(embed?.result?.provider_name)
+  ) {
+    console.info(
+      `Provider ${embed?.result?.provider_name} is not allowed. Check isProviderAllowed()`
+    )
+    return null
+  }
   if (isLoading || error) return null
   return (
     <div className={className}>
