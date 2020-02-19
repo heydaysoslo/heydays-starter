@@ -38,11 +38,17 @@ const above = Object.keys(breakpoints).reduce((accumulator, bp) => {
   // changing their browsers font-size: https://zellwk.com/blog/media-query-units/
   accumulator[bp] = (...args) => {
     return function(props) {
-      return css`
-        @media (min-width: ${emSize(props.theme.breakpoints[bp])}) {
+      if (props.theme.breakpoints[bp] === 0) {
+        return css`
           ${css(...args)};
-        }
-      `
+        `
+      } else {
+        return css`
+          @media (min-width: ${emSize(props.theme.breakpoints[bp])}) {
+            ${css(...args)};
+          }
+        `
+      }
     }
   }
   return accumulator
