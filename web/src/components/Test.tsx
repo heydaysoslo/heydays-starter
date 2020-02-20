@@ -11,10 +11,8 @@ const Box = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 12px;
-  padding: 10px;
   text-align: center;
-  /* padding: 40px 10px; */
-  ${spacing.gutter('p')};
+  ${spacing.sm('p')};
 `
 
 const Test = ({ className }) => {

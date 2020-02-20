@@ -91,7 +91,24 @@ export const GridItem = styled(BaseGridItem)<GridItemProps>(
   `
 )
 
-const handleResponsiveSpacing = ({ gap, gapUnit, multiplier, cssProps }) => {
+const setResponsiveColumns = columns => {
+  switch (typeof columns) {
+    case 'number':
+      return css`
+        flex-basis: ${100 / columns}%;
+        max-width: ${100 / columns}%;
+      `
+    case 'object':
+      return Object.keys(columns).map(
+        key => bp.above[key]`
+        flex-basis: ${100 / columns[key]}%;
+        max-width: ${100 / columns[key]}%;
+      `
+      )
+  }
+}
+
+const setResponsiveGaps = ({ gap, gapUnit, multiplier, cssProps }) => {
   if (typeof gap === 'object') {
     return Object.keys(gap).map(
       key => bp.above[key]`
@@ -124,24 +141,27 @@ export default styled(BaseGrid)<Props>(
     min-height: 0;
 
     /* Add responsive negative margins to container */
+    /* Vertical */
     ${gapY &&
-      handleResponsiveSpacing({
+      setResponsiveGaps({
         gap: gapY,
         gapUnit,
         multiplier: -0.5,
         cssProps: 'my'
       })}
-
+      
+    /* Horizontal */
     ${gapX &&
-      handleResponsiveSpacing({
+      setResponsiveGaps({
         gap: gapX,
         gapUnit,
         multiplier: -0.5,
         cssProps: 'mx'
       })}
 
+    /* Vertical + horizontal */
     ${gap &&
-      handleResponsiveSpacing({
+      setResponsiveGaps({
         gap,
         gapUnit,
         multiplier: -0.5,
@@ -150,48 +170,35 @@ export default styled(BaseGrid)<Props>(
 
     > ${GridItem} {
       
-      /* Add responsive margins to grid item */
+      /* Add responsive margins to GridItem */
+      /* Vertical */
       ${gapY &&
-        handleResponsiveSpacing({
+        setResponsiveGaps({
           gap: gapY,
           gapUnit,
           multiplier: 0.5,
           cssProps: 'py'
         })}
 
+      /* Horizontal */
       ${gapX &&
-        handleResponsiveSpacing({
+        setResponsiveGaps({
           gap: gapX,
           gapUnit,
           multiplier: 0.5,
           cssProps: 'px'
         })}
 
+      /* Vertical + horizontal */
       ${gap &&
-        handleResponsiveSpacing({
+        setResponsiveGaps({
           gap,
           gapUnit,
           multiplier: 0.5,
           cssProps: 'p'
         })}
 
-      /* Generate item width based on number */
-      ${columns &&
-        typeof columns === 'number' &&
-        css`
-          flex-basis: ${100 / columns}%;
-          max-width: ${100 / columns}%;
-        `}
-
-      /* Generate item width based on breakpoints */
-      ${columns &&
-        typeof columns === 'object' &&
-        Object.keys(columns).map(
-          key => bp.above[key]`
-            flex-basis: ${100 / columns[key]}%;
-            max-width: ${100 / columns[key]}%;
-          `
-        )}
+      ${columns && setResponsiveColumns(columns)}
 
     }
   `
