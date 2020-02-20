@@ -44,7 +44,8 @@ export const responsiveSpacing = {
     lg: 'lg'
   },
   lg: {
-    xs: 'lg'
+    xs: 'lg',
+    lg: '12rem'
   },
   section: {
     xs: '5vw'
