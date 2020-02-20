@@ -1,10 +1,8 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-
 import { bp, spacing } from '../../styles/utilities'
 import {
   FlexBoxAlignItems,
-  SpacingMixins,
   ResponsiveColumns,
   ResponsiveReverse,
   SpacingUnits
@@ -16,7 +14,6 @@ type Props = {
   reverse?: ResponsiveReverse | boolean
   align?: FlexBoxAlignItems
   justify?: FlexBoxJustifyContent
-  collapse?: boolean | SpacingMixins
   gapUnit?: SpacingUnits
   gap?: object | boolean
   gapY?: object | boolean
@@ -27,7 +24,6 @@ type GridItemProps = {
   className?: string
   offset?: ResponsiveColumns | number
   span?: ResponsiveColumns | number
-  collapse?: boolean
 }
 
 const BaseGrid: React.FC<Props> = ({ className, children }) => {
@@ -95,6 +91,18 @@ export const GridItem = styled(BaseGridItem)<GridItemProps>(
   `
 )
 
+const handleResponsiveSpacing = ({ gap, gapUnit, multiplier, cssProps }) => {
+  if (typeof gap === 'object') {
+    return Object.keys(gap).map(
+      key => bp.above[key]`
+${spacing[gapUnit](cssProps, { multiplier: gap[key] ? multiplier : 0 })}
+`
+    )
+  } else {
+    return spacing[gapUnit](cssProps, { multiplier })
+  }
+}
+
 export default styled(BaseGrid)<Props>(
   ({
     theme,
@@ -103,7 +111,6 @@ export default styled(BaseGrid)<Props>(
     justify,
     gap,
     columns,
-    collapse,
     gapUnit = 'gutter',
     gapY,
     gapX
@@ -116,22 +123,57 @@ export default styled(BaseGrid)<Props>(
     justify-content: ${justify ? justify : 'flex-start'};
     min-height: 0;
 
-    /* Make it possible to add margins */
-    ${gapY && spacing[gapUnit]('my', { multiplier: -0.5 })}
-    ${gapX && spacing[gapUnit]('mx', { multiplier: -0.5 })}
-    ${gap && spacing[gapUnit]('mx,my', { multiplier: -0.5 })}
+    /* Add responsive negative margins to container */
+    ${gapY &&
+      handleResponsiveSpacing({
+        gap: gapY,
+        gapUnit,
+        multiplier: -0.5,
+        cssProps: 'my'
+      })}
+
+    ${gapX &&
+      handleResponsiveSpacing({
+        gap: gapX,
+        gapUnit,
+        multiplier: -0.5,
+        cssProps: 'mx'
+      })}
+
+    ${gap &&
+      handleResponsiveSpacing({
+        gap,
+        gapUnit,
+        multiplier: -0.5,
+        cssProps: 'mx,my'
+      })}
 
     > ${GridItem} {
+      
+      /* Add responsive margins to grid item */
+      ${gapY &&
+        handleResponsiveSpacing({
+          gap: gapY,
+          gapUnit,
+          multiplier: 0.5,
+          cssProps: 'py'
+        })}
 
-      ${gapY && spacing[gapUnit]('py', { multiplier: 0.5 })}
-      ${gapX && spacing[gapUnit]('px', { multiplier: 0.5 })}
-      ${gap && spacing[gapUnit]('p', { multiplier: 0.5 })}
+      ${gapX &&
+        handleResponsiveSpacing({
+          gap: gapX,
+          gapUnit,
+          multiplier: 0.5,
+          cssProps: 'px'
+        })}
 
-      ${collapse &&
-        css`
-          margin: 0;
-          padding: 0;
-        `}
+      ${gap &&
+        handleResponsiveSpacing({
+          gap,
+          gapUnit,
+          multiplier: 0.5,
+          cssProps: 'p'
+        })}
 
       /* Generate item width based on number */
       ${columns &&

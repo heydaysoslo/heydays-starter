@@ -112,8 +112,8 @@ const applyPropValueOptions = (value, options) => {
   if (!value) {
     return value
   }
-  // Apply multipier
-  if (options?.multiplier) {
+  // Apply multipier if its a number
+  if (!isNaN(options?.multiplier)) {
     const unitParsed = parseCssUnit(value)
     if (unitParsed.number) {
       return `${unitParsed.number * options.multiplier}${unitParsed.unit}`
