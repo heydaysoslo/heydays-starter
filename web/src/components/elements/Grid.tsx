@@ -55,7 +55,7 @@ export const GridItem = styled(BaseGridItem)<GridItemProps>(
     max-width: 100%;
 
     ${
-      span && typeof span === 'number' && span > 1
+      span && typeof span === 'number' && span >= 1
         ? css`
             flex-basis: ${(span / (theme?.grid?.columns || 12)) * 100}%;
             max-width: ${(span / (theme?.grid?.columns || 12)) * 100}%;
