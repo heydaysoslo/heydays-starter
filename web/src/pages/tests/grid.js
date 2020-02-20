@@ -14,135 +14,115 @@ const Box = styled.div`
   text-align: center;
 `
 
-const Test = ({ className }) => {
+const colors = [
+  'silver',
+  'purple',
+  'gray',
+  'pink',
+  'lime',
+  'coral',
+  'red',
+  'yellow',
+  'blue',
+  'green',
+  'palegreen',
+  'teal'
+]
+
+const GridBlocks = props => {
+  return (
+    <Grid {...props}>
+      {[12, 11, 1, 10, 2, 9, 3, 8, 4, 6, 6].map((span, index) => {
+        return (
+          <GridItem key={`item-${index}`} span={span}>
+            <Box color={colors[index]}>{span}</Box>
+          </GridItem>
+        )
+      })}
+    </Grid>
+  )
+}
+
+const GridTest = ({ className }) => {
   return (
     <Layout>
       <div className={className}>
-        <h3>Flex block grid (no gaps)</h3>
-        <Grid columns={{ xs: 2, sm: 4 }}>
-          <Box color="purple">Hello</Box>
-          <Box color="red">Hello</Box>
-          <Box color="blue">Hello</Box>
-          <Box color="green">Hello</Box>
-          <Box color="silver">Hello</Box>
-          <Box color="coral">Hello</Box>
-          <Box color="gray">Hello</Box>
-          <Box color="yellow">Hello</Box>
-          <Grid columns={2}>
-            <Box color="purple">Nested box 1</Box>
-            <Box color="red">Nested box 2</Box>
-          </Grid>
-          <Grid columns={{ xs: 2, lg: 4 }}>
-            <Box color="purple">Nested box 1</Box>
-            <Box color="red">Nested box 2</Box>
-            <Box color="silver">Nested box 3</Box>
-            <Box color="gray">Nested box 4</Box>
-          </Grid>
-        </Grid>
-        <h3>Flex grid (no gaps)</h3>
-        <Grid>
-          <GridItem>
-            <Box color="purple">Hello</Box>
-          </GridItem>
-          <GridItem>
-            <Box color="silver">Hello</Box>
-          </GridItem>
-        </Grid>
-
-        <h3>Flex block grid (gaps)</h3>
-        <Grid gap={true} columns={{ xs: 2, sm: 4 }}>
-          <Box color="purple">Hello</Box>
-          <Box color="red">Hello</Box>
-          <Box color="blue">Hello</Box>
-          <Box color="green">Hello</Box>
-          <Box color="silver">Hello</Box>
-          <Box color="coral">Hello</Box>
-          <Box color="gray">Hello</Box>
-          <Box color="yellow">Hello</Box>
-          <div>
-            <Grid gap={true} columns={2}>
-              <Box color="purple">Nested grid</Box>
-              <Box color="red">with gaps</Box>
-            </Grid>
-          </div>
-          <div>
-            <Grid columns={{ xs: 2, lg: 4 }}>
-              <Box color="purple">Nested</Box>
-              <Box color="red">grid</Box>
-              <Box color="silver">no</Box>
-              <Box color="gray">gaps</Box>
-            </Grid>
-          </div>
-        </Grid>
-
-        <h3>Flex grid (gaps)</h3>
-        <Grid gap={true}>
-          <GridItem>
-            <Box color="purple">Hello</Box>
-          </GridItem>
-          <GridItem>
-            <Box color="silver">Hello</Box>
-          </GridItem>
-        </Grid>
-
-        <h3>Responsive gaps test</h3>
-        <Grid
-          gapX={{ xs: true, sm: false }}
-          gapY={{ sm: true, lg: false }}
-          gap={{ xl: true }}
-          columns={{ xs: 2, sm: 4 }}
-        >
-          <Box color="purple">Hello</Box>
-          <Box color="red">Hello</Box>
-          <Box color="blue">Hello</Box>
-          <Box color="green">Hello</Box>
-          <Box color="silver">Hello</Box>
-          <Box color="coral">Hello</Box>
-          <Box color="gray">Hello</Box>
-          <Box color="yellow">Hello</Box>
-        </Grid>
-
         <Container>
-          <h3>Flex grid contained (gaps)</h3>
-          <Grid gapY={true} gapX={true}>
-            <GridItem span={6}>
-              <Box color="purple">6</Box>
-            </GridItem>
-            <GridItem span={6}>
-              <Box color="silver">6</Box>
-            </GridItem>
-            <GridItem span={4}>
-              <Box color="purple">4</Box>
-            </GridItem>
-            <GridItem span={4}>
-              <Box color="silver">4</Box>
-            </GridItem>
-            <GridItem span={4}>
-              <Box color="red">4</Box>
-            </GridItem>
-          </Grid>
-          <h3>Space between the planets</h3>
+          <h1>Grids</h1>
+          <p>
+            Make reference similar to{' '}
+            <a href="http://flexboxgrid.com/">flexboxgrid.com</a>
+          </p>
           <Grid columns={{ sm: 3, md: 6, lg: 12 }} gap={true}>
             {[...new Array(12)].map((box, i) => (
               <Box>{i + 1}</Box>
             ))}
           </Grid>
-          <h3>Space between your ears</h3>
-          <Grid gapX={true}>
-            <GridItem span={{ xs: 4, md: 5, lg: 2 }}>
-              <Box color="purple">Hello</Box>
-              <Grid>
-                <GridItem span={0.5}>
-                  <Box color="purple">Hello</Box>
-                </GridItem>
-                <GridItem span={0.5}>
-                  <Box color="red">There</Box>
-                </GridItem>
+
+          <h3>Grid without gaps</h3>
+          <GridBlocks />
+
+          <h3>Grid with vertical and horizontal gaps</h3>
+          <GridBlocks gap={true} />
+
+          <h3>Grid with horizontal gaps</h3>
+          <GridBlocks gapX={true} />
+
+          <h3>Grid with vertical gaps</h3>
+          <GridBlocks gapY={true} />
+
+          <h3>Grid with responsive gaps</h3>
+          <GridBlocks
+            gapX={{ xs: true, sm: false }}
+            gapY={{ sm: true, lg: false }}
+            gap={{ lg: true }}
+          />
+
+          <h3>Grid with custom gap unit</h3>
+          <GridBlocks gap={true} gapUnit="xs" />
+
+          <h3>Block grid</h3>
+          <Grid columns={{ xs: 2, sm: 3, md: 4, lg: 5, xl: 6 }}>
+            {colors.map((color, index) => {
+              return (
+                <Box key={`ColorBox-${index}`} color={color}>
+                  {color}
+                </Box>
+              )
+            })}
+          </Grid>
+
+          <h3>Block grid with gaps</h3>
+          <Grid gap={true} columns={{ xs: 2, sm: 3, md: 4, lg: 5, xl: 6 }}>
+            {colors.map((color, index) => {
+              return (
+                <Box key={`ColorBox-${index}`} color={color}>
+                  {color}
+                </Box>
+              )
+            })}
+          </Grid>
+
+          <h3>Nested grids</h3>
+          <Grid gap={true} columns={{ md: 2 }}>
+            <div>
+              <h4>No gaps nested</h4>
+              <Grid columns={2}>
+                <Box>Lorem</Box>
+                <Box>Ipsum</Box>
+                <Box>Lorem</Box>
+                <Box>Ipsum</Box>
               </Grid>
-            </GridItem>
-            <GridItem span={3}>
-              <Box color="red">There</Box>
-            </GridItem>
+            </div>
+            <div>
+              <h4>Gaps nested</h4>
+              <Grid gap={true} columns={2}>
+                <Box>Lorem</Box>
+                <Box>Lorem</Box>
+                <Box>Lorem</Box>
+                <Box>Lorem</Box>
+              </Grid>
+            </div>
           </Grid>
         </Container>
       </div>
@@ -150,4 +130,19 @@ const Test = ({ className }) => {
   )
 }
 
-export default styled(Test)(({ theme }) => css``)
+export default styled(GridTest)(
+  ({ theme }) => css`
+    padding-bottom: 5vw;
+    border-bottom: 1px solid silver;
+    h1,
+    h3 {
+      margin-top: 5vw;
+      margin-bottom: 1vw;
+    }
+    h4,
+    p {
+      margin-top: 1vw;
+      margin-bottom: 1vw;
+    }
+  `
+)
