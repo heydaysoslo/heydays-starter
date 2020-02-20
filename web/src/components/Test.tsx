@@ -88,6 +88,23 @@ const Test = ({ className }) => {
         </GridItem>
       </Grid>
 
+      <h3>Responsive gaps test</h3>
+      <Grid
+        gapX={{ xs: true, sm: false }}
+        gapY={{ sm: true, lg: false }}
+        gap={{ xl: true }}
+        columns={{ xs: 2, sm: 4 }}
+      >
+        <Box color="purple">Hello</Box>
+        <Box color="red">Hello</Box>
+        <Box color="blue">Hello</Box>
+        <Box color="green">Hello</Box>
+        <Box color="silver">Hello</Box>
+        <Box color="coral">Hello</Box>
+        <Box color="gray">Hello</Box>
+        <Box color="yellow">Hello</Box>
+      </Grid>
+
       <Container>
         <Grid gap={true} align="center" justify="center">
           <GridItem span={{ sm: 6, lg: 4 }}>
