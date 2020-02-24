@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import Layout from '../../../components/Layout'
-import { Grid, GridItem, Container, Cover } from '../../../components/elements'
+import { Grid, GridItem, Container } from '../../../components/elements'
 import { spacing } from '../../../styles/utilities'
 import CoverImage from '../../../components/tests/CoverImage'
-import { AccountCircle, Lock } from 'styled-icons/material'
+import { AccountCircle } from 'styled-icons/material'
 
 const TestSection = styled.section`
   ${spacing.lg('py')};
@@ -27,17 +27,22 @@ const CoverGroup = styled.div`
 `
 
 const IconButton = styled.button`
-  background: red;
-  color: yellow;
+  border: 1px solid red;
+  color: red;
   display: flex;
   align-items: center;
   margin: 20px 0;
-  padding: 1rem 2rem;
+  padding: 1rem 1.5rem 1.1rem;
   border-radius: 4px;
   svg {
     display: inline-block;
     width: 24px;
-    margin-left: 4px;
+    height: 24px;
+    margin-left: 0.5em;
+  }
+  &:hover {
+    background: red;
+    color: white;
   }
 `
 
@@ -47,11 +52,10 @@ const Index = () => {
       <CoverGroup>
         <Container>
           <IconButton>
-            Hello
+            <span>Check this out</span>
             <AccountCircle />
-            <Lock />
           </IconButton>
-          <Grid gap={true} columns={{ xs: 2, md: 4 }}>
+          <Grid gap={true} gapUnit="pixel" columns={{ xs: 2, md: 4 }}>
             <CoverImage />
             <CoverImage />
             <CoverImage />
