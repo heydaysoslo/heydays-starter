@@ -1,8 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import Layout from '../../../components/Layout'
-import { Grid, GridItem, Container } from '../../../components/elements'
+import { Grid, GridItem, Container, Cover } from '../../../components/elements'
 import { spacing } from '../../../styles/utilities'
+import CoverImage from '../../../components/tests/CoverImage'
+import { AccountCircle, Lock } from 'styled-icons/material'
 
 const TestSection = styled.section`
   ${spacing.lg('py')};
@@ -20,9 +22,47 @@ const ImageTextSplit = styled.section`
   ${spacing.lg('py')};
 `
 
+const CoverGroup = styled.div`
+  ${spacing.lg('my')};
+`
+
+const IconButton = styled.button`
+  background: red;
+  color: yellow;
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  svg {
+    display: inline-block;
+    width: 24px;
+    margin-left: 4px;
+  }
+`
+
 const Index = () => {
   return (
     <Layout>
+      <CoverGroup>
+        <Container>
+          <IconButton>
+            Hello
+            <AccountCircle />
+            <Lock />
+          </IconButton>
+          <Grid gap={true} columns={{ xs: 2, md: 4 }}>
+            <CoverImage />
+            <CoverImage />
+            <CoverImage />
+            <CoverImage />
+            <CoverImage />
+            <CoverImage />
+            <CoverImage />
+            <CoverImage />
+          </Grid>
+        </Container>
+      </CoverGroup>
       <TestSection>
         <Container>
           <Grid gap={true}>
@@ -205,11 +245,9 @@ const Index = () => {
       </TestSection>
       <ImageTextSplit>
         <Container>
-          <Grid gap={true} align="center" justify="center">
-            <GridItem span={{ sm: 6, lg: 4 }}>
-              <img src="https://source.unsplash.com/random" />
-            </GridItem>
-            <GridItem span={{ sm: 6, lg: 4 }}>
+          <Grid columns={{ sm: 2 }} gap={true} align="center" justify="center">
+            <img src="https://source.unsplash.com/random" />
+            <>
               <h3>Lorem ipsum</h3>
               <p>
                 Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -225,7 +263,7 @@ const Index = () => {
                 <div>Feature 3</div>
                 <div>Feature 4</div>
               </Grid>
-            </GridItem>
+            </>
           </Grid>
         </Container>
       </ImageTextSplit>
