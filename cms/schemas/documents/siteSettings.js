@@ -1,92 +1,97 @@
-import MdSettings from 'react-icons/lib/md/settings'
+import MdSettings from "react-icons/lib/md/settings";
 
 export default {
-  name: 'siteSettings',
-  title: 'Site Settings',
-  type: 'document',
+  name: "siteSettings",
+  title: "Site Settings",
+  type: "document",
   // liveEdit: false,
-  __experimental_actions: ['update', 'publish' /*'create', 'delete'*/],
+  __experimental_actions: ["update", "publish" /*'create', 'delete'*/],
   icon: MdSettings,
   fieldsets: [
-    { name: 'important', title: 'Important pages' },
-    { name: 'seo', title: 'SEO' }
+    { name: "important", title: "Important pages" },
+    { name: "seo", title: "SEO" }
   ],
   initialValue: {
-    siteUrl: 'https://homepage.com',
-    siteName: 'Client name'
+    siteUrl: "https://homepage.com",
+    siteName: "Client name"
   },
   fields: [
     {
-      name: 'siteUrl',
-      title: 'Site url',
-      type: 'url',
-      validation: Rule => Rule.required(),
-      fieldset: 'seo'
+      name: "color",
+      title: "Color",
+      type: "string"
     },
     {
-      name: 'siteName',
-      title: 'Site Name',
-      type: 'string',
+      name: "siteUrl",
+      title: "Site url",
+      type: "url",
       validation: Rule => Rule.required(),
-      fieldset: 'seo'
+      fieldset: "seo"
     },
     {
-      name: 'locale',
-      title: 'Locale for site',
-      type: 'string',
+      name: "siteName",
+      title: "Site Name",
+      type: "string",
+      validation: Rule => Rule.required(),
+      fieldset: "seo"
+    },
+    {
+      name: "locale",
+      title: "Locale for site",
+      type: "string",
       options: {
         // List of locales: https://lh.2xlibre.net/locales/
         list: [
-          { title: 'Bokmål', value: 'nb_NO' },
-          { title: 'Nynorsk', value: 'nn_NO' },
-          { title: 'English', value: 'en_US' }
+          { title: "Bokmål", value: "nb_NO" },
+          { title: "Nynorsk", value: "nn_NO" },
+          { title: "English", value: "en_US" }
         ]
       },
-      fieldset: 'seo'
+      fieldset: "seo"
     },
     {
-      name: 'seo',
-      title: 'Default SEO',
-      type: 'seo',
-      fieldset: 'seo'
+      name: "seo",
+      title: "Default SEO",
+      type: "seo",
+      fieldset: "seo"
     },
     {
-      title: 'Facebook App ID',
-      name: 'facebookAppId',
-      type: 'string',
-      fieldset: 'seo'
+      title: "Facebook App ID",
+      name: "facebookAppId",
+      type: "string",
+      fieldset: "seo"
     },
     {
-      name: 'frontpage',
-      title: 'Front page',
-      type: 'reference',
-      to: [{ type: 'page' }],
+      name: "frontpage",
+      title: "Front page",
+      type: "reference",
+      to: [{ type: "page" }],
       validation: Rule => Rule.required(),
-      fieldset: 'important'
+      fieldset: "important"
     },
     {
-      name: 'privacypage',
-      title: 'Privacy page',
-      type: 'reference',
-      to: [{ type: 'page' }],
+      name: "privacypage",
+      title: "Privacy page",
+      type: "reference",
+      to: [{ type: "page" }],
       validation: Rule => Rule.required(),
-      fieldset: 'important'
+      fieldset: "important"
     },
     {
-      name: 'staticPages',
+      name: "staticPages",
       description:
         "Pages added to this array can't be deleted. Ex: About or Contact page",
-      title: 'Static pages',
-      type: 'array',
+      title: "Static pages",
+      type: "array",
       of: [
         {
-          name: 'page',
-          title: 'Page',
-          type: 'reference',
-          to: [{ type: 'page' }, { type: 'menu' }, { type: 'person' }]
+          name: "page",
+          title: "Page",
+          type: "reference",
+          to: [{ type: "page" }, { type: "menu" }, { type: "person" }]
         }
       ],
-      fieldset: 'important'
+      fieldset: "important"
     }
   ]
-}
+};

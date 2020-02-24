@@ -5,9 +5,12 @@
 import React, { useState, createContext } from 'react'
 import { setOverflowHidden } from '../../utils/helpers'
 
+import theme, { darkTheme } from '../../styles/themes'
+
 const initialValue = {
   state: {
-    showMenu: false
+    showMenu: false,
+    theme: theme
   },
   actions: {}
 }
@@ -27,6 +30,15 @@ export const AppProvider = ({ children }) => {
             setState({
               ...state,
               showMenu: condition ? condition : toggledState
+            })
+          },
+          setTheme: newTheme => {
+            setState({
+              ...state,
+              theme: {
+                ...theme,
+                ...newTheme
+              }
             })
           }
         }

@@ -1,10 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import sanityClient from '@sanity/client'
 import { Helmet } from 'react-helmet'
-import styled, { css } from 'styled-components'
+import styled, { css, ThemeProvider } from 'styled-components'
+import theme from '../styles/themes'
 
 import Layout from '../components/Layout'
 import { TemplateResolver } from '../components/resolvers'
+import AppContext from '../components/context/AppContext'
 
 const client = sanityClient({
   projectId: '6ptaspv6',
@@ -37,6 +39,26 @@ const SanityQuery = `*[_id in [$draftId, $id]]{
     ...
   } | order(_updatedAt desc)`
 
+const generateTheme = document => {
+  // Merging themes with default for missing values
+  const res = {
+    colors: { ...theme.colors, ...document.colors },
+    spacingUnit: { ...theme.spacingUnit, ...document.spacingUnits },
+    fonts: {
+      ...theme.fonts,
+      ...Object.keys(document.fonts).reduce((acc, key) => {
+        acc[key] = () => css`
+          font-size: ${document.fonts[key].fontSize};
+          letter-spacing: ${document.fonts[key].letterSpacing};
+        `
+        return acc
+      }, {})
+    }
+  }
+  console.log('GENERATED THEME', res)
+  return res
+}
+
 // Might be something to cathc from here:
 // https://henrique.codes/gatsby-live-preview-sanity/
 
@@ -49,6 +71,7 @@ const Preview = ({ className, id }) => {
 
   const pageId = id ? id.replace('drafts.', '') : null
   const params = { draftId: `drafts.${pageId}`, id: pageId }
+  const { actions } = useContext(AppContext)
 
   const startListening = () => {
     // Listen for changes in document structure
@@ -73,8 +96,23 @@ const Preview = ({ className, id }) => {
       if (res) {
         console.log('Set page data', res[0])
         setPageData(res[0])
+        if (params.id === 'design') {
+          actions.setTheme(generateTheme(res[0]))
+        }
       }
     })
+    // Do individual fetch if document is other than design
+    if (params.id !== 'design') {
+      client
+        .fetch(SanityQuery, { draftId: `drafts.design`, id: 'design' })
+        .then(res => {
+          console.log('Theme Data fetched', res)
+          if (res) {
+            console.log('Set theme data', res[0])
+            actions.setTheme(generateTheme(res[0]))
+          }
+        })
+    }
   }
 
   const initFetching = () => {
@@ -91,6 +129,7 @@ const Preview = ({ className, id }) => {
 
   useEffect(initFetching, [])
 
+  console.log('TCL: Preview -> pageData', pageData)
   return (
     <div className={className}>
       <Helmet>

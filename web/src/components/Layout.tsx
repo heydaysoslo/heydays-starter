@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 
 import { getUrl } from '../../heydays-config'
 import { blocksToText } from '../utils/sanityHelpers'
@@ -7,21 +7,17 @@ import Header from './Header'
 import Footer from './Footer'
 import SEO from './SEO'
 import { ThemeProvider } from 'styled-components'
-import theme, { darkTheme } from '../styles/themes'
 import { GlobalStyle } from '../styles/utilities/Global'
 import { Button, P } from './elements'
+import AppContext from './context/AppContext'
 // import Credits from './Credits'
 
 const Layout = props => {
-  const themes = [theme, darkTheme]
   const [number, setNumber] = useState(0)
+  const { state } = useContext(AppContext)
 
-  const handleClick = () => {
-    setNumber(number + 1)
-  }
   return (
-    <ThemeProvider theme={themes[number % themes.length]}>
-      <Button onClick={handleClick}>Change theme</Button>
+    <ThemeProvider theme={state.theme}>
       <div className="Site">
         {/* <Credits /> */}
         {props && (

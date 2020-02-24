@@ -10,10 +10,12 @@ const templates = {
   frontpage: Page,
   contact: ContactPage,
   news: NewsPage,
+  siteSettings: Page,
   default: Page
 }
 
 export default function TemplateResolver({ data }) {
+  console.log('TCL: TemplateResolver -> data', data)
   let Component = null
 
   // Check if we have a template

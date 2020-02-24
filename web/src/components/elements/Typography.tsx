@@ -28,17 +28,20 @@ export const P = styled.p<Props>(
 export const H1 = styled.h1(
   ({ theme }) => css`
     ${fonts.h1()}
+    color: ${theme.colors.text};
   `
 )
 
 export const H2 = styled.h2(
   ({ theme }) => css`
     ${fonts.h1()}
+    color: ${theme.colors.text};
   `
 )
 
 export const H3 = styled.h3(
   ({ theme }) => css`
     ${fonts.title()}
+    color: ${theme.colors.text};
   `
 )

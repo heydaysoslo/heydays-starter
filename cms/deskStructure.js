@@ -30,6 +30,7 @@ const hiddenDocTypes = listItem =>
     "menu",
     "companyInfo",
     "siteSettings",
+    "design",
     "article",
     ...config.pageTypes,
     ...hiddenCustomTypes
@@ -107,6 +108,23 @@ export default () =>
           S.list()
             .title("Settings")
             .items([
+              S.listItem()
+                .title("Design")
+                .icon(MdSettings)
+                .child(
+                  S.editor()
+                    .id("design")
+                    .title("Design")
+                    .schemaType("design")
+                    .documentId("design")
+                    .views([
+                      S.view.form().icon(EditIcon),
+                      S.view
+                        .component(Preview)
+                        .icon(EyeIcon)
+                        .title("Preview")
+                    ])
+                ),
               S.listItem()
                 .title("Site Settings")
                 .icon(MdSettings)

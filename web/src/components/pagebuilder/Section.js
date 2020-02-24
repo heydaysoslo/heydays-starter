@@ -31,6 +31,7 @@ export default styled(Section)(
   ({ theme }) => css`
     text-align: center;
     ${spacing.section('my')}
+    color: ${theme?.colors?.text};
 
     .button {
       ${spacing.md('mt')}

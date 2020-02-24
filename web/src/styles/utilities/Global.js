@@ -17,6 +17,7 @@ export const GlobalStyle = createGlobalStyle(
       -moz-osx-font-smoothing: grayscale;
       color: ${theme.colors.text};
       ${fonts.body()}
+      background: ${theme.colors.background};
     }
 
     ::selection {
@@ -106,11 +107,21 @@ export const GlobalStyle = createGlobalStyle(
     ${globalTypeStyle}
 
     /* Global styling from theme */
-    ${theme.defaultStyle && theme.defaultStyle}
+    ${theme.defaultStyle && theme.defaultStyle()}
 
     /* Add visible tag that shows breakpoint for dev environment */
     ${process.env.NODE_ENV === 'development' &&
       css`
+  console.log("TCL: theme", theme)
+  console.log("TCL: theme", theme)
+  console.log("TCL: theme", theme)
+  console.log("TCL: theme", theme)
+  console.log("TCL: theme", theme)
+  console.log("TCL: theme", theme)
+  console.log("TCL: theme", theme)
+  console.log("TCL: theme", theme)
+  console.log("TCL: theme", theme)
+  console.log("TCL: theme", theme)
     body:after {
       background: rgba(255, 255, 255, 0.5);
       position: fixed;
