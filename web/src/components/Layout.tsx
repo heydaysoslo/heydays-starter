@@ -9,7 +9,7 @@ import SEO from './SEO'
 import { ThemeProvider } from 'styled-components'
 import theme, { darkTheme } from '../styles/themes'
 import { GlobalStyle } from '../styles/utilities/Global'
-import { Button, P } from './elements'
+import { Button } from './elements'
 // import Credits from './Credits'
 
 const Layout = props => {
@@ -26,13 +26,16 @@ const Layout = props => {
         {/* <Credits /> */}
         {props && (
           <SEO
+            id={props.id}
             getUrl={getUrl}
             type={props._type}
             slug={props._rawSlug?.current || ''}
             seo={props.seo}
             title={props.title}
-            image={props._rawMainImage}
+            image={props?.seo?.image || props.mainImage}
             description={props._rawExcerpt && blocksToText(props._rawExcerpt)}
+            authors={props?.authors}
+            publishDate={props?.dateString}
           />
         )}
         <Header />

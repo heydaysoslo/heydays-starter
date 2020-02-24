@@ -37,6 +37,7 @@ export const query = graphql`
   fragment Page on SanityPage {
     _key
     title
+    _type
     template
     _rawSlug(resolveReferences: { maxDepth: 20 })
     pagebuilder: _rawPagebuilder(resolveReferences: { maxDepth: 20 })

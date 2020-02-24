@@ -55,6 +55,6 @@ export const parseCssUnit = cssUnit => {
   if (!isNaN(cssUnit)) {
     return { number, unit: '' }
   }
-  const unit = cssUnit.replace(/^[\-\d\.]+/, '')
+  const unit = cssUnit.replace(/^[-\d.]+/, '')
   return { number, unit }
 }

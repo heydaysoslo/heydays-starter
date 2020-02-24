@@ -83,6 +83,7 @@ const Article = ({
 
 export default Article
 
+// Get latest articles
 export const query = graphql`
   {
     allSanityArticle(limit: 3) {
