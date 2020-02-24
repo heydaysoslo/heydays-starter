@@ -19,7 +19,7 @@ import {
 } from '../components/elements'
 import styled, { css } from 'styled-components'
 import Test from '../components/Test'
-import Video from '../components/Video'
+// import Video from '../components/Video'
 
 const Index = () => {
   const media = useMediaQuery()
