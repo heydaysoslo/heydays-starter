@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 /**
  *
@@ -42,11 +42,13 @@ const useFetch = (url, options = {}) => {
   const [isAllDone, setIsAllDone] = useState(
     typeof url === 'object' ? Object.keys(url).length : null
   )
+  const refUrl = useRef(url)
+  const refOptions = useRef(options)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const request = await fetch(url, options)
+        const request = await fetch(refUrl.current, refOptions.current)
         const data = await request.json()
         setResponse(data)
         setIsLoading(false)
@@ -83,12 +85,12 @@ const useFetch = (url, options = {}) => {
         }
       })
     }
-    if (typeof url === 'string') {
+    if (typeof refUrl.current === 'string') {
       fetchData()
     } else {
-      fetchMultipleData(url)
+      fetchMultipleData(refUrl.current)
     }
-  }, [url]) // eslint disable exhaustive-deps
+  }, [refUrl, refOptions]) // tslint disable exhaustive-deps
 
   return {
     response,
