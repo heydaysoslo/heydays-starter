@@ -9,7 +9,11 @@ import ResponsiveMenu from './ResponsiveMenu'
 import { LinkResolver } from './resolvers'
 import AppContext from './context/AppContext'
 
-const Header = ({ className }) => {
+type Props = {
+  className?: string
+}
+
+const Header = ({ className }: Props) => {
   const data = useStaticQuery(query)
   const menuItems = data?.sanityMenu?._rawItem
   const { state, actions } = useContext(AppContext)
