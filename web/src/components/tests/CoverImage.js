@@ -39,11 +39,9 @@ export default styled(CoverImage)(
         padding-top: 20px;
       }
     }
-    button {
+    &:hover {
       background: red;
-      border: 2px solid black;
-      padding: 10px;
-      cursor: pointer;
+      color: white;
     }
   `
 )
