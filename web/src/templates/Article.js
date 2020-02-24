@@ -33,11 +33,19 @@ export const query = graphql`
       current
     }
     title
-    publishDate(formatString: "dddd.MMMM-YY", locale: "nb_NO")
+    publishDate(formatString: "DD.MMMM-YY", locale: "nb_NO")
+    dateString: publishDate
     _rawSlug(resolveReferences: { maxDepth: 20 })
     _rawExcerpt(resolveReferences: { maxDepth: 20 })
     body: _rawBody(resolveReferences: { maxDepth: 20 })
-    mainImage: _rawMainImage(resolveReferences: { maxDepth: 20 })
+    _rawMainImage(resolveReferences: { maxDepth: 20 })
+    mainImage {
+      asset {
+        fixed(width: 1200, height: 630) {
+          ...GatsbySanityImageFixed
+        }
+      }
+    }
     authors: _rawAuthors(resolveReferences: { maxDepth: 20 })
     pagebuilder: _rawPagebuilder(resolveReferences: { maxDepth: 20 })
     seo {
