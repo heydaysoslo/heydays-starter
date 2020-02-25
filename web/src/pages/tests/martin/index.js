@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Layout from '../../../components/Layout'
-import { Grid, GridItem, Container } from '../../../components/elements'
+import { Grid, GridItem, Container, Cover } from '../../../components/elements'
 import { spacing } from '../../../styles/utilities'
 import CoverImage from '../../../components/tests/CoverImage'
 import { AccountCircle } from 'styled-icons/material'
@@ -16,6 +16,16 @@ const TestSection = styled.section`
       color: white;
     }
   }
+`
+
+const CoverBackground = styled.div`
+  width: 100%;
+  height: 100%;
+  background-image: url('https://source.unsplash.com/random');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  mix-blend-mode: multiply;
 `
 
 const ImageTextSplit = styled.section`
@@ -49,6 +59,25 @@ const IconButton = styled.button`
 const Index = () => {
   return (
     <Layout>
+      <Container>
+        <Grid gap={true}>
+          <GridItem span={6}>
+            <Cover background={<CoverBackground />} ratio={10 / 16}>
+              Stuff inside cover
+            </Cover>
+          </GridItem>
+          <GridItem span={6}>
+            <Grid gap={true}>
+              <Cover background={<CoverBackground />} ratio={5 / 16}>
+                Stuff inside cover
+              </Cover>
+              <Cover background={<CoverBackground />} ratio={5 / 16}>
+                Stuff inside cover
+              </Cover>
+            </Grid>
+          </GridItem>
+        </Grid>
+      </Container>
       <CoverGroup>
         <Container>
           <IconButton>
