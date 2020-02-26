@@ -3,8 +3,8 @@ import AspectContainer from './AspectContainer'
 import styled, { css } from 'styled-components'
 
 const Cover = ({
-  ratio,
-  ratios,
+  aspect,
+  aspects,
   background,
   maxHeight,
   children,
@@ -14,8 +14,12 @@ const Cover = ({
     <div className={className}>
       <div className="Cover__bg">{background}</div>
       <div className="Cover__content">
-        {ratio || ratios ? (
-          <AspectContainer ratio={ratio} ratios={ratios} maxHeight={maxHeight}>
+        {aspect || aspects ? (
+          <AspectContainer
+            aspect={aspect}
+            aspects={aspects}
+            maxHeight={maxHeight}
+          >
             {children}
           </AspectContainer>
         ) : (
