@@ -43,16 +43,55 @@ const GridBlocks = props => {
   )
 }
 
+const StyledGridItem = styled(GridItem)`
+  opacity: 0.5;
+`
+
 const GridTest = ({ className }) => {
   return (
     <Layout>
       <div className={className}>
         <Container>
           <h1>Grids</h1>
-          <p>
-            Make reference similar to{' '}
-            <a href="http://flexboxgrid.com/">flexboxgrid.com</a>
-          </p>
+
+          <Grid gap={true}>
+            <StyledGridItem span={{ xs: 12, md: 6, lg: 3, xl: 'auto' }}>
+              <Box>Single item</Box>
+            </StyledGridItem>
+            <GridItem>
+              <Box>This is another grid item</Box>
+            </GridItem>
+            {[...new Array(6)].map((box, i) => (
+              <Box>{i + 1}</Box>
+            ))}
+          </Grid>
+
+          <Grid gapX={true} gapY={true}>
+            <GridItem span={{ xs: 6 }}>
+              <Box>Single item</Box>
+            </GridItem>
+            <GridItem span="auto">
+              <Box>This is fitting the content.</Box>
+            </GridItem>
+            <GridItem>
+              <Box>These</Box>
+            </GridItem>
+            <GridItem>
+              <Box>are</Box>
+            </GridItem>
+            <GridItem>
+              <Box>distributed</Box>
+            </GridItem>
+            <GridItem>
+              <Box>equally</Box>
+            </GridItem>
+          </Grid>
+
+          <Grid gap={true}>
+            <GridItem span={{ xs: 3 }} offset={{ sm: 1, md: 3, lg: 5 }}>
+              <Box>Hello</Box>
+            </GridItem>
+          </Grid>
           <Grid columns={{ sm: 3, md: 6, lg: 12 }} gap={true}>
             {[...new Array(12)].map((box, i) => (
               <Box>{i + 1}</Box>
@@ -124,6 +163,21 @@ const GridTest = ({ className }) => {
               </Grid>
             </div>
           </Grid>
+          <div>MAKING SURE THERES NO SPACE</div>
+          <Grid gap={true}>
+            <Box>A</Box>
+            <Box>grid</Box>
+            <Box>with</Box>
+            <Box>gaps</Box>
+          </Grid>
+          <div>MAKING SURE THERES NO SPACE</div>
+          <Grid gap={true}>
+            <Box>Another</Box>
+            <Box>grid</Box>
+            <Box>with</Box>
+            <Box>gaps</Box>
+          </Grid>
+          <div>MAKING SURE THERES NO SPACE</div>
         </Container>
       </div>
     </Layout>
