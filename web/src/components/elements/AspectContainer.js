@@ -22,8 +22,8 @@ const StyledAspectContainer = styled.div`
 `
 
 const AspectContainer = ({
-  ratios = { xs: 1 },
-  ratio,
+  aspects = { xs: 1 },
+  aspect,
   preventOverflow = true,
   maxHeight,
   children,
@@ -38,15 +38,15 @@ const AspectContainer = ({
   // Compute a full set of ratios based on breakpoints
   const computeRatios = () => {
     let calculatedRatios = {}
-    let prevRatio = ratios[Object.keys(breakpoints)[0]]
+    let prevRatio = aspects[Object.keys(breakpoints)[0]]
     for (const bp of Object.keys(breakpoints)) {
       // If "ratio" and not "ratios" is set, override all values with "ratio"
-      if (ratio) {
-        calculatedRatios[bp] = ratio
+      if (aspect) {
+        calculatedRatios[bp] = aspect
       } else {
-        if (ratios[bp] !== undefined) {
-          calculatedRatios[bp] = ratios[bp]
-          prevRatio = ratios[bp]
+        if (aspects[bp] !== undefined) {
+          calculatedRatios[bp] = aspects[bp]
+          prevRatio = aspects[bp]
         } else {
           calculatedRatios[bp] = prevRatio
         }
@@ -56,7 +56,7 @@ const AspectContainer = ({
   }
 
   // Create a memo to prevent unwanted recalculation of ratios
-  const memoizedRatios = useMemo(computeRatios, [ratios])
+  const memoizedRatios = useMemo(computeRatios, [aspect, aspects])
 
   // Prevent container from being smaller than it's content
   const setWrapperMinHeight = () => {
