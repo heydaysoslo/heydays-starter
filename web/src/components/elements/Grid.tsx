@@ -5,7 +5,8 @@ import {
   FlexBoxAlignItems,
   ResponsiveColumns,
   ResponsiveReverse,
-  SpacingUnits
+  SpacingUnits,
+  FlexBoxJustifyContent
 } from '../../types'
 
 type Props = {
@@ -32,7 +33,7 @@ const BaseGrid: React.FC<Props> = ({ className, children }) => {
     <div className={className}>
       {/* TODO: Fix the any type */}
       {React.Children.map(children, (child: any, i: number) => {
-        if (child?.type?.displayName === 'Grid__GridItem') {
+        if (child?.type?.target?.name === 'BaseGridItem') {
           return child
         } else {
           return <GridItem key={`Grid__item-${i}`}>{child}</GridItem>
@@ -46,48 +47,65 @@ const BaseGridItem: React.FC<GridItemProps> = ({ children, className }) => {
   return <div className={className}>{children}</div>
 }
 
+const setGridItemSpan = ({ span, theme }) => {
+  if (span === 'auto') {
+    return css`
+      flex: 0 0 auto;
+      width: auto;
+      max-width: 100%;
+    `
+  }
+  switch (typeof span) {
+    case 'object':
+      return Object.keys(span).map(
+        key => bp.above[key]`
+        ${setGridItemSpan({ span: span[key], theme })};
+          `
+      )
+    case 'number':
+      if (span >= 1) {
+        return css`
+          flex-basis: ${(span / (theme?.grid?.columns || 12)) * 100}%;
+          max-width: ${(span / (theme?.grid?.columns || 12)) * 100}%;
+        `
+      } else {
+        return css`
+          flex-basis: ${span * 100}%;
+          max-width: ${span * 100}%;
+        `
+      }
+  }
+}
+
+const setGridItemOffset = ({ offset, theme }) => {
+  switch (typeof offset) {
+    case 'object':
+      return Object.keys(offset).map(
+        key => bp.above[key]`
+        ${setGridItemOffset({ offset: offset[key], theme })};
+          `
+      )
+    case 'number':
+      if (offset >= 1) {
+        return css`
+          margin-left: ${(offset / (theme?.grid?.columns || 12)) * 100}%;
+        `
+      } else {
+        return css`
+          margin-left: ${offset * 100}%;
+        `
+      }
+  }
+}
+
 export const GridItem = styled(BaseGridItem)<GridItemProps>(
   ({ theme, span, offset }) => css`
-    
     box-sizing: border-box;
-    flex: 0 0 100%;
-    width: 100%;
+    flex: 1 1 0;
     max-width: 100%;
 
-    ${
-      span && typeof span === 'number' && span >= 1
-        ? css`
-            flex-basis: ${(span / (theme?.grid?.columns || 12)) * 100}%;
-            max-width: ${(span / (theme?.grid?.columns || 12)) * 100}%;
-          `
-        : css`
-            flex-basis: ${span * 100}%;
-            max-width: ${span * 100}%;
-          `
-    }
-
-    ${span &&
-      typeof span === 'object' &&
-      Object.keys(span).map(
-        key => bp.above[key]`
-            flex-basis: ${(span[key] / (theme?.grid?.columns || 12)) * 100}%;
-            max-width: ${(span[key] / (theme?.grid?.columns || 12)) * 100}%;
-          `
-      )}
-    
-    ${offset &&
-      typeof offset === 'number' &&
-      css`
-        margin-left: ${(offset / (theme?.grid?.columns || 12)) * 100}%;
-      `}
-
-    ${offset &&
-      typeof offset === 'object' &&
-      Object.keys(offset).map(
-        key => bp.above[key]`
-          margin-left: ${(offset[key] / (theme?.grid?.columns || 12)) * 100}%;
-        `
-      )}
+    ${setGridItemSpan({ span, theme })};
+    ${setGridItemOffset({ offset, theme })};
   `
 )
 
@@ -101,9 +119,8 @@ const setResponsiveColumns = columns => {
     case 'object':
       return Object.keys(columns).map(
         key => bp.above[key]`
-        flex-basis: ${100 / columns[key]}%;
-        max-width: ${100 / columns[key]}%;
-      `
+          ${setResponsiveColumns(columns[key])};
+        `
       )
   }
 }
@@ -112,8 +129,8 @@ const setResponsiveGaps = ({ gap, gapUnit, multiplier, cssProps }) => {
   if (typeof gap === 'object') {
     return Object.keys(gap).map(
       key => bp.above[key]`
-${spacing[gapUnit](cssProps, { multiplier: gap[key] ? multiplier : 0 })}
-`
+        ${spacing[gapUnit](cssProps, { multiplier: gap[key] ? multiplier : 0 })}
+      `
     )
   } else {
     return spacing[gapUnit](cssProps, { multiplier })
@@ -146,8 +163,8 @@ export default styled(BaseGrid)<Props>(
       setResponsiveGaps({
         gap: gapY,
         gapUnit,
-        multiplier: -0.5,
-        cssProps: 'my'
+        multiplier: -1,
+        cssProps: 'mb'
       })}
       
     /* Horizontal */
@@ -165,7 +182,15 @@ export default styled(BaseGrid)<Props>(
         gap,
         gapUnit,
         multiplier: -0.5,
-        cssProps: 'mx,my'
+        cssProps: 'mx'
+      })}
+
+    ${gap &&
+      setResponsiveGaps({
+        gap,
+        gapUnit,
+        multiplier: -1,
+        cssProps: 'mb'
       })}
 
     > ${GridItem} {
@@ -176,8 +201,8 @@ export default styled(BaseGrid)<Props>(
         setResponsiveGaps({
           gap: gapY,
           gapUnit,
-          multiplier: 0.5,
-          cssProps: 'py'
+          multiplier: 1,
+          cssProps: 'pb'
         })}
 
       /* Horizontal */
@@ -195,10 +220,18 @@ export default styled(BaseGrid)<Props>(
           gap,
           gapUnit,
           multiplier: 0.5,
-          cssProps: 'p'
+          cssProps: 'px'
         })}
 
-      ${columns && setResponsiveColumns(columns)}
+      ${gap &&
+        setResponsiveGaps({
+          gap,
+          gapUnit,
+          multiplier: 1,
+          cssProps: 'pb'
+        })}
+
+        ${columns && setResponsiveColumns(columns)}
 
     }
   `
