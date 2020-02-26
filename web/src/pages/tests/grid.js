@@ -45,6 +45,9 @@ const GridBlocks = props => {
 
 const StyledGridItem = styled(GridItem)`
   opacity: 0.5;
+  position: relative;
+  top: -10px;
+  left: -10px;
 `
 
 const GridTest = ({ className }) => {
