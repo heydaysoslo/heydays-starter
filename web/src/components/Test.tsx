@@ -6,15 +6,13 @@ import { spacing } from '../styles/utilities'
 // import ResponsiveMenu from './ResponsiveMenu'
 
 const Box = styled.div`
+  ${spacing.sm('p')};
   background: ${props => props.color || props.theme.colors.primary || 'orange'};
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 12px;
-  padding: 10px;
   text-align: center;
-  /* padding: 40px 10px; */
-  ${spacing.gutter('p')};
 `
 
 const Test = ({ className }) => {
@@ -86,6 +84,23 @@ const Test = ({ className }) => {
         <GridItem>
           <Box color="silver">Hello</Box>
         </GridItem>
+      </Grid>
+
+      <h3>Responsive gaps test</h3>
+      <Grid
+        gapX={{ xs: true, sm: false }}
+        gapY={{ sm: true, lg: false }}
+        gap={{ xl: true }}
+        columns={{ xs: 2, sm: 4 }}
+      >
+        <Box color="purple">Hello</Box>
+        <Box color="red">Hello</Box>
+        <Box color="blue">Hello</Box>
+        <Box color="green">Hello</Box>
+        <Box color="silver">Hello</Box>
+        <Box color="coral">Hello</Box>
+        <Box color="gray">Hello</Box>
+        <Box color="yellow">Hello</Box>
       </Grid>
 
       <Container>

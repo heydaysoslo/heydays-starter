@@ -44,7 +44,8 @@ export const responsiveSpacing = {
     lg: 'lg'
   },
   lg: {
-    xs: 'lg'
+    xs: 'lg',
+    lg: '12rem'
   },
   section: {
     xs: '5vw'
@@ -57,6 +58,9 @@ export const responsiveSpacing = {
     xs: '10px',
     md: 'lg',
     lg: '5vw'
+  },
+  pixel: {
+    xs: '1px'
   }
 }
 
