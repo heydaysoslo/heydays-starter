@@ -15,7 +15,7 @@ type Props = {
 
 const Header = ({ className }: Props) => {
   const data = useStaticQuery(query)
-  const menuItems = data?.sanityMenu?._rawItem
+  const menuItems = data?.sanitySiteSettings?.primaryMenu?._rawItem
   const { state, actions } = useContext(AppContext)
   return (
     <header className={className}>
@@ -65,11 +65,10 @@ export default styled(Header)(
 
 export const query = graphql`
   {
-    sanityMenu(_id: { eq: "menu-primaryMenu" }) {
-      _id
-      _key
-      _type
-      _rawItem(resolveReferences: { maxDepth: 10 })
+    sanitySiteSettings(_id: { eq: "siteSettings" }) {
+      primaryMenu {
+        _rawItem(resolveReferences: { maxDepth: 10 })
+      }
     }
   }
 `

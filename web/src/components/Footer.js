@@ -8,7 +8,7 @@ import Social from './Social'
 
 const Footer = () => {
   const data = useStaticQuery(query)
-  const menu = data?.sanityMenu?._rawItem
+  const menu = data?.sanitySiteSettings?.footerMenu?._rawItem
   const privacyPage = data?.sanitySiteSettings?._rawPrivacypage
   return (
     <div className="Footer">
@@ -50,11 +50,11 @@ export default Footer
 
 export const query = graphql`
   {
-    sanityMenu(_id: { eq: "menu-footerMenu" }) {
-      _rawItem(resolveReferences: { maxDepth: 10 })
-    }
     sanitySiteSettings(_id: { eq: "siteSettings" }) {
       _rawPrivacypage(resolveReferences: { maxDepth: 10 })
+      footerMenu {
+        _rawItem(resolveReferences: { maxDepth: 10 })
+      }
     }
   }
 `

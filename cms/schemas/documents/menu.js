@@ -1,9 +1,16 @@
+import FaList from 'react-icons/lib/fa/list-ul'
+
 export default {
   name: 'menu',
   title: 'Menu',
   type: 'document',
-  __experimental_actions: ['update', 'publish' /*'create', 'delete'*/],
+  icon: FaList,
   fields: [
+    {
+      title: 'Title',
+      type: 'string',
+      name: 'title'
+    },
     {
       name: 'item',
       title: 'Items',
@@ -19,11 +26,12 @@ export default {
   ],
   preview: {
     select: {
+      title: 'title',
       items: 'item'
     },
-    prepare({ items }) {
+    prepare({ title }) {
       return {
-        title: 'Menu'
+        title: title || 'Menu'
       }
     }
   }
