@@ -9,7 +9,8 @@ export default {
   icon: MdSettings,
   fieldsets: [
     { name: 'important', title: 'Important pages' },
-    { name: 'seo', title: 'SEO' }
+    { name: 'seo', title: 'SEO' },
+    { name: 'menus', title: 'Menus' }
   ],
   initialValue: {
     siteUrl: 'https://homepage.com',
@@ -87,6 +88,22 @@ export default {
         }
       ],
       fieldset: 'important'
+    },
+    {
+      name: 'primaryMenu',
+      title: 'Main menu',
+      type: 'reference',
+      to: [{ type: 'menu' }],
+      description: 'The menu that should appear in the footer',
+      fieldset: 'menus'
+    },
+    {
+      name: 'footerMenu',
+      title: 'Footer menu',
+      type: 'reference',
+      to: [{ type: 'menu' }],
+      description: 'The menu that should appear in the footer',
+      fieldset: 'menus'
     }
   ]
 }

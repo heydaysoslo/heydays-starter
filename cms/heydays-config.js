@@ -1,8 +1,8 @@
-import S from "@sanity/desk-tool/structure-builder";
-import Sort from "react-icons/lib/fa/sort-amount-asc";
-import FaList from "react-icons/lib/fa/list-ul";
-import MdPerson from "react-icons/lib/md/person";
-import FaNewspaper from "react-icons/lib/fa/newspaper-o";
+import S from '@sanity/desk-tool/structure-builder'
+import Sort from 'react-icons/lib/fa/sort-amount-asc'
+import FaList from 'react-icons/lib/fa/list-ul'
+import MdPerson from 'react-icons/lib/md/person'
+// import FaNewspaper from 'react-icons/lib/fa/newspaper-o'
 
 /**
  * Config file sanity custom stuff
@@ -10,19 +10,19 @@ import FaNewspaper from "react-icons/lib/fa/newspaper-o";
 
 export default {
   previewUrl: {
-    production: "https://heydays-starter.netlify.com/_preview/",
-    dev: "http://localhost:3000/_preview/"
+    production: 'https://heydays-starter.netlify.com/_preview/',
+    dev: 'http://localhost:3000/_preview/'
   },
   /**
    * Page Types
    *
    * This controls the order of menu in the desk
    */
-  pageTypes: ["page"],
-  menus: [
-    { title: "Primary Menu", id: "primaryMenu" },
-    { title: "Footer Menu", id: "footerMenu" }
-  ],
+  pageTypes: ['page'],
+  // menus: [
+  //   { title: 'Primary Menu', id: 'primaryMenu' },
+  //   { title: 'Footer Menu', id: 'footerMenu' }
+  // ],
   /**
    * Custom Types
    *
@@ -33,48 +33,46 @@ export default {
    */
   customTypes: [
     {
-      title: "Person Order",
-      typeId: "person",
-      typeTitle: "Person",
-      orderTypeId: "personOrder",
+      title: 'Person Order',
+      typeId: 'person',
+      typeTitle: 'Person',
+      orderTypeId: 'personOrder',
       icon: MdPerson
     }
   ]
-};
+}
 
 /**
  * Actions / Helpers
  */
 
-export const createMenuDeskStructure = menus =>
+export const createMenuDeskStructure = () =>
   S &&
   S.listItem()
-    .title("Menu")
+    .title('Menu')
     .icon(FaList)
-    .child(
-      S.list()
-        .title("Menu")
-        .items(
-          menus.map(({ title, id }) => {
-            return S.listItem()
-              .title(title)
-              .child(
-                S.editor()
-                  .id(id)
-                  .schemaType("menu")
-                  .documentId(`menu-${id}`)
-              )
-              .icon(FaList);
-          })
-        )
-    );
+    .schemaType('menu')
+    .child(S.documentTypeList('menu'))
+// .items(
+//   menus.map(({ title, id }) => {
+//     return S.listItem()
+//       .title(title)
+//       .child(
+//         S.editor()
+//           .id(id)
+//           .schemaType("menu")
+//           .documentId(`menu-${id}`)
+//       )
+//       .icon(FaList);
+//   })
+// )
 
 export const createCustomTypeDeskStructure = customTypes =>
   customTypes.map(({ title, typeId, typeTitle, icon, orderTypeId }) => {
     // Get all posts
     const posts =
       S &&
-      S.documentTypeListItems().filter(listItem => listItem.getId() === typeId);
+      S.documentTypeListItems().filter(listItem => listItem.getId() === typeId)
     // Get order page of correct type
     const orderPage =
       S &&
@@ -86,7 +84,7 @@ export const createCustomTypeDeskStructure = customTypes =>
             .schemaType(orderTypeId)
             .documentId(orderTypeId)
         )
-        .icon(Sort);
+        .icon(Sort)
 
     // Here you can add more setting types ex. category. Use the same
     // approach as with orderPage
@@ -101,8 +99,8 @@ export const createCustomTypeDeskStructure = customTypes =>
             .title(typeTitle)
             .items([...posts, orderPage])
         )
-    );
-  });
+    )
+  })
 
 // const createOrderDoc = type => {
 //   const upperCaseType = type.charAt(0).toUpperCase() + type.slice(1)
