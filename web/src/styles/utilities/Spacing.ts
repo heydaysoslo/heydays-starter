@@ -112,7 +112,7 @@ const applyPropValueOptions = (value, options) => {
   if (!value) {
     return value
   }
-  // Apply multipier if its a number
+  // Apply multiplier if its a number
   if (!isNaN(options?.multiplier)) {
     const unitParsed = parseCssUnit(value)
     if (unitParsed.number) {
@@ -172,8 +172,8 @@ const spacingFunctions = {
   ...spacingConfigMap
 }
 
-const spacingObject = props => {
-  console.log(props)
+const spacingObject = ({ val, cssProps, multipier }) => {
+  return addSpacingProps(cssProps, applyPropValueOptions(val, { multipier }))
 }
 
 Object.keys(spacingFunctions).forEach(key => {

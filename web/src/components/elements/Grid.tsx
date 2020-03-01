@@ -135,10 +135,11 @@ const setResponsiveGaps = ({ gap, gapUnit, multiplier, cssProps }) => {
   } else {
     switch (typeof gap) {
       case 'number':
-        spacing({ val: gap, cssProps, multiplier })
-        break
+        console.log(`${gap}px`, cssProps, multiplier)
+        return spacing({ val: `${gap}px`, cssProps, multiplier })
+      default:
+        return spacing[gapUnit](cssProps, { multiplier })
     }
-    return spacing[gapUnit](cssProps, { multiplier })
   }
 }
 
