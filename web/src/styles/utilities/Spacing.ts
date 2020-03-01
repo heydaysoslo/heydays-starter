@@ -167,10 +167,20 @@ const spacingConfigMap = Object.keys(responsiveSpacing).reduce((acc, key) => {
   return acc
 }, {})
 
-export const spacing = {
+const spacingFunctions = {
   ...mixins,
   ...spacingConfigMap
 }
+
+const spacingObject = props => {
+  console.log(props)
+}
+
+Object.keys(spacingFunctions).forEach(key => {
+  spacingObject[key] = spacingFunctions[key]
+})
+
+export const spacing = spacingObject
 
 // export const responsiveSpacing = {
 //   xs: (props, options) => ({ theme }) => css`

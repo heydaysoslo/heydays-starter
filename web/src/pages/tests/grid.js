@@ -6,12 +6,19 @@ import Layout from '../../components/Layout'
 
 const Box = styled.div`
   ${spacing.sm('p')};
-  background: ${props => props.color || props.theme.colors.primary || 'orange'};
+  background: rgba(86, 61, 124, 0.15);
+  border: 1px solid rgba(86, 61, 124, 0.2);
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 12px;
   text-align: center;
+`
+
+const SampleSection = styled.div`
+  padding: 20px;
+  border: 2px solid #f8f9fa;
+  margin-top: 40px;
 `
 
 const colors = [
@@ -45,9 +52,6 @@ const GridBlocks = props => {
 
 const StyledGridItem = styled(GridItem)`
   opacity: 0.5;
-  position: relative;
-  top: -10px;
-  left: -10px;
 `
 
 const GridTest = ({ className }) => {
@@ -57,9 +61,39 @@ const GridTest = ({ className }) => {
         <Container>
           <h1>Grids</h1>
 
+          <SampleSection>
+            <Grid>
+              <Box>Auto column</Box>
+              <Box>Auto column</Box>
+              <Box>Auto column</Box>
+              <Box>Auto column</Box>
+              <Box>Auto column</Box>
+            </Grid>
+          </SampleSection>
+
+          <SampleSection>
+            <Grid columns={3}>
+              <Box>Forced columns</Box>
+              <Box>Forced columns</Box>
+              <Box>Forced columns</Box>
+              <Box>Forced columns</Box>
+              <Box>Forced columns</Box>
+            </Grid>
+          </SampleSection>
+
+          <SampleSection>
+            <Grid gap={10} columns={3}>
+              <Box>Forced columns</Box>
+              <Box>Forced columns</Box>
+              <Box>Forced columns</Box>
+              <Box>Forced columns</Box>
+              <Box>Forced columns</Box>
+            </Grid>
+          </SampleSection>
+
           <Grid gap={true}>
             <StyledGridItem span={{ xs: 12, md: 6, lg: 3, xl: 'auto' }}>
-              <Box>Single item</Box>
+              <Box>Styled grid item</Box>
             </StyledGridItem>
             <GridItem>
               <Box>This is another grid item</Box>

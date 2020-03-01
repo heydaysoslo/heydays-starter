@@ -129,10 +129,15 @@ const setResponsiveGaps = ({ gap, gapUnit, multiplier, cssProps }) => {
   if (typeof gap === 'object') {
     return Object.keys(gap).map(
       key => bp.above[key]`
-        ${spacing[gapUnit](cssProps, { multiplier: gap[key] ? multiplier : 0 })}
+        ${setResponsiveGaps({ gap: gap[key], gapUnit, multiplier, cssProps })}
       `
     )
   } else {
+    switch (typeof gap) {
+      case 'number':
+        spacing({ val: gap, cssProps, multiplier })
+        break
+    }
     return spacing[gapUnit](cssProps, { multiplier })
   }
 }
