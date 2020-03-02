@@ -125,7 +125,13 @@ const setResponsiveColumns = columns => {
   }
 }
 
-const setResponsiveGaps = ({ gap, multiplier, cssProps }) => {
+/*
+Possible to pass the following units:
+- Hard unit: vw, px, %, rem, etc
+- Theme spacing unit: 'gutter', 'lg'
+- Boolean: true (default spacing unit), false (no gutter at all)
+*/
+const setResponsiveGaps = ({ gap, cssProps, multiplier }) => {
   switch (typeof gap) {
     case 'object':
       return Object.keys(gap).map(

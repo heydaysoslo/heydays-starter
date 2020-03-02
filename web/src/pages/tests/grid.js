@@ -93,13 +93,16 @@ const GridTest = ({ className }) => {
           </SampleSection>
 
           <SampleSection>
-            <Grid gap={{ xs: '1vw', md: false, lg: '30px' }} columns={3}>
-              <Box>Forced columns 1vw gap</Box>
-              <Box>Forced columns 1vw gap</Box>
-              <Box>Forced columns 1vw gap</Box>
-              <Box>Forced columns 1vw gap</Box>
-              <Box>Forced columns 1vw gap</Box>
-              <Box>Forced columns 1vw gap</Box>
+            <Grid
+              gap={{ xs: '1vw', sm: 'lg', md: false, lg: true }}
+              columns={3}
+            >
+              <Box>Different gap units</Box>
+              <Box>Different gap units</Box>
+              <Box>Different gap units</Box>
+              <Box>Different gap units</Box>
+              <Box>Different gap units</Box>
+              <Box>Different gap units</Box>
             </Grid>
           </SampleSection>
 
