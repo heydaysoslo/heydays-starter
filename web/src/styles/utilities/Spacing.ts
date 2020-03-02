@@ -172,8 +172,10 @@ const spacingFunctions = {
   ...spacingConfigMap
 }
 
-const spacingObject = ({ val, cssProps, multipier }) => {
-  return addSpacingProps(cssProps, applyPropValueOptions(val, { multipier }))
+const spacingObject = ({ val, cssProps, multiplier }) => {
+  return css`
+    ${addSpacingProps(cssProps, applyPropValueOptions(val, { multiplier }))}
+  `
 }
 
 Object.keys(spacingFunctions).forEach(key => {
