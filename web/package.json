@@ -51,6 +51,7 @@
     "gatsby-plugin-google-tagmanager": "^2.1.8",
     "gatsby-plugin-manifest": "^2.2.16",
     "gatsby-plugin-netlify-functions": "^0.0.3",
+    "gatsby-plugin-next-seo": "^1.4.0",
     "gatsby-plugin-polyfill-io": "^1.1.0",
     "gatsby-plugin-portal": "^1.0.7",
     "gatsby-plugin-react-helmet": "^3.1.6",
