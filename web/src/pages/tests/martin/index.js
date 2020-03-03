@@ -279,7 +279,7 @@ const Index = () => {
       <ImageTextSplit>
         <Container>
           <Grid columns={{ sm: 2 }} gap={true} align="center" justify="center">
-            <img src="https://source.unsplash.com/random" />
+            <img src="https://source.unsplash.com/random" alt="unsplash" />
             <>
               <h3>Lorem ipsum</h3>
               <p>
