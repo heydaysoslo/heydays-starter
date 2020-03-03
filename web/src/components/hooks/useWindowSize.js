@@ -20,7 +20,12 @@ const getSize = () => {
         outerHeight: window.outerHeight,
         outerWidth: window.outerWidth
       }
-    : null
+    : {
+        innerHeight: 0,
+        innerWidth: 0,
+        outerHeight: 0,
+        outerWidth: 0
+      }
 }
 
 const useWindowSize = ({ debounce = 0 } = {}) => {
