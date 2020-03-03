@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import debounce from 'lodash/debounce'
+import _debounce from 'lodash/debounce'
 
 /**
  * Usage
@@ -23,24 +23,21 @@ const getSize = () => {
     : null
 }
 
-const useWindowSize = (settings = {}) => {
+const useWindowSize = ({ debounce = 0 } = { debounce }) => {
   const [windowSize, setWindowSize] = useState(getSize())
 
-  const resizeEvent = debounce(
-    handleResize,
-    settings.debounce ? settings.debounce : 0
-  )
+  const handleResizeDebounce = _debounce(handleResize, debounce)
 
   function handleResize() {
     setWindowSize(getSize())
   }
 
   useEffect(() => {
-    window.addEventListener('resize', resizeEvent)
+    window.addEventListener('resize', handleResizeDebounce)
     return () => {
-      window.removeEventListener('resize', resizeEvent)
+      window.removeEventListener('resize', handleResizeDebounce)
     }
-  }, [resizeEvent])
+  }, [handleResizeDebounce])
 
   return windowSize
 }
