@@ -28,7 +28,7 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-next-seo`,
+    // `gatsby-plugin-next-seo`,
     `gatsby-plugin-portal`,
     `gatsby-plugin-typescript`,
     {
