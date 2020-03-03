@@ -15,7 +15,7 @@ const Index = ({ className }) => {
       console.log(c, width, height)
       c.fillRect(0, 0, width, height / 2)
     }
-  }, [c])
+  }, [c, width, height])
   return (
     <div className={className}>
       <Layout>

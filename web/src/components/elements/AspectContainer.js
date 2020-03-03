@@ -1,5 +1,5 @@
 import React, { useRef, useLayoutEffect, useState, useMemo } from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import useMediaQuery from '../hooks/useMediaQuery'
 import useWindowSize from '../hooks/useWindowSize'
 import { breakpoints } from '../../styles/themes'
