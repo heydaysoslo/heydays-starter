@@ -2,10 +2,9 @@ import React, { useContext } from 'react'
 import { Link, useStaticQuery, graphql } from 'gatsby'
 import styled, { css } from 'styled-components'
 
-// import Menu from './Menu'
+import Menu from './Menu'
 import { Container, H1 } from './elements'
 import { spacing } from '../styles/utilities'
-import ResponsiveMenu from './ResponsiveMenu'
 import { LinkResolver } from './resolvers'
 import AppContext from './context/AppContext'
 
@@ -27,7 +26,7 @@ const Header = ({ className }: Props) => {
             </Link>
           </H1>
           {menuItems && (
-            <ResponsiveMenu>
+            <Menu>
               {menuItems.map(item => (
                 <LinkResolver
                   key={item._key}
@@ -38,7 +37,7 @@ const Header = ({ className }: Props) => {
                   {item?.title || item?.reference?.title}
                 </LinkResolver>
               ))}
-            </ResponsiveMenu>
+            </Menu>
           )}
         </div>
       </Container>
