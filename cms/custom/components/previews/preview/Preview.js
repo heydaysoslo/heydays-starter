@@ -26,7 +26,9 @@ class Preview extends React.PureComponent {
   render() {
     const { displayed } = this.props.document;
 
-    const isLocal = window.location.host.includes("localhost");
+    const isLocal =
+      window.location.host.includes("localhost") ||
+      window.location.host.includes(".local");
 
     const url = `${
       isLocal ? config.previewUrl.dev : config.previewUrl.production
