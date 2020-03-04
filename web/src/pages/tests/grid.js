@@ -68,6 +68,9 @@ const GridTest = ({ className }) => {
               <Box>Auto column</Box>
               <Box>Auto column</Box>
               <Box>Auto column</Box>
+              <GridItem span={'50%'}>
+                <Box>50% width</Box>
+              </GridItem>
             </Grid>
           </SampleSection>
 
@@ -93,10 +96,7 @@ const GridTest = ({ className }) => {
           </SampleSection>
 
           <SampleSection>
-            <Grid
-              gap={{ xs: '1vw', sm: 'lg', md: false, lg: true }}
-              columns={3}
-            >
+            <Grid gap={false} columns={3}>
               <Box>Different gap units</Box>
               <Box>Different gap units</Box>
               <Box>Different gap units</Box>
