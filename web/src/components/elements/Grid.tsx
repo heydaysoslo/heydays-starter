@@ -125,30 +125,38 @@ const setResponsiveColumns = columns => {
   }
 }
 
-const setResponsiveGaps = ({ gap, gapUnit, multiplier, cssProps }) => {
-  if (typeof gap === 'object') {
-    return Object.keys(gap).map(
-      key => bp.above[key]`
-        ${spacing[gapUnit](cssProps, { multiplier: gap[key] ? multiplier : 0 })}
-      `
-    )
-  } else {
-    return spacing[gapUnit](cssProps, { multiplier })
+/*
+Possible to pass the following units:
+- Hard unit: vw, px, %, rem, etc
+- Theme spacing unit: 'gutter', 'lg'
+- Boolean: true (default spacing unit), false (no gutter at all)
+*/
+const setResponsiveGaps = ({ gap, cssProps, multiplier }) => {
+  switch (typeof gap) {
+    case 'object':
+      return Object.keys(gap).map(
+        key => bp.above[key]`
+          ${setResponsiveGaps({ gap: gap[key], multiplier, cssProps })}
+        `
+      )
+    case 'number':
+      return spacing({ val: `${gap}px`, cssProps, multiplier })
+    case 'boolean':
+      const defaultGapUnit = 'gutter'
+      return spacing[defaultGapUnit](cssProps, {
+        multiplier: gap ? multiplier : 0
+      })
+    default:
+      if (spacing[gap]) {
+        return spacing[gap](cssProps, { multiplier })
+      } else {
+        return spacing({ val: gap, cssProps, multiplier })
+      }
   }
 }
 
 export default styled(BaseGrid)<Props>(
-  ({
-    theme,
-    reverse,
-    align,
-    justify,
-    gap,
-    columns,
-    gapUnit = 'gutter',
-    gapY,
-    gapX
-  }) => css`
+  ({ columns, gap, gapY, gapX, reverse, align, justify, theme }) => css`
     display: flex;
     flex: 0 1 auto;
     flex-direction: ${reverse ? 'row-reverse' : 'row'};
@@ -162,7 +170,6 @@ export default styled(BaseGrid)<Props>(
     ${gapY &&
       setResponsiveGaps({
         gap: gapY,
-        gapUnit,
         multiplier: -1,
         cssProps: 'mb'
       })}
@@ -171,7 +178,6 @@ export default styled(BaseGrid)<Props>(
     ${gapX &&
       setResponsiveGaps({
         gap: gapX,
-        gapUnit,
         multiplier: -0.5,
         cssProps: 'mx'
       })}
@@ -180,7 +186,6 @@ export default styled(BaseGrid)<Props>(
     ${gap &&
       setResponsiveGaps({
         gap,
-        gapUnit,
         multiplier: -0.5,
         cssProps: 'mx'
       })}
@@ -188,7 +193,6 @@ export default styled(BaseGrid)<Props>(
     ${gap &&
       setResponsiveGaps({
         gap,
-        gapUnit,
         multiplier: -1,
         cssProps: 'mb'
       })}
@@ -200,7 +204,6 @@ export default styled(BaseGrid)<Props>(
       ${gapY &&
         setResponsiveGaps({
           gap: gapY,
-          gapUnit,
           multiplier: 1,
           cssProps: 'pb'
         })}
@@ -209,7 +212,6 @@ export default styled(BaseGrid)<Props>(
       ${gapX &&
         setResponsiveGaps({
           gap: gapX,
-          gapUnit,
           multiplier: 0.5,
           cssProps: 'px'
         })}
@@ -218,7 +220,6 @@ export default styled(BaseGrid)<Props>(
       ${gap &&
         setResponsiveGaps({
           gap,
-          gapUnit,
           multiplier: 0.5,
           cssProps: 'px'
         })}
@@ -226,7 +227,6 @@ export default styled(BaseGrid)<Props>(
       ${gap &&
         setResponsiveGaps({
           gap,
-          gapUnit,
           multiplier: 1,
           cssProps: 'pb'
         })}

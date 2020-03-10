@@ -112,7 +112,7 @@ const applyPropValueOptions = (value, options) => {
   if (!value) {
     return value
   }
-  // Apply multipier if its a number
+  // Apply multiplier if its a number
   if (!isNaN(options?.multiplier)) {
     const unitParsed = parseCssUnit(value)
     if (unitParsed.number) {
@@ -167,10 +167,22 @@ const spacingConfigMap = Object.keys(responsiveSpacing).reduce((acc, key) => {
   return acc
 }, {})
 
-export const spacing = {
+const spacingFunctions = {
   ...mixins,
   ...spacingConfigMap
 }
+
+const spacingObject = ({ val, cssProps, multiplier }) => {
+  return css`
+    ${addSpacingProps(cssProps, applyPropValueOptions(val, { multiplier }))}
+  `
+}
+
+Object.keys(spacingFunctions).forEach(key => {
+  spacingObject[key] = spacingFunctions[key]
+})
+
+export const spacing = spacingObject
 
 // export const responsiveSpacing = {
 //   xs: (props, options) => ({ theme }) => css`
