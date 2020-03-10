@@ -64,6 +64,7 @@ const StyledFadeIn = styled(FadeIn)(
       position: absolute;
       top: 0;
       right: 0;
+      z-index: 10;
     }
 
     .wrapper {
@@ -85,7 +86,6 @@ export default styled(Menu)(
         display: block;
       `}
     }
-
     .desktop {
       display: none;
       ${bp.above.lg`

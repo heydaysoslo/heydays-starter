@@ -108,11 +108,11 @@ export const fonts = {
 }
 
 export const aspect = {
-  portrait: (7 / 6) * 100,
-  landscape: (2 / 3) * 100,
-  square: 100,
-  widescreen: (9 / 16) * 100,
-  panorama: (11 / 16) * 100
+  portrait: 7 / 6,
+  landscape: 2 / 3,
+  square: 1,
+  widescreen: 9 / 16,
+  panorama: 11 / 16
 }
 
 export const contentWidth = {
@@ -160,8 +160,7 @@ export const theme: DefaultTheme = {
   border
 }
 
-export const darkTheme: DefaultTheme = {
-  ...theme,
+export const darkTheme = {
   colors: {
     primary: 'green',
     secondary: 'orange',
