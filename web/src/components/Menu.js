@@ -11,7 +11,7 @@ import { Button, Container } from './elements'
 
 const Menu = ({ className }) => {
   const data = useStaticQuery(query)
-  const menu = data.sanityMenu?._rawItem
+  const menu = data.sanitySiteSettings?.primaryMenu?._rawItem
   const { state, actions } = useContext(AppContext)
 
   return (
@@ -110,11 +110,10 @@ export default styled(Menu)(
 
 export const query = graphql`
   {
-    sanityMenu(_id: { eq: "menu-primaryMenu" }) {
-      _id
-      _key
-      _type
-      _rawItem(resolveReferences: { maxDepth: 10 })
+    sanitySiteSettings(_id: { eq: "siteSettings" }) {
+      primaryMenu {
+        _rawItem(resolveReferences: { maxDepth: 10 })
+      }
     }
   }
 `

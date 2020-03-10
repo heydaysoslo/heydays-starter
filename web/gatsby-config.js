@@ -72,10 +72,9 @@ module.exports = {
       // https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-sitemap
       resolve: `gatsby-plugin-sitemap`,
       options: {
-        output: `/sitemap.xml`
-        // Exclude specific pages or groups of pages using glob parameters
-        // See: https://github.com/isaacs/minimatch
-        // The example below will exclude the single `path/to/page` and all routes beginning with `category`
+        output: `/sitemap.xml`,
+        // exclude preview page from sitemap
+        exclude: [`/_preview/*`]
       }
     },
     {

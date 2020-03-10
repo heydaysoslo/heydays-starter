@@ -1,7 +1,0 @@
-.Header {
-  @include spacing(sm, (padding-top, padding-bottom));
-  &__container {
-    display: flex;
-    justify-content: space-between;
-  }
-}

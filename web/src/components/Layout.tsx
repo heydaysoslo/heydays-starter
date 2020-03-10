@@ -9,19 +9,19 @@ import SEO from './SEO'
 import { ThemeProvider } from 'styled-components'
 import theme, { darkTheme } from '../styles/themes'
 import { GlobalStyle } from '../styles/utilities/Global'
-import { Button } from './elements'
+// import { Button } from './elements'
 // import Credits from './Credits'
 
 const Layout = props => {
   const themes = [theme, darkTheme]
   const [number, setNumber] = useState(0)
 
-  const handleClick = () => {
-    setNumber(number + 1)
-  }
+  // const handleClick = () => {
+  //   setNumber(number + 1)
+  // }
   return (
     <ThemeProvider theme={themes[number % themes.length]}>
-      <Button onClick={handleClick}>Change theme</Button>
+      {/* <Button onClick={handleClick}>Change theme</Button> */}
       <div className="Site">
         {/* <Credits /> */}
         {props && (

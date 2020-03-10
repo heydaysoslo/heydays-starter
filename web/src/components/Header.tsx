@@ -48,12 +48,10 @@ const Header = ({ className }: Props) => {
 export default styled(Header)(
   ({ theme }) => css`
     ${spacing.sm('py')}
-    background: ${theme.colors.primary};
-
+    /* background: ${theme.colors.primary}; */
     .logo {
       ${spacing.section('mr')}
     }
-
     .inner {
       display: flex;
       justify-content: space-between;
