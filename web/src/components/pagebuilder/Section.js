@@ -30,8 +30,6 @@ const Section = ({ label, title, content, button, className }) => {
 export default styled(Section)(
   ({ theme }) => css`
     text-align: center;
-    ${spacing.section('my')}
-
     .button {
       ${spacing.md('mt')}
     }

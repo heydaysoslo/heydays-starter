@@ -20,11 +20,9 @@ const Header = ({ className }: Props) => {
     <header className={className}>
       <Container className="container">
         <div className="inner">
-          <H1>
-            <Link className="logo" to="/">
-              LOGO
-            </Link>
-          </H1>
+          <Link className="logo" to="/">
+            LOGO
+          </Link>
           {menuItems && (
             <Menu>
               {menuItems.map(item => (
@@ -47,10 +45,9 @@ const Header = ({ className }: Props) => {
 
 export default styled(Header)(
   ({ theme }) => css`
-    ${spacing.sm('py')}
-    /* background: ${theme.colors.primary}; */
+    ${spacing.sm('py')};
     .logo {
-      ${spacing.section('mr')}
+      ${spacing.section('mr')};
     }
     .inner {
       display: flex;

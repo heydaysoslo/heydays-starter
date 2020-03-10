@@ -6,9 +6,9 @@ import { LinkResolver } from '../resolvers'
 
 const CardSection = ({ title, seeAllLink, cardsList = [], ...props }) => {
   return (
-    <>
+    <div className="CardSection">
       {title && <h2>{title}</h2>}
-      <Grid columns={{ sm: 1, md: 3 }} gap="my">
+      <Grid columns={{ sm: 1, md: 3 }} gap={true}>
         {cardsList.map(card => {
           const { content, cardOverride } = card
           return (
@@ -31,7 +31,7 @@ const CardSection = ({ title, seeAllLink, cardsList = [], ...props }) => {
             {seeAllLink?.title || seeAllLink?.reference?.title}
           </LinkResolver>
         )}
-    </>
+    </div>
   )
 }
 

@@ -7,6 +7,9 @@ import FullImageSection from './FullImageSection'
 import Section from './Section'
 import TextImageSplit from './TextImageSplit'
 import Tabs from '../elements/Tabs'
+import cc from 'classcat'
+import styled from 'styled-components'
+import { spacing } from '../../styles/utilities'
 
 const CarouselSection = loadable(() => import('./CarouselSection'))
 
@@ -20,13 +23,25 @@ const sectionTypes = {
   tabs: Tabs
 }
 
+const StyledPageBuilder = styled.div`
+  .PageBuilder__item {
+    ${spacing.section('mt')};
+  }
+`
+
 const PageBuilder = ({ sections }) => {
   return (
-    <div className="PageBuilder">
+    <StyledPageBuilder>
       {sections.map((section, index) => {
         const Component = sectionTypes[section._type] || null
         return Component ? (
-          <div key={section._key} className="PageBuilder__item">
+          <div
+            key={section._key}
+            className={cc({
+              PageBuilder__item: true,
+              [`PageBuilder__item--${section._type}`]: section._type
+            })}
+          >
             <Component
               {...section}
               prevComp={sections[index - 1] ? sections[index - 1] : null}
@@ -39,7 +54,7 @@ const PageBuilder = ({ sections }) => {
           </p>
         )
       })}
-    </div>
+    </StyledPageBuilder>
   )
 }
 

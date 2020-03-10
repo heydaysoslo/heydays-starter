@@ -1,17 +1,24 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
+import styled from 'styled-components'
+import { spacing } from '../styles/utilities'
 
 import { Grid, Container } from './elements'
 import Newsletter from './Newsletter'
 import { LinkResolver } from './resolvers'
 import Social from './Social'
 
+const StyledFooter = styled.footer`
+  ${spacing.section('mt,py')};
+  border-top: 1px solid #000;
+`
+
 const Footer = () => {
   const data = useStaticQuery(query)
   const menu = data?.sanitySiteSettings?.footerMenu?._rawItem
   const privacyPage = data?.sanitySiteSettings?._rawPrivacypage
   return (
-    <div className="Footer">
+    <StyledFooter>
       <Container>
         <Grid gap="my" columns={{ sm: 2, md: 4 }}>
           <ul className="Footer__menu">
@@ -42,7 +49,7 @@ const Footer = () => {
           </div>
         </Grid>
       </Container>
-    </div>
+    </StyledFooter>
   )
 }
 

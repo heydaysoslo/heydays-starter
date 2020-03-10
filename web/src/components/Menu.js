@@ -79,7 +79,6 @@ const StyledFadeIn = styled(FadeIn)(
 
 export default styled(Menu)(
   ({ theme }) => css`
-    background: ${color.hsla('orange', 0.2)};
     .mobile {
       display: none;
       ${bp.below.lg`
@@ -98,11 +97,10 @@ export default styled(Menu)(
     }
 
     .container {
+      ${spacing.sm('pt')}
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-
-      ${spacing.sm('pt')}
       flex-direction: row-reverse;
     }
   `
