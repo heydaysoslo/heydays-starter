@@ -6,6 +6,7 @@ import TextSection from './TextSection'
 import FullImageSection from './FullImageSection'
 import Section from './Section'
 import TextImageSplit from './TextImageSplit'
+import VideoSection from './VideoSection'
 import Tabs from '../elements/Tabs'
 import cc from 'classcat'
 import styled from 'styled-components'
@@ -20,7 +21,8 @@ const sectionTypes = {
   imageSection: FullImageSection,
   textImageSplit: TextImageSplit,
   carousel: CarouselSection,
-  tabs: Tabs
+  tabs: Tabs,
+  videoSection: VideoSection
 }
 
 const StyledPageBuilder = styled.div`
