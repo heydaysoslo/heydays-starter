@@ -5,7 +5,6 @@ import Layout from '../components/Layout'
 import FrontPage from '../components/pages/FrontPage'
 
 const Index = props => {
-  console.log('props', props)
   const { data } = props
   const page = data?.sanityFrontpage
   if (!page) return <h1>Forsiden mangler</h1>
