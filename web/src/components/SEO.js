@@ -33,9 +33,9 @@ const getTitleFromTemplate = (template, title) => {
 const SEO = props => {
   const data = useStaticQuery(query)
   const { sanityCompanyInfo, sanitySiteSettings } = data
-  const { type, slug, getUrl, authors, publishDate, id } = props
+  const { type, slug, getUrl, authors, publishDate } = props
 
-  if (!type || !slug) {
+  if (!type || (type !== 'frontpage' && !slug)) {
     console.info(
       `Type or slug is missing. We need this to make the SEO. Type: ${type} and Slug: ${slug}`
     )
@@ -56,7 +56,7 @@ const SEO = props => {
   const image = getLastValidOverride(sources, 'image')
 
   const tabTitle =
-    slug === sanitySiteSettings?._rawFrontpage.slug.current
+    type === 'frontpage'
       ? title
       : getTitleFromTemplate(titleTemplate, truncateString(title))
 
@@ -137,7 +137,7 @@ const SEO = props => {
       Only show on frontpage.
       https://schema.org/LocalBusiness
        */}
-      {sanitySiteSettings._rawFrontpage.id === id && (
+      {type === 'frontpage' && (
         <LocalBusinessJsonLd
           type="LocalBusiness"
           id={sanitySiteSettings?.siteUrl || ''}
@@ -195,7 +195,7 @@ const query = graphql`
       locale
       siteUrl
       facebookAppId
-      _rawFrontpage(resolveReferences: { maxDepth: 10 })
+      # _rawFrontpage(resolveReferences: { maxDepth: 10 })
       _rawSeo(resolveReferences: { maxDepth: 10 })
       seo {
         image {

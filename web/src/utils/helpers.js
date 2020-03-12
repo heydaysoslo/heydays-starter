@@ -29,5 +29,10 @@ export const makeFirstLetterCapital = string => {
   )}`
 }
 
+export const camel2title = camelCase =>
+  camelCase
+    .replace(/([A-Z])/g, match => ` ${match}`)
+    .replace(/^./, match => match.toUpperCase())
+
 export const random = (min, max) =>
   Math.floor(Math.random() * (max - min)) + min

@@ -13,6 +13,7 @@ import personOrder from "./documents/personOrder";
 import article from "./documents/article";
 // import articleOrder from './documents/articleOrder'
 import siteSettings from "./documents/siteSettings";
+import frontpage from "./documents/frontpage";
 
 // Object types
 import link from "./objects/link";
@@ -99,7 +100,8 @@ export default createSchema({
     page,
     person,
     personOrder,
-    article
-    // articleOrder
+    article,
+    // articleOrder,
+    frontpage
   ])
 });
