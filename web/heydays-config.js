@@ -1,4 +1,5 @@
 import { createAspectRatios } from './src/utils/aspect'
+import sanityConfig from '../cms/sanity.json'
 
 /**
  * Routes
@@ -14,8 +15,8 @@ export const getUrl = (type, slug) => {
 }
 
 export const sanity = {
-  projectId: process.env.GATSBY_SANITY_PROJECT_ID || '6ptaspv6',
-  dataset: process.env.GATSBY_SANITY_DATASET || 'production'
+  projectId: sanityConfig.api.projectId,
+  dataset: sanityConfig.api.dataset
 }
 
 export const breakPoints = {
