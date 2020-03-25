@@ -45,7 +45,6 @@ const Preview = ({ className, id }) => {
   // const fetchCount = useRef(null)
   const fetchTimer = useRef(null)
   const [pageData, setPageData] = useState(null)
-  const [size, setSize] = useState('full')
 
   const pageId = id ? id.replace('drafts.', '') : null
   const params = { draftId: `drafts.${pageId}`, id: pageId }

@@ -6,7 +6,7 @@ import FadeIn from './FadeIn'
 import MenuItems from './MenuItems'
 import Portal from './Portal'
 import styled, { css } from 'styled-components'
-import { bp, fonts, color, spacing } from '../styles/utilities'
+import { bp, fonts, spacing } from '../styles/utilities'
 import { Button, Container } from './elements'
 
 const Menu = ({ className }) => {
