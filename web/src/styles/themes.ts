@@ -32,15 +32,15 @@ export const spacingUnit = {
 
 export const responsiveSpacing = {
   xs: {
-    xs: 'xs',
-    lg: 'sm'
+    xs: remSize(5),
+    lg: remSize(10)
   },
   sm: {
-    xs: 'sm',
-    lg: 'md'
+    xs: remSize(10),
+    lg: remSize(15)
   },
   md: {
-    xs: 'md',
+    xs: remSize(15),
     lg: 'lg'
   },
   lg: {
@@ -48,7 +48,7 @@ export const responsiveSpacing = {
     lg: '12rem'
   },
   section: {
-    xs: '5vw'
+    xs: remSize(100)
   },
   gutter: {
     xs: 'md',
@@ -74,37 +74,33 @@ export const fontFamily = {
   serif: `'Suisse Works', times, serif`
 }
 
-export const fonts = {
-  xxlarge: () =>
-    css`
-      font-size: ${remSize(80)};
-      line-height: 1.2;
-    `,
-  xlarge: () =>
-    css`
-      font-size: ${remSize(60)};
-      line-height: 1.2;
-    `,
-  large: () =>
-    css`
-      font-size: ${remSize(40)};
-      line-height: 1.2;
-    `,
-  medium: () =>
-    css`
-      font-size: ${remSize(24)};
-      line-height: 1.2;
-    `,
-  small: () =>
-    css`
-      font-size: ${remSize(18)};
-      line-height: 1.2;
-    `,
-  xs: () =>
-    css`
-      font-size: ${remSize(16)};
-      line-height: 1.2;
-    `
+const fontDefs = {
+  xs: '16px/1.2'
+}
+
+export const responsiveFonts = {
+  small: fontDefs.xs,
+  body: {
+    xs: fontDefs.xs,
+    lg: '18px/1.2'
+  },
+  h1: {
+    xs: {
+      size: '40px/50px',
+      css: css`
+        text-transform: uppercase;
+      `
+    },
+    lg: '60px/1.2'
+  },
+  h2: {
+    xs: '24px/1.2',
+    lg: '40px/1.2'
+  },
+  h3: {
+    xs: fontDefs.xs,
+    lg: '24px/1.2'
+  }
 }
 
 export const aspect = {
@@ -151,8 +147,8 @@ export const theme: DefaultTheme = {
   spacingUnit,
   grid,
   fontFamily,
-  fonts,
   aspect,
+  responsiveFonts,
   contentWidth,
   trans,
   icons,
@@ -161,6 +157,7 @@ export const theme: DefaultTheme = {
 }
 
 export const darkTheme = {
+  ...theme,
   colors: {
     primary: 'green',
     secondary: 'orange',
@@ -199,21 +196,3 @@ export const darkTheme = {
 }
 
 export default theme
-
-/**
- * Way to split up and reuse vals
- */
-
-// export const createBorder = theme => ({
-//   borderWidth: 1,
-//   borderStyle: 'solid',
-//   borderColor: colors.primary,
-//   border: '1px solid black'
-// })
-
-// export const theme = {
-//   border: createBorder({ colors: { primary: 'black' } })
-// }
-// export const darkTheme = {
-//   border: createBorder({ colors: { primary: 'orange' } })
-// }

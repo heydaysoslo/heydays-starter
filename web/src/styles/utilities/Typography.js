@@ -1,57 +1,78 @@
 import { css } from 'styled-components'
 
+import { responsiveFonts } from '../themes'
+import { remSize } from './Converters'
 import { bp } from './Breakpoints'
 
-export const fonts = {
-  h1: () => ({ theme }) => css`
-    ${theme?.fonts?.medium()};
-    ${bp.above.lg`
-      ${theme?.fonts?.xlarge()};
-    `}
-    ${bp.above.xl`
-      ${theme?.fonts?.xxlarge()};
-    `}
-  `,
-  body: () => {
-    return function({ theme }) {
-      return css`
-        ${theme?.fonts?.small()}
-        ${bp.above.lg`
-        ${theme?.fonts?.medium()}
-      `}
-      `
-    }
-  },
-  title: (color = 'black') => {
-    return function({ theme }) {
-      return css`
-        ${theme?.fonts?.small()}
-        ${theme?.fonts?.xlarge()}
-        color: ${color || theme?.colors?.text};
-      `
-    }
+const px2LineHeight = (size, lineheight) => {
+  if (!size.includes('px') || !lineheight.includes('px')) {
+    console.warn(
+      `px2LineHeight() assumes px values. Size or lineheight is not spesified in px. Was ${size} ${lineheight}`
+    )
   }
+  return (
+    Math.round(
+      (parseFloat(lineheight) / parseFloat(size) + Number.EPSILON) * 100
+    ) / 100
+  )
 }
 
+export const createFontSizeAndLineHeight = size => {
+  const [fz, lh] =
+    typeof size === 'object' ? size.size.split('/') : size.split('/')
+  const fzUnit = fz.replace(/[0-9]/g, '').trim()
+  const fzVal = parseFloat(fz)
+  const lhUnit = lh.replace(/[0-9]/g, '').trim()
+  return css`
+    font-size: ${fzUnit === 'px' ? remSize(fzVal) : fz};
+    line-height: ${lhUnit === 'px' ? px2LineHeight(fz, lh) : lh};
+    ${size.css && size.css}
+  `
+}
+
+export const fonts = Object.keys(responsiveFonts).reduce((acc, key) => {
+  acc[key] = () => ({ theme }) => {
+    if (theme?.responsiveFonts.hasOwnProperty(key)) {
+      const val = theme.responsiveFonts[key]
+      return typeof val === 'string'
+        ? createFontSizeAndLineHeight(val)
+        : Object.keys(val).map(bpKey => {
+            return bp.above[bpKey]`
+        ${createFontSizeAndLineHeight(val[bpKey])}
+        `
+          })
+    }
+  }
+  return acc
+}, {})
+
 export const globalTypeStyle = ({ theme }) => css`
+  html {
+    font-size: 62.5%;
+  }
+
   h1,
-  .h1 {
-    ${fonts.h1()}
-  }
-
   h2,
-  .h2 {
-    ${fonts.h1()}
-  }
-
   h3,
-  .h3 {
-    ${fonts.title()}
+  h4 {
+    /* font-weight: bold; */
   }
 
-  small,
-  .text-small {
-    ${fonts.body()}
+  body {
+    overflow-x: hidden;
+    font-family: ${theme.fontFamily.serif};
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: ${theme.colors.text};
+    font-size: 1.8rem;
+    ${bp.above.md`
+      font-size: 2.4rem;
+    `}
+  }
+
+  ::selection {
+    background: ${theme.colors.primary};
+    color: white;
   }
 
   strong {
@@ -67,7 +88,10 @@ export const globalTypeStyle = ({ theme }) => css`
     cursor: pointer;
     position: relative;
     text-decoration: none;
-    color: currentColor;
+    color: blue;
+    &:hover {
+      color: deeppink;
+    }
   }
 
   .link {

@@ -1,6 +1,6 @@
 // import original module declarations
 import 'styled-components'
-import { BorderProps } from '../types'
+import { BorderProps, BreakPoints, responsiveFontDeclaration } from '../types'
 
 // and extend them!
 declare module 'styled-components' {
@@ -13,14 +13,7 @@ declare module 'styled-components' {
       border?: string
       background?: string
     }
-    breakpoints: {
-      xs?: number
-      sm?: number
-      md?: number
-      lg?: number
-      xl?: number
-      xxl?: number
-    }
+    breakpoints: Breakpoints
     spacingUnit: {
       xs?: string
       sm?: string
@@ -46,14 +39,7 @@ declare module 'styled-components' {
       sans?: string
       serif?: string
     }
-    fonts: {
-      xxlarge?: () => void
-      xlarge?: () => void
-      large?: () => void
-      medium?: () => void
-      small?: () => void
-      xs?: () => void
-    }
+    responsiveFonts: responsiveFontDeclaration
     aspect: {
       portrait?: number
       landscape?: number
