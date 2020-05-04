@@ -1,3 +1,5 @@
+import { CSSProp } from 'styled-components'
+
 export type FlexBoxAlignItems =
   | 'flex-start'
   | 'flex-end'
@@ -63,3 +65,27 @@ export type SpacingUnits =
   | 'xl'
   | 'section'
   | 'gutter'
+
+export type BreakPoints = {
+  xs?: number
+  sm?: number
+  md?: number
+  lg?: number
+  xl?: number
+  xxl?: number
+}
+
+export type FontDeclarationObject = {
+  [key: string]:
+    | string
+    | {
+        size: string
+        css?: CSSProp
+      }
+}
+
+export type FontDeclaration = string | FontDeclarationObject
+
+export type responsiveFontDeclaration = {
+  [key: string]: FontDeclaration
+}
