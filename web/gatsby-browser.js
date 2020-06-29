@@ -7,8 +7,10 @@
 // You can delete this file if you're not using it
 import React from 'react'
 import { AppProvider } from './src/components/context/AppContext'
+import 'intersection-observer'
 
-require('./src/styles/reset.css')
+import './src/styles/reset.css'
+import './src/fonts/fonts.css'
 
 export const wrapRootElement = ({ element }) => (
   <AppProvider>{element}</AppProvider>
