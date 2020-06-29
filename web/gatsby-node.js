@@ -74,8 +74,6 @@ async function createPages(graphql, actions, reporter) {
       component: require.resolve('./src/templates/Page.js'),
       context: { id }
     })
-
-    createPageDependency({ path, nodeId: id })
   })
 }
 
@@ -122,8 +120,6 @@ async function createArticles(graphql, actions, reporter) {
         component: require.resolve('./src/templates/Article.js'),
         context: { id }
       })
-
-      createPageDependency({ path, nodeId: id })
     })
 }
 
