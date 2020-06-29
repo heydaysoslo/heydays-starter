@@ -84,6 +84,10 @@ export const responsiveFonts = {
     xs: fontDefs.xs,
     lg: '18px/1.2'
   },
+  title: {
+    xs: fontDefs.xs,
+    lg: '24px/1.2'
+  },
   h1: {
     xs: {
       size: '40px/50px',

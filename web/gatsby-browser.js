@@ -10,7 +10,7 @@ import { AppProvider } from './src/components/context/AppContext'
 import 'intersection-observer'
 
 import './src/styles/reset.css'
-import './src/fonts/fonts.css'
+import './src/assets/fonts/fonts.css'
 
 export const wrapRootElement = ({ element }) => (
   <AppProvider>{element}</AppProvider>
