@@ -40,7 +40,8 @@ export default {
         list: [
           { title: 'Bokmål', value: 'nb_NO' },
           { title: 'Nynorsk', value: 'nn_NO' },
-          { title: 'English', value: 'en_US' }
+          { title: 'English (GB)', value: 'en_GB' },
+          { title: 'English (US)', value: 'en_US' }
         ]
       },
       fieldset: 'seo'
