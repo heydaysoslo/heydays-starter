@@ -93,15 +93,6 @@ module.exports = {
       }
     },
     {
-      resolve: 'gatsby-plugin-web-font-loader',
-      options: {
-        custom: {
-          families: ['Suisse Works', 'SuisseIntl'],
-          urls: ['fonts/fonts.css']
-        }
-      }
-    },
-    {
       resolve: `gatsby-plugin-google-tagmanager`,
       options: {
         id: process.env.GOOGLE_TAGMANAGER_ID,
