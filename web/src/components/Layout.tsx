@@ -9,21 +9,16 @@ import SEO from './SEO'
 import { ThemeProvider } from 'styled-components'
 import theme, { darkTheme } from '../styles/themes'
 import { GlobalStyle } from '../styles/utilities/Global'
-// import { Button } from './elements'
-// import Credits from './Credits'
+import Helmet from 'react-helmet'
 
 const Layout = props => {
   const themes = [theme, darkTheme]
   const [number, setNumber] = useState(0)
 
-  // const handleClick = () => {
-  //   setNumber(number + 1)
-  // }
   return (
     <ThemeProvider theme={themes[number % themes.length]}>
-      {/* <Button onClick={handleClick}>Change theme</Button> */}
       <div className="Site">
-        {/* <Credits /> */}
+        <FontPreloadLoading />
         {props && (
           <SEO
             id={props.id}
@@ -44,6 +39,41 @@ const Layout = props => {
         <GlobalStyle />
       </div>
     </ThemeProvider>
+  )
+}
+
+const FontPreloadLoading = () => {
+  return (
+    <Helmet>
+      <link
+        rel="preload"
+        as="font"
+        href="/fonts/SuisseIntl-Regular-WebM.woff2"
+        type="font/woff2"
+        crossOrigin="anonymous"
+      />
+      <link
+        rel="preload"
+        as="font"
+        href="/fonts/SuisseIntl-Medium-WebM.woff2"
+        type="font/woff2"
+        crossOrigin="anonymous"
+      />
+      <link
+        rel="preload"
+        as="font"
+        href="/fonts/SuisseWorks-Regular-WebS.woff2"
+        type="font/woff2"
+        crossOrigin="anonymous"
+      />
+      <link
+        rel="preload"
+        as="font"
+        href="/fonts/SuisseNeue-Regular-WebS.woff2"
+        type="font/woff2"
+        crossOrigin="anonymous"
+      />
+    </Helmet>
   )
 }
 
