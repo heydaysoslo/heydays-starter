@@ -5,10 +5,11 @@ import styled, { css } from 'styled-components'
 
 import Layout from '../components/Layout'
 import { TemplateResolver } from '../components/resolvers'
+import { sanity } from '../../heydays-config'
 
 const client = sanityClient({
-  projectId: '6ptaspv6',
-  dataset: 'production',
+  projectId: sanity.projectId,
+  dataset: sanity.dataset,
   useCdn: false,
   withCredentials: true
 })
