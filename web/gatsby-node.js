@@ -1,4 +1,3 @@
-const createPageDependency = require('gatsby/dist/redux/actions/add-page-dependency')
 // const isPast = require('date-fns/is_past')
 
 /**
@@ -11,6 +10,30 @@ const createPageDependency = require('gatsby/dist/redux/actions/add-page-depende
 exports.onCreateBabelConfig = ({ actions }) => {
   actions.setBabelPlugin({
     name: require.resolve('@babel/plugin-proposal-optional-chaining')
+  })
+}
+
+async function createFrontpage(graphql, actions, reporter) {
+  const { createPage } = actions
+
+  const frontpageResult = await graphql(`
+    {
+      sanitySiteSettings(_id: { eq: "siteSettings" }) {
+        frontpage {
+          id
+        }
+      }
+    }
+  `)
+
+  if (frontpageResult.errors) throw result.errors
+
+  const frontPage = frontpageResult.data.sanitySiteSettings.frontpage
+
+  createPage({
+    path: '/',
+    component: require.resolve('./src/templates/FrontpageTemplate.js'),
+    context: { id: frontPage.id }
   })
 }
 
@@ -124,6 +147,7 @@ async function createArticles(graphql, actions, reporter) {
 }
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
+  await createFrontpage(graphql, actions, reporter)
   await createPages(graphql, actions, reporter)
   await createArticles(graphql, actions, reporter)
 }

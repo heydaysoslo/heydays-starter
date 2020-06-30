@@ -1,46 +1,45 @@
-import S from "@sanity/desk-tool/structure-builder";
+import S from '@sanity/desk-tool/structure-builder'
 import config, {
   createMenuDeskStructure,
   createCustomTypeDeskStructure
-} from "./heydays-config";
+} from './heydays-config'
 
-import MdSettings from "react-icons/lib/md/settings";
-import MdBusiness from "react-icons/lib/md/business";
-import EyeIcon from "part:@sanity/base/eye-icon";
-import EditIcon from "part:@sanity/base/edit-icon";
-import FaFileO from "react-icons/lib/fa/file-text-o";
-import FaHome from "react-icons/lib/fa/home";
+import MdSettings from 'react-icons/lib/md/settings'
+import MdBusiness from 'react-icons/lib/md/business'
+import EyeIcon from 'part:@sanity/base/eye-icon'
+import EditIcon from 'part:@sanity/base/edit-icon'
+import FaFileO from 'react-icons/lib/fa/file-text-o'
 
-import SeoPreview from "./custom/components/previews/seo/SeoPreviews";
-import Preview from "./custom/components/previews/preview/Preview";
-import { camel2title } from "../web/src/utils/helpers";
+import SeoPreview from './custom/components/previews/seo/SeoPreviews'
+import Preview from './custom/components/previews/preview/Preview'
+import { camel2title } from '../web/src/utils/helpers'
 
 // Create menus
 
 const customTypesWithOrderPage = createCustomTypeDeskStructure(
   config.customTypes
-);
+)
 
 const hiddenCustomTypes = config.customTypes.reduce((res, item) => {
-  const typesToHide = [item.typeId, item.orderTypeId];
-  res.push(...typesToHide);
-  return res;
-}, []);
+  const typesToHide = [item.typeId, item.orderTypeId]
+  res.push(...typesToHide)
+  return res
+}, [])
 
 const hiddenDocTypes = listItem =>
   ![
-    "companyInfo",
-    "siteSettings",
-    "article",
-    "menu",
-    "frontpage",
+    'companyInfo',
+    'siteSettings',
+    'article',
+    'frontpage',
+    'menu',
     ...config.pageTypes,
     ...hiddenCustomTypes
-  ].includes(listItem.getId());
+  ].includes(listItem.getId())
 
 const createSingleton = (id, options = {}) => {
-  const { withPreviews = true, icon = FaFileO } = options;
-  const title = camel2title(id);
+  const { withPreviews = true, icon = FaFileO } = options
+  const title = camel2title(id)
   return S.listItem()
     .title(title)
     .icon(icon)
@@ -55,19 +54,19 @@ const createSingleton = (id, options = {}) => {
             S.view
               .component(SeoPreview)
               .icon(EyeIcon)
-              .title("SEO Preview"),
+              .title('SEO Preview'),
             S.view
               .component(Preview)
               .icon(EyeIcon)
-              .title("Preview")
+              .title('Preview')
           ]
         )
-    );
-};
+    )
+}
 
 const createDocsList = (id, options = {}) => {
-  const { withPreviews = true } = options;
-  const title = camel2title(id);
+  const { withPreviews = true } = options
+  const title = camel2title(id)
   return S.listItem()
     .title(title)
     .schemaType(id)
@@ -84,43 +83,43 @@ const createDocsList = (id, options = {}) => {
                 S.view
                   .component(SeoPreview)
                   .icon(EyeIcon)
-                  .title("SEO Preview"),
+                  .title('SEO Preview'),
                 S.view
                   .component(Preview)
                   .icon(EyeIcon)
-                  .title("Preview")
+                  .title('Preview')
               ]
             )
         )
-    );
-};
+    )
+}
 
 export default () =>
   S.list()
-    .title("Content")
+    .title('Content')
     .items([
       createMenuDeskStructure(),
-      createSingleton("frontpage", { icon: FaHome }),
-      createDocsList("page"),
-      createDocsList("article"),
+      createDocsList('frontpage'),
+      createDocsList('page'),
+      createDocsList('article'),
       ...customTypesWithOrderPage,
       // This returns an array of all the document types
       // defined in schema.js. We filter out those that we have
       // defined the structure above
       ...S.documentTypeListItems().filter(hiddenDocTypes),
       S.divider(),
-      createSingleton("companyInfo", { withPreviews: false, icon: MdBusiness }),
+      createSingleton('companyInfo', { withPreviews: false, icon: MdBusiness }),
       S.listItem()
-        .title("Settings")
+        .title('Settings')
         .icon(MdSettings)
         .child(
           S.list()
-            .title("Settings")
+            .title('Settings')
             .items([
-              createSingleton("siteSettings", {
+              createSingleton('siteSettings', {
                 withPreviews: false,
                 icon: MdSettings
               })
             ])
         )
-    ]);
+    ])
