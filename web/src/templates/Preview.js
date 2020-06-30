@@ -100,7 +100,7 @@ const Preview = ({ className, id }) => {
         <div className="Preview__content">
           {pageData && (
             <Layout>
-              <TemplateResolver data={pageData} />
+              <TemplateResolver page={pageData} />
             </Layout>
           )}
         </div>
