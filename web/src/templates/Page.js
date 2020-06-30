@@ -16,11 +16,12 @@ import { TemplateResolver } from '../components/resolvers'
 const PageTemplate = props => {
   const { data } = props
   const page = data && data?.page
+  console.log('page', page)
 
   return (
     page && (
       <Layout {...page}>
-        <TemplateResolver data={page} />
+        <TemplateResolver page={page} />
       </Layout>
     )
   )

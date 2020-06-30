@@ -13,18 +13,18 @@ const templates = {
   default: Page
 }
 
-export default function TemplateResolver({ data }) {
+export default function TemplateResolver({ page }) {
   let Component = null
 
   // Check if we have a template
-  if (data.template && templates[data.template]) {
-    Component = templates[data.template]
+  if (page.template && templates[page.template]) {
+    Component = templates[page.template]
   }
 
   // If no template name is set, resolve to type
   if (!Component) {
-    if (data._type && templates[data._type]) {
-      Component = templates[data._type]
+    if (page._type && templates[page._type]) {
+      Component = templates[page._type]
     }
   }
 
@@ -33,5 +33,5 @@ export default function TemplateResolver({ data }) {
     Component = templates.default
   }
 
-  return <Component {...data} />
+  return <Component {...page} />
 }

@@ -9,18 +9,17 @@ import Share from '../Share'
 import PageBuilder from '../pagebuilder/Pagebuilder'
 import Author from '../elements/Author'
 
-const Article = ({
-  _id,
-  title,
-  body,
-  mainImage,
-  authors,
-  publishDate,
-  _type,
-  slug,
-  pagebuilder,
-  ...props
-}) => {
+const Article = page => {
+  const {
+    _id,
+    title,
+    body,
+    _rawMainImage,
+    authors,
+    publishDate,
+    slug,
+    pagebuilder
+  } = page
   const data = useStaticQuery(query)
   const latestArticles = data?.allSanityArticle?.nodes
   const [currentArticles, setCurrentArticles] = useState([])
@@ -38,9 +37,9 @@ const Article = ({
           <GridItem span={{ sm: 12, md: 9 }}>
             <header className="Article__header">
               {title && <h1 className="Article__title">{title}</h1>}
-              {mainImage && (
+              {_rawMainImage && (
                 <div className="Article__image">
-                  <SanityImage node={mainImage} />
+                  <SanityImage node={_rawMainImage} />
                 </div>
               )}
             </header>
@@ -55,7 +54,7 @@ const Article = ({
             {publishDate && <p className="Article__date">{publishDate}</p>}
             {authors &&
               authors.map(author => <Author key={author._key} {...author} />)}
-            {slug && slug.current && <Share type={_type} slug={slug.current} />}
+            {slug && slug.current && <Share page={page} />}
           </GridItem>
         </Grid>
         {pagebuilder?.sections && (
@@ -91,7 +90,7 @@ export const query = graphql`
         _id
         _key
         title
-        mainImage: _rawMainImage(resolveReferences: { maxDepth: 10 })
+        _rawMainImage(resolveReferences: { maxDepth: 10 })
         excerpt: _rawExcerpt(resolveReferences: { maxDepth: 10 })
         ...Link
       }

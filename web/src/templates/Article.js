@@ -11,7 +11,7 @@ const NewsTemplate = props => {
   return (
     article && (
       <Layout {...article}>
-        <TemplateResolver data={article} />
+        <TemplateResolver page={article} />
       </Layout>
     )
   )
@@ -41,8 +41,8 @@ export const query = graphql`
     _rawMainImage(resolveReferences: { maxDepth: 20 })
     mainImage {
       asset {
-        fixed(width: 1200, height: 630) {
-          ...GatsbySanityImageFixed
+        fluid(maxWidth: 1200) {
+          ...GatsbySanityImageFluid
         }
       }
     }
