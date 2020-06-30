@@ -1,11 +1,9 @@
-import React, { Component } from "react";
-
-import "../fonts/fonts.css";
+import React, { Component } from 'react'
 
 const style = {
-  minHeight: "25px",
-  transform: "translateY(2px)"
-};
+  minHeight: '25px',
+  transform: 'translateY(2px)'
+}
 
 export default class Logo extends Component {
   render() {
@@ -30,6 +28,6 @@ export default class Logo extends Component {
           </g>
         </svg>
       </div>
-    );
+    )
   }
 }
