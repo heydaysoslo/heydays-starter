@@ -1,19 +1,6 @@
 import { createAspectRatios } from './src/utils/aspect'
 import sanityConfig from '../cms/sanity.json'
 
-/**
- * Routes
- * key === sanity _type
- */
-export const routes = {
-  article: '/news/',
-  page: '/'
-}
-
-export const getUrl = (type, slug) => {
-  return routes[type] ? `${routes[type]}${slug}` : `${slug}`
-}
-
 export const sanity = {
   projectId: sanityConfig.api.projectId,
   dataset: sanityConfig.api.dataset
