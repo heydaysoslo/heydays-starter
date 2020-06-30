@@ -90,10 +90,10 @@ const Index = () => {
           // defaultMenuIsOpen={true}
         />
         <p>{select ? `Selected: ${select}` : 'Nothing is selected yet'}</p>
-        <Icon name="check" modifiers="small" />
-        <Icon name="config" color="orange" />
-        <Icon name="calendar" modifiers="large" />
-        <Icon name="fullstack" modifiers="large" />
+        <Icon name="facebook" modifiers="small" />
+        <Icon name="twitter" color="orange" />
+        <Icon name="instagram" modifiers="large" />
+        <Icon name="pinterest" modifiers="large" />
         <div style={{ display: 'flex' }}>
           {createTints('red', 5).map(color => (
             <div

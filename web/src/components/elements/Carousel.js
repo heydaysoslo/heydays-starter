@@ -145,7 +145,7 @@ const CustomButtons = ({ flkty, children }) => {
         className="Navigation__button Navigation__button--prev"
       >
         prev
-        <Icon name="link" />
+        <Icon name="instagram" />
       </button>
       <button
         ref={nextButton}
@@ -153,7 +153,7 @@ const CustomButtons = ({ flkty, children }) => {
         className="Navigation__button Navigation__button--next"
       >
         next
-        <Icon name="plus" />
+        <Icon name="facebook" />
       </button>
     </Navigation>
   )
