@@ -69,7 +69,6 @@
     "gatsby-transformer-sharp": "^2.5.7",
     "intersection-observer": "^0.11.0",
     "ngrok": "^3.2.7",
-    "oembed-parser": "^1.3.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",

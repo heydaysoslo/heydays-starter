@@ -81,7 +81,7 @@ module.exports = {
       resolve: `gatsby-plugin-netlify-functions`,
       options: {
         functionsSrc: `${__dirname}/src/netlify-functions`,
-        functionsOutput: `${__dirname}/functions`
+        functionsOutput: `${__dirname}/netlify-functions`
       }
     },
     {

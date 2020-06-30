@@ -14,6 +14,7 @@ const Oembed = ({ url, className }) => {
       body: JSON.stringify({ url })
     }
   )
+  console.log('Oembed -> embed', embed)
   if (
     embed?.result?.provider_name &&
     !isProviderAllowed(embed?.result?.provider_name)
