@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import { Link, graphql } from 'gatsby'
 import useLinkResolver from '../hooks/useLinkResolver'
 
 export const resolveLinkText = ({ children, customText, link }) => {
