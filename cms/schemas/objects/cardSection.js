@@ -39,7 +39,7 @@ export default {
     {
       name: 'seeAllLink',
       title: 'See all link',
-      type: 'link'
+      type: 'internalLink'
     }
   ],
   preview: {

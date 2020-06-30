@@ -46,6 +46,11 @@ export default {
             name: 'link',
             title: 'Link',
             type: 'link'
+          },
+          {
+            name: 'internalLink',
+            type: 'internalLink',
+            title: 'Internal Link'
           }
         ]
       }

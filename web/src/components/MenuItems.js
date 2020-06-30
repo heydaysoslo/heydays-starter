@@ -6,22 +6,27 @@ import { fonts, spacing } from '../styles/utilities'
 
 const MenuItems = ({ menu, closeMenu, className }) => {
   if (!menu) return null
-  return menu.map(item => (
-    <LinkResolver
-      key={item._key}
-      data={item?.externalLink?.url || item?.reference}
-      className={className}
-      onClick={closeMenu}
-      openInNewTab={item?.externalLink?.blank}
-    >
-      {item?.title || item?.reference?.title}
-    </LinkResolver>
-  ))
+  return (
+    <nav className={className}>
+      {menu.map(item => (
+        <LinkResolver
+          key={item._key}
+          className="item"
+          link={item}
+          onClick={closeMenu}
+        >
+          {item?.title || item?.reference?.title}
+        </LinkResolver>
+      ))}
+    </nav>
+  )
 }
 
 export default styled(MenuItems)(
   ({ theme }) => css`
-    ${spacing.sm('ml')}
-    ${fonts.title()}
+    .item {
+      ${spacing.sm('ml')}
+      ${fonts.title()}
+    }
   `
 )

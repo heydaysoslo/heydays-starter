@@ -22,15 +22,11 @@ const CardSection = ({ title, seeAllLink, cardsList = [], ...props }) => {
           )
         })}
       </Grid>
-      {seeAllLink &&
-        (seeAllLink?.externalLink?.url || seeAllLink?.reference?.slug) && (
-          <LinkResolver
-            data={seeAllLink?.externalLink?.url || seeAllLink?.reference}
-            openInNewTab={seeAllLink?.externalLink?.blank}
-          >
-            {seeAllLink?.title || seeAllLink?.reference?.title}
-          </LinkResolver>
-        )}
+      {seeAllLink && (
+        <LinkResolver link={seeAllLink}>
+          {seeAllLink?.title || seeAllLink?.reference?.title}
+        </LinkResolver>
+      )}
     </div>
   )
 }

@@ -25,10 +25,7 @@ const Footer = () => {
             {menu &&
               menu.map(item => (
                 <li className="Footer__menu-item" key={item._key}>
-                  <LinkResolver
-                    data={item?.externalLink?.url || item?.reference}
-                    openInNewTab={item?.externalLink?.blank}
-                  >
+                  <LinkResolver link={item}>
                     {item?.title || item?.reference?.title}
                   </LinkResolver>
                 </li>
@@ -39,7 +36,7 @@ const Footer = () => {
           </div>
           <div className="Footer__privacy">
             {privacyPage && (
-              <LinkResolver data={privacyPage}>
+              <LinkResolver link={privacyPage}>
                 {privacyPage.title}
               </LinkResolver>
             )}

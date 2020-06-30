@@ -9,14 +9,11 @@ import {
   LinkedinIcon,
   EmailIcon
 } from 'react-share'
-import { graphql, useStaticQuery } from 'gatsby'
 
-import { getUrl } from '../../heydays-config'
+import useLinkResolver from './hooks/useLinkResolver'
 
-const Share = ({ type, slug }) => {
-  const data = useStaticQuery(query)
-  const { sanitySiteSettings } = data
-  const url = `${sanitySiteSettings.siteUrl}${getUrl(type, slug)}`
+const Share = ({ page }) => {
+  const url = useLinkResolver(page, { canonical: true })
   const IconProps = {
     iconBgStyle: { fill: 'black' },
     logoFillColor: 'white',
@@ -42,11 +39,3 @@ const Share = ({ type, slug }) => {
 }
 
 export default Share
-
-export const query = graphql`
-  {
-    sanitySiteSettings {
-      siteUrl
-    }
-  }
-`

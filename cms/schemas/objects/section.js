@@ -19,9 +19,9 @@ export default {
       type: 'editorMinimal'
     },
     {
-      name: 'button',
-      title: 'Button',
-      type: 'button'
+      name: 'link',
+      title: 'Link',
+      type: 'link'
     }
   ],
   preview: {

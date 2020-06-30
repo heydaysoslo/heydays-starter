@@ -1,11 +1,11 @@
 import React from 'react'
 import Editor from '../editor/'
-import ButtonResolver from '../resolvers/ButtonResolver'
-import { P, H3, Button } from '../elements'
+import { P, H3 } from '../elements'
 import styled, { css } from 'styled-components'
 import { spacing } from '../../styles/utilities'
+import { LinkResolver } from '../resolvers'
 
-const Section = ({ label, title, content, button, className }) => {
+const Section = ({ label, title, content, link, className }) => {
   return (
     <div className={className}>
       {label && (
@@ -15,13 +15,8 @@ const Section = ({ label, title, content, button, className }) => {
       )}
       {title && <H3 className="title">{title}</H3>}
       {content && <Editor className="content" blocks={content} />}
-      {button && (
-        <Button
-          className="button"
-          as={ButtonResolver}
-          modifiers={button?.type && button?.type}
-          button={button}
-        />
+      {link && (
+        <LinkResolver link={link}>{link.title || link.url}</LinkResolver>
       )}
     </div>
   )

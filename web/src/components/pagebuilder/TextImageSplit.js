@@ -2,8 +2,8 @@ import React from 'react'
 
 import SanityImage from '../editor/SanityImage'
 import Editor from '../editor/'
-import { ButtonResolver } from '../resolvers'
-import { H3, Button, Grid } from '../elements'
+import { LinkResolver } from '../resolvers'
+import { H3, Grid } from '../elements'
 import styled, { css } from 'styled-components'
 import { spacing } from '../../styles/utilities'
 
@@ -11,7 +11,7 @@ const TextImageSplit = ({
   textOnTheRight = false,
   image,
   aspect,
-  button,
+  link,
   title,
   content,
   className
@@ -30,13 +30,8 @@ const TextImageSplit = ({
           {content && (
             <Editor className="TextImageSplit__content" blocks={content} />
           )}
-          {button?.link && (
-            <Button
-              as={ButtonResolver}
-              modifiers={button?.type && button.type}
-              className="TextImageSplit__button"
-              button={button}
-            />
+          {link && (
+            <LinkResolver className="TextImageSplit__button" link={link} />
           )}
         </div>
         <div className="image">

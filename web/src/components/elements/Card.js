@@ -10,7 +10,7 @@ import { spacing } from '../../styles/utilities'
 
 const Card = ({ className, title, image, excerpt, link }) => (
   <InView className={className} activeClassName="is-visible">
-    <LinkResolver data={link}>
+    <LinkResolver link={link}>
       <div className="media">
         {image ? (
           <SanityImage node={image} aspectRatio="portrait" />

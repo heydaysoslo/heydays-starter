@@ -25,9 +25,9 @@ export default {
       fieldset: 'content'
     },
     {
-      name: 'button',
-      title: 'Button',
-      type: 'button'
+      name: 'link',
+      title: 'Link',
+      type: 'link'
     },
     {
       name: 'image',

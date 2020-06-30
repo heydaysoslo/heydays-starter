@@ -62,7 +62,7 @@ export default {
       name: 'frontpage',
       title: 'Front page',
       type: 'reference',
-      to: [{ type: 'page' }],
+      to: [{ type: 'frontpage' }],
       validation: Rule => Rule.required(),
       fieldset: 'important'
     },
