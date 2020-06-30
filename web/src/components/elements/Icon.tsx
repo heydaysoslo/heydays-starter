@@ -38,7 +38,7 @@ type Props = {
   modifiers?: Modifiers | Modifiers[]
 }
 
-const Icon = ({ className, name = 'calendar' }: Props) => {
+const Icon = ({ className, name }: Props) => {
   const data = useStaticQuery(query)
   const icons = data?.allFile?.nodes
   const [Component, setComponent] = useState<ComponentType<{
