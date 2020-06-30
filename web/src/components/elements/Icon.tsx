@@ -9,34 +9,25 @@ import { applyStyleModifiers } from 'styled-components-modifiers'
  * To change folder see `gatsby-config.js` and query below
  *
  * Usage:
- * <Icon name="check" modifiers="small" />
- * <Icon name="config" />
- * <Icon name="calendar" color="orange"/>
- * <Icon name="calendar" modifiers="large" />
+ * <Icon name="facebook" modifiers="small" />
+ * <Icon name="twitter" />
+ * <Icon name="instagram" color="orange"/>
+ * <Icon name="email" modifiers="large" />
  *
  * @param {string} name // name of the icon file without extension.
  * @param {string} color // overrides colors
  */
 
 type Name =
-  | 'calendar'
-  | 'check'
-  | 'cloud'
-  | 'concept'
-  | 'house'
-  | 'fullstack'
-  | 'config'
-  | 'graph'
-  | 'link'
-  | 'process'
-  | 'plus'
-  | 'mobile'
-  | 'science'
-  | 'search'
-  | 'ux'
-  | 'team'
-  | 'wink'
-  | 'wand'
+  | 'email'
+  | 'facebook'
+  | 'instagram'
+  | 'linkedin'
+  | 'pinterest'
+  | 'podcast'
+  | 'spotify'
+  | 'twitter'
+  | 'rss'
 
 type Modifiers = 'small' | 'medium' | 'large'
 
