@@ -11,7 +11,7 @@ export const getReadTime = blocks => {
       return res
     }, '')
     const wordAmount = text.split(' ').length
-    const images = blocks.map(block => block._type === 'articleImage').length
+    const images = blocks.map(block => block._type === 'figure').length
 
     readTime = Math.floor(wordAmount / 275 + images * 0.12)
   }
