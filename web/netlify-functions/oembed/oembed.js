@@ -1,6 +1,6 @@
 const { extract } = require('oembed-parser')
 
-export const handler = (event, context, callback) => {
+exports.handler = (event, context, callback) => {
   const { url } = JSON.parse(event.body)
 
   extract(url)

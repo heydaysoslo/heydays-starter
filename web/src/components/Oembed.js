@@ -7,13 +7,10 @@ import styled from 'styled-components'
 import { useFetch } from './hooks'
 
 const Oembed = ({ url, className }) => {
-  const { response: embed, isLoading, error } = useFetch(
-    '/.netlify/functions/oembed',
-    {
-      method: 'POST',
-      body: JSON.stringify({ url })
-    }
-  )
+  const { response: embed, isLoading, error } = useFetch('/api/oembed', {
+    method: 'POST',
+    body: JSON.stringify({ url })
+  })
   console.log('Oembed -> embed', embed)
   if (
     embed?.result?.provider_name &&
