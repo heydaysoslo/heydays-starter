@@ -3,21 +3,12 @@
   "version": "0.0.4",
   "private": true,
   "scripts": {
-    "empty-cache": "lerna run clean --scope web",
-    "start": "yarn empty-cache && lerna run start --parallel",
-    "build": "lerna run build --parallel",
-    "bootstrap": "lerna bootstrap",
-    "deploy:graphql": "lerna run deploy:graphql",
-    "deploy:sanity": "lerna run deploy:sanity",
-    "export:sanity": "cd cms && yarn export",
-    "postinstall": "lerna bootstrap"
+    "start:web": "cd web && netlify dev"
   },
   "workspaces": [
     "cms",
     "web"
   ],
-  "devDependencies": {
-    "lerna": "^3.13.1"
-  },
+  "devDependencies": {},
   "dependencies": {}
 }
