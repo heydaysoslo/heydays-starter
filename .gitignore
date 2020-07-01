@@ -16,3 +16,5 @@ node_modules/
 
 # Theme
 # /gatsby-theme-heydays
+# Local Netlify folder
+.netlify
