@@ -6,7 +6,7 @@
 
 2. From project root run `cd cms && sanity init`
 
-3. Create `.env` from `/web/.env-sample` and add missing keys for sanity. You need `projectId` and `dataset` from `cms/sanity.json`. For access to drafts you can add a an access token in the sanity admin page. When in `/cms` run `sanity manage`
+3. Create `.env` from `/web/.env-sample` and add missing keys for sanity. You need `projectId` and `dataset` from `cms/sanity.json`. For access to drafts you can add a an access token in the sanity admin page. When in `/cms` run `sanity manage`. Retrive the token and add it to your `.env`
 
 4a. In project root run `yw cms deploy:graphql`
 
