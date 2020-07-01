@@ -1,2 +1,7 @@
 [build]
+  command = 'yarn build'
   functions = "/netlify-functions"
+  publish = 'public'
+
+[[plugins]]
+  package = 'netlify-plugin-gatsby-cache'
