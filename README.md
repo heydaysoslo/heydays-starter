@@ -8,13 +8,15 @@
 
 3. Create `.env` from `/web/.env-sample` and add missing keys for sanity. You need `projectId` and `dataset` from `cms/sanity.json`. For access to drafts you can add a an access token in the sanity admin page. When in `/cms` run `sanity manage`. Retrive the token and add it to your `.env`
 
-4a. In project root run `yw cms deploy:graphql`
+4a. In project root run `yarn workspace cms deploy:graphql`
 
-4b. You might want to setup things in the cms before you start the web server so from project root run `yw cms start` and add a frontpage and assign a frontpage in siteSettings. Add menus, pages and a privacy page.
+4b. You might want to setup things in the cms before you start the web server so from project root run `yarn workspace cms start` and add a frontpage and assign a frontpage in siteSettings. Add menus, pages and a privacy page.
 
 5a. You might need to install dependencies and build the netlify functions. From project root run `cd web/src/netlify-functions && npm i`. Once that is finished you can build with `yarn build:lambda`
 
-5b. Then from project root run `yw web start`. Open a new tab/pane and run `yw cms start` in the second one.
+5b. Then from project root run `yarn workspace web start`. Open a new tab/pane and run `yarn workspace cms start` in the second one.
+
+!Protip add `yw` as an alias for `yarn workspaces` in your bash or zsh for less typing
 
 <!-- **_ GOTCHA _**
 TL;DR If you're content is not showing on the page restart the server.
