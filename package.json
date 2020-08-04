@@ -3,7 +3,7 @@
   "version": "0.0.4",
   "private": true,
   "scripts": {
-    "start:web": "cd web && netlify dev"
+    "start:web": "cd web && netlify dev --open"
   },
   "workspaces": [
     "cms",
