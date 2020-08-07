@@ -45,7 +45,6 @@
     "date-fns": "^2.0.1",
     "dotenv": "^8.0.0",
     "flickity": "^2.2.1",
-    "formik": "^1.5.8",
     "framer-motion": "^2.3.0",
     "gatsby": "^2.19.10",
     "gatsby-image": "^2.2.39",
@@ -80,9 +79,7 @@
     "react-transition-group": "^4.1.0",
     "styled-components": "^5.0.0",
     "styled-components-modifiers": "^1.2.5",
-    "styled-components-spacing": "^3.1.0",
-    "styled-icons": "^9.4.1",
-    "yup": "^0.27.0"
+    "styled-components-spacing": "^3.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.10.3",

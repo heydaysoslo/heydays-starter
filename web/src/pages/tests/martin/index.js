@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { Grid, GridItem, Container, Cover } from '../../../components/elements'
 import { spacing } from '../../../styles/utilities'
 import CoverImage from '../../../components/tests/CoverImage'
-import { AccountCircle } from 'styled-icons/material'
 
 const TestSection = styled.section`
   ${spacing.lg('py')};
@@ -81,7 +80,6 @@ const Index = () => {
         <Container>
           <IconButton>
             <span>Check this out</span>
-            <AccountCircle />
           </IconButton>
           <Grid gap={true} gapUnit="pixel" columns={{ xs: 2, md: 4 }}>
             <CoverImage />
