@@ -1,0 +1,10 @@
+{
+  "name": "newsletter",
+  "version": "1.0.0",
+  "main": "newsletter.js",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "md5": "^2.2.1"
+  }
+}
