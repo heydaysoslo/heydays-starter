@@ -3,7 +3,8 @@
   "version": "0.0.4",
   "private": true,
   "scripts": {
-    "start:web": "cd web && netlify dev --open"
+    "start": "cd web && netlify dev --open",
+    "cms": "yarn workspace cms start"
   },
   "workspaces": [
     "cms",
