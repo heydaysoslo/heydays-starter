@@ -7,7 +7,20 @@ module.exports = {
     siteName: 'Heydays starter',
     siteUrl: 'https://heydays-starter.netlify.com'
   },
+
   plugins: [
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        icon: `${__dirname}/src/assets/images/favicon.png`,
+        name: 'STARTER',
+        short_name: 'STARTER',
+        start_url: `/`,
+        background_color: `#000`,
+        theme_color: `#fff`,
+        display: 'STARTER'
+      }
+    },
     {
       resolve: 'gatsby-source-sanity',
       options: {
@@ -76,13 +89,6 @@ module.exports = {
         exclude: [`/_preview/*`]
       }
     },
-    // {
-    //   resolve: `gatsby-plugin-netlify-functions`,
-    //   options: {
-    //     functionsSrc: `${__dirname}/src/netlify-functions`,
-    //     functionsOutput: `${__dirname}/netlify-functions`
-    //   }
-    // },
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
@@ -106,25 +112,13 @@ module.exports = {
         // dataLayerName: "YOUR_DATA_LAYER_NAME",
       }
     },
-    // {
-    //   resolve: 'gatsby-source-vimeo-all',
-    //   options: {
-    //     clientId: process.env.VIMEO_CLIENT_ID,
-    //     clientSecret: process.env.VIMEO_CLIENT_SECRET,
-    //     accessToken: process.env.VIMEO_ACCESS_TOKEN
-    //   }
-    // }
-    // 'gatsby-plugin-extract-image-colors'
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: 'gatsby-plugin-webpack-bundle-analyzer',
+      // Available options: https://github.com/webpack-contrib/webpack-bundle-analyzer#options-for-plugin
       options: {
-        icon: `${__dirname}/src/assets/images/favicon.png`,
-        name: 'STARTER',
-        short_name: 'STARTER',
-        start_url: `/`,
-        background_color: `#000`,
-        theme_color: `#fff`,
-        display: 'STARTER'
+        openAnalyzer: false,
+        analyzerPort: 5000,
+        production: true
       }
     }
   ]
