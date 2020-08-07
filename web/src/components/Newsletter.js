@@ -137,6 +137,7 @@ const Newsletter = ({ className }) => {
             <StyledTextarea
               as={Input}
               register={register}
+              rules={{ required: false }}
               name="name"
               type="textarea"
               placeholder="Your message"

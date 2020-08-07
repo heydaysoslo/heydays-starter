@@ -57,6 +57,7 @@ export const StyledRadio = styled(({ as, theme, errors, error, ...rest }) => (
       height: 3rem;
       width: 3rem;
       margin-right: 1rem;
+      filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.2));
 
       ${error &&
         css`
