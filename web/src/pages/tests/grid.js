@@ -2,7 +2,6 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import { Grid, GridItem, Container } from '../../components/elements'
 import { spacing } from '../../styles/utilities'
-import Layout from '../../components/Layout'
 
 const Box = styled.div`
   ${spacing.sm('p')};
@@ -56,7 +55,7 @@ const StyledGridItem = styled(GridItem)`
 
 const GridTest = ({ className }) => {
   return (
-    <Layout>
+    <>
       <div className={className}>
         <Container>
           <h1>Grids</h1>
@@ -232,7 +231,7 @@ const GridTest = ({ className }) => {
           <div>MAKING SURE THERES NO SPACE</div>
         </Container>
       </div>
-    </Layout>
+    </>
   )
 }
 

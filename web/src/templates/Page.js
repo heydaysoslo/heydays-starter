@@ -1,7 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import Layout from '../components/Layout'
 import { TemplateResolver } from '../components/resolvers'
 
 /**
@@ -18,13 +17,7 @@ const PageTemplate = props => {
   const page = data && data?.page
   console.log('page', page)
 
-  return (
-    page && (
-      <Layout {...page}>
-        <TemplateResolver page={page} />
-      </Layout>
-    )
-  )
+  return page && <TemplateResolver page={page} />
 }
 
 export default PageTemplate
