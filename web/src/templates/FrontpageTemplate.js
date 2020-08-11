@@ -1,18 +1,13 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import Layout from '../components/Layout'
 import { TemplateResolver } from '../components/resolvers'
 
 const FrontpageTemplate = props => {
   const { data } = props
   const page = data?.sanityFrontpage
   console.log('page', page)
-  return (
-    <Layout page={page}>
-      <TemplateResolver page={page} />
-    </Layout>
-  )
+  return <TemplateResolver page={page} />
 }
 
 export default FrontpageTemplate

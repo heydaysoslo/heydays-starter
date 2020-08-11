@@ -1,10 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import Layout from '../../../components/Layout'
 import { Grid, GridItem, Container, Cover } from '../../../components/elements'
 import { spacing } from '../../../styles/utilities'
 import CoverImage from '../../../components/tests/CoverImage'
-import { AccountCircle } from 'styled-icons/material'
 
 const TestSection = styled.section`
   ${spacing.lg('py')};
@@ -58,7 +56,7 @@ const IconButton = styled.button`
 
 const Index = () => {
   return (
-    <Layout>
+    <>
       <Container>
         <Grid gap={true}>
           <GridItem span={6}>
@@ -82,7 +80,6 @@ const Index = () => {
         <Container>
           <IconButton>
             <span>Check this out</span>
-            <AccountCircle />
           </IconButton>
           <Grid gap={true} gapUnit="pixel" columns={{ xs: 2, md: 4 }}>
             <CoverImage />
@@ -300,7 +297,7 @@ const Index = () => {
           </Grid>
         </Container>
       </ImageTextSplit>
-    </Layout>
+    </>
   )
 }
 

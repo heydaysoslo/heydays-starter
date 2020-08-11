@@ -1,2 +1,21 @@
 [build]
-  functions = "/netlify-functions"
+  command = 'yarn build'
+  functions = "netlify-functions"
+  publish = 'public'
+
+[[plugins]]
+  package = 'netlify-plugin-gatsby-cache'
+
+[[plugins]]
+  package = "@netlify/plugin-functions-install-core"
+
+[[plugins]]
+  package = "netlify-plugin-subfont"
+
+[[plugins]]
+  package = "@netlify/plugin-lighthouse"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200

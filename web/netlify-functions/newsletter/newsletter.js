@@ -2,12 +2,12 @@
 require('dotenv').config()
 const axios = require('axios')
 
-export const handler = (event, context, callback) => {
+exports.handler = (event, context, callback) => {
   const { email, concent } = JSON.parse(event.body)
-
+  console.log(process.env.MAILCHIMP_LIST_ID, process.env.MAILCHIMP_API_KEY)
   axios({
     method: 'post',
-    url: `https://us2.api.mailchimp.com/3.0/lists/${process.env.MAILCHIMP_LIST_ID}/members/`, //change region (us2) based on last values of apiKey.
+    url: `https://us1.api.mailchimp.com/3.0/lists/${process.env.MAILCHIMP_LIST_ID}/members/`, //change region (us2) based on last values of apiKey.
     data: {
       email_address: email,
       status: 'subscribed'
@@ -46,7 +46,7 @@ export const handler = (event, context, callback) => {
 
         axios({
           method: 'PUT',
-          url: `https://us2.api.mailchimp.com/3.0/lists/${
+          url: `https://us1.api.mailchimp.com/3.0/lists/${
             process.env.MAILCHIMP_LIST_ID
           }/members/${md5(email.toLowerCase())}`, //change region (us2) based on last values of apiKey.
           data: {

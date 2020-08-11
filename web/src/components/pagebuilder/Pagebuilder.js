@@ -37,13 +37,7 @@ const PageBuilder = ({ sections }) => {
       {sections.map((section, index) => {
         const Component = sectionTypes[section._type] || null
         return Component ? (
-          <div
-            key={section._key}
-            className={cc({
-              PageBuilder__item: true,
-              [`PageBuilder__item--${section._type}`]: section._type
-            })}
-          >
+          <div key={section._key} className="PageBuilder__item">
             <Component
               {...section}
               prevComp={sections[index - 1] ? sections[index - 1] : null}

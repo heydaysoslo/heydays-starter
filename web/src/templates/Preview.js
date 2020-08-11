@@ -3,7 +3,6 @@ import sanityClient from '@sanity/client'
 import { Helmet } from 'react-helmet'
 import styled, { css } from 'styled-components'
 
-import Layout from '../components/Layout'
 import { TemplateResolver } from '../components/resolvers'
 import { sanity } from '../../heydays-config'
 
@@ -98,11 +97,7 @@ const Preview = ({ className, id }) => {
       </Helmet>
       <div className="Preview">
         <div className="Preview__content">
-          {pageData && (
-            <Layout>
-              <TemplateResolver page={pageData} />
-            </Layout>
-          )}
+          {pageData && <TemplateResolver page={pageData} />}
         </div>
       </div>
     </div>

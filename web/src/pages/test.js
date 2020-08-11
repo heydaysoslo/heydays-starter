@@ -60,7 +60,7 @@ const Index = () => {
   )
 
   return (
-    <Layout>
+    <>
       {/* <Video url="https://www.youtube.com/watch?v=lYGthBDzt8o" /> */}
       {/* <Video url="https://www.youtube.com/watch?v=hHW1oY26kxQ" />
       <Video url="https://vimeo.com/390848060" /> */}
@@ -166,7 +166,7 @@ const Index = () => {
         <pre>{JSON.stringify(windowSize, null, 2)}</pre>
         <pre>{JSON.stringify(scroll, null, 2)}</pre>
       </Container>
-    </Layout>
+    </>
   )
 }
 

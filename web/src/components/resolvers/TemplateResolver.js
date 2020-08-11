@@ -1,37 +1,42 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
-import Article from '../pages/Article'
-import Page from '../pages/Page'
-import ContactPage from '../pages/ContactPage'
-import NewsPage from '../pages/NewsPage'
+import Layout from '../Layout'
 
 const templates = {
-  article: Article,
-  frontpage: Page,
-  contact: ContactPage,
-  news: NewsPage,
-  default: Page
+  article: 'Article',
+  frontpage: 'Page',
+  contact: 'ContactPage',
+  news: 'NewsPage',
+  default: 'Page'
 }
 
 export default function TemplateResolver({ page }) {
-  let Component = null
+  const [Component, setComponent] = useState(null)
 
-  // Check if we have a template
-  if (page.template && templates[page.template]) {
-    Component = templates[page.template]
-  }
-
-  // If no template name is set, resolve to type
-  if (!Component) {
-    if (page._type && templates[page._type]) {
-      Component = templates[page._type]
+  useEffect(() => {
+    let temp
+    // Check if we have a template
+    if (page.template && templates[page.template]) {
+      temp = templates[page.template]
+    } // If no template name is set, resolve to type
+    else if (page._type && templates[page._type]) {
+      temp = templates[page._type]
+    } // If we still don't have a component, resolve to default
+    else {
+      temp = templates.default
     }
-  }
 
-  // If we still don't have a component, resolve to default
-  if (!Component) {
-    Component = templates.default
-  }
+    // Dynamically import template
+    import(`../pages/${temp}`)
+      .then(comp => setComponent(() => comp.default))
+      .catch(err => console.log(err))
+  }, [page])
 
-  return <Component {...page} />
+  if (!Component) return <div style={{ minHeight: '100vh' }} />
+
+  return (
+    <Layout page={page}>
+      <Component {...page} />
+    </Layout>
+  )
 }
