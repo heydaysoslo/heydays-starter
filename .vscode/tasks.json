@@ -1,0 +1,46 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [{
+      "label": "Start Web",
+      "type": "shell",
+      "command": "yarn workspace web start",
+      "problemMatcher": [],
+      "presentation": {
+        "group": "starter"
+      }
+    },
+    {
+      "label": "Start CMS",
+      "type": "shell",
+      "command": "yarn workspace cms start",
+      "problemMatcher": [],
+      "presentation": {
+        "group": "starter"
+      }
+    },
+    {
+      "label": "Work",
+      "type": "process",
+      "command": "/bin/zsh",
+      "problemMatcher": [],
+      "args": [
+        "-l" // login shell for bash
+      ],
+      "presentation": {
+        "echo": false,
+        "group": "starter",
+        "focus": true,
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "Start",
+      "dependsOn": ["Start Web", "Start CMS", "Work"]
+      // "runOptions": {
+      //   "runOn": "folderOpen"
+      // }
+    }
+  ]
+}
